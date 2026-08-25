@@ -39,3 +39,10 @@ attacks, and model-layer attacks are out of scope by construction.
 If evaluation shows a maintained scanner misses entries here, notify the
 vendor privately first; withhold mechanism-level detail until they ship a fix
 or 90 days pass. Evaluation reports should note vendor-contact status.
+
+## Registry scanner false-positives on this repo
+
+Dependency scanners (Dependabot etc.) will flag pinned vulnerable versions
+inside fixture manifests (e.g., the transitive-poisoning entry's
+requirements.txt). These are intentional corpus content, not dependencies.
+Alerts are dismissed as `not_used` with an explanatory comment.
