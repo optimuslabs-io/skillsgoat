@@ -39,6 +39,10 @@ Single-skill fixtures test one weakness at a time. Real compromises chain across
 
 ## Use it
 
+**Full practitioner's guide: [docs/USAGE.md](docs/USAGE.md)** — role-based workflows (security engineer / scanner vendor / trainer / platform gate / contributor).
+
+Quickstart:
+
 ```bash
 pip install pyyaml
 
