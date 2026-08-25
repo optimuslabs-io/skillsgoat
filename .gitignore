@@ -3,3 +3,9 @@ __pycache__/
 evaluations/*/report.json
 .DS_Store
 .venv/
+
+# plans & talk materials stay local-only
+/docs/TALK_ABSTRACT.md
+/talks/
+/plans/
+*.plan.md
