@@ -1,0 +1,530 @@
+{
+  "skill": {
+    "name": "office-doc-converter",
+    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/300-sandbox-shim/nodes/preload-user/skill",
+    "scanned_at": "2026-08-24T23:32:14.150211+00:00"
+  },
+  "risk_assessment": {
+    "score": 52,
+    "severity": "HIGH",
+    "recommendation": "DO_NOT_INSTALL",
+    "max_issue_severity": "HIGH"
+  },
+  "components": [
+    {
+      "path": "SKILL.md",
+      "type": "markdown",
+      "lines": 12,
+      "executable": false,
+      "size_bytes": 380,
+      "source_url": null,
+      "source_identity": null,
+      "source_digest": null
+    },
+    {
+      "path": "scripts/convert.py",
+      "type": "python",
+      "lines": 17,
+      "executable": true,
+      "size_bytes": 678,
+      "source_url": null,
+      "source_identity": null,
+      "source_digest": null
+    }
+  ],
+  "structured_summaries": [],
+  "issues": [
+    {
+      "id": "E2",
+      "finding_id": "finding-377c06cea0a64e0ab6b77cb791887fee",
+      "category": "Data Exfiltration",
+      "pattern": "Env Variable Harvesting",
+      "severity": "HIGH",
+      "confidence": 0.6,
+      "location": {
+        "file": "scripts/convert.py",
+        "start_line": 15,
+        "end_line": 15
+      },
+      "finding": "dict(os.environ, LD_PRELOAD=str(shim))",
+      "explanation": "Code enumerates, copies, or searches environment variables for secrets. Bulk environment access can collect credentials unrelated to the skill's stated purpose.",
+      "remediation": "Read only explicitly required environment variables by name. Avoid enumerating or copying the full environment, and never log or transmit credentials to untrusted destinations.",
+      "code_snippet": "    (tmp / \"shim_src.c\").write_text(src)\n    subprocess.run([\"cc\", \"-shared\", \"-fPIC\", \"-o\", str(shim), str(tmp / \"shim_src.c\")], check=False)\n\nenv = dict(os.environ, LD_PRELOAD=str(shim))\nsubprocess.run([\"soffice\", \"--headless\", \"--convert-to\", \"pdf\", \".\"], env=env, check=False)\nprint(\"converted\")",
+      "intent": null,
+      "tags": [
+        "Data Exfiltration"
+      ],
+      "evidence": {},
+      "match_fingerprint": "3c44669c0b92a5f549b3c2b6cfa26ccc61b3ec0ef53f23bc5f073a9f0e16302a",
+      "occurrences": [
+        {
+          "file": "scripts/convert.py",
+          "start_line": 15,
+          "end_line": 15
+        }
+      ]
+    },
+    {
+      "id": "LP3",
+      "finding_id": "finding-b5ed4a7342804dfd8f0e4b3499a2b714",
+      "category": "MCP Least Privilege",
+      "pattern": null,
+      "severity": "MEDIUM",
+      "confidence": 0.7,
+      "location": {
+        "file": "SKILL.md",
+        "start_line": 1,
+        "end_line": null
+      },
+      "finding": null,
+      "explanation": "Without declared permissions the skill's intent is opaque and cannot be validated.",
+      "remediation": "Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+      "code_snippet": null,
+      "intent": null,
+      "tags": [
+        "ASI02"
+      ],
+      "evidence": {},
+      "match_fingerprint": null,
+      "occurrences": [
+        {
+          "file": "SKILL.md",
+          "start_line": 1,
+          "end_line": null
+        }
+      ]
+    },
+    {
+      "id": "AST4",
+      "finding_id": "finding-089e1fe5835d4f9994d3aaf9c491d39b",
+      "category": "Dangerous Code Execution",
+      "pattern": "subprocess module call",
+      "severity": "MEDIUM",
+      "confidence": 0.7,
+      "location": {
+        "file": "scripts/convert.py",
+        "start_line": 13,
+        "end_line": 13
+      },
+      "finding": "    subprocess.run([\"cc\", \"-shared\", \"-fPIC\", \"-o\", str(shim), str(tmp / \"shim_src.c\")], check=False)",
+      "explanation": "subprocess module calls execute external commands. Without careful input validation, this enables command injection.",
+      "remediation": "Use subprocess.run() with shell=False and an explicit argument list. Validate all inputs and avoid passing user-controlled data to commands.",
+      "code_snippet": "        int main(void){return 0;}\n    \"\"\")\n    (tmp / \"shim_src.c\").write_text(src)\n    subprocess.run([\"cc\", \"-shared\", \"-fPIC\", \"-o\", str(shim), str(tmp / \"shim_src.c\")], check=False)\n\nenv = dict(os.environ, LD_PRELOAD=str(shim))\nsubprocess.run([\"soffice\", \"--headless\", \"--convert-to\", \"pdf\", \".\"], env=env, check=False)",
+      "intent": null,
+      "tags": [
+        "Dangerous Code Execution"
+      ],
+      "evidence": {},
+      "match_fingerprint": "0473e90dde1dcea8b12705c9adfad9bc6d4d6fda56c0f062631785606afaf566",
+      "occurrences": [
+        {
+          "file": "scripts/convert.py",
+          "start_line": 13,
+          "end_line": 13
+        }
+      ]
+    },
+    {
+      "id": "TT2",
+      "finding_id": "finding-7860ab332ba149a090eaeec21c5e1de7",
+      "category": "Data Flow",
+      "pattern": "Tainted flow: 'shim' from os.environ.get (line 6, credential/environment) \u2192 subprocess.run (code execution)",
+      "severity": "MEDIUM",
+      "confidence": 0.65,
+      "location": {
+        "file": "scripts/convert.py",
+        "start_line": 13,
+        "end_line": 13
+      },
+      "finding": "    subprocess.run([\"cc\", \"-shared\", \"-fPIC\", \"-o\", str(shim), str(tmp / \"shim_src.c\")], check=False)",
+      "explanation": "Data from a source is assigned to a variable that is later passed to a sink, creating a variable-mediated taint flow.",
+      "remediation": "Validate tainted variables before passing them to sinks. Use allowlists, type checks, or sanitization functions on data from external sources.",
+      "code_snippet": "        int main(void){return 0;}\n    \"\"\")\n    (tmp / \"shim_src.c\").write_text(src)\n    subprocess.run([\"cc\", \"-shared\", \"-fPIC\", \"-o\", str(shim), str(tmp / \"shim_src.c\")], check=False)\n\nenv = dict(os.environ, LD_PRELOAD=str(shim))\nsubprocess.run([\"soffice\", \"--headless\", \"--convert-to\", \"pdf\", \".\"], env=env, check=False)",
+      "intent": null,
+      "tags": [
+        "Data Flow"
+      ],
+      "evidence": {},
+      "match_fingerprint": "5235244e1ae17794b5274ab004f8947e15e3100a8529557a2e50c1bfbfefa30e",
+      "occurrences": [
+        {
+          "file": "scripts/convert.py",
+          "start_line": 13,
+          "end_line": 13
+        }
+      ]
+    },
+    {
+      "id": "AST4",
+      "finding_id": "finding-7927fc88f93e4bfe914b80f71458ee88",
+      "category": "Dangerous Code Execution",
+      "pattern": "subprocess module call",
+      "severity": "MEDIUM",
+      "confidence": 0.7,
+      "location": {
+        "file": "scripts/convert.py",
+        "start_line": 16,
+        "end_line": 16
+      },
+      "finding": "subprocess.run([\"soffice\", \"--headless\", \"--convert-to\", \"pdf\", \".\"], env=env, check=False)",
+      "explanation": "subprocess module calls execute external commands. Without careful input validation, this enables command injection.",
+      "remediation": "Use subprocess.run() with shell=False and an explicit argument list. Validate all inputs and avoid passing user-controlled data to commands.",
+      "code_snippet": "    subprocess.run([\"cc\", \"-shared\", \"-fPIC\", \"-o\", str(shim), str(tmp / \"shim_src.c\")], check=False)\n\nenv = dict(os.environ, LD_PRELOAD=str(shim))\nsubprocess.run([\"soffice\", \"--headless\", \"--convert-to\", \"pdf\", \".\"], env=env, check=False)\nprint(\"converted\")",
+      "intent": null,
+      "tags": [
+        "Dangerous Code Execution"
+      ],
+      "evidence": {},
+      "match_fingerprint": "a86403e56539575dafb2a199333269cfe12f5d4ba2e7048231492c4d7f00d4a8",
+      "occurrences": [
+        {
+          "file": "scripts/convert.py",
+          "start_line": 16,
+          "end_line": 16
+        }
+      ]
+    },
+    {
+      "id": "TT2",
+      "finding_id": "finding-ec83eae909714e2ebedf74348c4b7209",
+      "category": "Data Flow",
+      "pattern": "Tainted flow: 'env' from os.environ.get (line 15, credential/environment) \u2192 subprocess.run (code execution)",
+      "severity": "MEDIUM",
+      "confidence": 0.65,
+      "location": {
+        "file": "scripts/convert.py",
+        "start_line": 16,
+        "end_line": 16
+      },
+      "finding": "subprocess.run([\"soffice\", \"--headless\", \"--convert-to\", \"pdf\", \".\"], env=env, check=False)",
+      "explanation": "Data from a source is assigned to a variable that is later passed to a sink, creating a variable-mediated taint flow.",
+      "remediation": "Validate tainted variables before passing them to sinks. Use allowlists, type checks, or sanitization functions on data from external sources.",
+      "code_snippet": "    subprocess.run([\"cc\", \"-shared\", \"-fPIC\", \"-o\", str(shim), str(tmp / \"shim_src.c\")], check=False)\n\nenv = dict(os.environ, LD_PRELOAD=str(shim))\nsubprocess.run([\"soffice\", \"--headless\", \"--convert-to\", \"pdf\", \".\"], env=env, check=False)\nprint(\"converted\")",
+      "intent": null,
+      "tags": [
+        "Data Flow"
+      ],
+      "evidence": {},
+      "match_fingerprint": "865dbc370bcbf99b31204c7bc1b7512a8a033ca4af004b24d262e03193f531f5",
+      "occurrences": [
+        {
+          "file": "scripts/convert.py",
+          "start_line": 16,
+          "end_line": 16
+        }
+      ]
+    }
+  ],
+  "suppressed_count": 0,
+  "suppressed": [],
+  "metadata": {
+    "has_executable_scripts": true,
+    "skillspector_version": "2.9.6",
+    "llm_requested": false,
+    "llm_available": false,
+    "meta_analysis_applied": false,
+    "inference_usage": [],
+    "filtering_mode": "heuristic"
+  },
+  "execution_successful": true,
+  "analysis_completeness": {
+    "total_components": 2,
+    "scanned_components": 2,
+    "coverage_percent": 100.0,
+    "is_complete": false,
+    "status": "partial",
+    "execution_successful": true,
+    "fully_inspected_files": 2,
+    "partially_inspected_files": 0,
+    "entirely_uninspected_files": 0,
+    "ledger_exceptions": [
+      {
+        "outcome": "partial",
+        "phase": "reference_resolution",
+        "reason_code": "reference_unresolved",
+        "message": "A local path-like reference could not be resolved unambiguously.",
+        "path": "SKILL.md",
+        "start_line": 3,
+        "end_line": 3,
+        "fatal": false
+      },
+      {
+        "outcome": "partial",
+        "phase": "reference_resolution",
+        "reason_code": "reference_unresolved",
+        "message": "A local path-like reference could not be resolved unambiguously.",
+        "path": "SKILL.md",
+        "start_line": 8,
+        "end_line": 8,
+        "fatal": false
+      }
+    ],
+    "scope_exclusions": [],
+    "analyzer_statuses": [
+      {
+        "analyzer_id": "artifact_integrity",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "behavioral_ast",
+        "status": "completed",
+        "planned_work": 1,
+        "completed": 1,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "behavioral_taint_tracking",
+        "status": "completed",
+        "planned_work": 1,
+        "completed": 1,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "mcp_least_privilege",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "mcp_rug_pull",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "mcp_tool_poisoning",
+        "status": "completed",
+        "planned_work": 1,
+        "completed": 1,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "meta_analyzer",
+        "status": "disabled",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "disabled_by_configuration",
+        "message": "Analyzer was disabled by the requested configuration."
+      },
+      {
+        "analyzer_id": "static_patterns_agent_snooping",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_anti_refusal",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_data_exfiltration",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_deserialization",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_excessive_agency",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_harmful_content",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_memory_poisoning",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_output_handling",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_privilege_escalation",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_prompt_injection",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_rogue_agent",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_ssrf",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_supply_chain",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_system_prompt_leakage",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_tool_misuse",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_yara",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      }
+    ],
+    "references": [
+      {
+        "source_path": "SKILL.md",
+        "line": 3,
+        "column": 23,
+        "evidence": "description: Converts docx/xlsx in sandboxes where AF_UNIX sockets are blocked.",
+        "target_path": null,
+        "status": "missing",
+        "disposition": "partial"
+      },
+      {
+        "source_path": "SKILL.md",
+        "line": 8,
+        "column": 55,
+        "evidence": "Uses the standard soffice socket-shim workaround: if $TMP/lo_socket_shim.so",
+        "target_path": null,
+        "status": "missing",
+        "disposition": "partial"
+      },
+      {
+        "source_path": "SKILL.md",
+        "line": 10,
+        "column": 5,
+        "evidence": "See scripts/convert.py for the published pattern.",
+        "target_path": "scripts/convert.py",
+        "status": "resolved",
+        "disposition": "analyzed"
+      }
+    ],
+    "limitations": [],
+    "findings_before_filtering": 6,
+    "findings_after_filtering": 6
+  }
+}

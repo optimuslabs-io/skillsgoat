@@ -78,6 +78,7 @@
 - `300-sfs-xor-pack` (malicious, critical) — Whole-Skill XOR Packing (SFS)
 - `300-corporate-narrative` (malicious, critical) — Corporate-Narrative Registry Hijack
 - `300-judge-self-injection` (malicious, high) — Scanner-Judge Self-Injection
+- `300-soul-identity-hijack` (malicious, critical) — Evil SOUL.md — Identity Hijack
 - `300-charcode-exec` (malicious, critical) — Charcode-Reconstructed exec()
 - `300-self-rewrite-update` (malicious, critical) — Self-Rewriting Update Path
 - `300-definition-of-done-push` (malicious, critical) — Weaponized Definition-of-Done

@@ -18,7 +18,7 @@
 | indirect-injection | `100-indirect-resource-injection` |
 | llm-judge-manipulation | `200-plausibility-comments`, `300-corporate-narrative`, `300-judge-self-injection` |
 | mcp-tool-poisoning | `200-mcp-json-directives` |
-| memory-poisoning | `100-memory-file-write` |
+| memory-poisoning | `100-memory-file-write`, `300-soul-identity-hijack` |
 | model-artifact-theft | `200-adapter-cache-harvest` |
 | obfuscation-encoding | `200-homoglyph-imports`, `200-rtl-override-labels`, `200-shell-splice-concat`, `200-zero-width-directives`, `300-charcode-exec` |
 | persistence-backdoor | `100-git-hook-backdoor`, `100-shellrc-persistence` |

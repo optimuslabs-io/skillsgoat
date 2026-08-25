@@ -20,6 +20,13 @@
   public registry, dataset, or scanner training corpus, that leak is traceable
   back to this repo and to any contaminated evaluation set.
 
+## What a CLEAN scan does and does not certify
+
+A scanner returning SAFE on these fixtures certifies detection of *this
+corpus's known patterns only*. See README "Scope & Exclusions": platform
+CVEs, prompt-only exploitation of installed skills, registry lifecycle
+attacks, and model-layer attacks are out of scope by construction.
+
 ## Handling rules
 
 - Do NOT install any entry into a live agent or agent-with-internet session.

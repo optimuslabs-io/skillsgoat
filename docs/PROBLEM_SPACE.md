@@ -45,3 +45,17 @@ Akamai SKILL01–10.
 Full risk-ranked bibliography lives with the project author; corpus categories
 carry `maps.ast10` / `maps.skillspector` cross-references per entry in
 `expected.yaml`.
+
+
+## The compounding thesis (measured)
+
+Skills are not reusable prompt templates. They are executable behavior with
+persistent state channels (memory/identity files, repo config, shared tool
+layers) and transitive trust (skill→skill, dep→skill, session→future). Our
+compound-chain layer demonstrates that attacks composed across these channels
+leave **every individually-scanned artifact clean**: SkillSpector v2.9.6
+hard-flagged 0 of 28 chain nodes and was structurally blind to 7 of 14
+chains outright — including memory handoff, MCP cross-skill poisoning,
+Soul-as-C2 identity hijack, and inference-path capture. Detection therefore
+requires graph/state analysis (chain membership, memory-write→read pairing,
+tool-layer provenance), which no shipped scanner performs.

@@ -1,0 +1,352 @@
+{
+  "scanner": "skillspector",
+  "mode": "both",
+  "chains": 14,
+  "structurally_blind": 7,
+  "blindness_rate": 0.5,
+  "rows": [
+    {
+      "chain": "c8-command-shadowing",
+      "nodes": [
+        {
+          "chain": "c8-command-shadowing",
+          "node": "shadow",
+          "status": "NODE-WEAK",
+          "score": 16,
+          "summary": "16 LOW SAFE (2 issues)"
+        },
+        {
+          "chain": "c8-command-shadowing",
+          "node": "victim",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 16,
+        "summary": "16 LOW SAFE (2 issues)"
+      }
+    },
+    {
+      "chain": "c2-context-bleed",
+      "nodes": [
+        {
+          "chain": "c2-context-bleed",
+          "node": "injector",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        },
+        {
+          "chain": "c2-context-bleed",
+          "node": "victim",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-BYPASSED",
+        "score": 0,
+        "summary": "0 LOW SAFE (0 issues)"
+      }
+    },
+    {
+      "chain": "c7-dormant-cascade",
+      "nodes": [
+        {
+          "chain": "c7-dormant-cascade",
+          "node": "trigger",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW CAUTION (0 issues)"
+        },
+        {
+          "chain": "c7-dormant-cascade",
+          "node": "armed",
+          "status": "NODE-WEAK",
+          "score": 46,
+          "summary": "46 MEDIUM CAUTION (3 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 46,
+        "summary": "46 MEDIUM CAUTION (3 issues)"
+      }
+    },
+    {
+      "chain": "c6-mcp-cross-skill",
+      "nodes": [
+        {
+          "chain": "c6-mcp-cross-skill",
+          "node": "serverdef",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        },
+        {
+          "chain": "c6-mcp-cross-skill",
+          "node": "consumer",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-BYPASSED",
+        "score": 0,
+        "summary": "0 LOW SAFE (0 issues)"
+      }
+    },
+    {
+      "chain": "c1-memory-handoff",
+      "nodes": [
+        {
+          "chain": "c1-memory-handoff",
+          "node": "writer",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW CAUTION (0 issues)"
+        },
+        {
+          "chain": "c1-memory-handoff",
+          "node": "obeyer",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-BYPASSED",
+        "score": 0,
+        "summary": "0 LOW SAFE (0 issues)"
+      }
+    },
+    {
+      "chain": "c3-three-hop-trust",
+      "nodes": [
+        {
+          "chain": "c3-three-hop-trust",
+          "node": "caller",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        },
+        {
+          "chain": "c3-three-hop-trust",
+          "node": "middle",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        },
+        {
+          "chain": "c3-three-hop-trust",
+          "node": "dropper",
+          "status": "NODE-WEAK",
+          "score": 16,
+          "summary": "16 LOW SAFE (2 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 16,
+        "summary": "16 LOW SAFE (2 issues)"
+      }
+    },
+    {
+      "chain": "c9-cache-poisoning",
+      "nodes": [
+        {
+          "chain": "c9-cache-poisoning",
+          "node": "poisoner",
+          "status": "NODE-WEAK",
+          "score": 29,
+          "summary": "29 MEDIUM CAUTION (2 issues)"
+        },
+        {
+          "chain": "c9-cache-poisoning",
+          "node": "ingester",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 29,
+        "summary": "29 MEDIUM CAUTION (2 issues)"
+      }
+    },
+    {
+      "chain": "c12-inference-hijack",
+      "nodes": [
+        {
+          "chain": "c12-inference-hijack",
+          "node": "redirector",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        },
+        {
+          "chain": "c12-inference-hijack",
+          "node": "consumer",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-BYPASSED",
+        "score": 0,
+        "summary": "0 LOW SAFE (0 issues)"
+      }
+    },
+    {
+      "chain": "c10-pr-secret-drain",
+      "nodes": [
+        {
+          "chain": "c10-pr-secret-drain",
+          "node": "preview-setup",
+          "status": "NODE-WEAK",
+          "score": 29,
+          "summary": "29 MEDIUM CAUTION (2 issues)"
+        },
+        {
+          "chain": "c10-pr-secret-drain",
+          "node": "pages-deployer",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 29,
+        "summary": "29 MEDIUM CAUTION (2 issues)"
+      }
+    },
+    {
+      "chain": "c5-repoconfig-rootkit",
+      "nodes": [
+        {
+          "chain": "c5-repoconfig-rootkit",
+          "node": "carrier",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        },
+        {
+          "chain": "c5-repoconfig-rootkit",
+          "node": "obeyer",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-BYPASSED",
+        "score": 0,
+        "summary": "0 LOW SAFE (0 issues)"
+      }
+    },
+    {
+      "chain": "c14-sandbox-shim",
+      "nodes": [
+        {
+          "chain": "c14-sandbox-shim",
+          "node": "planter",
+          "status": "NODE-WEAK",
+          "score": 17,
+          "summary": "17 LOW SAFE (2 issues)"
+        },
+        {
+          "chain": "c14-sandbox-shim",
+          "node": "preload-user",
+          "status": "NODE-FLAGGED",
+          "score": 52,
+          "summary": "52 HIGH DO_NOT_INSTALL (6 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-CAUGHT",
+        "score": 63,
+        "summary": "63 HIGH DO_NOT_INSTALL (7 issues)"
+      }
+    },
+    {
+      "chain": "c13-skill-factory",
+      "nodes": [
+        {
+          "chain": "c13-skill-factory",
+          "node": "meta",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        },
+        {
+          "chain": "c13-skill-factory",
+          "node": "planted",
+          "status": "NODE-WEAK",
+          "score": 38,
+          "summary": "38 MEDIUM CAUTION (3 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 38,
+        "summary": "38 MEDIUM CAUTION (3 issues)"
+      }
+    },
+    {
+      "chain": "c11-soul-c2",
+      "nodes": [
+        {
+          "chain": "c11-soul-c2",
+          "node": "identity-writer",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW CAUTION (0 issues)"
+        },
+        {
+          "chain": "c11-soul-c2",
+          "node": "consumer",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-BYPASSED",
+        "score": 0,
+        "summary": "0 LOW SAFE (0 issues)"
+      }
+    },
+    {
+      "chain": "c4-supply-arms-memory",
+      "nodes": [
+        {
+          "chain": "c4-supply-arms-memory",
+          "node": "installer",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        },
+        {
+          "chain": "c4-supply-arms-memory",
+          "node": "future-obeyer",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-BYPASSED",
+        "score": 0,
+        "summary": "0 LOW SAFE (0 issues)"
+      }
+    }
+  ]
+}

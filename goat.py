@@ -75,6 +75,59 @@ def discover_entries() -> list[dict]:
     return entries
 
 
+def discover_chains() -> list[dict]:
+    """Compound-chain entries: pasture/compound-chain/*/chain.yaml."""
+    chains = []
+    base = PASTURE / "compound-chain"
+    if not base.exists():
+        return chains
+    for entry_dir in sorted(base.iterdir()):
+        cy = entry_dir / "chain.yaml"
+        if not entry_dir.is_dir() or not cy.exists():
+            continue
+        d = yaml.safe_load(cy.read_text())
+        nodes = {}
+        for nname, nmeta in (d.get("nodes") or {}).items():
+            ndir = entry_dir / "nodes" / nname / "skill"
+            nodes[nname] = {"role": (nmeta or {}).get("role", ""), "skill_dir": ndir}
+        m = re.match(r"^(\d{3})-", entry_dir.name)
+        chains.append({
+            "id": d.get("id", entry_dir.name),
+            "name": d.get("name", ""),
+            "tier": m.group(1) if m else "???",
+            "graph_verdict": d.get("graph_verdict", ""),
+            "contexts": d.get("contexts", {}),
+            "channels": d.get("channels", []),
+            "edges": d.get("edges", []),
+            "nodes": nodes,
+            "blast_radius": d.get("blast_radius", {}),
+            "canary": d.get("canary", ""),
+            "why": d.get("why", ""),
+            "entry_dir": entry_dir,
+        })
+    return chains
+
+
+def assemble_composite(chain: dict, dest: Path) -> Path:
+    """Copy all nodes into one scannable bundle (real copies, not symlinks)."""
+    sk = dest / "skill"
+    if sk.exists():
+        shutil.rmtree(sk)
+    sk.mkdir(parents=True)
+    parts = ["---", f"name: {chain['id']}-composite",
+             "description: >",
+             f"  Whole-graph composite of SkillsGoat chain {chain['id']} ({chain['name']}).",
+             "---", "", f"# {chain['name']}", ""]
+    for nname, nmeta in chain["nodes"].items():
+        src = nmeta["skill_dir"]
+        dst = sk / nname
+        if src.is_dir():
+            shutil.copytree(src, dst)
+        parts.append(f"- `{nname}/` — {nmeta['role']}")
+    (sk / "SKILL.md").write_text("\n".join(parts) + "\n")
+    return sk
+
+
 def read_skill_files(skill_dir: Path) -> dict[str, str]:
     out = {}
     for p in sorted(skill_dir.rglob("*")):
@@ -121,12 +174,49 @@ def cmd_lint(args) -> int:
             blob = "\n".join(read_skill_files(e["skill_dir"]).values())
             if e["canary"] not in blob:
                 problems.append(f"{where}: canary {e['canary']} not embedded in skill files")
+    # ---- compound chains ----
+    seen_chain_ids = set()
+    for c in discover_chains():
+        where = str(c["entry_dir"].relative_to(REPO))
+        if c["id"] in seen_chain_ids:
+            problems.append(f"{where}: duplicate chain id {c['id']}")
+        seen_chain_ids.add(c["id"])
+        for req in ("name", "tier", "graph_verdict", "nodes", "edges", "canary", "why"):
+            if not c.get(req):
+                problems.append(f"{where}: chain missing field {req!r}")
+        if c["tier"] not in ("000", "100", "200", "300"):
+            problems.append(f"{where}: bad tier {c['tier']!r}")
+        if c["graph_verdict"] not in ("critical", "high"):
+            problems.append(f"{where}: graph_verdict must be critical|high")
+        if (c["entry_dir"] / "expected.yaml").exists():
+            problems.append(f"{where}: chain must use chain.yaml, not expected.yaml")
+        blob = []
+        for nname, nmeta in c["nodes"].items():
+            sd = nmeta["skill_dir"]
+            if not (sd / "SKILL.md").is_file():
+                problems.append(f"{where}: node {nname} missing skill/SKILL.md")
+                continue
+            for f in sd.rglob("*"):
+                if f.is_file():
+                    try:
+                        blob.append(f.read_text(errors="replace"))
+                    except Exception:
+                        pass
+        joined = "\n".join(blob)
+        if c["canary"] and c["canary"] not in joined:
+            problems.append(f"{where}: chain canary {c['canary']} not embedded in any node")
+        for e in c["edges"]:
+            if e.get("from") not in c["nodes"] or e.get("to") not in c["nodes"]:
+                problems.append(f"{where}: edge references unknown node: {e}")
+            elif not e.get("via"):
+                problems.append(f"{where}: edge missing 'via': {e}")
+
     for p in problems:
         print(f"LINT FAIL: {p}")
     if problems:
         print(f"\n{len(problems)} problem(s)")
         return 1
-    print(f"lint OK — {len(entries)} entries consistent")
+    print(f"lint OK — {len(entries)} entries, {len(seen_chain_ids)} chains consistent")
     return 0
 
 
@@ -328,12 +418,74 @@ def scanner_verdict(scanner: str, report: dict) -> tuple[str, float, str]:
     return "missed", -1, "?"
 
 
+def scan_chain_node(scanner, chain, nname, nmeta, use_llm, timeout):
+    report, err = run_scanner(scanner, nmeta["skill_dir"], use_llm=use_llm, timeout=timeout)
+    if err:
+        return {"chain": chain["id"], "node": nname, "status": f"ERROR: {err}"}
+    state, score, summary = scanner_verdict(scanner, report)
+    status = {"missed": "NODE-CLEAN", "weak": "NODE-WEAK", "caught": "NODE-FLAGGED"}[state]
+    return {"chain": chain["id"], "node": nname, "status": status,
+            "score": score, "summary": summary}
+
+
+def cmd_scan_chains(scanner, mode, use_llm, timeout):
+    outdir = REPO / "evaluations" / scanner
+    outdir.mkdir(parents=True, exist_ok=True)
+    chains = discover_chains()
+    rows, blind = [], 0
+    tmp = REPO / "evaluations" / ".composite"
+    tmp.mkdir(parents=True, exist_ok=True)
+    for c in chains:
+        node_rows = []
+        if mode in ("node", "both"):
+            for nname, nmeta in c["nodes"].items():
+                r = scan_chain_node(scanner, c, nname, nmeta, use_llm, timeout)
+                node_rows.append(r)
+                print(f"[{scanner}] {c['id']:32s} node:{nname:14s} {r['status']}")
+                raw, _ = run_scanner(scanner, nmeta["skill_dir"], use_llm=use_llm, timeout=timeout)
+                (outdir / f"{c['id']}__{nname}.json").write_text(
+                    json.dumps(raw or {}, indent=2))
+        graph_row = None
+        if mode in ("composite", "both"):
+            sk = assemble_composite(c, tmp / c["id"])
+            report, err = run_scanner(scanner, sk, use_llm=use_llm, timeout=timeout)
+            if err:
+                graph_status = f"ERROR: {err}"
+            else:
+                (outdir / f"{c['id']}__composite.json").write_text(json.dumps(report, indent=2))
+                state, score, summary = scanner_verdict(scanner, report)
+                expect = c["graph_verdict"]
+                graph_status = {"caught": "GRAPH-CAUGHT", "weak": "GRAPH-WEAK", "missed": "GRAPH-BYPASSED"}[state]
+            print(f"[{scanner}] {c['id']:32s} composite          {graph_status}")
+            graph_row = {"status": graph_status}
+            if not err:
+                graph_row.update({"score": score, "summary": summary})
+        all_clean = all(r["status"] == "NODE-CLEAN" for r in node_rows) and node_rows
+        no_graph_hit = graph_row is None or graph_row["status"] != "GRAPH-CAUGHT"
+        if all_clean and no_graph_hit:
+            blind += 1
+        rows.append({"chain": c["id"], "nodes": node_rows, "graph": graph_row})
+    recap = {"scanner": scanner, "mode": mode, "chains": len(chains),
+             "structurally_blind": blind,
+             "blindness_rate": round(blind / max(len(chains), 1), 3),
+             "rows": rows}
+    (outdir / "chains.json").write_text(json.dumps(recap, indent=2))
+    print(f"\n[{scanner}] chains={len(chains)} structurally_blind={blind}/{len(chains)} "
+          f"({recap['blindness_rate']:.0%}) → evaluations/{scanner}/chains.json\n")
+    return recap
+
+
 def cmd_scan(args) -> int:
     scanners = args.scanners.split(",")
     unknown = [s for s in scanners if s not in SCANNER_CONFIGS]
     if unknown:
         print(f"unknown scanners: {unknown}; known: {list(SCANNER_CONFIGS)}", file=sys.stderr)
         return 2
+    mode = getattr(args, "mode", "atomic")
+    if mode in ("node", "composite", "both"):
+        for sc in scanners:
+            cmd_scan_chains(sc, mode, not args.no_llm, args.timeout)
+        return 0
     entries = discover_entries()
     rows, misses = [], []
     for scanner in scanners:
@@ -421,9 +573,10 @@ def cmd_selftest(args) -> int:
     uncovered = {v for v in evas} - covered
     if uncovered:
         print(f"selftest WARN: EVASION_MATRIX families with no corpus entry: {sorted(uncovered)}")
+    nchains = len(discover_chains())
     if ok:
         print(f"selftest OK — {len(mal)} malicious / {len(benign)} benign / "
-              f"{len(cal)} calibration across tiers {sorted(tiers)}")
+              f"{len(cal)} calibration / {nchains} compound chains across tiers {sorted(tiers)}")
     return 0 if ok else 1
 
 
@@ -467,6 +620,38 @@ def cmd_inventory(args) -> int:
             print("  " + s)
     return 0
 
+
+
+def cmd_chain_report(args) -> int:
+    """Generate docs/CHAINS.md: narrative + mermaid graph + blast radius per chain."""
+    chains = discover_chains()
+    lines = ["# Compound Chain Catalog", "",
+             f"{len(chains)} chains. Every node scans CLEAN alone; only the graph is malicious.",
+             "Ground truth: `chain.yaml` per entry. Schema: [CHAIN_SCHEMA.md](CHAIN_SCHEMA.md).", ""]
+    for c in chains:
+        lines += [f"## {c['id']} — {c['name']} (tier {c['tier']})", "",
+                  f"**Graph verdict:** {c['graph_verdict']} · **Channels:** {', '.join(c['channels'])}", ""]
+        if c["contexts"]:
+            lines.append("| Context | Target assets |")
+            lines.append("|---|---|")
+            for k, v in c["contexts"].items():
+                lines.append(f"| {k} | {v} |")
+            lines.append("")
+        lines += ["```mermaid", "graph LR"]
+        for e in c["edges"]:
+            lines.append(f"  {e['from']} -- {e.get('via','')} --> {e['to']}")
+        for n in c["nodes"]:
+            lines.append(f"  {n}[{n}]")
+        lines += ["```", "", f"**Why:** {c['why'].strip()}", ""]
+        br = c["blast_radius"]
+        if br:
+            lines.append("**Blast radius:** " + "; ".join(f"{k}={v}" for k, v in br.items()))
+            lines.append("")
+    out = Path("docs") / "CHAINS.md"
+    out.write_text("\n".join(lines) + "\n")
+    print(f"wrote {out} ({len(chains)} chains)")
+    return 0
+
 # ---------------------------------------------------------------- main
 
 def main() -> int:
@@ -492,9 +677,13 @@ def main() -> int:
     scan = sub.add_parser("scan", help="run scanners against corpus")
     scan.add_argument("--scanners", default="skillspector,cisco")
     scan.add_argument("--no-llm", action="store_true", help="static-only scans")
+    scan.add_argument("--mode", default="atomic",
+                      choices=["atomic", "node", "composite", "both"],
+                      help="atomic=single entries; node/composite/both=compound chains")
     scan.add_argument("--timeout", type=int, default=180)
     scan.set_defaults(func=cmd_scan)
 
+    sub.add_parser("chain-report", help="generate docs/CHAINS.md").set_defaults(func=cmd_chain_report)
     sub.add_parser("inventory", help="census of bundle file types/symlinks").set_defaults(func=cmd_inventory)
     sub.add_parser("selftest", help="harness sanity checks").set_defaults(func=cmd_selftest)
 

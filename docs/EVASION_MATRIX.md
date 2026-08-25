@@ -45,3 +45,22 @@ The `benign/` set mirrors each dangerous shape (sudo use, ~/.ssh reads,
 env loops, base64 blobs, hooks, registry mirrors, long/base64/CJK docs).
 A useful scanner must catch malicious twins while passing benign ones —
 keyword-only tools will fail both directions.
+
+
+## Compound chains (pasture/compound-chain/) — measured results
+
+14 multi-skill chains where every node is individually clean; ground truth is
+graph-level (`chain.yaml`). SkillSpector v2.9.6, static-only:
+
+| Metric | Result |
+|---|---|
+| Nodes hard-flagged | **0 / 28** |
+| Nodes weak-flagged (below block) | 7 / 28 |
+| Chains fully bypassed (all nodes clean AND graph-level zero detection) | **7 / 14 — 50% structural blindness** |
+| Composites caught at block threshold | 1 / 14 (c14 sandbox-shim — shim/LD_PRELOAD rules added post-ToB) |
+| Composites weak-flagged | 6 / 14 |
+
+Chains fully invisible: c1 memory-handoff · c2 context-bleed · c4 supply-arms-memory ·
+c5 repoconfig-rootkit · c6 mcp-cross-skill · c11 soul-c2 · c12 inference-hijack.
+Full per-node/composite JSON: `evaluations/skillspector/chains.json`. Narrative catalog:
+[CHAINS.md](CHAINS.md).

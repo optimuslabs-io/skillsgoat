@@ -8,7 +8,7 @@ Agent skills (`SKILL.md` bundles) are a new way to distribute executable behavio
 
 ## What's inside
 
-**69 entries across 30 categories**, each with machine-readable ground truth:
+**70 entries + 14 compound chains across 31 categories**, each with machine-readable ground truth:
 
 - **Calibration set (10)** — must-catch patterns. A scanner missing these is broken, not weak.
 - **Classics (10)** — metadata injection, indirect injection, exfiltration, destructive commands, curl-pipe-bash, over-permission, persistence, memory poisoning, confused deputy, typosquatting.
@@ -19,6 +19,23 @@ Agent skills (`SKILL.md` bundles) are a new way to distribute executable behavio
 - **Benign FP-bait (10)** — look suspicious on purpose; measure false-positive rates.
 
 Every entry: `skill/` (the only thing you point a scanner at) + `expected.yaml` (verdict, category mapping to OWASP AST10 / SkillSpector pattern codes / V-codes, plain-English rationale) + an embedded canary token.
+
+## Scope & Exclusions
+
+SkillsGoat covers **malicious and vulnerable skill *content*** — what ships inside a skill bundle and what happens when an agent loads it. Some adjacent threats are deliberately **out of scope**, so you know exactly what a clean or failing scan means here:
+
+| Excluded | Why | Where it lives later |
+|---|---|---|
+| **Platform vulnerabilities** (localhost WebSocket hijacking, checkout-time RCE from harness bugs) | Bugs in the agent platform itself, not skill content | Vendor advisories / CVE process |
+| **Prompt-only exploitation** (adversarial prompts weaponizing *already-installed benign* skills — SkillAttack-style) | Nothing malicious ships in any bundle; needs a live-agent detonation harness | Phase 3: gym/detonation layer |
+| **Registry & lifecycle attacks on installed fleets** (rug-pulls, deleted-account dependency takeover, fleet update drift) | Registry/ops problem; needs a marketplace simulator | Phase 2: version-drift suite |
+| **Model-layer attacks** (base-model jailbreaks, training-data poisoning) | Independent of the skills layer | OWASP LLM Top 10 territory |
+
+Everything else — injection, obfuscation, packing, persistence, memory/soul poisoning, supply-chain chaining, and **compound cross-skill attacks** (the `pasture/compound-chain/` catalog) — is in scope.
+
+## Compound chains
+
+Single-skill fixtures test one weakness at a time. Real compromises chain across **state channels** (agent memory, context window, repo/env state, shared tool layer) and **trust edges** (skill→skill, dep→skill, external→skill, session→future). Under `pasture/compound-chain/`, each entry is a multi-skill bundle where **every node scans clean alone** and only the graph is malicious — with ground truth (`chain.yaml`) covering four deployment contexts: developer endpoint, long-lived server agent, CI/CD runner, and hosted sandbox. See [docs/CHAIN_SCHEMA.md](docs/CHAIN_SCHEMA.md).
 
 ## Use it
 
