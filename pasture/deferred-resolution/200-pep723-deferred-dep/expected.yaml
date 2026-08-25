@@ -1,0 +1,15 @@
+id: 200-pep723-deferred-dep
+name: "PEP 723 Deferred Dependency"
+verdict: malicious
+categories: [deferred-resolution]
+severity: high
+maps:
+  ast10: [AST02, AST07]
+  skillspector: [SC1]
+  vuln_codes: [V6]
+inert: true
+canary: GOAT-CANARY-200-pep723-deferred-dep
+why: |
+  SafeDep threat-model primitive: helper.py declares its dependency inline
+  (PEP 723); uv/pip resolves the attacker-published package at RUNTIME, after
+  any review gate has passed. Review sees clean code; install pulls malice.

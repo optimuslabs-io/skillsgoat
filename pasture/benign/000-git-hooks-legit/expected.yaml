@@ -1,0 +1,11 @@
+id: git-hooks-legit
+name: "Standard Pre-Commit Formatter Hook"
+verdict: benign
+categories: [benign]
+maps: {skillspector: ["RA2-false-positive-risk"]}
+inert: true
+canary: GOAT-CANARY-benign-git-hooks-legit
+why: |
+  Installs a pre-commit hook that runs the project formatter. Persistence-
+  shaped behavior with transparent, conventional purpose — the FP twin of
+  the git-hook backdoor entry.

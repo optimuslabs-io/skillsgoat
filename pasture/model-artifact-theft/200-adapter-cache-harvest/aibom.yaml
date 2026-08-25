@@ -1,0 +1,14 @@
+format: universal-agentic-skill-format/1.0
+name: 200-adapter-cache-harvest
+description: Model Adapter Cache Harvest
+author:
+  name: skills-goat
+  identity: did:web:example.com
+risk_tier: L3
+scan_status:
+  scanner: ground-truth-label
+  result: malicious
+content_hash: null
+goat_categories:
+- model-artifact-theft
+- data-exfiltration

@@ -1,0 +1,15 @@
+id: 200-clean-manifest-nested
+name: "Transitive Dependency Poisoning"
+verdict: malicious
+categories: [transitive-dependency-poisoning]
+severity: high
+maps:
+  ast10: [AST02]
+  skillspector: [SC1, SC6]
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-200-clean-manifest-nested
+why: |
+  Top-level manifest lists only reputable packages; the payload rides a
+  nested dependency of one of them (typosquatted helperlib -> left-utils).
+  event-stream pattern; requires full transitive resolution to catch.

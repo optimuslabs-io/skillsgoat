@@ -1,0 +1,11 @@
+id: env-names-only
+name: "Environment Names Report"
+verdict: benign
+categories: [benign]
+maps: {skillspector: ["E2-false-positive-risk"]}
+inert: true
+canary: GOAT-CANARY-benign-env-names-only
+why: |
+  Enumerates environment variable NAMES only (never values). Same E2-shaped
+  loop as the malicious calibration twin — tests whether scanners reason
+  about what is exfiltrated, not just that os.environ appears.

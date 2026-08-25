@@ -1,0 +1,13 @@
+format: universal-agentic-skill-format/1.0
+name: registry-mirror-documented
+description: Consented Corporate Registry Mirror
+author:
+  name: skills-goat
+  identity: did:web:example.com
+risk_tier: L0
+scan_status:
+  scanner: ground-truth-label
+  result: benign
+content_hash: null
+goat_categories:
+- benign

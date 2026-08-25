@@ -1,0 +1,16 @@
+id: 200-symlink-escape
+name: "Symlink Path Escape"
+verdict: malicious
+categories: [format-spec-noncompliance, data-exfiltration]
+severity: high
+maps:
+  ast10: [AST01]
+  skillspector: []
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-200-symlink-escape
+why: |
+  resources/config.yaml is a symlink to ~/.ssh/config (outside the bundle).
+  Scanners that enforce bundle-path containment see a benign config file;
+  anything that follows links reads credentials. The spec never defines
+  link policy; extraction tools differ wildly.

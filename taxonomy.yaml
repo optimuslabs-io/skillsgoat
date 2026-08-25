@@ -1,0 +1,139 @@
+# SkillsGoat taxonomy — the fixed list of allowed category labels.
+# Every entry's expected.yaml must reference categories from this list (or "benign").
+#
+# V-codes map to the evasion-technique families documented in docs/EVASION_MATRIX.md.
+# AST-codes reference OWASP Agentic Skills Top 10 (v1.0, 2026).
+
+version: 1
+
+categories:
+  # ---- Calibration: patterns every scanner MUST catch (tier 000) ----
+  - slug: calibration
+    description: "Must-catch ground truth; a scanner missing these has broken wiring, not weak heuristics."
+
+  # ---- Classic skill vulnerabilities (ported/hardened from upstream SkillsGoat) ----
+  - slug: prompt-injection-metadata
+    description: "Agent-directed instruction embedded in SKILL.md frontmatter/body."
+    maps: [AST04]
+  - slug: indirect-injection
+    description: "Same instruction one file away, in a referenced resource."
+    maps: [AST05]
+  - slug: data-exfiltration
+    description: "Reads sensitive data, sends it somewhere it should not go."
+    maps: [AST01, AST03]
+  - slug: destructive-command
+    description: "Irreversible action framed as routine, skipping confirmation."
+    maps: [AST03]
+  - slug: supply-chain-trust-bypass
+    description: "Installs or executes unpinned/unverified remote code."
+    maps: [AST02]
+  - slug: excessive-permission-scope
+    description: "Requests far more access than the stated task needs."
+    maps: [AST03]
+  - slug: persistence-backdoor
+    description: "Installs something that outlives the invocation (rc edits, git hooks, cron)."
+    maps: [AST01]
+  - slug: memory-poisoning
+    description: "Writes persistent instructions into agent memory/identity files."
+    maps: [AST01, AST09]
+  - slug: confused-deputy
+    description: "Treats fetched external content as trusted instructions."
+    maps: [AST05]
+  - slug: typosquatting
+    description: "Name deceptively close to a popular trusted skill/package; brand-impersonation factories."
+    maps: [AST01, AST02]
+
+  # ---- Scanner-evasion technique families (docs/EVASION_MATRIX.md) ----
+  - slug: obfuscation-encoding
+    description: "V1 — homoglyphs, zero-width/RTL chars, charcode exec, shell splicing, case/synonym swaps."
+    maps: [AST04, AST08]
+  - slug: dispersion-splitting
+    description: "V2 — payload split across files/lines so no single artifact is suspicious."
+    maps: [AST08]
+  - slug: context-truncation-padding
+    description: "V3 — padding/newline canyons push payload past scanner read caps or attention."
+    maps: [AST08]
+  - slug: llm-judge-manipulation
+    description: "V4 — cover links, scanner-directed injections, corporate-narrative social engineering of the reviewing model."
+    maps: [AST08]
+  - slug: hidden-artifact-packing
+    description: "V5 — bytecode poisoning, archive indirection (.docx/zip), XOR packs, hidden dirs, password archives."
+    maps: [AST02, AST08]
+  - slug: deferred-resolution
+    description: "V6 — dependencies/instructions resolve at runtime, after any review gate (PEP 723, lockfile divergence)."
+    maps: [AST02, AST07]
+  - slug: external-staging
+    description: "V7 — real behavior fetched from attacker-controlled URL at run time."
+    maps: [AST05]
+  - slug: silent-operator
+    description: "V8 — silence directives, weaponized Definition-of-Done, audit-log invisibility."
+    maps: [AST01, AST09]
+  - slug: dormant-trigger
+    description: "V9 — codeword/env/host/time-gated activation of otherwise-dormant payloads."
+    maps: [AST01]
+  - slug: description-behavior-mismatch
+    description: "V10 — shadow features beyond declared purpose."
+    maps: [AST04]
+  - slug: reputation-laundering
+    description: "V11 — fake social proof, bot stars, agent-signed provenance theater."
+    maps: [AST01, AST02]
+  - slug: self-mutation
+    description: "V13 — instructs agent to overwrite/patch its own skill package between reviews."
+    maps: [AST01]
+
+  # ---- Ecosystem classes missing from most scanners ----
+  - slug: transitive-dependency-poisoning
+    description: "Clean top-level manifest; malicious sub-dependency at install time."
+    maps: [AST02]
+  - slug: composition-trust-transfer
+    description: "Benign skill A documents calling malicious skill B; trust crosses the boundary."
+    maps: [AST02, AST10]
+  - slug: side-channel-exfiltration
+    description: "DNS labels, error-message leakage, timing channels instead of obvious POSTs."
+    maps: [AST01]
+  - slug: model-artifact-theft
+    description: "Exfiltrates local model weights/adapters/cache metadata."
+    maps: [AST01]
+  - slug: repo-config-execution
+    description: "Repository-controlled config (.claude/settings.json hooks etc.) executing at project open."
+    maps: [AST02, AST06]
+  - slug: mcp-tool-poisoning
+    description: ".mcp.json / tool-metadata poisoning: hidden directives, homoglyph params."
+    maps: [AST04]
+  - slug: resource-exhaustion
+    description: "Cost/retry bombs — wallet exhaustion via paid API hammering."
+    maps: [AST03]
+
+  # ---- Planned: version-drift suite (docs/EVOLUTION.md Phase 2) ----
+  - slug: version-drift
+    description: "Paired-version fixtures (benign v1 -> poisoned v2); tests gates on semantic diffs, shrink-attacks, ownership transfers."
+    maps: [AST07]
+  - slug: search-poisoning
+    description: "Descriptions tuned to outrank legitimate skills in discovery/retrieval."
+    maps: [AST04]
+
+  # ---- Format-spec noncompliance: the spec is advisory fiction downstream ----
+  - slug: format-spec-noncompliance
+    description: "Spec-violating bundles that harnesses ingest without complaint: unsafe frontmatter, missing fields, symlink escapes, nested bundles."
+    maps: [AST04]
+
+  - slug: benign
+    description: "Looks suspicious on purpose; verdict must be benign. Measures false-positive rates."
+
+tiers:
+  "000": "Sits in plain sight. Every scanner must catch it."
+  "100": "One hop away (another file, another step)."
+  "200": "Purpose-built to slip past pattern matching."
+  "300": "Multi-stage, judge-targeting, or binary-artifact based."
+
+verdicts: [malicious, benign]
+
+severities: [low, medium, high, critical]
+
+required_expected_fields:
+  - id
+  - name
+  - verdict
+  - categories
+  - severity
+  - why

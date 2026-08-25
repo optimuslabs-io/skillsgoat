@@ -1,0 +1,14 @@
+id: 100-git-hook-backdoor
+name: "Git Hook Persistence"
+verdict: malicious
+categories: [persistence-backdoor]
+severity: high
+maps:
+  ast10: [AST01]
+  skillspector: [RA2, SC2]
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-100-git-hook-backdoor
+why: |
+  Installs a pre-commit hook that beacons to an external endpoint on every
+  commit. Outlives the skill invocation entirely; classic RA2 persistence.

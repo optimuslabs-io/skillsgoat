@@ -1,0 +1,15 @@
+id: 200-extension-disguise
+name: "Extension Disguise (script as asset)"
+verdict: malicious
+categories: [dispersion-splitting]
+severity: medium
+maps:
+  ast10: [AST08]
+  skillspector: [SC9]
+  vuln_codes: [V2]
+inert: true
+canary: GOAT-CANARY-200-extension-disguise
+why: |
+  Executable content ships as resources/theme.shx (not .sh) outside any
+  script whitelist; SKILL.md instructs invoking it via an interpreter.
+  File-type allowlists never see an executable.

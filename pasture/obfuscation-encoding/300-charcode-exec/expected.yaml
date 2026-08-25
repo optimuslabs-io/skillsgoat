@@ -1,0 +1,15 @@
+id: 300-charcode-exec
+name: "Charcode-Reconstructed exec()"
+verdict: malicious
+categories: [obfuscation-encoding]
+severity: critical
+maps:
+  ast10: [AST02]
+  skillspector: [AST7, AST9]
+  vuln_codes: [V1]
+inert: true
+canary: GOAT-CANARY-300-charcode-exec
+why: |
+  exec and os.system are never spelled out — reconstructed via getattr +
+  chr() codepoint lists. Defeats both regex and simple AST literal matching;
+  requires recognizing reflective-sink patterns (AST9).

@@ -1,0 +1,568 @@
+{
+  "skill": {
+    "name": "context-loader",
+    "source": "/Users/nipung/skills-goat/pasture/hidden-artifact-packing/300-archive-indirection-docx/skill",
+    "scanned_at": "2026-08-23T19:14:47.669133+00:00"
+  },
+  "risk_assessment": {
+    "score": 95,
+    "severity": "CRITICAL",
+    "recommendation": "DO_NOT_INSTALL",
+    "max_issue_severity": "HIGH"
+  },
+  "components": [
+    {
+      "path": "SKILL.md",
+      "type": "markdown",
+      "lines": 15,
+      "executable": false,
+      "size_bytes": 487,
+      "source_url": null,
+      "source_identity": null,
+      "source_digest": null
+    },
+    {
+      "path": "resources/templates.docx",
+      "type": "docx",
+      "lines": 0,
+      "executable": false,
+      "size_bytes": 901,
+      "source_url": null,
+      "source_identity": null,
+      "source_digest": null
+    },
+    {
+      "path": "resources/templates.docx!/[Content_Types].xml",
+      "type": "xml",
+      "lines": 1,
+      "executable": false,
+      "size_bytes": 98,
+      "source_url": null,
+      "source_identity": null,
+      "source_digest": null
+    },
+    {
+      "path": "resources/templates.docx!/customXml/item1.xml",
+      "type": "xml",
+      "lines": 4,
+      "executable": false,
+      "size_bytes": 235,
+      "source_url": null,
+      "source_identity": null,
+      "source_digest": null
+    },
+    {
+      "path": "resources/templates.docx!/sync1.sh",
+      "type": "shell",
+      "lines": 3,
+      "executable": true,
+      "size_bytes": 112,
+      "source_url": null,
+      "source_identity": null,
+      "source_digest": null
+    },
+    {
+      "path": "resources/templates.docx!/word/document.xml",
+      "type": "xml",
+      "lines": 1,
+      "executable": false,
+      "size_bytes": 84,
+      "source_url": null,
+      "source_identity": null,
+      "source_digest": null
+    }
+  ],
+  "structured_summaries": [],
+  "issues": [
+    {
+      "id": "AE1",
+      "finding_id": "finding-cfcff79e840745cb881b1ac0a58b66f7",
+      "category": "analysis-evasion",
+      "pattern": null,
+      "severity": "HIGH",
+      "confidence": 1.0,
+      "location": {
+        "file": "SKILL.md",
+        "start_line": 8,
+        "end_line": null
+      },
+      "finding": "resources/templates.docx (out_of_scope)",
+      "explanation": "Referenced artifact was not completely inspected",
+      "remediation": "Make the referenced artifact locally available and fully analyzable, or remove the reference.",
+      "code_snippet": "The real instructions live inside resources/templates.docx (docProps are",
+      "intent": null,
+      "tags": [
+        "coverage",
+        "reference",
+        "target-disposition:out_of_scope"
+      ],
+      "evidence": {},
+      "match_fingerprint": "13676b1acf330e82d1a45a6db7a00057db782e648da619b5f1e292f07c94866b",
+      "occurrences": [
+        {
+          "file": "SKILL.md",
+          "start_line": 8,
+          "end_line": null
+        }
+      ]
+    },
+    {
+      "id": "AE3",
+      "finding_id": "finding-a123a3157fb74a88a17099830e144d20",
+      "category": "analysis-evasion",
+      "pattern": null,
+      "severity": "HIGH",
+      "confidence": 0.9,
+      "location": {
+        "file": "resources/templates.docx",
+        "start_line": 1,
+        "end_line": null
+      },
+      "finding": null,
+      "explanation": "Text artifact contains embedded NUL bytes",
+      "remediation": "Review the flagged content for security risks. Ensure no credentials, secrets, or sensitive data are exposed.",
+      "code_snippet": null,
+      "intent": null,
+      "tags": [
+        "artifact-integrity"
+      ],
+      "evidence": {},
+      "match_fingerprint": null,
+      "occurrences": [
+        {
+          "file": "resources/templates.docx",
+          "start_line": 1,
+          "end_line": null
+        }
+      ]
+    },
+    {
+      "id": "SC9",
+      "finding_id": "finding-74b4e17183f148cd9b30497da9fecb52",
+      "category": "Supply Chain",
+      "pattern": "Concealed Executable Artifact",
+      "severity": "HIGH",
+      "confidence": 1.0,
+      "location": {
+        "file": "resources/templates.docx!/sync1.sh",
+        "start_line": 1,
+        "end_line": null
+      },
+      "finding": "sync1.sh",
+      "explanation": "An executable nested in a document or hidden/disguised artifact can evade ordinary extension-based review while still being available to the skill at runtime.",
+      "remediation": "Review the artifact provenance and the reason executable content is packaged in this location; keep executable files explicit and directly reviewable.",
+      "code_snippet": null,
+      "intent": null,
+      "tags": [
+        "supply-chain",
+        "concealed-executable",
+        "local-only"
+      ],
+      "evidence": {
+        "outer_path": "resources/templates.docx",
+        "nested_path": "sync1.sh",
+        "container_type": "docx",
+        "container_ancestry": [
+          "docx"
+        ],
+        "container_depth": 1,
+        "concealment": "document_container",
+        "concealment_reasons": [
+          "document_container"
+        ],
+        "local_only": true
+      },
+      "match_fingerprint": "e6bcafe12826200f46e87a1caafb6967a46215a767a6c6f8482167ef5045233f",
+      "occurrences": [
+        {
+          "file": "resources/templates.docx!/sync1.sh",
+          "start_line": 1,
+          "end_line": null
+        }
+      ]
+    },
+    {
+      "id": "LP3",
+      "finding_id": "finding-fa41f7143c9742659d94da1fca2b3c82",
+      "category": "MCP Least Privilege",
+      "pattern": null,
+      "severity": "MEDIUM",
+      "confidence": 0.7,
+      "location": {
+        "file": "SKILL.md",
+        "start_line": 1,
+        "end_line": null
+      },
+      "finding": null,
+      "explanation": "Without declared permissions the skill's intent is opaque and cannot be validated.",
+      "remediation": "Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+      "code_snippet": null,
+      "intent": null,
+      "tags": [
+        "ASI02"
+      ],
+      "evidence": {},
+      "match_fingerprint": null,
+      "occurrences": [
+        {
+          "file": "SKILL.md",
+          "start_line": 1,
+          "end_line": null
+        }
+      ]
+    },
+    {
+      "id": "AE4",
+      "finding_id": "finding-7089325e4deb4d2d8162e3b4a60b0431",
+      "category": "analysis-evasion",
+      "pattern": null,
+      "severity": "MEDIUM",
+      "confidence": 0.8,
+      "location": {
+        "file": "resources/templates.docx",
+        "start_line": 1,
+        "end_line": null
+      },
+      "finding": null,
+      "explanation": "Suspicious Unicode normalization or mixed-script content",
+      "remediation": "Review the flagged content for security risks. Ensure no credentials, secrets, or sensitive data are exposed.",
+      "code_snippet": null,
+      "intent": null,
+      "tags": [
+        "artifact-integrity"
+      ],
+      "evidence": {},
+      "match_fingerprint": null,
+      "occurrences": [
+        {
+          "file": "resources/templates.docx",
+          "start_line": 1,
+          "end_line": null
+        }
+      ]
+    }
+  ],
+  "suppressed_count": 0,
+  "suppressed": [],
+  "metadata": {
+    "has_executable_scripts": true,
+    "skillspector_version": "2.9.6",
+    "llm_requested": false,
+    "llm_available": false,
+    "meta_analysis_applied": false,
+    "inference_usage": [],
+    "filtering_mode": "heuristic"
+  },
+  "execution_successful": true,
+  "analysis_completeness": {
+    "total_components": 6,
+    "scanned_components": 5,
+    "coverage_percent": 83.3,
+    "is_complete": false,
+    "status": "partial",
+    "execution_successful": true,
+    "fully_inspected_files": 5,
+    "partially_inspected_files": 0,
+    "entirely_uninspected_files": 1,
+    "ledger_exceptions": [],
+    "scope_exclusions": [],
+    "analyzer_statuses": [
+      {
+        "analyzer_id": "artifact_integrity",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "behavioral_ast",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
+        "analyzer_id": "behavioral_taint_tracking",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
+        "analyzer_id": "mcp_least_privilege",
+        "status": "completed",
+        "planned_work": 2,
+        "completed": 2,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "mcp_rug_pull",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "mcp_tool_poisoning",
+        "status": "completed",
+        "planned_work": 1,
+        "completed": 1,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "meta_analyzer",
+        "status": "disabled",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "disabled_by_configuration",
+        "message": "Analyzer was disabled by the requested configuration."
+      },
+      {
+        "analyzer_id": "reference_coverage",
+        "status": "completed",
+        "planned_work": 1,
+        "completed": 1,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "semantic_developer_intent",
+        "status": "disabled",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "disabled_by_configuration",
+        "message": "Analyzer was disabled by the requested configuration."
+      },
+      {
+        "analyzer_id": "semantic_quality_policy",
+        "status": "disabled",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "disabled_by_configuration",
+        "message": "Analyzer was disabled by the requested configuration."
+      },
+      {
+        "analyzer_id": "semantic_security_discovery",
+        "status": "disabled",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "disabled_by_configuration",
+        "message": "Analyzer was disabled by the requested configuration."
+      },
+      {
+        "analyzer_id": "static_patterns_agent_snooping",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_anti_refusal",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_data_exfiltration",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_deserialization",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_excessive_agency",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_harmful_content",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_memory_poisoning",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_output_handling",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_privilege_escalation",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_prompt_injection",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_rogue_agent",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_ssrf",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_supply_chain",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_system_prompt_leakage",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_patterns_tool_misuse",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      },
+      {
+        "analyzer_id": "static_yara",
+        "status": "completed",
+        "planned_work": 6,
+        "completed": 6,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
+      }
+    ],
+    "references": [
+      {
+        "source_path": "SKILL.md",
+        "line": 8,
+        "column": 35,
+        "evidence": "The real instructions live inside resources/templates.docx (docProps are",
+        "target_path": "resources/templates.docx",
+        "status": "resolved",
+        "disposition": "out_of_scope"
+      }
+    ],
+    "limitations": [],
+    "findings_before_filtering": 5,
+    "findings_after_filtering": 5
+  }
+}

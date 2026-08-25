@@ -1,0 +1,15 @@
+id: 200-lockfile-divergence
+name: "Lockfile Divergence"
+verdict: malicious
+categories: [deferred-resolution]
+severity: medium
+maps:
+  ast10: [AST02]
+  skillspector: [SC1, SC4]
+  vuln_codes: [V6]
+inert: true
+canary: GOAT-CANARY-200-lockfile-divergence
+why: |
+  requirements.lock pins vetted versions for reviewers; setup path installs
+  from unpinned requirements.txt instead. Two manifests, two realities —
+  scanners that read only the lockfile approve code that never gets installed.

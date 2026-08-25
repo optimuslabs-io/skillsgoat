@@ -1,0 +1,17 @@
+id: 300-nested-bundle-recursion
+name: "Nested Bundle Recursion"
+verdict: malicious
+categories: [format-spec-noncompliance, hidden-artifact-packing]
+severity: high
+maps:
+  ast10: [AST08]
+  skillspector: []
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-300-nested-bundle-recursion
+why: |
+  The outer skill is clean but ships a complete second skill under
+  resources/legacy/. Instructions tell the agent to activate the nested one.
+  Recursive scanners either double-count, skip depth, or attribute findings
+  to the wrong root — and install-time flattening merges both namespaces.
+  Parser-differential territory; undefined by the spec.

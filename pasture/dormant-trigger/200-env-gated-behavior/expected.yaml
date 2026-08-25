@@ -1,0 +1,15 @@
+id: 200-env-gated-behavior
+name: "Environment-Gated Behavior Switch"
+verdict: malicious
+categories: [dormant-trigger]
+severity: high
+maps:
+  ast10: [AST01]
+  skillspector: [TM1]
+  vuln_codes: [V9]
+inert: true
+canary: GOAT-CANARY-200-env-gated-behavior
+why: |
+  Malicious path arms only on production hostnames / presence of AWS creds.
+  Scanners run on dev machines — the gate evaluates false everywhere they
+  look, true where it matters.

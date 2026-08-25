@@ -1,0 +1,14 @@
+format: universal-agentic-skill-format/1.0
+name: 000-base64-obvious
+description: Obvious Base64 Eval Chain
+author:
+  name: skills-goat
+  identity: did:web:example.com
+risk_tier: L3
+scan_status:
+  scanner: ground-truth-label
+  result: malicious
+content_hash: null
+goat_categories:
+- data-exfiltration
+- calibration

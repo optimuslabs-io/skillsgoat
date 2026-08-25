@@ -1,0 +1,15 @@
+id: 200-helper-sourced-payload
+name: "Helper-Sourced Payload"
+verdict: malicious
+categories: [dispersion-splitting]
+severity: high
+maps:
+  ast10: [AST08]
+  skillspector: [SC2, TM2]
+  vuln_codes: [V2]
+inert: true
+canary: GOAT-CANARY-200-helper-sourced-payload
+why: |
+  SKILL.md and setup.sh are clean; setup.sh sources .config/helpers.inc,
+  a dot-file-style include holding the payload. Scanners whitelisting
+  'config-like' paths or skipping dotfiles miss it entirely.

@@ -1,0 +1,11 @@
+id: admin-installer
+name: "Legitimate Sudo Installer"
+verdict: benign
+categories: [benign]
+maps: {skillspector: ["PE2-false-positive-risk"]}
+inert: true
+canary: GOAT-CANARY-benign-admin-installer
+why: |
+  Uses sudo for a genuine system-package install (font deps) with pinned
+  versions and printed rationale. sudo alone is not malice — severity must
+  follow context, not keywords.

@@ -1,0 +1,10 @@
+id: base64-logo-asset
+name: "Base64 Logo Asset"
+verdict: benign
+categories: [benign]
+maps: {skillspector: ["SC3-false-positive-risk"]}
+inert: true
+canary: GOAT-CANARY-benign-base64-logo
+why: |
+  Long base64 string that decodes to a PNG image, not a command. Obfuscation
+  detectors that flag any long blob will false-positive here.

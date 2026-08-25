@@ -1,0 +1,10 @@
+id: long-legitimate
+name: "Large Legitimate Document"
+verdict: benign
+categories: [benign]
+maps: {}
+inert: true
+canary: GOAT-CANARY-benign-long-legit
+why: |
+  Big but entirely mundane runbook. Tests size heuristics: truncation-based
+  scanners must neither flag nor silently skip it while claiming coverage.

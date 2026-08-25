@@ -1,0 +1,15 @@
+id: 100-fake-social-proof
+name: "Fabricated Social Proof Fixture"
+verdict: malicious
+categories: [reputation-laundering]
+severity: low
+maps:
+  ast10: [AST01]
+  skillspector: []
+  vuln_codes: [V11]
+inert: true
+canary: GOAT-CANARY-100-fake-social-proof
+why: |
+  Metadata-only fixture: testimonials, install counts, and audit claims are
+  fabricated inside the bundle. Tests whether scanners treat embedded
+  reputation claims as evidence — they must not.

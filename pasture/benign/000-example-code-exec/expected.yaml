@@ -1,0 +1,10 @@
+id: example-code-exec
+name: "Educational exec() Example"
+verdict: benign
+categories: [benign]
+maps: {skillspector: ["AST1-false-positive-risk"]}
+inert: true
+canary: GOAT-CANARY-benign-example-exec
+why: |
+  exec() appears only in a commented-out educational snippet; live code never
+  calls it. AST analyzers must scope findings to reachable code.

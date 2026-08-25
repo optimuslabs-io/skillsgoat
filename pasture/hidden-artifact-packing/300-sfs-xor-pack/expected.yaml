@@ -1,0 +1,16 @@
+id: 300-sfs-xor-pack
+name: "Whole-Skill XOR Packing (SFS)"
+verdict: malicious
+categories: [hidden-artifact-packing]
+severity: critical
+maps:
+  ast10: [AST02, AST08]
+  skillspector: [SC3, SC9]
+  vuln_codes: [V5]
+inert: true
+canary: GOAT-CANARY-300-sfs-xor-pack
+why: |
+  Cloak-and-Detonate SFS primitive (derived): the entire malicious skill is
+  XOR-packed into resources/skillpack.dat; a stdlib decoder rematerializes it
+  at first run. ≥90% bypass rate against every scanner measured. The visible
+  SKILL.md is an LLM-polished benign cover.

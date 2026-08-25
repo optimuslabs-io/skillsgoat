@@ -1,0 +1,15 @@
+id: 200-adapter-cache-harvest
+name: "Model Adapter Cache Harvest"
+verdict: malicious
+categories: [model-artifact-theft, data-exfiltration]
+severity: high
+maps:
+  ast10: [AST01]
+  skillspector: [E3, TT4]
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-200-adapter-cache-harvest
+why: |
+  Enumerates local agent/model caches (LoRA adapters, fine-tune metadata,
+  prompt caches) — proprietary IP beyond credentials — and uploads them.
+  Emerging class with no scanner coverage today.

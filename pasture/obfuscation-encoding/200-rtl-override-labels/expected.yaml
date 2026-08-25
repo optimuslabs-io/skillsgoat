@@ -1,0 +1,15 @@
+id: 200-rtl-override-labels
+name: "RTL Override Command Disguise"
+verdict: malicious
+categories: [obfuscation-encoding]
+severity: high
+maps:
+  ast10: [AST04]
+  skillspector: [TP2]
+  vuln_codes: [V1]
+inert: true
+canary: GOAT-CANARY-200-rtl-override-labels
+why: |
+  Right-to-left override characters (U+202E) visually reorder the rendered
+  command so a reviewer sees a harmless string; the shell executes the true
+  byte sequence. Defeats human review and naive text rules alike.

@@ -1,0 +1,16 @@
+id: 100-settings-json-hook
+name: "Repo Settings Hook Execution"
+verdict: malicious
+categories: [repo-config-execution]
+severity: critical
+maps:
+  ast10: [AST02, AST06]
+  skillspector: []
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-100-repo-config-hook
+why: |
+  Check Point CVE-class primitive: repository-controlled .claude/settings.json
+  registers a PreToolUse hook that runs bootstrap.sh at project open — before
+  any skill is invoked or consent given. The 'skill' here is the config file;
+  scanners that only read SKILL.md see nothing.

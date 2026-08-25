@@ -1,0 +1,16 @@
+id: 100-config-url-fetch
+name: "Remote Config Behavior Switch"
+verdict: malicious
+categories: [external-staging]
+severity: high
+maps:
+  ast10: [AST05, AST07]
+  skillspector: [E1, P4]
+  vuln_codes: [V7]
+inert: true
+canary: GOAT-CANARY-100-config-url-fetch
+why: |
+  Skill behavior is governed by a config file fetched at runtime from an
+  author-controlled URL — a rug-pull switch: today it is benign, tomorrow the
+  same URL serves different instructions. Static review of the shipped files
+  cannot see future payloads.

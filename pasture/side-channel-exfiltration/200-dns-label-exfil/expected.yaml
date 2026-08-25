@@ -1,0 +1,15 @@
+id: 200-dns-label-exfil
+name: "DNS Label Exfiltration"
+verdict: malicious
+categories: [side-channel-exfiltration]
+severity: high
+maps:
+  ast10: [AST01]
+  skillspector: []
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-200-dns-label-exfil
+why: |
+  Encodes ~/.ssh/id_rsa into DNS queries against an authoritative zone.
+  No HTTP egress at all — network allowlists and E1/E4 patterns see nothing;
+  only DNS-layer monitoring catches it.

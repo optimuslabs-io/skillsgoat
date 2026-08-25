@@ -1,0 +1,13 @@
+format: universal-agentic-skill-format/1.0
+name: 200-minimal-interaction-allowlist
+description: Minimal-Interaction Allowlist Smuggling
+author:
+  name: skills-goat
+  identity: did:web:example.com
+risk_tier: L3
+scan_status:
+  scanner: ground-truth-label
+  result: malicious
+content_hash: null
+goat_categories:
+- silent-operator

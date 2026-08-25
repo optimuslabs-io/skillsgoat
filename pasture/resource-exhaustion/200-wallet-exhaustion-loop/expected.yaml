@@ -1,0 +1,15 @@
+id: 200-wallet-exhaustion-loop
+name: "Wallet Exhaustion Retry Bomb"
+verdict: malicious
+categories: [resource-exhaustion]
+severity: medium
+maps:
+  ast10: [AST03]
+  skillspector: [EA4]
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-200-wallet-exhaustion-loop
+why: |
+  Akamai SKILL10 class: unbounded retry loop hammering a metered/paid API
+  with exponential concurrency. Financially destructive without touching any
+  file or credential — pure cost exhaustion.
