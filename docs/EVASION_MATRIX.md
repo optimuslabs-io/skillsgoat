@@ -64,3 +64,23 @@ Chains fully invisible: c1 memory-handoff · c2 context-bleed · c4 supply-arms-
 c5 repoconfig-rootkit · c6 mcp-cross-skill · c11 soul-c2 · c12 inference-hijack.
 Full per-node/composite JSON: `evaluations/skillspector/chains.json`. Narrative catalog:
 [CHAINS.md](CHAINS.md).
+
+
+## Scanner comparison — static-only (Aug 2026)
+
+| Metric | SkillSpector v2.9.6 | Cisco skill-scanner (static) |
+|---|---|---|
+| Atomic: caught at block threshold | 8 / 55 | 5 / 55 |
+| Atomic: zero-detection bypasses | 13 | **0** |
+| Calibration misses (must-catch, any signal) | 2 silent | 0 silent (all ≥ weak) |
+| Benign twins: FP-WEAK / FALSE-POSITIVE | 6 / 0 | 8 / **2** |
+| Chain nodes hard-flagged | 0 / 28 | **0 / 28** |
+| Composites caught | 1 / 14 | **0 / 14** |
+| Structural blindness (strict) | 7 / 14 | 0 / 14 * |
+
+\* Cisco's 0 is low-information: it emits sub-threshold findings on nearly
+everything — including all 10 benign twins — so "detected" carries almost no
+signal. The honest chain summary for both tools: **no scanner hard-blocks a
+single chain node; composites caught = 1 of 28 attempts.**
+
+Raw evidence: `evaluations/{skillspector,cisco}/` (per-entry JSON + matrices).

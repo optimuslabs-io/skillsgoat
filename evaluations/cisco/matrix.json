@@ -1,0 +1,502 @@
+{
+  "scanner": "cisco",
+  "llm_enabled": false,
+  "scanned_at": "2026-08-25T04:00:50.281171+00:00",
+  "total": 70,
+  "caught": 5,
+  "weak_flagged": 53,
+  "bypassed": 0,
+  "false_positives": 10,
+  "clean_benign": 0,
+  "malicious_recall_strict": 0.086,
+  "malicious_detection_any": 1.0,
+  "benign_fp_rate": 1.0,
+  "rows": [
+    {
+      "id": "admin-installer",
+      "truth": "benign",
+      "status": "FP-WEAK",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "base64-logo-asset",
+      "truth": "benign",
+      "status": "FP-WEAK",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "cjk-documentation",
+      "truth": "benign",
+      "status": "FP-WEAK",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "env-names-only",
+      "truth": "benign",
+      "status": "FP-WEAK",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "example-code-exec",
+      "truth": "benign",
+      "status": "FALSE-POSITIVE",
+      "score": 100,
+      "scanner_summary": "CRITICAL (2 findings)"
+    },
+    {
+      "id": "git-hooks-legit",
+      "truth": "benign",
+      "status": "FP-WEAK",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "long-legitimate",
+      "truth": "benign",
+      "status": "FP-WEAK",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "registry-mirror-documented",
+      "truth": "benign",
+      "status": "FP-WEAK",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "security-doc-explains-attacks",
+      "truth": "benign",
+      "status": "FALSE-POSITIVE",
+      "score": 75,
+      "scanner_summary": "HIGH (3 findings)"
+    },
+    {
+      "id": "ssh-config-reader",
+      "truth": "benign",
+      "status": "FP-WEAK",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "000-base64-obvious",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "000-bcc-exfil",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "000-env-harvest-loop",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "000-hidden-html-comment-instruction",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "000-ignore-previous-instructions",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "000-plain-curl-bash",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "000-plain-exec-eval",
+      "truth": "malicious",
+      "status": "CAUGHT",
+      "score": 100,
+      "scanner_summary": "CRITICAL (6 findings)"
+    },
+    {
+      "id": "000-plain-exfil-post",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "000-reverse-shell-netcat",
+      "truth": "malicious",
+      "status": "CAUGHT",
+      "score": 100,
+      "scanner_summary": "CRITICAL (2 findings)"
+    },
+    {
+      "id": "000-rm-rf-no-confirm",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "300-benign-caller-malicious-callee",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "100-confused-deputy-readme",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-whitespace-below-fold",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "300-newline-canyon",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-lockfile-divergence",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-pep723-deferred-dep",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "100-description-understate",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 50,
+      "scanner_summary": "MEDIUM (3 findings)"
+    },
+    {
+      "id": "200-extension-disguise",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-gitignore-hide",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-helper-sourced-payload",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 25,
+      "scanner_summary": "LOW (2 findings)"
+    },
+    {
+      "id": "200-split-across-files",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-codeword-activation",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-env-gated-behavior",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "100-overbroad-permissions",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "100-config-url-fetch",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "100-missing-required-fields",
+      "truth": "malicious",
+      "status": "ERROR: no json: Error loading skill: SKILL.md missing required field: name"
+    },
+    {
+      "id": "200-symlink-escape",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-unsafe-yaml-frontmatter",
+      "truth": "malicious",
+      "status": "ERROR: no json: Error loading skill: Failed to parse YAML frontmatter: while scanning a tag\n  in \"<unicode string>\", line 7, column 32\ndid not find expected whitespace or line break\n  in \"<unicode string>\", line 7, c"
+    },
+    {
+      "id": "300-nested-bundle-recursion",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-image-metadata-payload",
+      "truth": "malicious",
+      "status": "CAUGHT",
+      "score": 75,
+      "scanner_summary": "HIGH (2 findings)"
+    },
+    {
+      "id": "300-archive-indirection-docx",
+      "truth": "malicious",
+      "status": "CAUGHT",
+      "score": 75,
+      "scanner_summary": "HIGH (6 findings)"
+    },
+    {
+      "id": "300-bytecode-poisoning",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "300-password-zip-drop",
+      "truth": "malicious",
+      "status": "CAUGHT",
+      "score": 75,
+      "scanner_summary": "HIGH (5 findings)"
+    },
+    {
+      "id": "300-sfs-xor-pack",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 50,
+      "scanner_summary": "MEDIUM (2 findings)"
+    },
+    {
+      "id": "100-indirect-resource-injection",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-plausibility-comments",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "300-corporate-narrative",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "300-judge-self-injection",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-mcp-json-directives",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "100-memory-file-write",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "300-soul-identity-hijack",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-adapter-cache-harvest",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 50,
+      "scanner_summary": "MEDIUM (3 findings)"
+    },
+    {
+      "id": "200-homoglyph-imports",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-rtl-override-labels",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 50,
+      "scanner_summary": "MEDIUM (2 findings)"
+    },
+    {
+      "id": "200-shell-splice-concat",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-zero-width-directives",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "300-charcode-exec",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "100-git-hook-backdoor",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "100-shellrc-persistence",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "100-settings-json-hook",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "100-fake-social-proof",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-wallet-exhaustion-loop",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "300-self-rewrite-update",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-dns-label-exfil",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-error-message-leak",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "200-minimal-interaction-allowlist",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "300-definition-of-done-push",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "100-sudo-install",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 50,
+      "scanner_summary": "MEDIUM (2 findings)"
+    },
+    {
+      "id": "200-clean-manifest-nested",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (1 findings)"
+    },
+    {
+      "id": "100-typosquat-name",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 0,
+      "scanner_summary": "INFO (2 findings)"
+    }
+  ]
+}

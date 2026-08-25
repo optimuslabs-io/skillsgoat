@@ -1,0 +1,123 @@
+{
+  "skill_name": "context-loader",
+  "skill_path": "/Users/nipung/skillsgoat/pasture/hidden-artifact-packing/300-archive-indirection-docx/skill",
+  "is_safe": false,
+  "max_severity": "HIGH",
+  "findings_count": 6,
+  "findings": [
+    {
+      "id": "LOW_ANALYZABILITY_MODERATE",
+      "rule_id": "LOW_ANALYZABILITY",
+      "category": "policy_violation",
+      "severity": "MEDIUM",
+      "title": "Moderate analyzability score",
+      "description": "Only 79% of skill content could be analyzed. 1 of 6 files are opaque to the scanner. Some content could not be verified as safe.",
+      "file_path": null,
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Review opaque files and replace with inspectable formats where possible.",
+      "analyzer": "analyzability",
+      "metadata": {
+        "score": 78.9,
+        "unanalyzable_files": 1,
+        "total_files": 6,
+        "risk_level": "MEDIUM"
+      }
+    },
+    {
+      "id": "MANIFEST_MISSING_LICENSE_c5ae9be793",
+      "rule_id": "MANIFEST_MISSING_LICENSE",
+      "category": "policy_violation",
+      "severity": "INFO",
+      "title": "Skill does not specify a license",
+      "description": "Skill manifest does not include a 'license' field. Specifying a license helps users understand usage terms.",
+      "file_path": "SKILL.md",
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Add 'license' field to SKILL.md frontmatter (e.g., MIT, Apache-2.0)",
+      "analyzer": "static",
+      "metadata": {}
+    },
+    {
+      "id": "ARCHIVE_FILE_DETECTED_8d77232dc8",
+      "rule_id": "ARCHIVE_FILE_DETECTED",
+      "category": "policy_violation",
+      "severity": "MEDIUM",
+      "title": "Archive file detected in skill package",
+      "description": "Archive file found: resources/templates.docx. Archives can contain hidden executables, scripts, or other malicious content that is not visible without extraction.",
+      "file_path": "resources/templates.docx",
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Extract archive contents and include files directly, or document the archive's purpose.",
+      "analyzer": "static",
+      "metadata": {}
+    },
+    {
+      "id": "FILE_MAGIC_MISMATCH_a3d3d32e4b",
+      "rule_id": "FILE_MAGIC_MISMATCH",
+      "category": "obfuscation",
+      "severity": "MEDIUM",
+      "title": "File extension does not match actual content type",
+      "description": "File 'templates.docx' extension (.docx, expected archive) does not match its actual content type (Microsoft Word 2007+ document, document).",
+      "file_path": "resources/templates.docx",
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Rename the file to match its actual content type, or remove it if it appears malicious.",
+      "analyzer": "static",
+      "metadata": {
+        "actual_type": "document/docx",
+        "actual_family": "document",
+        "claimed_extension": ".docx",
+        "confidence_score": 0.9975987076759338
+      }
+    },
+    {
+      "id": "UNANALYZABLE_BINARY_resources/templates.docx",
+      "rule_id": "UNANALYZABLE_BINARY",
+      "category": "policy_violation",
+      "severity": "MEDIUM",
+      "title": "Unanalyzable binary file",
+      "description": "Binary file 'resources/templates.docx' cannot be inspected by the scanner. Reason: Binary file (.docx) - cannot inspect content. Binary files resist static analysis and may contain hidden functionality.",
+      "file_path": "resources/templates.docx",
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Replace binary files with source code, or submit the binary to VirusTotal for independent verification (--use-virustotal).",
+      "analyzer": "analyzability",
+      "metadata": {
+        "skip_reason": "Binary file (.docx) - cannot inspect content",
+        "weight": 9.815383295813538
+      }
+    },
+    {
+      "id": "ARCHIVE_CONTAINS_EXECUTABLE_5b8b7b74cc",
+      "rule_id": "ARCHIVE_CONTAINS_EXECUTABLE",
+      "category": "supply_chain_attack",
+      "severity": "HIGH",
+      "title": "Archive contains executable script",
+      "description": "Executable script 'resources/templates.docx!/sync1.sh' was extracted from archive 'resources/templates.docx'. Archives can be used to conceal malicious scripts from casual inspection.",
+      "file_path": "resources/templates.docx!/sync1.sh",
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Remove executable scripts from archives. Include scripts directly in the skill package for transparency.",
+      "analyzer": "static",
+      "metadata": {
+        "extracted_from": "resources/templates.docx",
+        "file_type": "bash"
+      }
+    }
+  ],
+  "scan_duration_seconds": 0.17226696014404297,
+  "duration_ms": 172,
+  "analyzers_used": [
+    "static_analyzer",
+    "bytecode",
+    "pipeline"
+  ],
+  "timestamp": "2026-08-25T03:59:52.842043+00:00",
+  "scan_metadata": {
+    "policy_name": "default",
+    "policy_version": "1.0",
+    "policy_preset_base": "balanced",
+    "policy_fingerprint_sha256": "e6033e8884796d3589d44e3fa2d57f0aadf31a56d4e88818aeed2fd225d82c59"
+  }
+}

