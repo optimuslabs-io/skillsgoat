@@ -58,20 +58,6 @@ goat.py scan --scanners skillspector --mode both # compare against incumbents
 
 ---
 
-## 3) "Teach my team" — Trainer / analyst onboarding
-
-```bash
-.venv/bin/python goat.py quiz                 # benign-or-malicious, tier-mixed, with reveal-the-why
-.venv/bin/python goat.py quiz --tier 300      # only judge-targeting multi-stage cases
-```
-
-Walk a session with the catalog: `docs/CHAINS.md` (narrative + Mermaid graphs),
-`docs/EVASION_MATRIX.md` (which scanner assumption each technique defeats).
-Workshop exercise that works: *"SkillSpector says all 28 chain nodes are clean.
-Find the attack."* — hand them `docs/CHAINS.md` after they fail.
-
----
-
 ## 4) "Gate skills in our registry / repo" — Platform / DevSecOps
 
 Two gates, two different jobs:
@@ -93,7 +79,7 @@ Two gates, two different jobs:
 ```bash
 .venv/bin/python goat.py new --category obfuscation-encoding --tier 200 --name "My Technique"
 # edit pasture/obfuscation-encoding/200-my-technique/{expected.yaml,skill/SKILL.md}
-.venv/bin/python goat.py new --category compound-chain ... # chains use nodes/<name>/skill + chain.yaml instead
+.venv/bin/python goat.py new --category compound-chain ...  # chains use nodes/<name>/skill + chain.yaml instead
 ```
 
 Rules enforced by `goat.py lint`: answer keys outside `skill/`, canary embedded,
@@ -101,18 +87,3 @@ categories from `taxonomy.yaml`, inert endpoints (`*.example`, RFC 5737), no
 functional malware. For chains: every node must be defensibly clean alone.
 
 ---
-
-## Command reference
-
-| Command | What it does |
-|---|---|
-| `goat.py quiz [--tier T]` | interactive training |
-| `goat.py lint` | validate corpus consistency (run before commits) |
-| `goat.py index [--emit-aibom]` | regenerate indexes (+ AIBOM manifests) |
-| `goat.py inventory` | file-type census proving bundles ≠ markdown |
-| `goat.py scan --scanners S [--mode atomic\|node\|composite\|both] [--no-llm]` | evaluate scanners vs ground truth |
-| `goat.py chain-report` | regenerate docs/CHAINS.md |
-| `goat.py selftest` | harness sanity |
-
-Safety: everything is inert by construction (docs/SAFETY.md). Never install
-any `pasture/**` entry into a live agent.

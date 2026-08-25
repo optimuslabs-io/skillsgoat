@@ -2,8 +2,8 @@
   "scanner": "skillspector",
   "mode": "both",
   "chains": 14,
-  "structurally_blind": 7,
-  "blindness_rate": 0.5,
+  "structurally_blind": 13,
+  "blindness_rate": 0.929,
   "rows": [
     {
       "chain": "c8-command-shadowing",
@@ -348,5 +348,6 @@
         "summary": "0 LOW SAFE (0 issues)"
       }
     }
-  ]
+  ],
+  "metric_version": 2
 }

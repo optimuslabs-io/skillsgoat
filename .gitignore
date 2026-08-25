@@ -9,3 +9,5 @@ evaluations/*/report.json
 /talks/
 /plans/
 *.plan.md
+/evaluations/.composite/
+evaluations/snyk-labs/evidence/*.png

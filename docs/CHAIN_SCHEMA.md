@@ -77,3 +77,20 @@ result of this corpus layer.
 
 Unchanged from docs/SAFETY.md: all endpoints are RFC 2606/5737-inert,
 payloads contain markers not malware, node + chain canaries trace leaks.
+
+
+## Appendix: AIBOM manifest format (example)
+
+Per-entry AIBOM stubs were removed as boilerplate; when packaging pipelines
+land, manifests should follow OWASP Universal Agentic Skill Format:
+
+```yaml
+format: universal-agentic-skill-format/1.0
+name: c1-memory-handoff/writer
+description: plants standing rule into agent memory   # from expected/chain truth
+author: { name: skills-goat, identity: did:web:example.com }
+risk_tier: L3                      # L0 safe .. L3 destructive
+scan_status: { scanner: ground-truth-label, result: malicious }
+content_hash: sha256:...           # computed at package time
+goat_categories: [memory-poisoning]
+```

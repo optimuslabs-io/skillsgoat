@@ -2,8 +2,8 @@
   "scanner": "cisco",
   "mode": "both",
   "chains": 14,
-  "structurally_blind": 0,
-  "blindness_rate": 0.0,
+  "structurally_blind": 14,
+  "blindness_rate": 1.0,
   "rows": [
     {
       "chain": "c8-command-shadowing",
@@ -348,5 +348,6 @@
         "summary": "INFO (1 findings)"
       }
     }
-  ]
+  ],
+  "metric_version": 2
 }

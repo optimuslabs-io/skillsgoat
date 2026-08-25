@@ -8,7 +8,7 @@ Agent skills (`SKILL.md` bundles) are a new way to distribute executable behavio
 
 ## What's inside
 
-**70 entries + 14 compound chains across 31 categories**, each with machine-readable ground truth:
+**70 attack fixtures + 14 compound chains (28 nodes)**, each with machine-readable ground truth:
 
 - **Calibration set (10)** — must-catch patterns. A scanner missing these is broken, not weak.
 - **Classics (10)** — metadata injection, indirect injection, exfiltration, destructive commands, curl-pipe-bash, over-permission, persistence, memory poisoning, confused deputy, typosquatting.
@@ -37,6 +37,9 @@ Everything else — injection, obfuscation, packing, persistence, memory/soul po
 
 Single-skill fixtures test one weakness at a time. Real compromises chain across **state channels** (agent memory, context window, repo/env state, shared tool layer) and **trust edges** (skill→skill, dep→skill, external→skill, session→future). Under `pasture/compound-chain/`, each entry is a multi-skill bundle where **every node scans clean alone** and only the graph is malicious — with ground truth (`chain.yaml`) covering four deployment contexts: developer endpoint, long-lived server agent, CI/CD runner, and hosted sandbox. See [docs/CHAIN_SCHEMA.md](docs/CHAIN_SCHEMA.md).
 
+## Roadmap
+Next: version-drift suite (benign→poisoned paired fixtures) · judge-benchmark leaderboard · detonation layer.
+
 ## Use it
 
 **Full practitioner's guide: [docs/USAGE.md](docs/USAGE.md)** — role-based workflows (security engineer / scanner vendor / trainer / platform gate / contributor).
@@ -47,8 +50,7 @@ Quickstart:
 pip install pyyaml
 
 python3 goat.py lint          # validate corpus consistency
-python3 goat.py index         # regenerate indexes (--emit-aibom for manifests)
-python3 goat.py quiz          # learn: benign or malicious?
+python3 goat.py index         # regenerate indexes
 python3 goat.py scan --scanners skillspector --no-llm   # evaluate a scanner
 python3 goat.py selftest
 ```
@@ -63,7 +65,6 @@ pasture/<category>/<tier>-<name>/
   expected.yaml             ground truth (OUTSIDE scannable tree)
   skill/                    point scanners HERE
 docs/
-  PROBLEM_SPACE.md          the full problem landscape & risk ranking
   EVASION_MATRIX.md         scanner assumption → technique map (V1–V13)
   SAFETY.md                 inert-payload policy, canaries, disclosure
 tools/gen_binaries.py       regenerates .pyc/.docx/.dat/.zip artifacts

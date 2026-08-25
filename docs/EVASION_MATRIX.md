@@ -66,21 +66,27 @@ Full per-node/composite JSON: `evaluations/skillspector/chains.json`. Narrative 
 [CHAINS.md](CHAINS.md).
 
 
-## Scanner comparison — static-only (Aug 2026)
+## Scanner comparison — static-only (Aug 2026, metric v2 — strict)
+
+Structural blindness v2 = **zero hard-blocks anywhere in a chain** (nodes or
+composite). Sub-threshold WEAK findings no longer rescue a score — v1 counted
+them as visibility, which let Cisco's keyword noise (weak-flagged on all ten
+benign controls too) masquerade as coverage. Correction first published with
+this table.
 
 | Metric | SkillSpector v2.9.6 | Cisco skill-scanner (static) |
 |---|---|---|
 | Atomic: caught at block threshold | 8 / 55 | 5 / 55 |
 | Atomic: zero-detection bypasses | 13 | **0** |
-| Calibration misses (must-catch, any signal) | 2 silent | 0 silent (all ≥ weak) |
-| Benign twins: FP-WEAK / FALSE-POSITIVE | 6 / 0 | 8 / **2** |
+| Calibration misses (silent) | 2 | 0 |
+| Benign twins FALSE-POSITIVE / FP-WEAK | 0 / 6 | 2 / 8 |
 | Chain nodes hard-flagged | 0 / 28 | **0 / 28** |
 | Composites caught | 1 / 14 | **0 / 14** |
-| Structural blindness (strict) | 7 / 14 | 0 / 14 * |
+| **Structural blindness (v2, strict)** | **13 / 14** | **14 / 14** |
 
-\* Cisco's 0 is low-information: it emits sub-threshold findings on nearly
-everything — including all 10 benign twins — so "detected" carries almost no
-signal. The honest chain summary for both tools: **no scanner hard-blocks a
-single chain node; composites caught = 1 of 28 attempts.**
+Fully invisible to both tools: memory handoff · context bleed · supply-arms-memory ·
+repoconfig rootkit · MCP cross-skill poisoning · Soul-as-C2 · inference hijack.
+One composite caught once (c14 sandbox-shim — LD_PRELOAD rules added post-ToB).
 
 Raw evidence: `evaluations/{skillspector,cisco}/` (per-entry JSON + matrices).
+Composite mode is predictive: no whole-graph skill scanner ships today.

@@ -2,7 +2,6 @@
 """SkillsGoat — vulnerable-by-design AI agent skill corpus.
 
 Commands:
-  quiz                       quiz yourself: benign or malicious?
   lint                       validate corpus consistency (run before committing)
   index                      regenerate pasture/INDEX_BY_*.md (+ --emit-aibom)
   new                        scaffold a new entry
@@ -246,49 +245,7 @@ def cmd_index(args) -> int:
             tier_lines.append(f"- `{e['id']}` ({e['verdict']}, {e['severity'] or '-'}) — {e['name']}")
     (PASTURE / "INDEX_BY_TIER.md").write_text("\n".join(tier_lines) + "\n")
 
-    if args.emit_aibom:
-        n = 0
-        for e in entries:
-            aibom = {
-                "format": "universal-agentic-skill-format/1.0",
-                "name": e["id"],
-                "description": e["name"],
-                "author": {"name": "skills-goat", "identity": "did:web:example.com"},
-                "risk_tier": "L3" if e["verdict"] == "malicious" else "L0",
-                "scan_status": {"scanner": "ground-truth-label", "result": e["verdict"]},
-                "content_hash": None,  # filled by packaging pipeline
-                "goat_categories": e["categories"],
-            }
-            (e["entry_dir"] / "aibom.yaml").write_text(yaml.safe_dump(aibom, sort_keys=False))
-            n += 1
-        print(f"aibom.yaml written for {n} entries")
     print(f"index OK — {len(entries)} entries")
-    return 0
-
-
-# ---------------------------------------------------------------- quiz
-
-def cmd_quiz(args) -> int:
-    entries = [e for e in discover_entries() if e["skill_dir"].is_dir()]
-    if args.tier:
-        entries = [e for e in entries if e["tier"] == args.tier]
-    random.shuffle(entries) if (random := __import__("random")) else None
-    score_right = score_total = 0
-    for e in entries:
-        print("\n" + "=" * 60)
-        for fname, content in read_skill_files(e["skill_dir"]).items():
-            if fname.endswith((".md", ".yaml", ".yml", ".txt")) and len(content) < 4000:
-                print(f"--- {fname} ---")
-                print(content[:4000])
-        answer = input("\nbenign or malicious? > ").strip().lower()
-        correct = answer == e["verdict"]
-        score_total += 1
-        score_right += correct
-        print(("Correct!" if correct else f"No — it is {e['verdict']}."))
-        input("(enter to see why) ")
-        print(f"Categories: {', '.join(e['categories'])}")
-        print(f"Why: {e['why']}")
-    print(f"\nScore: {score_right}/{score_total}")
     return 0
 
 
@@ -460,9 +417,12 @@ def cmd_scan_chains(scanner, mode, use_llm, timeout):
             graph_row = {"status": graph_status}
             if not err:
                 graph_row.update({"score": score, "summary": summary})
-        all_clean = all(r["status"] == "NODE-CLEAN" for r in node_rows) and node_rows
-        no_graph_hit = graph_row is None or graph_row["status"] != "GRAPH-CAUGHT"
-        if all_clean and no_graph_hit:
+        # v2 (strict): blind = zero hard-blocks anywhere in the chain.
+        # Sub-threshold WEAK findings cannot rescue a score (they carry no
+        # signal on noisy scanners — see EVASION_MATRIX correction note).
+        any_caught = any(r["status"] == "NODE-FLAGGED" for r in node_rows)
+        graph_caught = graph_row is not None and graph_row["status"] == "GRAPH-CAUGHT"
+        if not any_caught and not graph_caught:
             blind += 1
         rows.append({"chain": c["id"], "nodes": node_rows, "graph": graph_row})
     recap = {"scanner": scanner, "mode": mode, "chains": len(chains),
@@ -659,14 +619,9 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
 
-    sub.add_parser("quiz", help="quiz mode").set_defaults(func=cmd_quiz)
-    quiz_ap = sub.choices["quiz"]; quiz_ap.add_argument("--tier", choices=["000", "100", "200", "300"])
-
     sub.add_parser("lint", help="validate corpus").set_defaults(func=cmd_lint)
 
-    idx = sub.add_parser("index", help="regenerate indexes")
-    idx.add_argument("--emit-aibom", action="store_true")
-    idx.set_defaults(func=cmd_index)
+    sub.add_parser("index", help="regenerate indexes").set_defaults(func=cmd_index)
 
     new = sub.add_parser("new", help="scaffold an entry")
     new.add_argument("--category", required=True)
