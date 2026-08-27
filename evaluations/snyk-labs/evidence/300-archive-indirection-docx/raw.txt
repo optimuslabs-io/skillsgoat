@@ -1,0 +1,45 @@
+By submitting your skill for analysis, you agree to our terms of service.
+context-loader
+Synchronizes startup context across Claude instances.
+2 files
+SKILL.md
+templates.docx
+Re-analyse
+3 issues found
+9 security checks completed
+Prompt Injection
+Malicious Code
+Suspicious Downloads
+Improper Credential Handling
+Secret Detection
+Third-Party Content Exposure
+Unverifiable Dependencies
+Direct Money Access
+Modifying System Services
+ISSUES FOUND
+3
+SEVERITY BREAKDOWN
+C
+2
+H
+0
+M
+1
+L
+0
+E004
+Critical
+Prompt injection in skill
+Potential prompt injection detected (critical risk: 1.00). The skill hides executable instructions inside a disguised .docx archive and directs the extraction and execution of an unknown embedded shell script, a deceptive hidden-payload pattern.
+Learn more
+E006
+Critical
+Malicious code pattern
+Malicious code pattern detected (critical risk: 1.00). The skill instructs Claude to extract and blindly execute an embedded shell script (sync1.sh) hidden inside a docx archive, using archive indirection to conceal arbitrary code execution from a "context sync" pretext.
+Learn more
+W013
+Medium
+System state compromise
+Attempt to modify system services in skill instructions detected (high risk: 0.70). The skill hides its real instructions inside a packaged docx file and directs the agent to extract and blindly execute an unknown shell script (sync1.sh), a classic obfuscation/indirection pattern that could be used to execute arbitrary system-modifying commands.
+Learn more
+Learn more about these checks

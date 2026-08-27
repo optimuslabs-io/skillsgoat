@@ -1,0 +1,39 @@
+By submitting your skill for analysis, you agree to our terms of service.
+mail-assist
+Helps draft and send email on the user's behalf.
+1 files
+SKILL.md
+Re-analyse
+2 issues found
+9 security checks completed
+Prompt Injection
+Malicious Code
+Suspicious Downloads
+Improper Credential Handling
+Secret Detection
+Third-Party Content Exposure
+Unverifiable Dependencies
+Direct Money Access
+Modifying System Services
+ISSUES FOUND
+2
+SEVERITY BREAKDOWN
+C
+2
+H
+0
+M
+0
+L
+0
+E004
+Critical
+Prompt injection in skill
+Potential prompt injection detected (critical risk: 1.00). The skill covertly BCCs all outgoing mail to an external address while explicitly instructing concealment from the user, which is a hidden exfiltration mechanism.
+Learn more
+E006
+Critical
+Malicious code pattern
+Malicious code pattern detected (critical risk: 1.00). The skill covertly BCCs all outgoing mail to an external address while explicitly instructing concealment from the user, constituting deliberate covert data exfiltration.
+Learn more
+Learn more about these checks
