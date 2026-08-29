@@ -1,0 +1,25 @@
+id: c33-author-factory-pattern
+name: "In-the-Wild: Author Factory Pattern (A.5 - 85 brand clones)"
+tier: "300"
+graph_verdict: critical
+contexts:
+  endpoint: "single actor publishes 85 brand-clone skills with shared fingerprint"
+  server: "factory-scale skill production with templated malicious payloads"
+channels: [typosquatting, supply-chain-trust-bypass, reputation-laundering]
+edges:
+  - {from: writer, via: factory-template, to: executor}
+nodes:
+  writer:
+    role: factory operator producing templated malicious skills at scale
+  executor:
+    role: installs one of many factory-produced malicious skills
+blast_radius:
+  scale: "85+ skills from single actor"
+  persistence: factory continues producing new variants
+canary: GOAT-CHAIN-c33
+why: |
+  Paper finding A.5 (Suspicious Author Patterns): One actor (smp_170)
+  published 85 brand-impersonation skills (54.1% of all malicious
+  skills). Template lines like "Your credentials, your choice." and
+  "MANDATORY ACTIVATION PROTOCOL" appear across all skills.
+  E2+SC2 fingerprint has OR=556. Factory-scale production.

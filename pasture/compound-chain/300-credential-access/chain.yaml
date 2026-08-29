@@ -1,0 +1,24 @@
+id: c26-credential-access
+name: "In-the-Wild: Credential Access (PE3 - 52 skills)"
+tier: "100"
+graph_verdict: critical
+contexts:
+  endpoint: "direct access to credential files and secret stores"
+  server: "skill reads credential files and exfiltrates or misuses them"
+channels: [data-exfiltration, privilege-escalation]
+edges:
+  - {from: writer, via: credential-access, to: executor}
+nodes:
+  writer:
+    role: embeds code to read credential files and secret stores
+  executor:
+    role: reads credentials and uses/exfiltrates them
+blast_radius:
+  credentials: ["~/.aws/credentials", "~/.ssh/id_*", "~/.docker/config.json", "~/.npmrc", "~/.npmrc"]
+  persistence: immediate
+canary: GOAT-CHAIN-c26
+why: |
+  In-the-wild pattern PE3 (52 skills): Direct credential access.
+  Skills explicitly read credential files (AWS credentials, SSH keys,
+  Docker configs, npm tokens, git credentials) and either exfiltrate
+  them or use them for unauthorized actions. 52 skills found in the wild.
