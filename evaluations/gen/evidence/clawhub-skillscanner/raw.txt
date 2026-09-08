@@ -1,0 +1,15 @@
+surface: hosted-url (ClawHub only)
+submitted: https://clawhub.ai/rexshang/skillscanner
+truth: n/a (not a SkillsGoat fixture; pipeline probe)
+ui:
+  Verified Author
+  This skill is from a verified and trusted author
+  Skill Scanner
+  Safe
+  rexshang
+  https://clawhub.ai/rexshang/skillscanner
+  Security Findings
+  This skill is from a verified author (rexshang) and contains no risky components
+api POST https://ai.gendigital.com/api/scan/lookup
+{"severity":"SAFE","reasons":["This skill is from a verified author (rexshang) and contains no risky components."],"author":"rexshang","displayName":"Skill Scanner","isVerifiedAuthor":true}
+notes: Verdict is author-trust, not content analysis of SKILL.md. A verified-author shortcut would miss vibe-coded plugins even if they later appear on ClawHub.

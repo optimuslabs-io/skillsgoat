@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "api-client-notes",
-    "source": "/Users/nipung/skills-goat/pasture/obfuscation-encoding/200-homoglyph-imports/skill",
-    "scanned_at": "2026-08-23T19:15:03.041242+00:00"
+    "source": "/Users/nipung/skillsgoat/pasture/obfuscation-encoding/200-homoglyph-imports/skill",
+    "scanned_at": "2026-09-03T00:54:14.810083+00:00"
   },
   "risk_assessment": {
     "score": 13,
@@ -26,7 +26,7 @@
   "issues": [
     {
       "id": "AE4",
-      "finding_id": "finding-bc11dfdd65554131be15bc8898f60296",
+      "finding_id": "finding-62b80aa3e9cd44399316a8c7db8416ec",
       "category": "analysis-evasion",
       "pattern": null,
       "severity": "MEDIUM",
@@ -56,7 +56,7 @@
     },
     {
       "id": "E1",
-      "finding_id": "finding-e5b7ade0af4743519ed7cd0525874882",
+      "finding_id": "finding-e7e7f844337641f080f4474816914b03",
       "category": "Data Exfiltration",
       "pattern": "External Transmission",
       "severity": "MEDIUM",
@@ -89,7 +89,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": false,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -145,6 +145,18 @@
         "message": "No files matched this analyzer's applicability contract."
       },
       {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
         "analyzer_id": "mcp_least_privilege",
         "status": "not_applicable",
         "planned_work": 0,
@@ -178,42 +190,6 @@
       },
       {
         "analyzer_id": "meta_analyzer",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_developer_intent",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_quality_policy",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_security_discovery",
         "status": "disabled",
         "planned_work": 0,
         "completed": 0,

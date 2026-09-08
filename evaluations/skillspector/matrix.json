@@ -1,15 +1,15 @@
 {
   "scanner": "skillspector",
   "llm_enabled": false,
-  "scanned_at": "2026-08-23T19:15:26.065347+00:00",
-  "total": 65,
+  "scanned_at": "2026-09-03T00:54:36.265947+00:00",
+  "total": 70,
   "caught": 8,
   "weak_flagged": 34,
-  "bypassed": 13,
+  "bypassed": 18,
   "false_positives": 6,
   "clean_benign": 4,
-  "malicious_recall_strict": 0.145,
-  "malicious_detection_any": 0.764,
+  "malicious_recall_strict": 0.133,
+  "malicious_detection_any": 0.7,
   "benign_fp_rate": 0.6,
   "rows": [
     {
@@ -148,9 +148,9 @@
     {
       "id": "000-rm-rf-no-confirm",
       "truth": "malicious",
-      "status": "WEAK-FLAG",
-      "score": 38,
-      "scanner_summary": "38 MEDIUM CAUTION (2 issues)"
+      "status": "CAUGHT",
+      "score": 54,
+      "scanner_summary": "54 HIGH DO_NOT_INSTALL (3 issues)"
     },
     {
       "id": "300-benign-caller-malicious-callee",
@@ -258,32 +258,60 @@
       "scanner_summary": "0 LOW SAFE (0 issues)"
     },
     {
-      "id": "200-image-metadata-payload",
+      "id": "100-missing-required-fields",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW SAFE (0 issues)"
+    },
+    {
+      "id": "200-symlink-escape",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW CAUTION (0 issues)"
+    },
+    {
+      "id": "200-unsafe-yaml-frontmatter",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW CAUTION (0 issues)"
+    },
+    {
+      "id": "300-nested-bundle-recursion",
       "truth": "malicious",
       "status": "WEAK-FLAG",
-      "score": 45,
-      "scanner_summary": "45 MEDIUM CAUTION (3 issues)"
+      "score": 16,
+      "scanner_summary": "16 LOW SAFE (2 issues)"
+    },
+    {
+      "id": "200-image-metadata-payload",
+      "truth": "malicious",
+      "status": "CAUGHT",
+      "score": 82,
+      "scanner_summary": "82 CRITICAL DO_NOT_INSTALL (5 issues)"
     },
     {
       "id": "300-archive-indirection-docx",
       "truth": "malicious",
       "status": "CAUGHT",
-      "score": 95,
-      "scanner_summary": "95 CRITICAL DO_NOT_INSTALL (5 issues)"
+      "score": 64,
+      "scanner_summary": "64 HIGH DO_NOT_INSTALL (3 issues)"
     },
     {
       "id": "300-bytecode-poisoning",
       "truth": "malicious",
-      "status": "CAUGHT",
-      "score": 70,
-      "scanner_summary": "70 HIGH DO_NOT_INSTALL (3 issues)"
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW SAFE (0 issues)"
     },
     {
       "id": "300-password-zip-drop",
       "truth": "malicious",
       "status": "WEAK-FLAG",
-      "score": 40,
-      "scanner_summary": "40 MEDIUM CAUTION (4 issues)"
+      "score": 6,
+      "scanner_summary": "6 LOW CAUTION (1 issues)"
     },
     {
       "id": "300-sfs-xor-pack",
@@ -335,6 +363,13 @@
       "scanner_summary": "0 LOW CAUTION (0 issues)"
     },
     {
+      "id": "300-soul-identity-hijack",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW CAUTION (0 issues)"
+    },
+    {
       "id": "200-adapter-cache-harvest",
       "truth": "malicious",
       "status": "WEAK-FLAG",
@@ -365,9 +400,9 @@
     {
       "id": "200-zero-width-directives",
       "truth": "malicious",
-      "status": "CAUGHT",
-      "score": 53,
-      "scanner_summary": "53 HIGH DO_NOT_INSTALL (6 issues)"
+      "status": "WEAK-FLAG",
+      "score": 42,
+      "scanner_summary": "42 MEDIUM CAUTION (4 issues)"
     },
     {
       "id": "300-charcode-exec",
@@ -395,7 +430,7 @@
       "truth": "malicious",
       "status": "WEAK-FLAG",
       "score": 7,
-      "scanner_summary": "7 LOW SAFE (1 issues)"
+      "scanner_summary": "7 LOW CAUTION (1 issues)"
     },
     {
       "id": "100-fake-social-proof",

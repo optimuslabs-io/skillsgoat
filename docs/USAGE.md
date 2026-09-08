@@ -1,13 +1,16 @@
-# Using SkillsGoat — Practitioner's Guide
+# Using SkillsGoat
 
-Pick your role:
+Install the same way as gstack / mattpocock / impeccable:
+[.agents/install-block.md](../.agents/install-block.md). Paste-to-agent,
+`./setup`, Claude plugin, or `npx skills@latest add optimuslabs-io/skillsgoat`.
+That loads the goat fixtures into the agent. Then pick your role.
 
 ---
 
-## 1) "Is skill X safe to install?" — Security engineer
+## 1) Security engineer: "Is skill X safe to install?"
 
 SkillsGoat won't scan arbitrary skills for you (that's the scanners' job).
-It tells you **how much to trust your scanner** before you rely on it:
+It tells you how much to trust your scanner before you rely on it:
 
 ```bash
 cd ~/skillsgoat && python3 -m venv .venv && .venv/bin/pip install pyyaml
@@ -31,18 +34,25 @@ Read `evaluations/skillspector/report.md`. Decision rule for production gating:
 | benign FP-rate > ~30% or FP severity HIGH+ | keyword-driven noise | expect alert fatigue; tune policy |
 | chain blindness ≥ 50% | structurally blind to composed attacks | never treat CLEAN as "safe"; require graph/memory-aware review for privileged agents |
 
-Then scan the skill you actually care about with that calibrated skepticism:
+Third-party installs are usually marketplace packs. Their READMEs look like
+gstack / mattpocock / impeccable: paste-to-agent prompt,
+`claude plugins install` vs `npx skills@latest add`, then `/setup-*`. Canonical
+wording: [plugin-distribution/install-block.md](../pasture/plugin-distribution/install-block.md).
+Point the scanner at the whole pack. A CLEAN on the root skill file does not
+cover the pack. UI-only vendors: [evaluations/ui/PROTOCOL.md](../evaluations/ui/PROTOCOL.md).
+
+Then scan the skill you actually care about:
 
 ```bash
-skillspector scan ./untrusted-skill/ --no-llm     # static floor
-skill-scanner scan ./untrusted-skill              # second opinion
+skillspector scan ./untrusted-plugin/ --no-llm   # whole plugin tree, not a lone SKILL.md
+skill-scanner scan ./untrusted-plugin
 ```
 
-A CLEAN verdict now means "passed the patterns *this* tool knows" — see README Scope & Exclusions.
+A CLEAN verdict means "passed the patterns *this* tool knows." See README Scope & Exclusions.
 
 ---
 
-## 2) "I build a scanner" — Vendor / researcher
+## 2) Vendor / researcher: "I build a scanner"
 
 The corpus is your regression suite and adversarial benchmark:
 
@@ -52,15 +62,15 @@ goat.py scan --scanners skillspector --mode both # compare against incumbents
 ```
 
 - Ground truth per entry: `pasture/*/*/expected.yaml`; per chain: `pasture/compound-chain/*/chain.yaml`
-- Your score = caught / weak-flagged / bypassed over 55 malicious entries + FP-rate over 10 benign twins + structural-blindness over 14 chains
-- Ship fixes, re-run, watch bypass count drop — the ToB-derived entries (`300-bytecode-poisoning`, `300-archive-indirection-docx`) show exactly which past gaps closed between scanner versions
+- Score = caught / weak-flagged / bypassed over 64 malicious entries + FP-rate over 10 benign twins + structural-blindness over 35 chains
+- Ship fixes, re-run, watch bypass count drop. The ToB-derived entries (`300-bytecode-poisoning`, `300-archive-indirection-docx`) show which past gaps closed between scanner versions
 - Never train/tune on the corpus then report scores on it as if held-out; disclose tuning (canary tokens make corpus leakage detectable)
 
 ---
 
-## 4) "Gate skills in our registry / repo" — Platform / DevSecOps
+## 3) Platform / DevSecOps: "Gate skills in our registry / repo"
 
-Two gates, two different jobs:
+Two gates:
 
 ```yaml
 # .github/workflows/skill-gate.yml (sketch)
@@ -69,12 +79,12 @@ Two gates, two different jobs:
 - run: goat.py scan --scanners cisco --no-llm --mode node || true   # track blindness trend
 ```
 
-- Gate **installs** on scanner verdicts, but size the trust by the measured blindness: chains prove CLEAN ≠ safe, so privileged agents additionally need allowlisted egress + memory-write monitoring (the channels C1/C11 exploit)
-- Re-run the matrix monthly; pin the scanner version in `evaluations/<scanner>/matrix.json` metadata when you do
+- Gate installs on scanner verdicts, but size the trust by the measured blindness. Chains prove CLEAN is not safe, so privileged agents also need allowlisted egress and memory-write monitoring (the channels C1/C11 exploit).
+- Re-run the matrix monthly. Pin the scanner version in `evaluations/<scanner>/matrix.json` metadata when you do.
 
 ---
 
-## 5) "Add a pattern I found in the wild" — Contributor
+## 4) Contributor: "Add a pattern I found in the wild"
 
 ```bash
 .venv/bin/python goat.py new --category obfuscation-encoding --tier 200 --name "My Technique"
@@ -85,5 +95,3 @@ Two gates, two different jobs:
 Rules enforced by `goat.py lint`: answer keys outside `skill/`, canary embedded,
 categories from `taxonomy.yaml`, inert endpoints (`*.example`, RFC 5737), no
 functional malware. For chains: every node must be defensibly clean alone.
-
----

@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "cache-refresh",
-    "source": "/Users/nipung/skills-goat/pasture/obfuscation-encoding/200-shell-splice-concat/skill",
-    "scanned_at": "2026-08-23T19:15:05.752959+00:00"
+    "source": "/Users/nipung/skillsgoat/pasture/obfuscation-encoding/200-shell-splice-concat/skill",
+    "scanned_at": "2026-09-03T00:54:17.195580+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -38,7 +38,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -94,6 +94,18 @@
         "message": "No files matched this analyzer's applicability contract."
       },
       {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
         "analyzer_id": "mcp_least_privilege",
         "status": "completed",
         "planned_work": 2,
@@ -134,42 +146,6 @@
         "unaccounted": 0,
         "reason_code": "no_applicable_files",
         "message": "No files matched this analyzer's applicability contract."
-      },
-      {
-        "analyzer_id": "semantic_developer_intent",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_quality_policy",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_security_discovery",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
       },
       {
         "analyzer_id": "static_patterns_agent_snooping",

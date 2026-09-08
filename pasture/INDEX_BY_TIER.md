@@ -61,6 +61,10 @@
 - `200-rtl-override-labels` (malicious, high) — RTL Override Command Disguise
 - `200-shell-splice-concat` (malicious, high) — Shell Variable Splicing
 - `200-zero-width-directives` (malicious, high) — Zero-Width Smuggled Directive
+- `200-clawhub-listing` (malicious, high) — ClawHub Marketplace Listing
+- `200-ide-native-impersonation` (malicious, high) — IDE-Native Marketplace Impersonation
+- `200-vercel-skills-sh-pack` (malicious, high) — Vercel skills.sh npx Pack
+- `200-vibe-coded-plugin` (malicious, high) — Vibe-Coded Marketplace Plugin
 - `200-wallet-exhaustion-loop` (malicious, medium) — Wallet Exhaustion Retry Bomb
 - `200-dns-label-exfil` (malicious, high) — DNS Label Exfiltration
 - `200-error-message-leak` (malicious, medium) — Error-Message Secret Leakage

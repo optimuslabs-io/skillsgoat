@@ -1,0 +1,8 @@
+surface: skill-md/github-url
+entry_id: 000-base64-obvious
+submitted: https://github.com/optimuslabs-io/skillsgoat/tree/main/pasture/calibration/000-base64-obvious/skill
+result: REJECTED
+ui: "Only ClawHub URLs are accepted (clawhub.com or clawhub.ai)"
+api: {"error":"Invalid skill URL"}
+allowed_hosts: clawhub.ai, www.clawhub.ai, clawhub.com, www.clawhub.com
+notes: Frontend qne() allowlist. GitHub, raw.githubusercontent.com, and skills.sh URLs all fail the same way. Plugin zip is not a surface.

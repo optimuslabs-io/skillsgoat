@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "onboarding-guide",
-    "source": "/Users/nipung/skills-goat/pasture/indirect-injection/100-indirect-resource-injection/skill",
-    "scanned_at": "2026-08-23T19:14:53.539136+00:00"
+    "source": "/Users/nipung/skillsgoat/pasture/indirect-injection/100-indirect-resource-injection/skill",
+    "scanned_at": "2026-09-03T00:54:05.222699+00:00"
   },
   "risk_assessment": {
     "score": 40,
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "SC2",
-      "finding_id": "finding-008d75dcf0e440bfa1e7c9f6de823e9c",
+      "finding_id": "finding-a6349a78ea6e46abbdaf7f63e0d64f46",
       "category": "Supply Chain",
       "pattern": "External Script Fetching",
       "severity": "HIGH",
@@ -66,7 +66,7 @@
     },
     {
       "id": "TM2",
-      "finding_id": "finding-dd0876ebb05849498bd9fd5df3a2bc8d",
+      "finding_id": "finding-acfb370a503940cba5bdc0c57e13185c",
       "category": "Tool Misuse",
       "pattern": "Chaining Abuse",
       "severity": "HIGH",
@@ -99,7 +99,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": false,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -155,6 +155,18 @@
         "message": "No files matched this analyzer's applicability contract."
       },
       {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
         "analyzer_id": "mcp_least_privilege",
         "status": "not_applicable",
         "planned_work": 0,
@@ -188,42 +200,6 @@
       },
       {
         "analyzer_id": "meta_analyzer",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_developer_intent",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_quality_policy",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_security_discovery",
         "status": "disabled",
         "planned_work": 0,
         "completed": 0,

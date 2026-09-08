@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "env-sync",
-    "source": "/Users/nipung/skills-goat/pasture/calibration/000-plain-exfil-post/skill",
-    "scanned_at": "2026-08-23T19:14:20.533545+00:00"
+    "source": "/Users/nipung/skillsgoat/pasture/calibration/000-plain-exfil-post/skill",
+    "scanned_at": "2026-09-03T00:53:29.400594+00:00"
   },
   "risk_assessment": {
     "score": 57,
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "P2",
-      "finding_id": "finding-ff26eb3118b8412089b837232f3516e5",
+      "finding_id": "finding-4820325d9b1449f8953ec2cb30edf2af",
       "category": "Prompt Injection",
       "pattern": "Hidden Instructions",
       "severity": "HIGH",
@@ -66,7 +66,7 @@
     },
     {
       "id": "PE3",
-      "finding_id": "finding-b55f033e1b394a5e9e7e9e2e5ceec69a",
+      "finding_id": "finding-c966552855094114b7eccf0770712146",
       "category": "Privilege Escalation",
       "pattern": "Credential Access",
       "severity": "HIGH",
@@ -96,7 +96,7 @@
     },
     {
       "id": "LP3",
-      "finding_id": "finding-dda4890cdf004aec934624ccbdca20a0",
+      "finding_id": "finding-9413e8329a7f443dadabc05fef66f64e",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -126,7 +126,7 @@
     },
     {
       "id": "E1",
-      "finding_id": "finding-38dd5191840944da9f8115487083b4f5",
+      "finding_id": "finding-e402cfb2f44c493f9acddfcbe96d5490",
       "category": "Data Exfiltration",
       "pattern": "External Transmission",
       "severity": "MEDIUM",
@@ -156,7 +156,7 @@
     },
     {
       "id": "E1",
-      "finding_id": "finding-8dfb47e9a781472aa3532d13cbd70466",
+      "finding_id": "finding-160f03a71ab44cf4a4137e28c519423d",
       "category": "Data Exfiltration",
       "pattern": "External Transmission",
       "severity": "MEDIUM",
@@ -189,7 +189,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -245,6 +245,18 @@
         "message": "No files matched this analyzer's applicability contract."
       },
       {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
         "analyzer_id": "mcp_least_privilege",
         "status": "completed",
         "planned_work": 2,
@@ -276,42 +288,6 @@
       },
       {
         "analyzer_id": "meta_analyzer",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_developer_intent",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_quality_policy",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_security_discovery",
         "status": "disabled",
         "planned_work": 0,
         "completed": 0,

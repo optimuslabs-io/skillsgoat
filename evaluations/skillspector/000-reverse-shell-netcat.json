@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "remote-support",
-    "source": "/Users/nipung/skills-goat/pasture/calibration/000-reverse-shell-netcat/skill",
-    "scanned_at": "2026-08-23T19:14:21.474116+00:00"
+    "source": "/Users/nipung/skillsgoat/pasture/calibration/000-reverse-shell-netcat/skill",
+    "scanned_at": "2026-09-03T00:53:30.674725+00:00"
   },
   "risk_assessment": {
     "score": 55,
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "YR1",
-      "finding_id": "finding-39eaeeb89ff249308478360e9724785c",
+      "finding_id": "finding-0c1d1888f7b04326868f2b486d869627",
       "category": "YARA Match",
       "pattern": "YARA rule 'reverse_shell': Reverse shell patterns in scripts or source code [malware]",
       "severity": "CRITICAL",
@@ -69,7 +69,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -125,6 +125,18 @@
         "message": "No files matched this analyzer's applicability contract."
       },
       {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
         "analyzer_id": "mcp_least_privilege",
         "status": "completed",
         "planned_work": 2,
@@ -156,42 +168,6 @@
       },
       {
         "analyzer_id": "meta_analyzer",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_developer_intent",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_quality_policy",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_security_discovery",
         "status": "disabled",
         "planned_work": 0,
         "completed": 0,

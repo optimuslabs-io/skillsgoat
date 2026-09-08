@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# SkillsGoat setup — clone, venv, then register every pasture fixture as an
+# agent skill (gstack / impeccable shape). This is a goat: the malicious
+# fixtures are the install unit. Endpoints are inert.
+set -euo pipefail
+
+REPO="$(cd "$(dirname "$0")" && pwd)"
+cd "$REPO"
+
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "error: python3 is required" >&2
+  exit 1
+fi
+
+if [ ! -x "$REPO/.venv/bin/python" ]; then
+  echo "creating .venv"
+  python3 -m venv "$REPO/.venv"
+  "$REPO/.venv/bin/pip" install --upgrade pip
+  "$REPO/.venv/bin/pip" install pyyaml
+fi
+
+exec "$REPO/.venv/bin/python" "$REPO/tools/link_skills.py" "$@"

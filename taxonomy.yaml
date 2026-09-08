@@ -100,6 +100,9 @@ categories:
   - slug: mcp-tool-poisoning
     description: ".mcp.json / tool-metadata poisoning: hidden directives, homoglyph params."
     maps: [AST04]
+  - slug: plugin-distribution
+    description: "Install unit is a marketplace or IDE pack, not a lone SKILL.md: Vercel skills.sh (`npx skills add`), ClawHub listings, Cursor/Claude/Codex plugins, and packs that impersonate native Claude/Codex/Copilot/Grok skills. Risk is opaque; vibe-coded third-party is the common case."
+    maps: [AST02, AST03, AST10]
   - slug: resource-exhaustion
     description: "Cost/retry bombs — wallet exhaustion via paid API hammering."
     maps: [AST03]

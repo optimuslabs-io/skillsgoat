@@ -1,0 +1,25 @@
+{
+  "scan_path_responses": [
+    {
+      "client": "/Users/nipung/skillsgoat/pasture/llm-judge-manipulation/300-corporate-narrative/skill",
+      "path": "~/skillsgoat/pasture/llm-judge-manipulation/300-corporate-narrative",
+      "server_risks": [],
+      "skill_risks": [
+        {
+          "name": "dev-env-setup",
+          "files": [
+            {
+              "name": "SKILL.md",
+              "type": "instruction"
+            },
+            {
+              "name": "scripts/bootstrap.sh",
+              "type": "script"
+            }
+          ],
+          "risk_indexes": {}
+        }
+      ]
+    }
+  ]
+}

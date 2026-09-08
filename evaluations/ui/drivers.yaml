@@ -1,0 +1,91 @@
+# UI-first scanners. agent-browser is the default driver; computer-use is
+# for login walls, captchas, and first-pass mapping of an unknown page.
+
+tier1:
+  - 000-base64-obvious
+  - 000-bcc-exfil
+  - 000-env-harvest-loop
+  - 000-ignore-previous-instructions
+  - 000-plain-curl-bash
+  - 300-bytecode-poisoning
+  - 300-archive-indirection-docx
+  - 300-corporate-narrative
+  - 300-newline-canyon
+  - security-doc-explains-attacks
+  - ssh-config-reader
+  - registry-mirror-documented
+
+# Always scored on skill-md / directory / plugin surfaces.
+plugin_entry: 200-vibe-coded-plugin
+plugin_entries:
+  - 200-vibe-coded-plugin
+  - 200-vercel-skills-sh-pack
+  - 200-clawhub-listing
+  - 200-ide-native-impersonation
+
+scanners:
+  metano:
+    name: Metano SkillTracer
+    url: https://labs.metano.ai/scanner
+    scan_url: https://labs.metano.ai/scanner/scan
+    inputs: [skill-md, zip, hosted-url]
+    plugin_likely: zip  # SKILL.md · .md · .zip · max 500 KB. No native folder drop on the form.
+    max_upload_kb: 500
+    public_reports: true  # checkbox: "I understand my report and skill will be public."
+    mcp_claimed: partial  # their own comparison table
+    login: optional-for-public  # "Sign in to scan" plus a public-analysis path
+    notes: >
+      Detonation sandbox. Public feed is the default. Do not upload pasture/
+      fixtures (canaries would land on their report index). Zip is the plugin
+      surface; .mcp.json inside the zip is the question to score. 500 KB cap
+      will reject newline-canyon-class padding.
+
+  gen:
+    name: Gen Agent Trust Hub
+    url: https://ai.gendigital.com/skill-scanner
+    scan_url: https://ai.gendigital.com/skill-scanner
+    api: https://ai.gendigital.com/api/scan/lookup
+    inputs: [clawhub-url]
+    plugin_likely: unsupported
+    public_reports: true  # submitted ClawHub URLs join Discover Safe Skills
+    allowed_hosts: [clawhub.ai, www.clawhub.ai, clawhub.com, www.clawhub.com]
+    notes: >
+      Human mode URL box. GitHub/raw/skills.sh rejected. Verified ClawHub
+      authors can get SAFE without a content walk. Do not publish goat to ClawHub.
+
+  socket:
+    name: Socket (skills.sh partner)
+    url: https://www.skills.sh
+    scan_url: https://www.skills.sh/audits
+    api: https://add-skill.vercel.sh/audit
+    inputs: [npx-skills-add]
+    plugin_likely: unsupported
+    public_reports: true
+    notes: >
+      No dropzone. Scan runs when npx skills add uploads to Vercel. Goat is
+      not indexed (empty audit JSON). Do not install goat into a live agent
+      to force a scan.
+
+  manifold:
+    name: Manifold Manifest
+    url: https://manifest.manifold.security/
+    inputs: [github-repo]
+    plugin_likely: github-repo
+    public_reports: true
+    notes: Indexes public GitHub repos. Local skill/ is out of band.
+
+  air:
+    name: Air ScanAir
+    url: https://www.air.security/
+    inputs: [repo-graph]
+    plugin_likely: repo-graph
+    public_reports: unknown
+    notes: SkillJacking/RepoJacking product. Computer-use to map; not a SKILL.md dropzone.
+
+  snyk-labs:
+    name: Snyk Labs Skill Scan
+    url: https://labs.snyk.io/experiments/skill-scan/
+    inputs: [github-url]
+    plugin_likely: unsupported
+    public_reports: false
+    notes: Legacy UI eval lives in evaluations/snyk-labs/. CLI is goat.py --scanners snyk.

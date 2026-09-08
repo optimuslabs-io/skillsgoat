@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "dep-setup",
-    "source": "/Users/nipung/skills-goat/pasture/deferred-resolution/200-lockfile-divergence/skill",
-    "scanned_at": "2026-08-23T19:14:29.617633+00:00"
+    "source": "/Users/nipung/skillsgoat/pasture/deferred-resolution/200-lockfile-divergence/skill",
+    "scanned_at": "2026-09-03T00:53:40.800781+00:00"
   },
   "risk_assessment": {
     "score": 7,
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "SC4",
-      "finding_id": "finding-a8ee4646b3824aed9d6c3a87297a1ff7",
+      "finding_id": "finding-2d9575abefc54af5b439d8297b03e4ec",
       "category": "Supply Chain",
       "pattern": "Known Vulnerable Dependency: requests==2.32.3 \u2014 4 advisory(ies): CVE-2024-47081 (Requests vulnerable to .netrc credentials leak via malicious URLs); CVE-2026-25645 (Requests has Insecure Temp File Reuse in its extract_zipped_paths() utility func); CVE-2024-47081 (Requests vulnerable to .netrc credentials leak via malicious URLs) +1 more",
       "severity": "MEDIUM",
@@ -69,7 +69,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": false,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -146,6 +146,18 @@
         "message": "No files matched this analyzer's applicability contract."
       },
       {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
         "analyzer_id": "mcp_least_privilege",
         "status": "not_applicable",
         "planned_work": 0,
@@ -179,42 +191,6 @@
       },
       {
         "analyzer_id": "meta_analyzer",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_developer_intent",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_quality_policy",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_security_discovery",
         "status": "disabled",
         "planned_work": 0,
         "completed": 0,
