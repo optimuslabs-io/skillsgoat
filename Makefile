@@ -14,7 +14,7 @@ help:
 	@echo "  setup              ./setup (venv + editable install; no agent links)"
 	@echo "  lint / selftest    goat lint / goat selftest"
 	@echo "  test               lint + selftest + pytest"
-	@echo "  scan-skillspector  goat scan --scanners skillspector --no-llm"
+	@echo "  scan-skillspector  goat scan --scanners skillspector"
 	@echo "  report-chains      regenerate docs/CHAINS.md"
 	@echo "  clean              caches only (does not delete pasture *.pyc)"
 
@@ -57,10 +57,10 @@ scan-all:
 	@$(MAKE) scan-snyk
 
 scan-skillspector:
-	.venv/bin/python goat.py scan --scanners skillspector --no-llm
+	.venv/bin/python goat.py scan --scanners skillspector
 
 scan-cisco:
-	.venv/bin/python goat.py scan --scanners cisco --no-llm
+	.venv/bin/python goat.py scan --scanners cisco
 
 scan-snyk:
 	@if [ -z "$$SNYK_TOKEN" ]; then \
@@ -70,7 +70,7 @@ scan-snyk:
 	.venv/bin/python goat.py scan --scanners snyk
 
 scan-chains:
-	.venv/bin/python goat.py scan --scanners skillspector --no-llm --mode both
+	.venv/bin/python goat.py scan --scanners skillspector --mode both
 
 report: report-chains
 

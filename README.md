@@ -1,6 +1,10 @@
 # SkillsGoat
 
-A labeled goat of agent skills. 76 atomics (66 malicious, 10 benign) and 35 compound chains.
+A labeled goat of agent skills: a deliberately vulnerable target with answer keys, same idea as WebGoat. 76 atomics (66 malicious, 10 benign) and 35 compound chains.
+
+- **Pasture** — the fixture tree (`pasture/`). We coined the name; goats graze there. An entry is `pasture/<category>/<id>/`.
+- **Atomic** — one skill, one technique.
+- **Compound chain** — several skills; only the composition is malicious.
 
 Point a scanner at `pasture/<category>/<id>/skill/`. Answer keys live outside that directory (`expected.yaml`, `chain.yaml`). Network C2 is inert (`*.example` / RFC 5737).
 
@@ -19,7 +23,7 @@ Any agent that loads a `SKILL.md` bundle runs it with local privileges. The desc
 - **Format-spec noncompliance (4):** unsafe-YAML frontmatter gadgets, frontmatter-free bundles, symlink escapes out of the bundle, nested skill-in-skill recursion. Nothing downstream enforces agentskills.io.
 - **Benign FP-bait (10):** look suspicious on purpose; measure false-positive rates.
 
-Every entry has `skill/` (the only thing you point a scanner at), `expected.yaml` (verdict, category mapping to OWASP AST10 / SkillSpector pattern codes / V-codes, a plain-English rationale), and an embedded canary token.
+Every entry has `skill/` (the only thing you point a scanner at), `expected.yaml` (verdict, category mapping to OWASP AST10 / SkillSpector pattern codes / our V1–V13 evasion-family ids, a plain-English rationale), and an embedded canary (`GOAT-CANARY-*`) so a leaked fixture is identifiable.
 
 ## Scope & Exclusions
 
@@ -38,11 +42,11 @@ Evaluate UI-only vendors (Metano, Gen, Socket, Manifold, Air) with browser autom
 
 ## Compound chains
 
-Single-skill fixtures test one weakness at a time. Real compromises chain across **state channels** (agent memory, context window, repo/env state, shared tool layer) and **trust edges** (skill→skill, dep→skill, external→skill, session→future). Under `pasture/compound-chain/`, each entry is a multi-skill bundle where **every node scans clean alone** and only the graph is malicious. Ground truth (`chain.yaml`) covers four deployment contexts: developer endpoint, long-lived server agent, CI/CD runner, and hosted sandbox. See [docs/CHAIN_SCHEMA.md](docs/CHAIN_SCHEMA.md).
+Single-skill fixtures test one weakness at a time. Real compromises chain across **state channels** (agent memory, context window, repo/env state, shared tool layer) and **trust edges** (skill→skill, dep→skill, external→skill, session→future). Under `pasture/compound-chain/`, a **node** is one skill in the bundle and the **graph** is how those skills compose. Nodes are written to look ordinary alone; ground truth (`chain.yaml`) is graph-level. Contexts: developer endpoint, long-lived server agent, CI/CD runner, hosted sandbox. See [docs/CHAIN_SCHEMA.md](docs/CHAIN_SCHEMA.md).
 
 ## Roadmap
 
-Next: version-drift suite (benign→poisoned paired fixtures), judge-benchmark leaderboard, detonation layer.
+Next: version-drift suite (benign→poisoned paired fixtures), judge-benchmark leaderboard, detonation layer (run the skill in a sandbox and watch runtime behavior).
 
 ## Install and test (research clone)
 
@@ -99,12 +103,13 @@ evaluations/ui/             browser/computer-use protocol for UI-only vendors
 
 ## Scoring (blind)
 
-`goat scan` defaults to `--blind`. At scan time it copies each fixture into a
-hashed directory, replaces `GOAT-CANARY-*` / `GOAT-CHAIN-*` with one neutral
-UUID, and asserts `expected.yaml` / `chain.yaml` are not in the scanner's
-input. `goat lint` still requires the canary in source. Use `--no-blind` only
-to debug the live tree; do not publish those numbers. CI runs
-`goat scan --blind --assert-only`.
+`goat scan` defaults to `--blind` and static-only. At scan time it copies each
+fixture into a hashed directory, replaces `GOAT-CANARY-*` / `GOAT-CHAIN-*` with
+one neutral UUID, and asserts `expected.yaml` / `chain.yaml` are not in the
+scanner's input. `goat lint` still requires the canary in source. Use
+`--no-blind` only to debug the live tree; do not publish those numbers. Pass
+`--llm` only when you intend to upload fixture text to the scanner's inference
+provider. CI runs `goat scan --blind --assert-only`.
 
 ## Tiers
 

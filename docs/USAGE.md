@@ -31,13 +31,14 @@ Harness tests (do not execute pasture scripts):
 .venv/bin/python -m pytest -q
 ```
 
-Scanner acceptance test (may upload skill text to the scanner). **`--blind` is
-the default** — hashed fixture dirs, canaries replaced, `expected.yaml` not in
-the scanner's input. Do not publish `--no-blind` scores.
+Scanner acceptance test. **`--blind` and static-only are the default** —
+hashed fixture dirs, canaries replaced, `expected.yaml` not in the scanner's
+input, no LLM upload. Do not publish `--no-blind` scores. Pass `--llm` only
+when you intend to send fixture text to the scanner's inference provider.
 
 ```bash
-.venv/bin/goat scan --scanners skillspector --no-llm --mode atomic
-.venv/bin/goat scan --scanners skillspector --no-llm --mode both
+.venv/bin/goat scan --scanners skillspector --mode atomic
+.venv/bin/goat scan --scanners skillspector --mode both
 .venv/bin/goat scan --blind --assert-only   # leak gate; no scanners
 ```
 
@@ -91,7 +92,7 @@ Two gates:
 # .github/workflows/skill-gate.yml (sketch)
 - run: goat.py lint                                   # corpus hygiene (if contributing)
 - run: skill-scanner scan-all ./skills --fail-on-severity high
-- run: goat scan --scanners cisco --no-llm --mode node || true   # track blindness trend
+- run: goat scan --scanners cisco --mode node || true   # track blindness trend
 ```
 
 - Gate installs on scanner verdicts, but size the trust by the measured blindness. Chains prove CLEAN is not safe, so privileged agents also need allowlisted egress and memory-write monitoring (the channels C1/C11 exploit).

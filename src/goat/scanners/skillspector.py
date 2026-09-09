@@ -97,9 +97,11 @@ class SkillSpectorAdapter(ScannerAdapter):
     def get_supported_modes(self) -> List[str]:
         return ["atomic", "node", "composite", "both"]
     
-    def _run_scan(self, target: Path, mode: str = "atomic", no_llm: bool = True) -> tuple[str, str]:
+    def _run_scan(self, target: Path, mode: str = "atomic", no_llm: bool | None = None) -> tuple[str, str]:
         cmd = [self._skillspector_path, "scan", str(target), "--format", "json"]
-        if self.no_llm or no_llm:
+        if no_llm is None:
+            no_llm = self.no_llm
+        if no_llm:
             cmd.append("--no-llm")
         if self.provider:
             cmd.extend(["--provider", self.provider])

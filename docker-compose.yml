@@ -20,5 +20,5 @@ services:
         GOAT_EXTRAS: "dev,scanners"
     volumes:
       - .:/skillsgoat
-    command: ["scan", "--scanners", "skillspector", "--no-llm"]
+    command: ["scan", "--scanners", "skillspector"]
     user: "1000:1000"

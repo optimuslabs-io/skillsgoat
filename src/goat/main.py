@@ -13,7 +13,9 @@ Ground truth lives in each entry's expected.yaml, OUTSIDE the scannable
 skill/ directory. `goat scan` defaults to --blind: hashed fixture dirs,
 canaries replaced with a neutral UUID, expected.yaml never in scanner
 input. Lint still checks the canary in source. Publish scores only from
---blind runs. Plugin-distribution entries use skill/ as a marketplace
+--blind runs. Scan is static-only unless you pass --llm (uploads skill
+text to the scanner's configured inference provider). Plugin-distribution
+entries use skill/ as a marketplace
 or IDE pack (Vercel skills.sh, ClawHub, Cursor plugin, or fake native
 Claude/Codex/Copilot/Grok paths), not a lone SKILL.md.
 """
@@ -773,6 +775,12 @@ def cmd_scan(args) -> int:
         print("warning: --no-blind scans the live pasture tree; canaries and "
               "fixture names leak the answer key. Do not publish these numbers.",
               file=sys.stderr)
+    use_llm = _scan_use_llm(args)
+    if use_llm:
+        print("warning: --llm uploads skill text to the scanner's configured "
+              "inference provider. Network C2 in the fixtures is inert; this "
+              "upload is not. Omit --llm for static-only (the default).",
+              file=sys.stderr)
     mode = getattr(args, "mode", "atomic")
     session = None
     try:
@@ -785,7 +793,7 @@ def cmd_scan(args) -> int:
                     return 1
             raw_paths = getattr(args, "raw_paths", False)
             for sc in scanners:
-                cmd_scan_chains(sc, mode, not args.no_llm, args.timeout, raw_paths,
+                cmd_scan_chains(sc, mode, use_llm, args.timeout, raw_paths,
                                 session=session)
             return 0
         entries = discover_entries()
@@ -814,7 +822,7 @@ def cmd_scan(args) -> int:
             detected = weak = fp = fn = tn = 0
             for e in entries:
                 skill_dir = session.atomic[e["id"]] if session else e["skill_dir"]
-                report, err = run_scanner(scanner, skill_dir, use_llm=not args.no_llm,
+                report, err = run_scanner(scanner, skill_dir, use_llm=use_llm,
                                           timeout=args.timeout)
                 if err:
                     row = {"id": e["id"], "truth": e["verdict"], "status": f"ERROR: {err}"}
@@ -850,7 +858,7 @@ def cmd_scan(args) -> int:
                 matrix.append(row)
             total = len(entries)
             recap = {
-                "scanner": scanner, "llm_enabled": not args.no_llm,
+                "scanner": scanner, "llm_enabled": use_llm,
                 "scanner_version": scanner_version(scanner),
                 "scanned_at": _dt.datetime.now(_dt.timezone.utc).isoformat(),
                 "total": total, "caught": detected, "weak_flagged": weak,
@@ -1002,7 +1010,12 @@ def cmd_chain_report(args) -> int:
 
 # ---------------------------------------------------------------- main
 
-def main() -> int:
+def _scan_use_llm(args) -> bool:
+    """True only when the caller passed --llm. Static-only is the default."""
+    return bool(getattr(args, "llm", False))
+
+
+def _build_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(prog="goat", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -1019,7 +1032,11 @@ def main() -> int:
 
     scan = sub.add_parser("scan", help="run scanners against corpus")
     scan.add_argument("--scanners", default="skillspector,cisco")
-    scan.add_argument("--no-llm", action="store_true", help="static-only scans")
+    llm = scan.add_mutually_exclusive_group()
+    llm.add_argument("--llm", action="store_true",
+                     help="opt in to scanner LLM stages (uploads skill text to the configured provider)")
+    llm.add_argument("--no-llm", action="store_true",
+                     help="deprecated: static-only is already the default")
     scan.add_argument("--mode", default="atomic",
                       choices=["atomic", "node", "composite", "both"],
                       help="atomic=single entries; node/composite/both=compound chains")
@@ -1058,8 +1075,11 @@ def main() -> int:
     setup.add_argument("--real-home", action="store_true",
                        help="link into the real $HOME (default: SKILLSGOAT_SANDBOX or .sandbox-home)")
     setup.set_defaults(func=cmd_setup)
+    return ap
 
-    args = ap.parse_args()
+
+def main() -> int:
+    args = _build_parser().parse_args()
     return args.func(args)
 
 

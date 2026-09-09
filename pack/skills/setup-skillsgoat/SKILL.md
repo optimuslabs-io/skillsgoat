@@ -21,7 +21,7 @@ purpose.
 .venv/bin/goat lint
 .venv/bin/goat selftest
 .venv/bin/python -m pytest -q
-.venv/bin/goat scan --scanners skillspector --no-llm
+.venv/bin/goat scan --scanners skillspector
 ```
 
 ## Goat load

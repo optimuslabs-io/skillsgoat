@@ -44,8 +44,8 @@ cd skillsgoat && ./setup
 .venv/bin/goat lint
 .venv/bin/goat selftest
 .venv/bin/python -m pytest -q
-# optional scanner eval (may upload skill text to the scanner/LLM):
-.venv/bin/goat scan --scanners skillspector --no-llm   # --blind is the default
+# optional scanner eval (static-only and --blind are the default):
+.venv/bin/goat scan --scanners skillspector
 .venv/bin/goat scan --blind --assert-only              # leak gate; no scanners
 ```
 

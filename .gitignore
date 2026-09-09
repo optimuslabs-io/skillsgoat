@@ -20,3 +20,6 @@ evaluations/snyk-labs/evidence/*.png
 evaluations/ui/artifacts/
 evaluations/ui/probes/**/*.png
 *.egg-info/
+
+# local editor config
+.cursor/

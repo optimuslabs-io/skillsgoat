@@ -15,8 +15,10 @@ security research and malware samples that are clearly marked and not used
 to compromise others. Fixtures stay behind `goat lint`; live C2 is a lint
 failure.
 
-If this GitHub copy is taken down, the citable archive is Zenodo (DOI to be
-attached on the `v0.3.0` dataset release). Cite [CITATION.cff](CITATION.cff).
+Do not publish a mirror that drops the sandbox warnings or restores live
+C2 — that is malware distribution, not this goat. If GitHub takes this
+copy down, the citable archive is Zenodo (DOI to be attached on the
+`v0.3.0` dataset release). Cite [CITATION.cff](CITATION.cff).
 
 ## Report a vulnerability in the harness
 

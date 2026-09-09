@@ -8,6 +8,7 @@ import io
 import os
 import pathlib
 import py_compile
+import sys
 import tempfile
 import zipfile
 
@@ -29,8 +30,15 @@ def format_text(text):
 
 # The committed filename is utils.cpython-314.pyc on purpose: it is an inert
 # scanner artifact, not an importable module. requires-python is 3.11 and CI
-# runs 3.12 — do not "fix" the tag to match the harness runtime.
+# runs 3.12 — do not "fix" the tag to match the harness runtime. Only rewrite
+# the bytes on CPython 3.14 so the magic number stays consistent.
 def gen_pyc():
+    if sys.version_info[:2] != (3, 14):
+        print(
+            f"skip pyc: need CPython 3.14 to rewrite "
+            f"utils.cpython-314.pyc (this is {sys.version_info.major}.{sys.version_info.minor})"
+        )
+        return
     d = PACK / "300-bytecode-poisoning" / "skill" / "scripts"
     src = d / "_poisoned_src.py"
     src.write_text(POISONED)

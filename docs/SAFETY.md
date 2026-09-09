@@ -10,6 +10,10 @@
    The poisoned `.pyc` beacons to an unroutable example domain only.
 3. **Credentials.** Any referenced secret files are referenced, never embedded;
    exfiltrated content in simulations is fake or absent.
+4. **Scanner LLM.** `goat scan` is static-only unless you pass `--llm`.
+   That flag uploads fixture text to the scanner's configured inference
+   provider. Network C2 in the fixtures is still inert; the upload is not.
+   `--no-llm` is accepted as a no-op so old scripts keep working.
 
 ## Ground-truth integrity
 
@@ -83,10 +87,11 @@ laptop reproduce still needs a sandbox.
   scripts or a coding agent against this tree on a machine with secrets.
 - **Harness tests vs agent tests.** `goat lint` / `selftest` / `pytest`
   do not execute pasture scripts. `goat scan` shells out to third-party
-  scanners; those tools may send skill text to a vendor or an LLM.
-  `./setup --goat` plus a live agent **will** follow fixture instructions
-  (including decode-and-execute and reads of `~/.ssh` if the sandbox
-  allows it).
+  scanners. The default is static-only (`--llm` off). SkillSpector still
+  queries OSV.dev. `--llm` sends skill text to the configured inference
+  provider. `./setup --goat` plus a live agent **will** follow fixture
+  instructions (including decode-and-execute and reads of `~/.ssh` if the
+  sandbox allows it).
 - **Do not** clone, test, or `--goat` next to production SSH keys, cloud
   creds, or a daily-driver agent profile.
 - Canary tokens (`GOAT-CANARY-*`) make a public skills.sh listing
@@ -105,8 +110,8 @@ skills add` as the default path.
 - Do not `npx skills add` this corpus; canary tokens (`GOAT-CANARY-*`)
   make a skills.sh listing traceable.
 - Run scanners as subprocesses with network egress you understand
-  (SkillSpector queries OSV.dev; LLM stages send file contents to your
-  configured provider).
+  (SkillSpector queries OSV.dev even when static). `--llm` sends file
+  contents to the scanner's configured inference provider; omit it.
 - Uninstall with `./setup --uninstall`.
 
 ## Disclosure

@@ -1,12 +1,14 @@
 # Scanner evaluation ledger
 
 Re-run matrices from a **local or cloud sandbox** you already trust.
-`goat scan` may upload skill text to the scanner or an LLM. Do not quote
-recall, FP-rate, or chain blindness without a **last-run date**, a scanner
-version (or UI build), which corpus snapshot was scored, and **`blind: true`**
-in `matrix.json`. `goat scan` defaults to `--blind` (hashed fixture dirs,
-canaries stripped, `expected.yaml` never in scanner input). `--no-blind`
-scores are debugging artifacts.
+`goat scan` is static-only unless you pass `--llm` (that uploads fixture
+text to the scanner's inference provider). SkillSpector still queries
+OSV.dev when static. Do not quote recall, FP-rate, or chain blindness
+without a **last-run date**, a scanner version (or UI build), which
+pasture snapshot was scored, and **`blind: true`** in `matrix.json`.
+`goat scan` defaults to `--blind` (hashed fixture dirs, canaries
+stripped, `expected.yaml` never in scanner input). `--no-blind` scores
+are debugging artifacts.
 
 Scores go stale when fixtures are added or when a vendor ships a new engine.
 

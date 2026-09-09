@@ -51,5 +51,6 @@ URL. Do not copy live C2, wallets, or ransomware. Cite techniques in
 Run `goat lint`, `goat selftest`, `goat scan --blind --assert-only`, and
 `pytest` in a sandbox before opening a PR. If you add or re-run a scanner
 matrix, update `evaluations/README.md` with date, scanner version, corpus
-snapshot, and `"blind": true` in the same PR. Scanner evals may upload
-skill text; do that from a sandbox too. Do not cite `--no-blind` scores.
+snapshot, and `"blind": true` in the same PR. `goat scan` is static-only
+unless you pass `--llm` (that uploads skill text). Do that from a sandbox
+too. Do not cite `--no-blind` scores.

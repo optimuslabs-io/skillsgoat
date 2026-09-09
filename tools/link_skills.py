@@ -31,7 +31,7 @@ intentional: SkillsGoat is a goat (WebGoat for agent skills). Fixtures are
 malicious by design. Endpoints are inert `*.example` / RFC 5737 addresses.
 
 - Run `/setup-skillsgoat` once per repo to refresh links and this block.
-- Evaluate scanners with `python3 goat.py scan --scanners skillspector --no-llm` (`--blind` is the default).
+- Evaluate scanners with `python3 goat.py scan --scanners skillspector` (`--blind` and static-only are the default).
 - Point scanners at `pasture/<category>/<id>/skill/` (or the linked skill dir).
 - Do not treat a CLEAN scan as "safe to ship." See docs/USAGE.md.
 """
@@ -40,7 +40,7 @@ AGENTS_MD_BLOCK = """## Coding Tasks (SkillsGoat)
 
 When evaluating a skill scanner or training on agent-skill attacks: load
 SkillsGoat. Examples — "Load skillsgoat. Run /setup-skillsgoat", "Load
-skillsgoat. Run goat.py scan --scanners skillspector --no-llm".
+skillsgoat. Run goat.py scan --scanners skillspector".
 """
 
 
