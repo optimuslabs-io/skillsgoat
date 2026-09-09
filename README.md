@@ -12,8 +12,7 @@ Agent skills (`SKILL.md` bundles) ship executable behavior for Claude Code, Code
 
 - **Calibration set (10):** must-catch patterns. A scanner missing these is broken, not weak.
 - **Classics (10):** metadata injection, indirect injection, exfiltration, destructive commands, curl-pipe-bash, over-permission, persistence, memory poisoning, confused deputy, typosquatting.
-- **Evasion families V1–V13 (~30):** homoglyph/zero-width/charcode obfuscation, payload dispersion, truncation canyons, LLM-judge manipulation (cover links, judge self-injection, corporate-narrative social engineering), bytecode poisoning, archive indirection, XOR packing, deferred dependency resolution, external staging, silent operators / weaponized Definition-of-Done, dormant codeword gates, shadow features, reputation laundering, self-mutation.
-- **Trail-of-Bits primitives (4, derived):** newline-canyon truncation, `.docx` archive indirection, divergent `.pyc` bytecode, corporate-mirror registry hijack. Each reproduces a bypass shown against ClawHub, skills.sh, and Cisco skill-scanner in June 2026.
+- **Evasion families V1–V13 (~30):** homoglyph/zero-width/charcode obfuscation, payload dispersion, truncation canyons, LLM-judge manipulation (cover links, judge self-injection, corporate-narrative social engineering), bytecode poisoning, archive indirection, XOR packing, deferred dependency resolution, external staging, silent operators / weaponized Definition-of-Done, dormant codeword gates, shadow features, reputation laundering, self-mutation. Four of these derive Trail of Bits [overtly-malicious-skills](https://github.com/trailofbits/overtly-malicious-skills) primitives (rewritten, not copied): newline-canyon, `.docx` archive indirection, divergent `.pyc`, corporate-narrative registry hijack.
 - **Ecosystem classes (9):** transitive dependency poisoning, composition trust-transfer, DNS/error side-channels, model artifact theft, repo-config hook execution (`.claude/settings.json`), MCP tool poisoning, marketplace / IDE packs (gstack / mattpocock / impeccable install stories, ClawHub listings, packs that impersonate native Claude/Codex/Copilot/Grok skills), wallet exhaustion.
 - **Format-spec noncompliance (4):** unsafe-YAML frontmatter gadgets, frontmatter-free bundles, symlink escapes out of the bundle, nested skill-in-skill recursion. Nothing downstream enforces agentskills.io.
 - **Benign FP-bait (10):** look suspicious on purpose; measure false-positive rates.
@@ -102,7 +101,17 @@ evaluations/ui/             browser/computer-use protocol for UI-only vendors
 
 ## Credits & lineage
 
-Inspired by [nandangupta-security/SkillsGoat](https://github.com/nandangupta-security/SkillsGoat), [trailofbits/overtly-malicious-skills](https://github.com/trailofbits/overtly-malicious-skills) (primitives derived, not copied verbatim), [AI Goat](https://github.com/orcasecurity-research/AIGoat), [OWASP Agentic Skills Top 10](https://owasp.org/www-project-agentic-skills-top-10/), NVIDIA SkillSpector, Cisco skill-scanner, Snyk ToxicSkills, and the Cloak-and-Detonate evasion study.
+This corpus is original. The goat *shape* follows
+[nandangupta-security/SkillsGoat](https://github.com/nandangupta-security/SkillsGoat)
+and [AI Goat](https://github.com/orcasecurity-research/AIGoat). Four atomics
+derive Trail of Bits [overtly-malicious-skills](https://github.com/trailofbits/overtly-malicious-skills)
+primitives (rewritten, not copied). Compound chains cite SkillProbe
+([arXiv:2603.21019](https://arxiv.org/abs/2603.21019)) and *Agent Skills in
+the Wild* ([arXiv:2601.10338](https://arxiv.org/abs/2601.10338)).
+
+SkillSpector, Cisco skill-scanner, and Snyk Agent Scan are evaluation
+targets, not sources. Full lineage: [NOTICE.md](NOTICE.md). Cite this
+dataset with [CITATION.cff](CITATION.cff).
 
 ## Responsible use
 
