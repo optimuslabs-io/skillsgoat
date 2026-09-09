@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Harness vulnerability (private)
+    url: https://github.com/optimuslabs-io/skillsgoat/security/advisories/new
+    about: Bugs in goat.py / setup / CI that could leak host paths or weaken inertness. Do not file a public issue with a working exploit.
+  - name: Scanner result
+    url: https://github.com/optimuslabs-io/skillsgoat/blob/main/SECURITY.md
+    about: Report a benchmark result (a scanner miss or false positive) with the Scanner result template. Results are public and reproducible; vendors have a right of reply.

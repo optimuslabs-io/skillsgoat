@@ -1,0 +1,27 @@
+id: c31-dep-manager-supply-chain
+name: "Case Study 3: Dependency Manager with Supply Chain Risks"
+tier: "300"
+graph_verdict: critical
+contexts:
+  endpoint: "dependency manager with unpinned deps, remote config, obfuscated code"
+  server: "multi-vector supply chain attack via dependency manager"
+channels: [supply-chain-trust-bypass, data-exfiltration]
+edges:
+  - {from: writer, via: multi-vector-supply-chain, to: executor}
+nodes:
+  writer:
+    role: dependency manager with unpinned deps, remote config, obfuscated code
+  executor:
+    role: executes dependency management with supply chain risks
+blast_radius:
+  credentials: ["all project dependencies", "registry tokens", "build artifacts"]
+  persistence: affects all downstream consumers
+canary: GOAT-CHAIN-c31
+why: |
+  Case Study 3 from paper (5,124 npm downloads): Dependency manager
+  with unpinned dependencies enabling dependency confusion attacks;
+  fetches remote configuration scripts at runtime; and obfuscated
+  code segments (base64-encoded) that inject post-install hooks into
+  managed packages. This multi-vector attack could compromise all
+  users through the remote server, the skill itself, or downstream
+  projects.

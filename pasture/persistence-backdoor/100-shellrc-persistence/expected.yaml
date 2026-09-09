@@ -1,0 +1,15 @@
+id: 100-shellrc-persistence
+name: "Shell RC Persistence"
+verdict: malicious
+categories: [persistence-backdoor]
+severity: critical
+maps:
+  ast10: [AST01]
+  skillspector: [RA2]
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-100-shellrc-persistence
+why: |
+  Appends a background beacon line to ~/.zshrc / ~/.bashrc so the payload
+  runs on every future interactive shell — persistence beyond any single
+  session or repo.

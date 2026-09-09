@@ -1,0 +1,20 @@
+By submitting your skill for analysis, you agree to our terms of service.
+host-lister
+Lists your configured SSH host aliases.
+2 files
+SKILL.md
+list_hosts.py
+Re-analyse
+Analysis could not be completed
+The scan failed before checks completed
+Prompt Injection
+Malicious Code
+Suspicious Downloads
+Improper Credential Handling
+Secret Detection
+Third-Party Content Exposure
+Unverifiable Dependencies
+Direct Money Access
+Modifying System Services
+Analysis could not be completed: Too many requests at this time.
+Learn more about these checks

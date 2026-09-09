@@ -1,0 +1,40 @@
+name: New fixture
+description: Propose or contribute a pasture entry. Payloads must stay inert.
+title: "[fixture] "
+labels: ["collection"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Clone and test in a sandbox. `goat lint` rejects live hosts, real credentials,
+        and answer keys inside `skill/`. See CONTRIBUTING.md.
+  - type: input
+    id: category
+    attributes:
+      label: taxonomy.yaml category slug
+    validations:
+      required: true
+  - type: dropdown
+    id: tier
+    attributes:
+      label: Tier
+      options: ["000", "100", "200", "300"]
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why this belongs in the goat
+      description: Technique lineage (paper / write-up). Not a copy of a live campaign.
+    validations:
+      required: true
+  - type: checkboxes
+    id: inert
+    attributes:
+      label: Inertness
+      options:
+        - label: Endpoints are *.example / RFC 5737 / localhost
+        - label: No functioning malware, live C2, or real credentials
+        - label: Canary will live in skill/; expected.yaml stays outside skill/
+    validations:
+      required: true

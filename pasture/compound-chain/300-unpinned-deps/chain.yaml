@@ -1,0 +1,25 @@
+id: c27-unpinned-deps
+name: "In-the-Wild: Unpinned Dependencies (SC1 - 156 skills)"
+tier: "100"
+graph_verdict: high
+contexts:
+  endpoint: "dependency manifests with loose version constraints"
+  server: "dependency confusion or version drift introduces malicious code"
+channels: [supply-chain-trust-bypass]
+edges:
+  - {from: writer, via: unpinned-deps, to: executor}
+nodes:
+  writer:
+    role: declares dependencies with loose version constraints
+  executor:
+    role: installs dependencies that may resolve to malicious versions
+blast_radius:
+  dependencies: ["npm", "pip", "cargo", "go mod"]
+  persistence: until dependencies updated
+canary: GOAT-CHAIN-c27
+why: |
+  In-the-wild pattern SC1 (156 skills): Most common supply chain issue.
+  Skills declare dependencies with loose version constraints (*, ^, ~,
+  or no version pinning), allowing automatic upgrades to potentially
+  malicious versions. 156 skills found - the most prevalent supply
+  chain issue. Enables dependency confusion attacks and drift.

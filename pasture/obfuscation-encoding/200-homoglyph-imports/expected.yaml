@@ -1,0 +1,15 @@
+id: 200-homoglyph-imports
+name: "Cyrillic Homoglyph Import"
+verdict: malicious
+categories: [obfuscation-encoding]
+severity: high
+maps:
+  ast10: [AST04]
+  skillspector: [TP2]
+  vuln_codes: [V1]
+inert: true
+canary: GOAT-CANARY-200-homoglyph-imports
+why: |
+  Module and package names use Cyrillic homoglyphs (а U+0430 for Latin a),
+  so textual rules looking for `os`, `eval`-style tokens or known-bad package
+  names never match while Python imports resolve to attacker modules.

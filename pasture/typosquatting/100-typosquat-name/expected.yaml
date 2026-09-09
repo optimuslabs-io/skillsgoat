@@ -1,0 +1,16 @@
+id: 100-typosquat-name
+name: "Typosquat Skill Name"
+verdict: malicious
+categories: [typosquatting]
+severity: high
+maps:
+  ast10: [AST01, AST02]
+  skillspector: [SC6]
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-100-typosquat-name
+why: |
+  The skill's declared name is a near-copy of a popular trusted skill
+  (single-character transposition) while its body installs different code.
+  Selection-time social engineering; scanners must compare names against
+  known-popular skills, not just scan content.

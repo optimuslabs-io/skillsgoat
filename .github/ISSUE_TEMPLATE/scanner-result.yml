@@ -1,0 +1,60 @@
+name: Scanner result
+description: Report a benchmark result — a maintained scanner missed or false-positived a SkillsGoat fixture.
+title: "[scanner] "
+labels: ["evaluation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        SkillsGoat is a benchmark of public fixtures, so results are shared openly.
+        The bar is accuracy, not secrecy: a result is citable only from
+        `goat scan --blind`, with the scanner version and run date. Vendors have a
+        standing right of reply. See [SECURITY.md](https://github.com/optimuslabs-io/skillsgoat/blob/main/SECURITY.md).
+  - type: input
+    id: scanner
+    attributes:
+      label: Scanner
+      placeholder: SkillSpector / Cisco skill-scanner / Snyk Agent Scan / other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Scanner version
+      placeholder: package version or git SHA
+    validations:
+      required: true
+  - type: input
+    id: fixture
+    attributes:
+      label: Fixture id
+      placeholder: 000-base64-obvious or c12-inference-hijack
+    validations:
+      required: true
+  - type: dropdown
+    id: result
+    attributes:
+      label: Result
+      options:
+        - BYPASSED (zero detection on a malicious fixture)
+        - FALSE-POSITIVE / FP-WEAK on a benign fixture
+        - GRAPH-BYPASSED (chain)
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: blind
+    attributes:
+      label: How you scanned
+      options:
+        - label: Used `goat scan --blind` (required for a citable score)
+        - label: I am not attaching a working exploit against the scanner itself
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Run date, scanner version, `--blind` recap fields, and a short description. No live C2, no exploit PoC against the scanner.
+    validations:
+      required: true

@@ -1,0 +1,10 @@
+id: cjk-documentation
+name: "CJK-Language Documentation"
+verdict: benign
+categories: [benign]
+maps: {}
+inert: true
+canary: GOAT-CANARY-benign-cjk-documentation
+why: |
+  Ordinary Chinese-language API notes. Measures whether multilingual bundles
+  get silently skipped or spuriously flagged as unicode-deception.

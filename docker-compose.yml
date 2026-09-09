@@ -1,0 +1,24 @@
+services:
+  skillsgoat:
+    build: .
+    volumes:
+      - .:/skillsgoat
+    command: ["--help"]
+    user: "1000:1000"
+
+  skillsgoat-dev:
+    build: .
+    volumes:
+      - .:/skillsgoat
+    command: ["lint"]
+    user: "1000:1000"
+
+  scan:
+    build:
+      context: .
+      args:
+        GOAT_EXTRAS: "dev,scanners"
+    volumes:
+      - .:/skillsgoat
+    command: ["scan", "--scanners", "skillspector"]
+    user: "1000:1000"

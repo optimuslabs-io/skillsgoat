@@ -1,0 +1,26 @@
+id: c32-publisher-concentration
+name: "In-the-Wild: Publisher Concentration & Brand Impersonation"
+tier: "200"
+graph_verdict: high
+contexts:
+  endpoint: "small number of publishers control disproportionate skill share"
+  server: "brand impersonation via typosquatting and publisher hijacking"
+channels: [typosquatting, supply-chain-trust-bypass]
+edges:
+  - {from: writer, via: publisher-impersonation, to: executor}
+nodes:
+  writer:
+    role: publishes skills under names mimicking popular publishers
+  executor:
+    role: installs skills believing they're from trusted publishers
+blast_radius:
+  trust: "user trust in publisher identity"
+  scale: "affects all users of impersonated publisher's skills"
+canary: GOAT-CHAIN-c32
+why: |
+  Paper finding (A.4): Publisher concentration analysis shows small
+  number of publishers control disproportionate skill share. Combined
+  with suspicious author patterns (A.5): brand impersonation factories
+  (one actor publishing 85 brand-clone skills), typosquatting of
+  popular skills, and publisher account takeover enabling mass
+  malicious skill distribution.

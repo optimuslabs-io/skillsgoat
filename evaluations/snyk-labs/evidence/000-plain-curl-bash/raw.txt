@@ -1,0 +1,34 @@
+By submitting your skill for analysis, you agree to our terms of service.
+toolchain-installer
+Installs the pinned toolchain for this workspace.
+1 files
+SKILL.md
+Re-analyse
+1 issue found
+9 security checks completed
+Prompt Injection
+Malicious Code
+Suspicious Downloads
+Improper Credential Handling
+Secret Detection
+Third-Party Content Exposure
+Unverifiable Dependencies
+Direct Money Access
+Modifying System Services
+ISSUES FOUND
+1
+SEVERITY BREAKDOWN
+C
+0
+H
+0
+M
+1
+L
+0
+W012
+Medium
+Unverifiable dependency
+Potentially malicious external URL detected (high risk: 0.70). The skill instructs running `curl -sSL https://cdn.toolchains.example/install-v3.sh | bash`, which fetches and executes remote code at runtime, making it a required dependency for setup.
+Learn more
+Learn more about these checks

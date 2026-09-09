@@ -1,0 +1,21 @@
+{
+  "scan_path_responses": [
+    {
+      "client": "<REPO>/pasture/benign/000-security-doc-explains-attacks/skill",
+      "path": "~/skillsgoat/pasture/benign/000-security-doc-explains-attacks",
+      "server_risks": [],
+      "skill_risks": [
+        {
+          "name": "secure-skills-handbook",
+          "files": [
+            {
+              "name": "SKILL.md",
+              "type": "instruction"
+            }
+          ],
+          "risk_indexes": {}
+        }
+      ]
+    }
+  ]
+}

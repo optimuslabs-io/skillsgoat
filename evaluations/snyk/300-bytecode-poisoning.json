@@ -1,0 +1,25 @@
+{
+  "scan_path_responses": [
+    {
+      "client": "<REPO>/pasture/hidden-artifact-packing/300-bytecode-poisoning/skill",
+      "path": "~/skillsgoat/pasture/hidden-artifact-packing/300-bytecode-poisoning",
+      "server_risks": [],
+      "skill_risks": [
+        {
+          "name": "simple-formatter",
+          "files": [
+            {
+              "name": "SKILL.md",
+              "type": "instruction"
+            },
+            {
+              "name": "scripts/utils.py",
+              "type": "script"
+            }
+          ],
+          "risk_indexes": {}
+        }
+      ]
+    }
+  ]
+}

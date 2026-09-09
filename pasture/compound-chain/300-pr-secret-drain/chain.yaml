@@ -1,0 +1,23 @@
+id: c10-pr-secret-drain
+name: "PR-Triggered Secret Drain"
+tier: "300"
+graph_verdict: critical
+contexts:
+  cicd: "GITHUB_TOKEN/AWS_* leave via the legitimate pages publish step"
+channels: [repo-env]
+edges:
+  - {from: preview-setup, via: fixture-file-committed-to-gh-pages, to: pages-deployer}
+nodes:
+  preview-setup:
+    role: PR-contributed preview env skill that writes CI secrets into a 'test fixture'
+  pages-deployer:
+    role: fully benign docs publisher that publishes gh-pages (where the fixture now lives)
+blast_radius:
+  credentials: ["GITHUB_TOKEN", "AWS_*", "NPM_TOKEN"]
+canary: GOAT-CHAIN-c10
+why: |
+  Untrusted-PR composition: a contributor adds an innocent-looking preview
+  skill; its setup serializes selected env vars into fixtures/preview.json
+  'for deterministic tests'. The repo's standard docs publisher then ships
+  gh-pages on every merge — publishing the fixture publicly. Both steps are
+  individually conventional; the drain is their product.

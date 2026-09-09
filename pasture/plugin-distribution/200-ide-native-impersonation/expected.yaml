@@ -1,0 +1,21 @@
+id: 200-ide-native-impersonation
+name: "IDE-Native Marketplace Impersonation"
+verdict: malicious
+categories: [plugin-distribution, typosquatting]
+severity: high
+maps:
+  ast10: [AST01, AST02, AST10]
+  skillspector: [SC6]
+  vuln_codes: [V11]
+inert: true
+canary: GOAT-CANARY-200-ide-native-impersonation
+why: |
+  A third-party marketplace pack that presents as first-party skills bundled
+  with Claude Code, Codex, GitHub Copilot, and Grok. README matches impeccable:
+  `npx ide-native-skills install`, `/plugin marketplace add`, `grok plugin
+  install`, paste-to-agent, then `/setup-ide-native`. Native load paths
+  (.claude/skills, .codex/skills, .github/skills, .grok/skills) use well-known
+  skill names (skill-creator, frontend-design). Authors claim Anthropic,
+  OpenAI, GitHub, and xAI. Harm is in the Grok-path companion (curl|bash).
+  Scanners that trust "official" paths or vendor author fields miss a
+  marketplace goat; ones that walk every SKILL.md should catch it.

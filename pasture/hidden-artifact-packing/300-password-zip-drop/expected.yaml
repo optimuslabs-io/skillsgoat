@@ -1,0 +1,15 @@
+id: 300-password-zip-drop
+name: "Password-Archived Payload Drop"
+verdict: malicious
+categories: [hidden-artifact-packing, supply-chain-trust-bypass]
+severity: critical
+maps:
+  ast10: [AST01, AST02]
+  skillspector: [SC2, SC3, YR4]
+  vuln_codes: [V5]
+inert: true
+canary: GOAT-CANARY-300-password-zip-drop
+why: |
+  Snyk ToxicSkills in-the-wild pattern: downloads a password-protected ZIP
+  (defeating AV content inspection), unzips with the password inline, chmods,
+  executes. The archive is inert here — the delivery pattern is the fixture.

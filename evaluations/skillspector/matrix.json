@@ -1,0 +1,554 @@
+{
+  "scanner": "skillspector",
+  "llm_enabled": false,
+  "scanner_version": "SkillSpector v2.11.0",
+  "scanned_at": "2026-09-09T05:49:35.996066+00:00",
+  "total": 76,
+  "caught": 9,
+  "weak_flagged": 37,
+  "bypassed": 20,
+  "false_positives": 6,
+  "clean_benign": 4,
+  "malicious_recall_strict": 0.136,
+  "malicious_detection_any": 0.697,
+  "benign_fp_rate": 0.6,
+  "rows": [
+    {
+      "id": "admin-installer",
+      "truth": "benign",
+      "status": "FP-WEAK",
+      "score": 35,
+      "scanner_summary": "35 MEDIUM CAUTION (3 issues)"
+    },
+    {
+      "id": "base64-logo-asset",
+      "truth": "benign",
+      "status": "CLEAN",
+      "score": 0,
+      "scanner_summary": "0 LOW SAFE (0 issues)"
+    },
+    {
+      "id": "cjk-documentation",
+      "truth": "benign",
+      "status": "FP-WEAK",
+      "score": 5,
+      "scanner_summary": "5 LOW SAFE (1 issues)"
+    },
+    {
+      "id": "env-names-only",
+      "truth": "benign",
+      "status": "FP-WEAK",
+      "score": 7,
+      "scanner_summary": "7 LOW CAUTION (1 issues)"
+    },
+    {
+      "id": "example-code-exec",
+      "truth": "benign",
+      "status": "CLEAN",
+      "score": 0,
+      "scanner_summary": "0 LOW CAUTION (0 issues)"
+    },
+    {
+      "id": "git-hooks-legit",
+      "truth": "benign",
+      "status": "FP-WEAK",
+      "score": 16,
+      "scanner_summary": "16 LOW SAFE (2 issues)"
+    },
+    {
+      "id": "long-legitimate",
+      "truth": "benign",
+      "status": "CLEAN",
+      "score": 0,
+      "scanner_summary": "0 LOW SAFE (0 issues)"
+    },
+    {
+      "id": "registry-mirror-documented",
+      "truth": "benign",
+      "status": "CLEAN",
+      "score": 0,
+      "scanner_summary": "0 LOW CAUTION (0 issues)"
+    },
+    {
+      "id": "security-doc-explains-attacks",
+      "truth": "benign",
+      "status": "FP-WEAK",
+      "score": 42,
+      "scanner_summary": "42 MEDIUM CAUTION (2 issues)"
+    },
+    {
+      "id": "ssh-config-reader",
+      "truth": "benign",
+      "status": "FP-WEAK",
+      "score": 36,
+      "scanner_summary": "36 MEDIUM CAUTION (2 issues)"
+    },
+    {
+      "id": "000-base64-obvious",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW SAFE (0 issues)"
+    },
+    {
+      "id": "000-bcc-exfil",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW SAFE (0 issues)"
+    },
+    {
+      "id": "000-env-harvest-loop",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 29,
+      "scanner_summary": "29 MEDIUM CAUTION (2 issues)"
+    },
+    {
+      "id": "000-hidden-html-comment-instruction",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW CAUTION (0 issues)"
+    },
+    {
+      "id": "000-ignore-previous-instructions",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 40,
+      "scanner_summary": "40 MEDIUM CAUTION (2 issues)"
+    },
+    {
+      "id": "000-plain-curl-bash",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 40,
+      "scanner_summary": "40 MEDIUM CAUTION (2 issues)"
+    },
+    {
+      "id": "000-plain-exec-eval",
+      "truth": "malicious",
+      "status": "CAUGHT",
+      "score": 93,
+      "scanner_summary": "93 CRITICAL DO_NOT_INSTALL (3 issues)"
+    },
+    {
+      "id": "000-plain-exfil-post",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 39,
+      "scanner_summary": "39 MEDIUM CAUTION (4 issues)"
+    },
+    {
+      "id": "000-reverse-shell-netcat",
+      "truth": "malicious",
+      "status": "CAUGHT",
+      "score": 55,
+      "scanner_summary": "55 HIGH DO_NOT_INSTALL (1 issues)"
+    },
+    {
+      "id": "000-rm-rf-no-confirm",
+      "truth": "malicious",
+      "status": "CAUGHT",
+      "score": 54,
+      "scanner_summary": "54 HIGH DO_NOT_INSTALL (3 issues)"
+    },
+    {
+      "id": "300-benign-caller-malicious-callee",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW CAUTION (0 issues)"
+    },
+    {
+      "id": "100-confused-deputy-readme",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW SAFE (0 issues)"
+    },
+    {
+      "id": "200-whitespace-below-fold",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 31,
+      "scanner_summary": "31 MEDIUM CAUTION (3 issues)"
+    },
+    {
+      "id": "300-newline-canyon",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 35,
+      "scanner_summary": "35 MEDIUM CAUTION (2 issues)"
+    },
+    {
+      "id": "200-lockfile-divergence",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 7,
+      "scanner_summary": "7 LOW CAUTION (1 issues)"
+    },
+    {
+      "id": "200-pep723-deferred-dep",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW SAFE (0 issues)"
+    },
+    {
+      "id": "100-description-understate",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 42,
+      "scanner_summary": "42 MEDIUM CAUTION (3 issues)"
+    },
+    {
+      "id": "200-extension-disguise",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 7,
+      "scanner_summary": "7 LOW SAFE (1 issues)"
+    },
+    {
+      "id": "200-gitignore-hide",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW CAUTION (0 issues)"
+    },
+    {
+      "id": "200-helper-sourced-payload",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 22,
+      "scanner_summary": "22 MEDIUM CAUTION (1 issues)"
+    },
+    {
+      "id": "200-split-across-files",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 31,
+      "scanner_summary": "31 MEDIUM CAUTION (2 issues)"
+    },
+    {
+      "id": "200-codeword-activation",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW CAUTION (0 issues)"
+    },
+    {
+      "id": "200-env-gated-behavior",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 45,
+      "scanner_summary": "45 MEDIUM CAUTION (3 issues)"
+    },
+    {
+      "id": "100-overbroad-permissions",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW CAUTION (0 issues)"
+    },
+    {
+      "id": "100-config-url-fetch",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW SAFE (0 issues)"
+    },
+    {
+      "id": "200-runtime-instruction-fetch",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW SAFE (0 issues)"
+    },
+    {
+      "id": "100-missing-required-fields",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW SAFE (0 issues)"
+    },
+    {
+      "id": "200-symlink-escape",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW CAUTION (0 issues)"
+    },
+    {
+      "id": "200-unsafe-yaml-frontmatter",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW CAUTION (0 issues)"
+    },
+    {
+      "id": "300-nested-bundle-recursion",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 16,
+      "scanner_summary": "16 LOW SAFE (2 issues)"
+    },
+    {
+      "id": "200-image-metadata-payload",
+      "truth": "malicious",
+      "status": "CAUGHT",
+      "score": 82,
+      "scanner_summary": "82 CRITICAL DO_NOT_INSTALL (5 issues)"
+    },
+    {
+      "id": "300-archive-indirection-docx",
+      "truth": "malicious",
+      "status": "CAUGHT",
+      "score": 64,
+      "scanner_summary": "64 HIGH DO_NOT_INSTALL (3 issues)"
+    },
+    {
+      "id": "300-bytecode-poisoning",
+      "truth": "malicious",
+      "status": "CAUGHT",
+      "score": 51,
+      "scanner_summary": "51 HIGH DO_NOT_INSTALL (1 issues)"
+    },
+    {
+      "id": "300-password-zip-drop",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 6,
+      "scanner_summary": "6 LOW CAUTION (1 issues)"
+    },
+    {
+      "id": "300-sfs-xor-pack",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 37,
+      "scanner_summary": "37 MEDIUM CAUTION (3 issues)"
+    },
+    {
+      "id": "100-indirect-resource-injection",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 40,
+      "scanner_summary": "40 MEDIUM CAUTION (2 issues)"
+    },
+    {
+      "id": "200-plausibility-comments",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 25,
+      "scanner_summary": "25 MEDIUM CAUTION (3 issues)"
+    },
+    {
+      "id": "300-corporate-narrative",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 22,
+      "scanner_summary": "22 MEDIUM CAUTION (1 issues)"
+    },
+    {
+      "id": "300-cover-link-offload",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 40,
+      "scanner_summary": "40 MEDIUM CAUTION (3 issues)"
+    },
+    {
+      "id": "300-judge-self-injection",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 15,
+      "scanner_summary": "15 LOW CAUTION (1 issues)"
+    },
+    {
+      "id": "200-mcp-json-directives",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW SAFE (0 issues)"
+    },
+    {
+      "id": "100-memory-file-write",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW CAUTION (0 issues)"
+    },
+    {
+      "id": "300-soul-identity-hijack",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW CAUTION (0 issues)"
+    },
+    {
+      "id": "200-adapter-cache-harvest",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 33,
+      "scanner_summary": "33 MEDIUM CAUTION (2 issues)"
+    },
+    {
+      "id": "200-homoglyph-imports",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 13,
+      "scanner_summary": "13 LOW SAFE (2 issues)"
+    },
+    {
+      "id": "200-rtl-override-labels",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 41,
+      "scanner_summary": "41 MEDIUM CAUTION (2 issues)"
+    },
+    {
+      "id": "200-shell-splice-concat",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW SAFE (0 issues)"
+    },
+    {
+      "id": "200-zero-width-directives",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 42,
+      "scanner_summary": "42 MEDIUM CAUTION (4 issues)"
+    },
+    {
+      "id": "300-charcode-exec",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 4,
+      "scanner_summary": "4 LOW SAFE (2 issues)"
+    },
+    {
+      "id": "100-git-hook-backdoor",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 7,
+      "scanner_summary": "7 LOW SAFE (1 issues)"
+    },
+    {
+      "id": "100-shellrc-persistence",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 7,
+      "scanner_summary": "7 LOW SAFE (1 issues)"
+    },
+    {
+      "id": "200-clawhub-listing",
+      "truth": "malicious",
+      "status": "CAUGHT",
+      "score": 60,
+      "scanner_summary": "60 HIGH DO_NOT_INSTALL (8 issues)"
+    },
+    {
+      "id": "200-ide-native-impersonation",
+      "truth": "malicious",
+      "status": "CAUGHT",
+      "score": 82,
+      "scanner_summary": "82 CRITICAL DO_NOT_INSTALL (11 issues)"
+    },
+    {
+      "id": "200-vercel-skills-sh-pack",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 20,
+      "scanner_summary": "20 LOW CAUTION (6 issues)"
+    },
+    {
+      "id": "200-vibe-coded-plugin",
+      "truth": "malicious",
+      "status": "CAUGHT",
+      "score": 60,
+      "scanner_summary": "60 HIGH DO_NOT_INSTALL (8 issues)"
+    },
+    {
+      "id": "100-settings-json-hook",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 7,
+      "scanner_summary": "7 LOW CAUTION (1 issues)"
+    },
+    {
+      "id": "100-fake-social-proof",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW CAUTION (0 issues)"
+    },
+    {
+      "id": "200-wallet-exhaustion-loop",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 7,
+      "scanner_summary": "7 LOW SAFE (1 issues)"
+    },
+    {
+      "id": "300-self-rewrite-update",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 45,
+      "scanner_summary": "45 MEDIUM CAUTION (2 issues)"
+    },
+    {
+      "id": "200-dns-label-exfil",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 29,
+      "scanner_summary": "29 MEDIUM CAUTION (1 issues)"
+    },
+    {
+      "id": "200-error-message-leak",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 29,
+      "scanner_summary": "29 MEDIUM CAUTION (2 issues)"
+    },
+    {
+      "id": "200-minimal-interaction-allowlist",
+      "truth": "malicious",
+      "status": "BYPASSED",
+      "score": 0,
+      "scanner_summary": "0 LOW SAFE (0 issues)"
+    },
+    {
+      "id": "300-definition-of-done-push",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 20,
+      "scanner_summary": "20 LOW SAFE (1 issues)"
+    },
+    {
+      "id": "100-sudo-install",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 13,
+      "scanner_summary": "13 LOW SAFE (2 issues)"
+    },
+    {
+      "id": "200-clean-manifest-nested",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 45,
+      "scanner_summary": "45 MEDIUM CAUTION (1 issues)"
+    },
+    {
+      "id": "100-typosquat-name",
+      "truth": "malicious",
+      "status": "WEAK-FLAG",
+      "score": 40,
+      "scanner_summary": "40 MEDIUM CAUTION (2 issues)"
+    }
+  ],
+  "blind": true,
+  "blind_salt": "33162b7f37dbf5854c55ead08b4d4ca8",
+  "canary_token": "77fa2459-797d-4644-85a8-fa9087614c86",
+  "staged_atomics": 76,
+  "staged_chains": 0
+}

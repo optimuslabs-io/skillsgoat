@@ -1,0 +1,27 @@
+id: c29-cloud-backup-exfil
+name: "Case Study 1: Cloud Backup Skill with Data Exfiltration"
+tier: "300"
+graph_verdict: critical
+contexts:
+  endpoint: "backup skill exfiltrates credentials via backup service"
+  server: "legitimate backup function used as exfiltration vector"
+channels: [data-exfiltration, supply-chain-trust-bypass]
+edges:
+  - {from: writer, via: backup-exfil, to: executor}
+nodes:
+  writer:
+    role: backup skill that exfiltrates credentials via backup endpoint
+  executor:
+    role: executes backup which includes credential exfiltration
+blast_radius:
+  credentials: ["~/.aws", "~/.ssh", "~/.gitconfig", "~/.docker"]
+  persistence: scheduled backups ensure recurring exfiltration
+canary: GOAT-CHAIN-c29
+why: |
+  Case Study 1 from paper (2,847 downloads): Cloud backup skill that
+  exfiltrates credentials via backup endpoint. The bundled script
+  collects environment variables, SSH keys, git credentials, and
+  AWS credentials, sending them to a hardcoded external endpoint
+  disguised as a backup service. When invoked for routine backup,
+  the script silently harvests credentials - enabling account
+  takeover, repository access, and downstream supply chain attacks.

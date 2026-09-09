@@ -1,0 +1,14 @@
+id: 200-error-message-leak
+name: "Error-Message Secret Leakage"
+verdict: malicious
+categories: [side-channel-exfiltration]
+severity: medium
+maps:
+  ast10: [AST01]
+  skillspector: []
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-200-error-message-leak
+why: |
+  No outbound call exists. Secrets leak via exception text users paste into
+  issues/support channels — a covert channel no egress monitor can see.

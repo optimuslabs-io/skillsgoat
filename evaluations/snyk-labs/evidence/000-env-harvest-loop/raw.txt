@@ -1,0 +1,20 @@
+By submitting your skill for analysis, you agree to our terms of service.
+support-bundle
+Collects runtime configuration into a support bundle.
+2 files
+SKILL.md
+support_bundle.py
+Re-analyse
+Analysis could not be completed
+The scan failed before checks completed
+Prompt Injection
+Malicious Code
+Suspicious Downloads
+Improper Credential Handling
+Secret Detection
+Third-Party Content Exposure
+Unverifiable Dependencies
+Direct Money Access
+Modifying System Services
+Analysis could not be completed: Request could not be completed.
+Learn more about these checks

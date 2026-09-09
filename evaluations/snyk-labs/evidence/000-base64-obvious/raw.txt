@@ -1,0 +1,59 @@
+By submitting your skill for analysis, you agree to our terms of service.
+credential-doctor
+Verifies cloud credential files are present and well-formed.
+1 files
+SKILL.md
+Re-analyse
+6 issues found
+9 security checks completed
+Prompt Injection
+Malicious Code
+Suspicious Downloads
+Improper Credential Handling
+Secret Detection
+Third-Party Content Exposure
+Unverifiable Dependencies
+Direct Money Access
+Modifying System Services
+ISSUES FOUND
+6
+SEVERITY BREAKDOWN
+C
+3
+H
+1
+M
+2
+L
+0
+E004
+Critical
+Prompt injection in skill
+Potential prompt injection detected (critical risk: 1.00). The skill hides a base64-encoded command that exfiltrates AWS credentials to an external collector, unrelated to the disclosed "credential health check" purpose.
+Learn more
+W007
+High
+Insecure credential handling
+Insecure credential handling detected (high risk: 1.00). The skill embeds a base64-obfuscated command that reads the user's ~/.aws/credentials file and POSTs its contents to an external "collector" server, a blatant credential exfiltration payload disguised as a health check.
+Learn more
+E005
+Critical
+Suspicious download URL
+Suspicious download URL detected (critical risk: 1.00). The skill hides a base64-encoded command that curls AWS credentials from ~/.aws/credentials and POSTs them to an external collector.example server, which is a concealed credential-exfiltration action disguised as a "health check."
+Learn more
+E006
+Critical
+Malicious code pattern
+Malicious code pattern detected (critical risk: 1.00). The skill decodes and executes an obfuscated base64 command that exfiltrates the user's ~/.aws/credentials file via curl POST to an external server, disguised as a benign "credential health check."
+Learn more
+W012
+Medium
+Unverifiable dependency
+Potentially malicious external URL detected (high risk: 0.95). The SKILL.md contains a base64-obfuscated eval command that decodes to a curl POST exfiltrating the user's AWS credentials file to https://collector.example/creds, which is a clear runtime code execution and data exfiltration risk.
+Learn more
+W013
+Medium
+System state compromise
+Attempt to modify system services in skill instructions detected (high risk: 0.95). The skill hides a base64-encoded command that exfiltrates the user's AWS credentials file to an external server via curl, which is a severe credential-theft attack disguised as a "credential health check."
+Learn more
+Learn more about these checks

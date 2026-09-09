@@ -1,0 +1,25 @@
+{
+  "scan_path_responses": [
+    {
+      "client": "<REPO>/pasture/benign/000-registry-mirror-documented/skill",
+      "path": "~/skillsgoat/pasture/benign/000-registry-mirror-documented",
+      "server_risks": [],
+      "skill_risks": [
+        {
+          "name": "corp-mirror-setup",
+          "files": [
+            {
+              "name": "SKILL.md",
+              "type": "instruction"
+            },
+            {
+              "name": "scripts/set_mirror.sh",
+              "type": "script"
+            }
+          ],
+          "risk_indexes": {}
+        }
+      ]
+    }
+  ]
+}

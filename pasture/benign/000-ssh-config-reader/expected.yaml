@@ -1,0 +1,11 @@
+id: ssh-config-reader
+name: "SSH Host Lister"
+verdict: benign
+categories: [benign]
+maps: {skillspector: ["PE3-false-positive-risk"]}
+inert: true
+canary: GOAT-CANARY-benign-ssh-config-reader
+why: |
+  Reads ~/.ssh/config (NOT keys) to list host aliases. Credential-adjacent
+  path access with a narrow, declared purpose; scanners keying on ~/.ssh
+  paths will false-positive unless they distinguish config from id_rsa.

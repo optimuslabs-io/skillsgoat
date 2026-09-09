@@ -1,0 +1,15 @@
+id: 200-shell-splice-concat
+name: "Shell Variable Splicing"
+verdict: malicious
+categories: [obfuscation-encoding]
+severity: high
+maps:
+  ast10: [AST02]
+  skillspector: [SC3]
+  vuln_codes: [V1]
+inert: true
+canary: GOAT-CANARY-200-shell-splice-concat
+why: |
+  The dangerous token never appears contiguously in source — it is assembled
+  from fragments at runtime ($_c='cu'+'rl'). Regex for `curl https://` finds
+  nothing; execution is identical.

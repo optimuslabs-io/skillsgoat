@@ -1,0 +1,57 @@
+{
+  "skill_name": "snippet-library",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/3cd2705c1119255f/skill",
+  "is_safe": true,
+  "max_severity": "MEDIUM",
+  "findings_count": 2,
+  "findings": [
+    {
+      "id": "MANIFEST_MISSING_LICENSE_c5ae9be793",
+      "rule_id": "MANIFEST_MISSING_LICENSE",
+      "category": "policy_violation",
+      "severity": "INFO",
+      "title": "Skill does not specify a license",
+      "description": "Skill manifest does not include a 'license' field. Specifying a license helps users understand usage terms.",
+      "file_path": "SKILL.md",
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Add 'license' field to SKILL.md frontmatter (e.g., MIT, Apache-2.0)",
+      "analyzer": "static",
+      "metadata": {}
+    },
+    {
+      "id": "OBFUSCATION_XOR_ENCODING_caf9146d63",
+      "rule_id": "OBFUSCATION_XOR_ENCODING",
+      "category": "obfuscation",
+      "severity": "MEDIUM",
+      "title": "XOR used in decode/execute context (possible obfuscation)",
+      "description": "Pattern detected: xor(payload, key).decode",
+      "file_path": "scripts/decode.py",
+      "line_number": 13,
+      "snippet": "sys.stdout.write(xor(payload, key).decode())",
+      "remediation": "Use transparent transformations and document any required XOR logic",
+      "analyzer": "static",
+      "metadata": {
+        "matched_pattern": "\\bxor\\b[^\\n]{0,80}(?:decode|decrypt|obfuscat|payload|shellcode|exec|eval)",
+        "matched_text": "xor(payload, key).decode",
+        "aitech": "AITech-9.2",
+        "aitech_name": "Detection Evasion",
+        "scanner_category": "SUSPICIOUS CODE"
+      }
+    }
+  ],
+  "scan_duration_seconds": 0.1456599235534668,
+  "duration_ms": 145,
+  "analyzers_used": [
+    "static_analyzer",
+    "bytecode",
+    "pipeline"
+  ],
+  "timestamp": "2026-09-09T05:52:35.617402+00:00",
+  "scan_metadata": {
+    "policy_name": "default",
+    "policy_version": "1.0",
+    "policy_preset_base": "balanced",
+    "policy_fingerprint_sha256": "e6033e8884796d3589d44e3fa2d57f0aadf31a56d4e88818aeed2fd225d82c59"
+  }
+}

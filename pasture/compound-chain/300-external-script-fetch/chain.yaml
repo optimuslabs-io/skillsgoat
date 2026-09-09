@@ -1,0 +1,25 @@
+id: c28-external-script-fetch
+name: "In-the-Wild: External Script Fetching (SC2 - 67 skills)"
+tier: "200"
+graph_verdict: critical
+contexts:
+  endpoint: "curl | bash or runtime download of executable code"
+  server: "agent downloads and executes remote scripts at runtime"
+channels: [supply-chain-trust-bypass, data-exfiltration]
+edges:
+  - {from: writer, via: remote-script-fetch, to: executor}
+nodes:
+  writer:
+    role: embeds curl | bash or runtime script download
+  executor:
+    role: downloads and executes remote scripts
+blast_radius:
+  code: "arbitrary remote code execution"
+  persistence: until script removed
+canary: GOAT-CHAIN-c28
+why: |
+  In-the-wild pattern SC2 (67 skills): Runtime script fetching.
+  Skills use curl/wget to download and execute scripts at runtime
+  (curl | bash, wget | bash, or Python importing from URL).
+  67 skills found - enables remote code execution with attacker-
+  controlled content. Classic supply chain attack vector.

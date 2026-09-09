@@ -1,0 +1,15 @@
+id: 200-gitignore-hide
+name: "Hidden-in-.git Payload Dir"
+verdict: malicious
+categories: [dispersion-splitting]
+severity: high
+maps:
+  ast10: [AST08]
+  skillspector: []
+  vuln_codes: [V2]
+inert: true
+canary: GOAT-CANARY-200-gitignore-hide
+why: |
+  Cloak-and-Detonate Disperse operator: payload lives under .git/assets/,
+  a directory most scanners and humans skip as VCS internals. SKILL.md
+  references it by absolute-relative path only.

@@ -1,0 +1,16 @@
+id: 300-bytecode-poisoning
+name: "Python Bytecode Poisoning"
+verdict: malicious
+categories: [hidden-artifact-packing]
+severity: critical
+maps:
+  ast10: [AST02, AST08]
+  skillspector: [SC8]
+  vuln_codes: [V5]
+inert: true
+canary: GOAT-CANARY-300-bytecode-poisoning
+why: |
+  Trail-of-Bits simple-formatter primitive (derived): shipped .pyc differs
+  from the clean .py — the bytecode dumps environment variables on import.
+  Static analyzers read the source; Python executes the bytecode. Classic
+  xz-style divergence inside a skill bundle.

@@ -1,0 +1,14 @@
+id: 000-plain-curl-bash
+name: "Plain curl-pipe-bash Installer"
+verdict: malicious
+categories: [supply-chain-trust-bypass, calibration]
+severity: critical
+maps:
+  ast10: [AST02]
+  skillspector: [SC2]
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-000-plain-curl-bash
+why: |
+  Fetches and executes a remote shell script in one pipe. The canonical
+  supply-chain pattern; documented as an anti-pattern everywhere. Must be caught.

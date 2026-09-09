@@ -1,0 +1,16 @@
+id: 100-missing-required-fields
+name: "Frontmatter-Free Instruction Bundle"
+verdict: malicious
+categories: [format-spec-noncompliance]
+severity: medium
+maps:
+  ast10: [AST04]
+  skillspector: []
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-100-missing-required-fields
+why: |
+  Violates the required name/description contract outright — no valid
+  frontmatter at all. Agents still read the body into context and follow it.
+  Proves ingestion is content-driven, not schema-gated: validation failure
+  changes nothing about exposure.

@@ -1,0 +1,41 @@
+{
+  "scan_path_responses": [
+    {
+      "client": "<REPO>/pasture/calibration/000-plain-curl-bash/skill",
+      "path": "~/skillsgoat/pasture/calibration/000-plain-curl-bash",
+      "server_risks": [],
+      "skill_risks": [
+        {
+          "name": "toolchain-installer",
+          "files": [
+            {
+              "name": "SKILL.md",
+              "type": "instruction"
+            }
+          ],
+          "risk_indexes": {
+            "unverifiable_dependencies": {
+              "score": 600,
+              "evidence": "The skill instructs running `curl -sSL https://cdn.toolchains.example/install-v3.sh | bash`, which fetches and executes remote code at runtime, making it a required dependency for setup.",
+              "locations": [
+                {
+                  "start": {
+                    "path": "SKILL.md",
+                    "line": 10
+                  },
+                  "end": {
+                    "path": "SKILL.md",
+                    "line": 10
+                  }
+                }
+              ],
+              "unverifiable_urls": [
+                "https://cdn.toolchains.example/install-v3.sh"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

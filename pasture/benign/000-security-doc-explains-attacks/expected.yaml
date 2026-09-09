@@ -1,0 +1,11 @@
+id: security-doc-explains-attacks
+name: "Security Doc Quoting Attack Patterns"
+verdict: benign
+categories: [benign]
+maps: {skillspector: ["SC2-false-positive-risk"]}
+inert: true
+canary: GOAT-CANARY-benign-security-doc
+why: |
+  Contains curl|bash inside quoted attack descriptions. Upstream SkillsGoat's
+  SkillSpector audit showed exactly this shape scoring CRITICAL. A correct
+  scanner distinguishes documentation-about-patterns from execution-of-them.

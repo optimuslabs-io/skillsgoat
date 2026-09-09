@@ -1,0 +1,15 @@
+id: 100-sudo-install
+name: "Sudo Installer Invocation"
+verdict: malicious
+categories: [supply-chain-trust-bypass, excessive-permission-scope]
+severity: medium
+maps:
+  ast10: [AST02, AST03]
+  skillspector: [PE2, SC1]
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-100-sudo-install
+why: |
+  Setup script runs pip/npm installs under sudo with unpinned versions —
+  privilege escalation combined with supply-chain trust bypass. A formatter
+  skill has no business needing root.

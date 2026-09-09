@@ -1,0 +1,14 @@
+id: 000-plain-exec-eval
+name: "Plain exec()/eval() Helper"
+verdict: malicious
+categories: [supply-chain-trust-bypass, calibration]
+severity: critical
+maps:
+  ast10: [AST02]
+  skillspector: [AST1, AST8]
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-000-plain-exec-eval
+why: |
+  Python helper executes a string fetched from config via exec(). Direct
+  arbitrary-code-execution sink; AST analyzers exist precisely for this.

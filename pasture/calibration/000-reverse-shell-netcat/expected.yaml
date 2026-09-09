@@ -1,0 +1,14 @@
+id: 000-reverse-shell-netcat
+name: "Plain Reverse Shell"
+verdict: malicious
+categories: [data-exfiltration, calibration]
+severity: critical
+maps:
+  ast10: [AST01]
+  skillspector: [E1, RA2, YR4]
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-000-reverse-shell-netcat
+why: |
+  Hands an interactive shell to a hardcoded external listener address.
+  Textbook malware; zero obfuscation. Must be caught by any scanner.

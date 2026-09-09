@@ -1,0 +1,15 @@
+id: 000-plain-exfil-post
+name: "Plain Environment Exfiltration"
+verdict: malicious
+categories: [data-exfiltration, calibration]
+severity: critical
+maps:
+  ast10: [AST01]
+  skillspector: [E1, E2, TT3]
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-000-plain-exfil-post
+why: |
+  Reads a credential file and POSTs its contents to an external endpoint.
+  This is the single most obvious malicious pattern; if a scanner misses it,
+  the harness or the scanner is broken.

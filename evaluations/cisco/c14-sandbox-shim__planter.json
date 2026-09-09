@@ -1,0 +1,87 @@
+{
+  "skill_name": "doc-thumbnailer",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/chains/6c5f225c277c68ff/nodes/planter/skill",
+  "is_safe": true,
+  "max_severity": "MEDIUM",
+  "findings_count": 4,
+  "findings": [
+    {
+      "id": "LOW_ANALYZABILITY_MODERATE",
+      "rule_id": "LOW_ANALYZABILITY",
+      "category": "policy_violation",
+      "severity": "MEDIUM",
+      "title": "Moderate analyzability score",
+      "description": "Only 78% of skill content could be analyzed. 1 of 3 files are opaque to the scanner. Some content could not be verified as safe.",
+      "file_path": null,
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Review opaque files and replace with inspectable formats where possible.",
+      "analyzer": "analyzability",
+      "metadata": {
+        "score": 78.3,
+        "unanalyzable_files": 1,
+        "total_files": 3,
+        "risk_level": "MEDIUM"
+      }
+    },
+    {
+      "id": "MANIFEST_MISSING_LICENSE_c5ae9be793",
+      "rule_id": "MANIFEST_MISSING_LICENSE",
+      "category": "policy_violation",
+      "severity": "INFO",
+      "title": "Skill does not specify a license",
+      "description": "Skill manifest does not include a 'license' field. Specifying a license helps users understand usage terms.",
+      "file_path": "SKILL.md",
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Add 'license' field to SKILL.md frontmatter (e.g., MIT, Apache-2.0)",
+      "analyzer": "static",
+      "metadata": {}
+    },
+    {
+      "id": "UNANALYZABLE_BINARY_resources/shim.bin",
+      "rule_id": "UNANALYZABLE_BINARY",
+      "category": "policy_violation",
+      "severity": "MEDIUM",
+      "title": "Unanalyzable binary file",
+      "description": "Binary file 'resources/shim.bin' cannot be inspected by the scanner. Reason: Binary file (.bin) - cannot inspect content. Binary files resist static analysis and may contain hidden functionality.",
+      "file_path": "resources/shim.bin",
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Replace binary files with source code, or submit the binary to VirusTotal for independent verification (--use-virustotal).",
+      "analyzer": "analyzability",
+      "metadata": {
+        "skip_reason": "Binary file (.bin) - cannot inspect content",
+        "weight": 4.523561956057013
+      }
+    },
+    {
+      "id": "BINARY_FILE_DETECTED_9a1b009a2f",
+      "rule_id": "BINARY_FILE_DETECTED",
+      "category": "policy_violation",
+      "severity": "INFO",
+      "title": "Binary file detected in skill package",
+      "description": "Binary file found: resources/shim.bin. Binary files cannot be inspected by static analysis. Consider using Python or Bash scripts for transparency.",
+      "file_path": "resources/shim.bin",
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Review binary file necessity. Replace with auditable scripts if possible.",
+      "analyzer": "static",
+      "metadata": {}
+    }
+  ],
+  "scan_duration_seconds": 0.11870408058166504,
+  "duration_ms": 118,
+  "analyzers_used": [
+    "static_analyzer",
+    "bytecode",
+    "pipeline"
+  ],
+  "timestamp": "2026-09-09T06:34:36.397795+00:00",
+  "scan_metadata": {
+    "policy_name": "default",
+    "policy_version": "1.0",
+    "policy_preset_base": "balanced",
+    "policy_fingerprint_sha256": "e6033e8884796d3589d44e3fa2d57f0aadf31a56d4e88818aeed2fd225d82c59"
+  }
+}

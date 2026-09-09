@@ -1,0 +1,14 @@
+id: 000-base64-obvious
+name: "Obvious Base64 Eval Chain"
+verdict: malicious
+categories: [data-exfiltration, calibration]
+severity: critical
+maps:
+  ast10: [AST01]
+  skillspector: [SC3, E2, TT3]
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-000-base64-obvious
+why: |
+  Base64-encoded command decoded and executed in one line, harvesting AWS
+  credentials into the request. The classic obfuscated-exfil teaching example.

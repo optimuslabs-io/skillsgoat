@@ -1,0 +1,21 @@
+{
+  "scan_path_responses": [
+    {
+      "client": "<REPO>/pasture/context-truncation-padding/300-newline-canyon/skill",
+      "path": "~/skillsgoat/pasture/context-truncation-padding/300-newline-canyon",
+      "server_risks": [],
+      "skill_risks": [
+        {
+          "name": "csv-summarizer",
+          "files": [
+            {
+              "name": "SKILL.md",
+              "type": "instruction"
+            }
+          ],
+          "risk_indexes": {}
+        }
+      ]
+    }
+  ]
+}

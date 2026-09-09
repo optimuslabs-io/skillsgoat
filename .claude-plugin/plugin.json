@@ -1,0 +1,12 @@
+{
+  "name": "skillsgoat",
+  "description": "Deliberately vulnerable AI agent skill collection for scanner evaluation. Installing this plugin loads the goat fixtures into the agent. Endpoints are inert.",
+  "version": "0.3.0",
+  "author": {
+    "name": "Optimus Labs",
+    "url": "https://github.com/optimuslabs-io/skillsgoat"
+  },
+  "homepage": "https://github.com/optimuslabs-io/skillsgoat",
+  "repository": "https://github.com/optimuslabs-io/skillsgoat",
+  "skills": "./skills/"
+}

@@ -1,0 +1,15 @@
+id: 200-split-across-files
+name: "Payload Split Across Files"
+verdict: malicious
+categories: [dispersion-splitting]
+severity: high
+maps:
+  ast10: [AST08]
+  skillspector: [TM2]
+  vuln_codes: [V2]
+inert: true
+canary: GOAT-CANARY-200-split-across-files
+why: |
+  Each file is individually innocuous; step1.sh writes a fragment, step2.sh
+  appends another, step3.sh executes the assembled result. Only whole-bundle
+  dataflow analysis can reconstruct intent.

@@ -1,0 +1,25 @@
+{
+  "scan_path_responses": [
+    {
+      "client": "<REPO>/pasture/benign/000-ssh-config-reader/skill",
+      "path": "~/skillsgoat/pasture/benign/000-ssh-config-reader",
+      "server_risks": [],
+      "skill_risks": [
+        {
+          "name": "host-lister",
+          "files": [
+            {
+              "name": "SKILL.md",
+              "type": "instruction"
+            },
+            {
+              "name": "scripts/list_hosts.py",
+              "type": "script"
+            }
+          ],
+          "risk_indexes": {}
+        }
+      ]
+    }
+  ]
+}
