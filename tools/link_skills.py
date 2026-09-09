@@ -13,8 +13,6 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-STATE_DIR = Path.home() / ".skillsgoat"
-STATE_FILE = STATE_DIR / "installed.json"
 
 # Host → (global dest, project dest relative to cwd)
 HOSTS = {
@@ -33,7 +31,7 @@ intentional: SkillsGoat is a goat (WebGoat for agent skills). Fixtures are
 malicious by design. Endpoints are inert `*.example` / RFC 5737 addresses.
 
 - Run `/setup-skillsgoat` once per repo to refresh links and this block.
-- Evaluate scanners with `python3 goat.py scan --scanners skillspector --no-llm`.
+- Evaluate scanners with `python3 goat.py scan --scanners skillspector --no-llm` (`--blind` is the default).
 - Point scanners at `pasture/<category>/<id>/skill/` (or the linked skill dir).
 - Do not treat a CLEAN scan as "safe to ship." See docs/USAGE.md.
 """
@@ -123,16 +121,32 @@ def refresh_skills_index(units: list[tuple[str, Path]], dry: bool) -> list[str]:
     return log
 
 
-def host_dest(host: str, scope: str, project: Path) -> Path:
-    home = str(Path.home())
-    codex = os.environ.get("CODEX_HOME", str(Path.home() / ".codex"))
+def _sandbox_mod():
+    src = str(REPO / "src")
+    if src not in sys.path:
+        sys.path.insert(0, src)
+    from goat.sandbox import sandbox_banner, sandbox_home  # noqa: PLC0415
+
+    return sandbox_home, sandbox_banner
+
+
+def state_paths(home: Path) -> tuple[Path, Path]:
+    state_dir = home / ".skillsgoat"
+    return state_dir, state_dir / "installed.json"
+
+
+def host_dest(host: str, scope: str, project: Path, home: Path) -> Path:
+    home_s = str(home)
+    codex = os.environ.get("CODEX_HOME", str(home / ".codex"))
     global_tmpl, project_rel = HOSTS[host]
     if scope == "project":
         return project / project_rel
-    return Path(global_tmpl.format(home=home, codex=codex))
+    return Path(global_tmpl.format(home=home_s, codex=codex))
 
 
-def detect_hosts() -> list[str]:
+def detect_hosts(home: Path | None = None) -> list[str]:
+    if home is not None and home.resolve() != Path.home().resolve():
+        return list(HOSTS)
     found = ["claude"]
     probes = {
         "cursor": Path.home() / ".cursor",
@@ -158,10 +172,10 @@ def _ours(path: Path) -> bool:
     return target.startswith(repo + os.sep) or target == repo
 
 
-def uninstall(hosts: list[str], scope: str, project: Path, dry: bool) -> int:
+def uninstall(hosts: list[str], scope: str, project: Path, dry: bool, home: Path) -> int:
     n = 0
     for host in hosts:
-        dest = host_dest(host, scope, project)
+        dest = host_dest(host, scope, project, home)
         if not dest.is_dir():
             continue
         for child in dest.iterdir():
@@ -178,8 +192,9 @@ def uninstall(hosts: list[str], scope: str, project: Path, dry: bool) -> int:
                 if not dry:
                     child.unlink()
                 n += 1
-    if STATE_FILE.exists() and not dry:
-        STATE_FILE.unlink()
+    _, state_file = state_paths(home)
+    if state_file.exists() and not dry:
+        state_file.unlink()
     print(f"uninstalled {n} links")
     return 0
 
@@ -220,10 +235,19 @@ def run(args: argparse.Namespace) -> int:
                 print("aborted (did not type GOAT)")
                 return 1
 
+    sandbox_home, sandbox_banner = _sandbox_mod()
+    real_home = getattr(args, "real_home", False)
+    home = sandbox_home(REPO, real_home=real_home)
+    if getattr(args, "goat", False) or args.uninstall:
+        print(sandbox_banner(home, real_home=real_home))
+        if not args.dry_run and getattr(args, "goat", False):
+            home.mkdir(parents=True, exist_ok=True)
+            (home / "tmp").mkdir(exist_ok=True)
+
     project = Path(args.project).resolve()
     hosts = [h.strip() for h in args.host.split(",") if h.strip()]
     if hosts == ["auto"]:
-        hosts = detect_hosts()
+        hosts = detect_hosts(home)
         print(f"hosts: {', '.join(hosts)}")
     unknown = [h for h in hosts if h not in HOSTS]
     if unknown:
@@ -231,7 +255,7 @@ def run(args: argparse.Namespace) -> int:
         return 2
 
     if args.uninstall:
-        return uninstall(hosts, args.scope, project, args.dry_run)
+        return uninstall(hosts, args.scope, project, args.dry_run, home)
 
     units = _discover()
     if not units:
@@ -255,7 +279,7 @@ def run(args: argparse.Namespace) -> int:
 
     for scope in scopes:
         for host in hosts:
-            dest = host_dest(host, scope, project)
+            dest = host_dest(host, scope, project, home)
             dest.mkdir(parents=True, exist_ok=True)
             for name, src in units:
                 msg = _link(src, dest / name, args.dry_run)
@@ -269,12 +293,13 @@ def run(args: argparse.Namespace) -> int:
         _append_block(project / "AGENTS.md", "## Coding Tasks (SkillsGoat)", AGENTS_MD_BLOCK, args.dry_run)
 
     if not args.dry_run:
-        STATE_DIR.mkdir(parents=True, exist_ok=True)
-        STATE_FILE.write_text(json.dumps({"repo": str(REPO), "hosts": installed}, indent=2) + "\n")
+        state_dir, state_file = state_paths(home)
+        state_dir.mkdir(parents=True, exist_ok=True)
+        state_file.write_text(json.dumps({"repo": str(REPO), "hosts": installed, "home": str(home)}, indent=2) + "\n")
 
     print("done. this is a goat — fixtures are now on the agent skill path.")
     print("next: /setup-skillsgoat  (or re-run ./setup --goat after git pull)")
-    print("run the agent in a sandbox you already trust — see docs/SAFETY.md")
+    print(f"run the agent with HOME={home} TMPDIR={home / 'tmp'} — see docs/SAFETY.md")
     return 0
 
 
@@ -306,6 +331,11 @@ def build_parser() -> argparse.ArgumentParser:
     )
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("-v", "--verbose", action="store_true")
+    ap.add_argument(
+        "--real-home",
+        action="store_true",
+        help="link into the real $HOME (default: $SKILLSGOAT_SANDBOX or repo/.sandbox-home)",
+    )
     return ap
 
 

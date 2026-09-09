@@ -45,8 +45,12 @@ if [ "$#" -eq 0 ]; then
   echo "  .venv/bin/goat selftest"
   echo "  .venv/bin/python -m pytest -q"
   echo "  .venv/bin/goat scan --scanners skillspector --no-llm"
+  echo "  (default --blind; do not publish --no-blind scores)"
+  echo "  scanners extra is NOT installed by ./setup:"
+  echo "    .venv/bin/pip install -e '.[scanners]'   # pinned SHAs/versions in pyproject.toml"
   echo
   echo "To load fixtures into agent skill dirs (a goat): ./setup --goat"
+  echo "  default HOME is \$SKILLSGOAT_SANDBOX or $PWD/.sandbox-home (not your real profile)"
   echo "  throwaway remote machine recommended — not a host with production secrets"
   echo "To refresh the repo-root skills/ index only:     ./setup --index-only"
   exit 0

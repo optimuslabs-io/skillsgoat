@@ -21,6 +21,8 @@ jobs:
         run: goat lint
       - name: Selftest
         run: goat selftest
+      - name: Blind leak gate
+        run: goat scan --blind --assert-only
       - name: Bytecode fixture
         run: test -f pasture/hidden-artifact-packing/300-bytecode-poisoning/skill/scripts/utils.cpython-314.pyc
       - name: Ruff

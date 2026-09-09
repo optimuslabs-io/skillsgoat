@@ -10,9 +10,12 @@ Commands:
   selftest                   harness sanity checks
 
 Ground truth lives in each entry's expected.yaml, OUTSIDE the scannable
-skill/ directory. Point scanners at skill/ only. Plugin-distribution entries
-use skill/ as a marketplace or IDE pack (Vercel skills.sh, ClawHub, Cursor
-plugin, or fake native Claude/Codex/Copilot/Grok paths), not a lone SKILL.md.
+skill/ directory. `goat scan` defaults to --blind: hashed fixture dirs,
+canaries replaced with a neutral UUID, expected.yaml never in scanner
+input. Lint still checks the canary in source. Publish scores only from
+--blind runs. Plugin-distribution entries use skill/ as a marketplace
+or IDE pack (Vercel skills.sh, ClawHub, Cursor plugin, or fake native
+Claude/Codex/Copilot/Grok paths), not a lone SKILL.md.
 """
 
 from __future__ import annotations
@@ -25,7 +28,17 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
+
+from goat.blind import (
+    BlindLeakError,
+    BlindSession,
+    assert_blind_tree,
+    open_session,
+    plaintext_canary_hits,
+    provenance_fields,
+)
 
 try:
     import yaml
@@ -68,6 +81,7 @@ def discover_entries() -> list[dict]:
                 "why": data.get("why", ""),
                 "maps": data.get("maps", {}),
                 "canary": data.get("canary", ""),
+                "canary_packed": bool(data.get("canary_packed", False)),
                 "tier": m.group(1) if m else "???",
                 "category_dir": cat_dir.name,
                 "entry_dir": entry_dir,
@@ -104,24 +118,27 @@ def discover_chains() -> list[dict]:
             "nodes": nodes,
             "blast_radius": d.get("blast_radius", {}),
             "canary": d.get("canary", ""),
+            "canary_packed": bool(d.get("canary_packed", False)),
             "why": d.get("why", ""),
             "entry_dir": entry_dir,
         })
     return chains
 
 
-def assemble_composite(chain: dict, dest: Path) -> Path:
+def assemble_composite(chain: dict, dest: Path, node_skill_dirs: dict | None = None,
+                       label: str | None = None) -> Path:
     """Copy all nodes into one scannable bundle (real copies, not symlinks)."""
     sk = dest / "skill"
     if sk.exists():
         shutil.rmtree(sk)
     sk.mkdir(parents=True)
-    parts = ["---", f"name: {chain['id']}-composite",
+    display = label or chain["id"]
+    parts = ["---", f"name: {display}-composite",
              "description: >",
-             f"  Whole-graph composite of SkillsGoat chain {chain['id']} ({chain['name']}).",
-             "---", "", f"# {chain['name']}", ""]
+             f"  Whole-graph composite of SkillsGoat chain {display}.",
+             "---", "", f"# {display}", ""]
     for nname, nmeta in chain["nodes"].items():
-        src = nmeta["skill_dir"]
+        src = (node_skill_dirs or {}).get(nname) or nmeta["skill_dir"]
         dst = sk / nname
         if src.is_dir():
             shutil.copytree(src, dst)
@@ -325,11 +342,26 @@ def cmd_lint(args) -> int:
         for banned in ("expected.yaml", ".goat-meta", "aibom.yaml"):
             if (e["skill_dir"] / banned).exists():
                 problems.append(f"{where}: {banned} must live outside skill/")
-        # canary present inside exactly one skill file
+        # canary must be plaintext-greppable so --blind can actually strip it
         if e["canary"]:
-            blob = "\n".join(read_skill_files(e["skill_dir"]).values())
-            if e["canary"] not in blob:
-                problems.append(f"{where}: canary {e['canary']} not embedded in skill files")
+            if e.get("canary_packed"):
+                blob = "\n".join(read_skill_files(e["skill_dir"]).values())
+                if e["canary"] not in blob:
+                    problems.append(
+                        f"{where}: canary_packed set but canary {e['canary']} not found in skill files"
+                    )
+            else:
+                try:
+                    hits = plaintext_canary_hits(e["skill_dir"], e["canary"])
+                except BlindLeakError as exc:
+                    problems.append(f"{where}: {exc}")
+                else:
+                    if not hits:
+                        problems.append(
+                            f"{where}: canary {e['canary']} is not plaintext-greppable in skill/ "
+                            "(zip/pyc-only would survive goat scan --blind). "
+                            "Embed it in a text file or set canary_packed: true"
+                        )
     # ---- compound chains ----
     seen_chain_ids = set()
     for c in discover_chains():
@@ -346,21 +378,34 @@ def cmd_lint(args) -> int:
             problems.append(f"{where}: graph_verdict must be critical|high")
         if (c["entry_dir"] / "expected.yaml").exists():
             problems.append(f"{where}: chain must use chain.yaml, not expected.yaml")
-        blob = []
+        joined_hits = []
+        blob: list[str] = []
+        packed_ok = c.get("canary_packed")
         for nname, nmeta in c["nodes"].items():
             sd = nmeta["skill_dir"]
             if not (sd / "SKILL.md").is_file():
                 problems.append(f"{where}: node {nname} missing skill/SKILL.md")
                 continue
-            for f in sd.rglob("*"):
-                if f.is_file():
-                    try:
-                        blob.append(f.read_text(errors="replace"))
-                    except Exception:
-                        pass
-        joined = "\n".join(blob)
-        if c["canary"] and c["canary"] not in joined:
-            problems.append(f"{where}: chain canary {c['canary']} not embedded in any node")
+            try:
+                joined_hits.extend(plaintext_canary_hits(sd, c["canary"]) if c.get("canary") else [])
+            except BlindLeakError as exc:
+                problems.append(f"{where}: {exc}")
+            if packed_ok:
+                for f in sd.rglob("*"):
+                    if f.is_file() and not f.is_symlink():
+                        try:
+                            blob.append(f.read_text(errors="replace"))
+                        except Exception:
+                            pass
+        if c["canary"] and not packed_ok and not joined_hits:
+            problems.append(
+                f"{where}: chain canary {c['canary']} is not plaintext-greppable in any node "
+                "(set canary_packed: true to exempt a packed-only canary)"
+            )
+        if c["canary"] and packed_ok:
+            joined = "\n".join(blob)
+            if c["canary"] not in joined:
+                problems.append(f"{where}: canary_packed set but chain canary not found in any node")
         for e in c["edges"]:
             if e.get("from") not in c["nodes"] or e.get("to") not in c["nodes"]:
                 problems.append(f"{where}: edge references unknown node: {e}")
@@ -577,8 +622,33 @@ def _snyk_verdict(report: dict) -> tuple[str, float, str]:
     return state, float(max_score), f"{max_score}/1000 {len(findings)} risks ({names})"
 
 
-def scan_chain_node(scanner, chain, nname, nmeta, use_llm, timeout):
-    report, err = run_scanner(scanner, nmeta["skill_dir"], use_llm=use_llm, timeout=timeout)
+def scanner_version(scanner: str) -> str:
+    cfg = SCANNER_CONFIGS.get(scanner) or {}
+    exe_name = (cfg.get("cmd") or [scanner])[0]
+    exe = resolve_exe(exe_name)
+    if not exe:
+        return "unknown"
+    try:
+        proc = subprocess.run([exe, "--version"], capture_output=True, text=True, timeout=10)
+        line = (proc.stdout or proc.stderr).strip().splitlines()
+        return (line[0] if line else "unknown")[:160]
+    except (OSError, subprocess.TimeoutExpired):
+        return "unknown"
+
+
+def _report_provenance(recap: dict) -> list[str]:
+    return [
+        f"- scanned_at: {recap.get('scanned_at')}",
+        f"- llm_enabled: {recap.get('llm_enabled')}",
+        f"- scanner_version: {recap.get('scanner_version', 'unknown')}",
+        f"- blind: {recap.get('blind')}",
+        f"- canary_token: {recap.get('canary_token')}",
+        f"- blind_salt: {recap.get('blind_salt')}",
+    ]
+
+
+def scan_chain_node(scanner, chain, nname, skill_dir, use_llm, timeout):
+    report, err = run_scanner(scanner, skill_dir, use_llm=use_llm, timeout=timeout)
     if err:
         return {"chain": chain["id"], "node": nname, "status": f"ERROR: {err}"}
     state, score, summary = scanner_verdict(scanner, report)
@@ -587,25 +657,37 @@ def scan_chain_node(scanner, chain, nname, nmeta, use_llm, timeout):
             "score": score, "summary": summary}
 
 
-def cmd_scan_chains(scanner, mode, use_llm, timeout, raw_paths: bool = False):
+def cmd_scan_chains(scanner, mode, use_llm, timeout, raw_paths: bool = False,
+                    session: BlindSession | None = None):
     outdir = REPO / "evaluations" / scanner
     outdir.mkdir(parents=True, exist_ok=True)
     chains = discover_chains()
-    rows, blind = [], 0
+    rows, structurally_blind = [], 0
     tmp = REPO / "evaluations" / ".composite"
     tmp.mkdir(parents=True, exist_ok=True)
     for c in chains:
         node_rows = []
         if mode in ("node", "both"):
             for nname, nmeta in c["nodes"].items():
-                r = scan_chain_node(scanner, c, nname, nmeta, use_llm, timeout)
+                skill_dir = session.chain_node_dir(c["id"], nname) if session else nmeta["skill_dir"]
+                r = scan_chain_node(scanner, c, nname, skill_dir, use_llm, timeout)
                 node_rows.append(r)
                 print(f"[{scanner}] {c['id']:32s} node:{nname:14s} {r['status']}")
-                raw, _ = run_scanner(scanner, nmeta["skill_dir"], use_llm=use_llm, timeout=timeout)
+                raw, _ = run_scanner(scanner, skill_dir, use_llm=use_llm, timeout=timeout)
                 _dump_json(outdir / f"{c['id']}__{nname}.json", raw or {}, raw_paths)
         graph_row = None
         if mode in ("composite", "both"):
-            sk = assemble_composite(c, tmp / c["id"])
+            if session:
+                dest = session.composite_dest(c["id"])
+                alias = dest.name
+                sk = assemble_composite(
+                    c, dest,
+                    node_skill_dirs=session.chains[c["id"]]["nodes"],
+                    label=alias,
+                )
+                assert_blind_tree(dest, pasture=PASTURE)
+            else:
+                sk = assemble_composite(c, tmp / c["id"])
             report, err = run_scanner(scanner, sk, use_llm=use_llm, timeout=timeout)
             if err:
                 graph_status = f"ERROR: {err}"
@@ -617,25 +699,67 @@ def cmd_scan_chains(scanner, mode, use_llm, timeout, raw_paths: bool = False):
             graph_row = {"status": graph_status}
             if not err:
                 graph_row.update({"score": score, "summary": summary})
-        # v2 (strict): blind = zero hard-blocks anywhere in the chain.
+        # v2 (strict): structurally_blind = zero hard-blocks anywhere in the chain.
         # Sub-threshold WEAK findings cannot rescue a score (they carry no
         # signal on noisy scanners — see EVASION_MATRIX correction note).
         any_caught = any(r["status"] == "NODE-FLAGGED" for r in node_rows)
         graph_caught = graph_row is not None and graph_row["status"] == "GRAPH-CAUGHT"
         if not any_caught and not graph_caught:
-            blind += 1
+            structurally_blind += 1
         rows.append({"chain": c["id"], "nodes": node_rows, "graph": graph_row})
-    recap = {"scanner": scanner, "mode": mode, "chains": len(chains),
-             "structurally_blind": blind,
-             "blindness_rate": round(blind / max(len(chains), 1), 3),
-             "rows": rows}
+    recap = {
+        "scanner": scanner, "mode": mode,
+        "scanned_at": _dt.datetime.now(_dt.timezone.utc).isoformat(),
+        "scanner_version": scanner_version(scanner),
+        "llm_enabled": use_llm,
+        "chains": len(chains),
+        "structurally_blind": structurally_blind,
+        "blindness_rate": round(structurally_blind / max(len(chains), 1), 3),
+        "rows": rows,
+    }
+    recap.update(provenance_fields(session))
     _dump_json(outdir / "chains.json", recap, raw_paths)
-    print(f"\n[{scanner}] chains={len(chains)} structurally_blind={blind}/{len(chains)} "
+    print(f"\n[{scanner}] chains={len(chains)} structurally_blind={structurally_blind}/{len(chains)} "
           f"({recap['blindness_rate']:.0%}) → evaluations/{scanner}/chains.json\n")
     return recap
 
 
+def _prepare_blind(entries, chains, args) -> BlindSession:
+    keep = (getattr(args, "keep_blind", "") or "").strip()
+    if keep:
+        root = Path(keep).resolve()
+        root.mkdir(parents=True, exist_ok=True)
+        owned = False
+    else:
+        root = Path(tempfile.mkdtemp(prefix="goat-blind-"))
+        owned = True
+    print(f"[blind] staging under {root}")
+    try:
+        session = open_session(entries, chains, root=root, owned=owned, pasture=PASTURE)
+    except Exception:
+        if owned:
+            shutil.rmtree(root, ignore_errors=True)
+        raise
+    print(f"[blind] canaries → {session.token}; "
+          f"{len(session.atomic)} atomics, {len(session.chains)} chains")
+    return session
+
+
 def cmd_scan(args) -> int:
+    assert_only = getattr(args, "assert_only", False)
+    use_blind = getattr(args, "blind", True) or assert_only
+    if assert_only:
+        try:
+            session = _prepare_blind(discover_entries(), discover_chains(), args)
+        except BlindLeakError as exc:
+            print(f"BLIND FAIL: {exc}", file=sys.stderr)
+            return 1
+        try:
+            print("blind OK — scanner input has no expected.yaml, chain.yaml, "
+                  "or live GOAT-CANARY / GOAT-CHAIN; fixture dir names are hashed")
+        finally:
+            session.cleanup()
+        return 0
     scanners = args.scanners.split(",")
     unknown = [s for s in scanners if s not in SCANNER_CONFIGS]
     if unknown:
@@ -645,92 +769,117 @@ def cmd_scan(args) -> int:
         print("snyk requires SNYK_TOKEN. Get an API token at https://app.snyk.io/account",
               file=sys.stderr)
         return 2
+    if not use_blind:
+        print("warning: --no-blind scans the live pasture tree; canaries and "
+              "fixture names leak the answer key. Do not publish these numbers.",
+              file=sys.stderr)
     mode = getattr(args, "mode", "atomic")
-    if mode in ("node", "composite", "both"):
-        raw_paths = getattr(args, "raw_paths", False)
-        for sc in scanners:
-            cmd_scan_chains(sc, mode, not args.no_llm, args.timeout, raw_paths)
+    session = None
+    try:
+        if mode in ("node", "composite", "both"):
+            if use_blind:
+                try:
+                    session = _prepare_blind(None, discover_chains(), args)
+                except BlindLeakError as exc:
+                    print(f"BLIND FAIL: {exc}", file=sys.stderr)
+                    return 1
+            raw_paths = getattr(args, "raw_paths", False)
+            for sc in scanners:
+                cmd_scan_chains(sc, mode, not args.no_llm, args.timeout, raw_paths,
+                                session=session)
+            return 0
+        entries = discover_entries()
+        ids = getattr(args, "ids", "") or ""
+        if ids.strip():
+            want = {x.strip() for x in ids.split(",") if x.strip()}
+            entries = [e for e in entries if e["id"] in want]
+            missing = want - {e["id"] for e in entries}
+            if missing:
+                print(f"unknown ids: {sorted(missing)}", file=sys.stderr)
+                return 2
+            if not entries:
+                print("no matching entries", file=sys.stderr)
+                return 2
+        if use_blind:
+            try:
+                session = _prepare_blind(entries, None, args)
+            except BlindLeakError as exc:
+                print(f"BLIND FAIL: {exc}", file=sys.stderr)
+                return 1
+        rows, misses = [], []
+        for scanner in scanners:
+            outdir = REPO / "evaluations" / scanner
+            outdir.mkdir(parents=True, exist_ok=True)
+            matrix = []
+            detected = weak = fp = fn = tn = 0
+            for e in entries:
+                skill_dir = session.atomic[e["id"]] if session else e["skill_dir"]
+                report, err = run_scanner(scanner, skill_dir, use_llm=not args.no_llm,
+                                          timeout=args.timeout)
+                if err:
+                    row = {"id": e["id"], "truth": e["verdict"], "status": f"ERROR: {err}"}
+                else:
+                    _dump_json(outdir / f"{e['id']}.json", report, getattr(args, "raw_paths", False))
+                    state, score, summary = scanner_verdict(scanner, report)
+                    if summary.startswith("ERROR:"):
+                        row = {"id": e["id"], "truth": e["verdict"], "status": summary}
+                        rows.append(row)
+                        print(f"[{scanner}] {row['id']:42s} {row['status']}")
+                        matrix.append(row)
+                        continue
+                    truth_mal = e["verdict"] == "malicious"
+                    if truth_mal:
+                        status = {"caught": "CAUGHT", "weak": "WEAK-FLAG", "missed": "BYPASSED"}[state]
+                        if state == "caught":
+                            detected += 1
+                        elif state == "weak":
+                            weak += 1
+                        else:
+                            fn += 1
+                            misses.append(e["id"])
+                    else:  # benign truth
+                        if state == "missed":
+                            status, tn = "CLEAN", tn + 1
+                        else:
+                            status, fp = ("FALSE-POSITIVE" if state == "caught" else "FP-WEAK"), fp + 1
+                            misses.append(e["id"])
+                    row = {"id": e["id"], "truth": e["verdict"], "status": status,
+                           "score": score, "scanner_summary": summary}
+                rows.append(row)
+                print(f"[{scanner}] {row['id']:42s} {row['status']}")
+                matrix.append(row)
+            total = len(entries)
+            recap = {
+                "scanner": scanner, "llm_enabled": not args.no_llm,
+                "scanner_version": scanner_version(scanner),
+                "scanned_at": _dt.datetime.now(_dt.timezone.utc).isoformat(),
+                "total": total, "caught": detected, "weak_flagged": weak,
+                "bypassed": fn, "false_positives": fp, "clean_benign": tn,
+                "malicious_recall_strict": round(detected / max(detected + weak + fn, 1), 3),
+                "malicious_detection_any": round((detected + weak) / max(detected + weak + fn, 1), 3),
+                "benign_fp_rate": round(fp / max(fp + tn, 1), 3),
+                "rows": matrix,
+            }
+            recap.update(provenance_fields(session))
+            _dump_json(outdir / "matrix.json", recap, getattr(args, "raw_paths", False))
+            md = [f"# Evaluation matrix — {scanner}\n"]
+            md.extend(_report_provenance(recap))
+            md += [
+                  f"- caught (block-threshold): **{recap['caught']}**",
+                  f"- weak-flagged (detected, below block): **{recap['weak_flagged']}**",
+                  f"- bypassed (zero detection): **{recap['bypassed']}**",
+                  f"- benign_fp_rate: **{recap['benign_fp_rate']}**\n",
+                  "| Entry | Ground truth | Result | Scanner |", "|---|---|---|---|"]
+            for r in matrix:
+                md.append(f"| {r['id']} | {r['truth']} | {r['status']} | {r.get('scanner_summary','')} |")
+            (outdir / "report.md").write_text("\n".join(md) + "\n")
+            print(f"\n[{scanner}] caught={recap['caught']} weak={recap['weak_flagged']} "
+                  f"bypassed={recap['bypassed']} fp={recap['false_positives']} "
+                  f"→ evaluations/{scanner}/report.md\n")
         return 0
-    entries = discover_entries()
-    ids = getattr(args, "ids", "") or ""
-    if ids.strip():
-        want = {x.strip() for x in ids.split(",") if x.strip()}
-        entries = [e for e in entries if e["id"] in want]
-        missing = want - {e["id"] for e in entries}
-        if missing:
-            print(f"unknown ids: {sorted(missing)}", file=sys.stderr)
-            return 2
-        if not entries:
-            print("no matching entries", file=sys.stderr)
-            return 2
-    rows, misses = [], []
-    for scanner in scanners:
-        outdir = REPO / "evaluations" / scanner
-        outdir.mkdir(parents=True, exist_ok=True)
-        matrix = []
-        detected = weak = fp = fn = tn = 0
-        for e in entries:
-            report, err = run_scanner(scanner, e["skill_dir"], use_llm=not args.no_llm,
-                                      timeout=args.timeout)
-            if err:
-                row = {"id": e["id"], "truth": e["verdict"], "status": f"ERROR: {err}"}
-            else:
-                _dump_json(outdir / f"{e['id']}.json", report, getattr(args, "raw_paths", False))
-                state, score, summary = scanner_verdict(scanner, report)
-                if summary.startswith("ERROR:"):
-                    row = {"id": e["id"], "truth": e["verdict"], "status": summary}
-                    rows.append(row)
-                    print(f"[{scanner}] {row['id']:42s} {row['status']}")
-                    matrix.append(row)
-                    continue
-                truth_mal = e["verdict"] == "malicious"
-                if truth_mal:
-                    status = {"caught": "CAUGHT", "weak": "WEAK-FLAG", "missed": "BYPASSED"}[state]
-                    if state == "caught":
-                        detected += 1
-                    elif state == "weak":
-                        weak += 1
-                    else:
-                        fn += 1
-                        misses.append(e["id"])
-                else:  # benign truth
-                    if state == "missed":
-                        status, tn = "CLEAN", tn + 1
-                    else:
-                        status, fp = ("FALSE-POSITIVE" if state == "caught" else "FP-WEAK"), fp + 1
-                        misses.append(e["id"])
-                row = {"id": e["id"], "truth": e["verdict"], "status": status,
-                       "score": score, "scanner_summary": summary}
-            rows.append(row)
-            print(f"[{scanner}] {row['id']:42s} {row['status']}")
-            matrix.append(row)
-        total = len(entries)
-        recap = {
-            "scanner": scanner, "llm_enabled": not args.no_llm,
-            "scanned_at": _dt.datetime.now(_dt.timezone.utc).isoformat(),
-            "total": total, "caught": detected, "weak_flagged": weak,
-            "bypassed": fn, "false_positives": fp, "clean_benign": tn,
-            "malicious_recall_strict": round(detected / max(detected + weak + fn, 1), 3),
-            "malicious_detection_any": round((detected + weak) / max(detected + weak + fn, 1), 3),
-            "benign_fp_rate": round(fp / max(fp + tn, 1), 3),
-            "rows": matrix,
-        }
-        _dump_json(outdir / "matrix.json", recap, getattr(args, "raw_paths", False))
-        md = [f"# Evaluation matrix — {scanner}\n",
-              f"- scanned_at: {recap['scanned_at']}",
-              f"- llm_enabled: {recap['llm_enabled']}",
-              f"- caught (block-threshold): **{recap['caught']}**",
-              f"- weak-flagged (detected, below block): **{recap['weak_flagged']}**",
-              f"- bypassed (zero detection): **{recap['bypassed']}**",
-              f"- benign_fp_rate: **{recap['benign_fp_rate']}**\n",
-              "| Entry | Ground truth | Result | Scanner |", "|---|---|---|---|"]
-        for r in matrix:
-            md.append(f"| {r['id']} | {r['truth']} | {r['status']} | {r.get('scanner_summary','')} |")
-        (outdir / "report.md").write_text("\n".join(md) + "\n")
-        print(f"\n[{scanner}] caught={recap['caught']} weak={recap['weak_flagged']} "
-              f"bypassed={recap['bypassed']} fp={recap['false_positives']} "
-              f"→ evaluations/{scanner}/report.md\n")
-    return 0
+    finally:
+        if session is not None:
+            session.cleanup()
 
 
 # ---------------------------------------------------------------- selftest
@@ -879,6 +1028,14 @@ def main() -> int:
                       help="comma-separated entry ids to scan (default: all)")
     scan.add_argument("--raw-paths", action="store_true",
                       help="do not sanitize absolute paths in written eval JSON")
+    scan.add_argument("--blind", dest="blind", action="store_true", default=True,
+                      help="stage hashed dirs and strip canaries (default; required to publish scores)")
+    scan.add_argument("--no-blind", dest="blind", action="store_false",
+                      help="scan the live pasture tree (leaks the answer key; do not publish)")
+    scan.add_argument("--keep-blind", default="",
+                      help="write the blind staging tree here instead of a temp dir")
+    scan.add_argument("--assert-only", action="store_true",
+                      help="stage a blind tree, leak-assert, and exit (no scanners)")
     scan.set_defaults(func=cmd_scan)
 
     sub.add_parser("chain-report", help="generate docs/CHAINS.md").set_defaults(func=cmd_chain_report)
@@ -898,6 +1055,8 @@ def main() -> int:
                        help="skip the interactive GOAT prompt (CI)")
     setup.add_argument("--dry-run", action="store_true")
     setup.add_argument("-v", "--verbose", action="store_true")
+    setup.add_argument("--real-home", action="store_true",
+                       help="link into the real $HOME (default: SKILLSGOAT_SANDBOX or .sandbox-home)")
     setup.set_defaults(func=cmd_setup)
 
     args = ap.parse_args()

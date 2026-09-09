@@ -27,6 +27,9 @@ def format_text(text):
     return text
 '''
 
+# The committed filename is utils.cpython-314.pyc on purpose: it is an inert
+# scanner artifact, not an importable module. requires-python is 3.11 and CI
+# runs 3.12 — do not "fix" the tag to match the harness runtime.
 def gen_pyc():
     d = PACK / "300-bytecode-poisoning" / "skill" / "scripts"
     src = d / "_poisoned_src.py"

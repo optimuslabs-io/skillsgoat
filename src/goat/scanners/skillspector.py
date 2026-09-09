@@ -76,7 +76,7 @@ class SkillSpectorAdapter(ScannerAdapter):
     def validate_config(self) -> List[str]:
         issues = []
         if not self.is_available():
-            issues.append("skillspector not found. Install with: pip install 'skillspector @ git+https://github.com/NVIDIA/SkillSpector.git'")
+            issues.append("skillspector not found. Install with: pip install -e '.[scanners]' (pinned SHA in pyproject.toml)")
         if self.requires_api_key:
             provider = self.provider or "nv_inference"
             if provider in ("openai", "openai_compatible") and not os.environ.get("OPENAI_API_KEY"):
