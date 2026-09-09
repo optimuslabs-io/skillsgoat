@@ -26,7 +26,7 @@ HOSTS = {
 
 CLAUDE_MD_BLOCK = """## SkillsGoat
 
-This machine has the SkillsGoat corpus linked as agent skills. That is
+This machine has the SkillsGoat collection linked as agent skills. That is
 intentional: SkillsGoat is a goat (WebGoat for agent skills). Fixtures are
 malicious by design. Endpoints are inert `*.example` / RFC 5737 addresses.
 

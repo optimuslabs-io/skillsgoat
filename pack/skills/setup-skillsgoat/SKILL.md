@@ -1,11 +1,11 @@
 ---
 name: setup-skillsgoat
-description: One-time SkillsGoat setup. Default is venv + scan. Use --goat only when you intend to link the corpus into agent skill dirs. Use when installing SkillsGoat, refreshing fixture links, or adding SkillsGoat to a shared repo.
+description: One-time SkillsGoat setup. Default is venv + scan. Use --goat only when you intend to link the collection into agent skill dirs. Use when installing SkillsGoat, refreshing fixture links, or adding SkillsGoat to a shared repo.
 ---
 
 # Setup SkillsGoat
 
-Run this corpus — including lint, selftest, pytest, and scanner evals —
+Run this collection — including lint, selftest, pytest, and scanner evals —
 in a **local or cloud sandbox** you already trust. Network C2 is inert;
 running pasture scripts or a live agent is not. This repo does not
 endorse a sandbox vendor. See [docs/SAFETY.md](../../../docs/SAFETY.md).

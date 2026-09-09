@@ -40,7 +40,7 @@ Interpretation:
 - Both CLEAN after a full-tree upload → **content miss** (same as CLI).
 - Rejects plugin zip / "need a SKILL.md" / GitHub-URL-only → **format
   blindness**. Record `unsupported` — that is a result, not a skip.
-- Public report feed with no opt-out → **do not submit the corpus** (canary
+- Public report feed with no opt-out → **do not submit the collection** (canary
   leak). Probe the form, then stop.
 
 This is distinct from `pasture/compound-chain/`. Chains are adversarial:

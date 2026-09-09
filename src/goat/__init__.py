@@ -1,4 +1,4 @@
-"""SkillsGoat — vulnerable-by-design AI agent skill corpus."""
+"""SkillsGoat — vulnerable-by-design AI agent skill collection."""
 
 from __future__ import annotations
 

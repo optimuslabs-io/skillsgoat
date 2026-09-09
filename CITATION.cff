@@ -18,7 +18,7 @@ keywords:
   - agent skills
   - SKILL.md
   - security evaluation
-  - malware corpus
+  - malware collection
 references:
   - type: article
     title: "Agent Skills in the Wild: An Empirical Study of Security Vulnerabilities at Scale"

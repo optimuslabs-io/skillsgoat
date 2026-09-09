@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """UI-first scanner harness via agent-browser.
 
-Probe a vendor page (no corpus upload) or record evidence for one entry.
+Probe a vendor page (no collection upload) or record evidence for one entry.
 Do not submit pasture/ fixtures to scanners that publish public reports
 until PROTOCOL.md says the feed is private.
 

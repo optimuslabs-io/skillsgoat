@@ -133,7 +133,7 @@ def test_cheater_benign_canary_on_source(tmp_path: Path):
     assert cheater_verdict(dest / "skill") is None
 
 
-def test_real_corpus_source_leaks_and_blind_does_not(tmp_path: Path):
+def test_real_collection_source_leaks_and_blind_does_not(tmp_path: Path):
     entries = goat.discover_entries()
     mal = next(e for e in entries if e["verdict"] == "malicious")
     ben = next(e for e in entries if e["verdict"] == "benign")
@@ -160,7 +160,7 @@ def test_real_corpus_source_leaks_and_blind_does_not(tmp_path: Path):
         session.cleanup()
 
 
-def test_full_corpus_blind_stage_has_no_answer_key(tmp_path: Path):
+def test_full_collection_blind_stage_has_no_answer_key(tmp_path: Path):
     """CI leak gate: every atomic + chain stages without expected.yaml / canaries."""
     entries = goat.discover_entries()
     chains = goat.discover_chains()

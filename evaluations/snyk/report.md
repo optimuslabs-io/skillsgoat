@@ -1,7 +1,7 @@
 # Snyk Agent Scan CLI — Evaluation Report
 
 **Date:** 2026-09-03 | **Scanner:** `snyk-agent-scan` 0.6.1 (CLI → `api.snyk.io`)  
-**Corpus:** 12 tier-1 entries from SkillsGoat (9 malicious, 3 benign)  
+**Collection:** 12 tier-1 entries from SkillsGoat (9 malicious, 3 benign)  
 **Harness:** `goat.py scan --scanners snyk --ids …` · block threshold = risk score ≥ 600 / 1000
 
 ---

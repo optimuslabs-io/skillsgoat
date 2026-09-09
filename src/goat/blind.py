@@ -1,11 +1,11 @@
-"""Blind staging: strip answer-key leaks before a scanner sees the corpus.
+"""Blind staging: strip answer-key leaks before a scanner sees the collection.
 
 `goat lint` still requires GOAT-CANARY-* / GOAT-CHAIN-* in the *source* tree.
 `goat scan --blind` copies each fixture into a hashed directory, replaces
 those canaries with one neutral UUID, and refuses to hand a scanner any tree
 that still contains `expected.yaml`, `chain.yaml`, or a live canary string.
 
-Without this, a scanner can score the corpus by grepping the canary or
+Without this, a scanner can score the collection by grepping the canary or
 reading the sibling key — no analysis required.
 """
 

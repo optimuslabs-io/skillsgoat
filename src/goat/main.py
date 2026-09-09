@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""SkillsGoat — vulnerable-by-design AI agent skill corpus.
+"""SkillsGoat — vulnerable-by-design AI agent skill collection.
 
 Commands:
-  lint                       validate corpus consistency (run before committing)
+  lint                       validate collection consistency (run before committing)
   index                      regenerate pasture/INDEX_BY_*.md (+ --emit-aibom)
   new                        scaffold a new entry
-  scan                       run external scanners against the corpus, score vs expected.yaml
+  scan                       run external scanners against the collection, score vs expected.yaml
   setup                      link pasture fixtures into agent skill dirs (the goat install)
   selftest                   harness sanity checks
 
@@ -53,7 +53,7 @@ PASTURE = REPO / "pasture"
 TAXONOMY = REPO / "taxonomy.yaml"
 
 
-# ---------------------------------------------------------------- corpus model
+# ---------------------------------------------------------------- collection model
 
 def load_taxonomy() -> dict:
     return yaml.safe_load(TAXONOMY.read_text())
@@ -914,7 +914,7 @@ def cmd_selftest(args) -> int:
         if entries else set()
     uncovered = {v for v in evas} - covered
     if uncovered:
-        print(f"selftest WARN: EVASION_MATRIX families with no corpus entry: {sorted(uncovered)}")
+        print(f"selftest WARN: EVASION_MATRIX families with no collection entry: {sorted(uncovered)}")
     nchains = len(discover_chains())
     if ok:
         print(f"selftest OK — {len(mal)} malicious / {len(benign)} benign / "
@@ -967,7 +967,7 @@ def cmd_inventory(args) -> int:
             if any(part.startswith(".") and part not in (".", "..") for part in p.parts[:-1]) \
                or rel != os.path.basename(rel) and "/." in "/" + rel:
                 pass
-    print("file types across corpus:")
+    print("file types across collection:")
     for k, v in exts.most_common():
         print(f"  {k:8s} {v}")
     if specials:
@@ -1020,7 +1020,7 @@ def _build_parser() -> argparse.ArgumentParser:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
 
-    sub.add_parser("lint", help="validate corpus").set_defaults(func=cmd_lint)
+    sub.add_parser("lint", help="validate collection").set_defaults(func=cmd_lint)
 
     sub.add_parser("index", help="regenerate indexes").set_defaults(func=cmd_index)
 
@@ -1030,7 +1030,7 @@ def _build_parser() -> argparse.ArgumentParser:
     new.add_argument("--name", required=True)
     new.set_defaults(func=cmd_new)
 
-    scan = sub.add_parser("scan", help="run scanners against corpus")
+    scan = sub.add_parser("scan", help="run scanners against collection")
     scan.add_argument("--scanners", default="skillspector,cisco")
     llm = scan.add_mutually_exclusive_group()
     llm.add_argument("--llm", action="store_true",

@@ -6,9 +6,9 @@
 
 ## Executive Summary
 
-SkillsGoat is a **high-quality, comprehensive corpus** (76 atomic + 35 compound = 111 fixtures) with excellent ground truth. However, the **developer experience for scanner/model evaluation has significant friction points** that prevent "zero-to-results" in under 5 minutes.
+SkillsGoat is a **high-quality, comprehensive collection** (76 atomic + 35 compound = 111 fixtures) with excellent ground truth. However, the **developer experience for scanner/model evaluation has significant friction points** that prevent "zero-to-results" in under 5 minutes.
 
-**Bottom line:** The corpus is excellent. The tooling around it needs work to make it a "drop-in" benchmark for any scanner or model.
+**Bottom line:** The collection is excellent. The tooling around it needs work to make it a "drop-in" benchmark for any scanner or model.
 
 ---
 
@@ -17,7 +17,7 @@ SkillsGoat is a **high-quality, comprehensive corpus** (76 atomic + 35 compound 
 ### ✅ What Works Well
 | Aspect | Status | Notes |
 |--------|--------|-------|
-| Corpus quality | ✅ Excellent | 76 atomic + 35 compound = 111 fixtures, rich ground truth |
+| Collection quality | ✅ Excellent | 76 atomic + 35 compound = 111 fixtures, rich ground truth |
 | Ground truth format | ✅ Excellent | `expected.yaml` with AST10/SkillSpector/V-code mappings |
 | Categories/taxonomy | ✅ Excellent | 35 categories, well-organized tiers (000-300) |
 | Safety practices | ✅ Excellent | Canaries, inert payloads, SAFETY.md |
@@ -55,7 +55,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "skillsgoat"
 version = "0.2.0"
-description = "Vulnerable-by-design AI agent skill corpus for scanner evaluation"
+description = "Vulnerable-by-design AI agent skill collection for scanner evaluation"
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.11"
@@ -301,7 +301,7 @@ goat scan --scanners skillspector,cisco --fail-on blind>5 --format sarif --outpu
 |---------|----------------|-------------|----------|
 | **SkillSpector** | ✅ Full (static + LLM) | Adapter refactor | 🟢 Done |
 | **Cisco skill-scanner** | ✅ Static | LLM adapter, SARIF | 🟠 High |
-| **Snyk Labs** | ✅ CLI (`snyk-agent-scan`, 12-entry subset) | Full corpus + Labs UI protocol already documented | 🟡 Medium |
+| **Snyk Labs** | ✅ CLI (`snyk-agent-scan`, 12-entry subset) | Full collection + Labs UI protocol already documented | 🟡 Medium |
 | **Nova Hunting** | ⚠️ Adapter present, eval is all JSON parse errors | Finish parser, re-run matrix | 🟠 High |
 | **Socket / Gen / Metano / Manifold / Air** | ⚠️ UI protocol + drivers; Metano snapshot only; Socket/Gen `unsupported` | Three-surface plugin matrix (`evaluations/ui/PROTOCOL.md`) | 🟠 High |
 | **Invariant/Fable** | ❌ | Proxy adapter | 🟡 Medium |
@@ -388,17 +388,17 @@ make install && make scan-skillspector
 | Date | Decision | Rationale |
 |------|----------|-----------|
 | 2026-08-27 | Adopt `pyproject.toml` + `src/` layout | Modern Python packaging; enables `pip install -e .` |
-| 2026-08-27 | Scanner adapter pattern | Decouple corpus from scanners; enable plugin ecosystem |
+| 2026-08-27 | Scanner adapter pattern | Decouple collection from scanners; enable plugin ecosystem |
 | 2026-08-27 | SARIF + JUnit + HTML output | Standard formats for CI/CD integration |
 | 2026-08-27 | `make scan-all` as golden path | Matches developer expectations |
 | 2026-08-27 | `--fail-on` for CI gates | Enables PR blocking on regression |
-| 2026-09-08 | Land packaging/install/plugin-distribution on PR #1; treat remaining items below as the follow-up plan | Corpus + install path shipped half-wired; do not start Phase 2/3 until P0 is closed |
+| 2026-09-08 | Land packaging/install/plugin-distribution on PR #1; treat remaining items below as the follow-up plan | Collection + install path shipped half-wired; do not start Phase 2/3 until P0 is closed |
 
 ---
 
 ## Follow-up from packaging PR (2026-09-08)
 
-Items found unfinished on `feat/install-packaging-plugin-distribution` ([PR #1](https://github.com/optimuslabs-io/skillsgoat/pull/1)). Do these before new corpus work.
+Items found unfinished on `feat/install-packaging-plugin-distribution` ([PR #1](https://github.com/optimuslabs-io/skillsgoat/pull/1)). Do these before new collection work.
 
 ### P0 — correctness (broken or lying)
 

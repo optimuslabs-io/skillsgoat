@@ -1,6 +1,6 @@
 # Contributing
 
-SkillsGoat is a research corpus. **Clone and test in a local or cloud
+SkillsGoat is a research collection. **Clone and test in a local or cloud
 sandbox** you already trust. See [docs/SAFETY.md](docs/SAFETY.md) for
 disclaimers: inert C2 does not mean it is safe to run pasture scripts or
 a live agent on a machine with secrets. This repo does not endorse a
@@ -50,7 +50,7 @@ URL. Do not copy live C2, wallets, or ransomware. Cite techniques in
 
 Run `goat lint`, `goat selftest`, `goat scan --blind --assert-only`, and
 `pytest` in a sandbox before opening a PR. If you add or re-run a scanner
-matrix, update `evaluations/README.md` with date, scanner version, corpus
+matrix, update `evaluations/README.md` with date, scanner version, collection
 snapshot, and `"blind": true` in the same PR. `goat scan` is static-only
 unless you pass `--llm` (that uploads skill text). Do that from a sandbox
 too. Do not cite `--no-blind` scores.

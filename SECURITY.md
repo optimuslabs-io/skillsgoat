@@ -1,6 +1,6 @@
 # Security Policy
 
-This repository is a labeled research corpus of **inert-C2** malicious-looking
+This repository is a labeled research collection of **inert-C2** malicious-looking
 agent skills. Clone and **test in a local or cloud sandbox** you already
 trust. Inert URLs do not mean it is safe to run pasture scripts or a live
 agent next to production secrets. We do not endorse a sandbox vendor.
@@ -30,7 +30,7 @@ this repo (or email the maintainers listed in the GitHub org).
 Do **not** file a public issue with a working exploit against the
 harness.
 
-## Scanner misses on the corpus
+## Scanner misses on the collection
 
 If a maintained scanner fails a SkillsGoat fixture it claims to cover,
 notify the vendor privately first. Withhold mechanism-level detail until

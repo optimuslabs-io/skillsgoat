@@ -18,7 +18,7 @@ Allowed hosts (from their JS bundle): `clawhub.ai`, `www.clawhub.ai`, `clawhub.c
 
 SkillsGoat fixtures are not on ClawHub. Publishing them there would put canaries and malicious-looking skills on a public marketplace, so they were not published.
 
-## Pipeline probe (not corpus)
+## Pipeline probe (not a collection score)
 
 `skillscanner` returned SAFE because `isVerifiedAuthor: true`, with the reason "verified author … contains no risky components." That is an author-trust shortcut, not a walk of a plugin tree.
 

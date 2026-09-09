@@ -53,7 +53,7 @@ why: |
 **Structural-blindness metric** = share of chains where the scanner scored
 *every* node SAFE/CLEAN in node mode AND returned no graph-level finding.
 100% means the scanner is structurally blind to compounding — the thesis
-result of this corpus layer.
+result of this collection layer.
 
 ## Contexts
 

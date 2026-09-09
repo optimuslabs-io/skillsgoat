@@ -9,7 +9,7 @@
 |---|---|
 | Local `SKILL.md` / plugin zip | **No surface** on skills.sh or socket.dev |
 | GitHub tree URL paste | **No form** |
-| `https://www.skills.sh/optimuslabs-io/skillsgoat` | **404** — corpus not indexed |
+| `https://www.skills.sh/optimuslabs-io/skillsgoat` | **404** — repo not indexed |
 | `GET add-skill.vercel.sh/audit?source=optimuslabs-io/skillsgoat&skills=credential-doctor` | `{"credential-doctor":{}}` — empty, no Socket/Gen/Snyk payload |
 | Indexed skill `vercel-labs/skills/find-skills` | Socket **pass**, 0 alerts, score 90 (analyzed 2026-03-18) |
 

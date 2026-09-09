@@ -21,7 +21,7 @@
   OUTSIDE each `skill/` directory. Point scanners at `skill/` only.
 - Every malicious entry embeds a unique canary token
   (`GOAT-CANARY-<id>`) inside its files. If these strings ever surface in a
-  public registry, dataset, or scanner training corpus, that leak is traceable
+  public registry, dataset, or scanner training set, that leak is traceable
   back to this repo and to any contaminated evaluation set.
 - **Published scores must use `goat scan --blind`.** That mode copies each
   fixture into a hashed directory, replaces canaries with one neutral UUID,
@@ -32,7 +32,7 @@
 ## What a CLEAN scan certifies
 
 A scanner returning SAFE on these fixtures certifies detection of this
-corpus's known patterns only. See README "Scope & Exclusions": platform
+collection's known patterns only. See README "Scope & Exclusions": platform
 CVEs, prompt-only exploitation of installed skills, registry lifecycle
 attacks, and model-layer attacks are out of scope by construction.
 
@@ -40,7 +40,7 @@ attacks, and model-layer attacks are out of scope by construction.
 
 Run SkillsGoat in a **local or cloud sandbox**. That includes `goat lint`,
 `goat selftest`, `pytest`, `goat scan`, and especially `./setup --goat`.
-The corpus is a labeled goat. Network C2 is inert; **executing a pasture
+This collection is a labeled goat. Network C2 is inert; **executing a pasture
 script or loading fixtures into a live agent is not**.
 
 **Local.** Isolate the test process (and any agent) from `$HOME` secrets
@@ -83,7 +83,7 @@ laptop reproduce still needs a sandbox.
 ### Disclaimers
 
 - **No safety warranty.** Inert URLs (`*.example`, RFC 5737) mean the
-  corpus must not phone home. They do **not** mean it is safe to run skill
+  collection must not phone home. They do **not** mean it is safe to run skill
   scripts or a coding agent against this tree on a machine with secrets.
 - **Harness tests vs agent tests.** `goat lint` / `selftest` / `pytest`
   do not execute pasture scripts. `goat scan` shells out to third-party
@@ -95,7 +95,7 @@ laptop reproduce still needs a sandbox.
 - **Do not** clone, test, or `--goat` next to production SSH keys, cloud
   creds, or a daily-driver agent profile.
 - Canary tokens (`GOAT-CANARY-*`) make a public skills.sh listing
-  traceable. Do not `npx skills add` this corpus.
+  traceable. Do not `npx skills add` this repo.
 
 ## Handling rules
 
@@ -107,7 +107,7 @@ skills add` as the default path.
 
 - Run tests and `--goat` in a local or cloud sandbox you already trust.
   Do not do either on a machine with production secrets.
-- Do not `npx skills add` this corpus; canary tokens (`GOAT-CANARY-*`)
+- Do not `npx skills add` this repo; canary tokens (`GOAT-CANARY-*`)
   make a skills.sh listing traceable.
 - Run scanners as subprocesses with network egress you understand
   (SkillSpector queries OSV.dev even when static). `--llm` sends file
@@ -124,5 +124,5 @@ or 90 days pass. Evaluation reports should note vendor-contact status.
 
 Dependency scanners (Dependabot etc.) will flag pinned vulnerable versions
 inside fixture manifests (e.g., the transitive-poisoning entry's
-requirements.txt). These are intentional corpus content, not dependencies.
+requirements.txt). These are intentional collection content, not dependencies.
 Alerts are dismissed as `not_used` with an explanatory comment.

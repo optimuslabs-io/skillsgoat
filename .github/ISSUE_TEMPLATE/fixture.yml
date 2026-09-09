@@ -1,7 +1,7 @@
 name: New fixture
 description: Propose or contribute a pasture entry. Payloads must stay inert.
 title: "[fixture] "
-labels: ["corpus"]
+labels: ["collection"]
 body:
   - type: markdown
     attributes:

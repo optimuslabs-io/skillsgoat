@@ -4,7 +4,7 @@ Run clone, tests, and `--goat` in a **local or cloud sandbox** you already
 trust. Default path: clone, `./setup`, then `goat lint` / `goat selftest` /
 `pytest`. Canonical copy: [.agents/install-block.md](../.agents/install-block.md).
 `./setup --goat` loads the fixtures into the agent. Do not `npx skills add`
-this corpus. We do not endorse a sandbox vendor. Disclaimers: [docs/SAFETY.md](SAFETY.md).
+this repo. We do not endorse a sandbox vendor. Disclaimers: [docs/SAFETY.md](SAFETY.md).
 
 ---
 
@@ -70,7 +70,7 @@ A CLEAN verdict means "passed the patterns *this* tool knows." See README Scope 
 
 ## 2) Vendor / researcher: "I build a scanner"
 
-The corpus is your regression suite and adversarial benchmark:
+The collection is your regression suite and adversarial benchmark:
 
 ```bash
 goat scan --scanners yours --mode atomic      # wire your CLI into SCANNER_CONFIGS in goat.main (~5 lines)
@@ -80,7 +80,7 @@ goat scan --scanners skillspector --mode both # compare against incumbents
 - Ground truth per entry: `pasture/*/*/expected.yaml`; per chain: `pasture/compound-chain/*/chain.yaml`
 - Score = caught / weak-flagged / bypassed over 66 malicious entries + FP-rate over 10 benign twins + structural-blindness over 35 chains. Cite only `--blind` matrices (`"blind": true` in `matrix.json`).
 - Ship fixes, re-run, watch bypass count drop. The ToB-derived entries (`300-bytecode-poisoning`, `300-archive-indirection-docx`) show which past gaps closed between scanner versions
-- Never train/tune on the corpus then report scores on it as if held-out; disclose tuning. `--blind` strips canaries so a grep of `GOAT-CANARY-*` cannot grade the set.
+- Never train/tune on the collection then report scores on it as if held-out; disclose tuning. `--blind` strips canaries so a grep of `GOAT-CANARY-*` cannot grade the set.
 
 ---
 
@@ -90,7 +90,7 @@ Two gates:
 
 ```yaml
 # .github/workflows/skill-gate.yml (sketch)
-- run: goat.py lint                                   # corpus hygiene (if contributing)
+- run: goat.py lint                                   # collection hygiene (if contributing)
 - run: skill-scanner scan-all ./skills --fail-on-severity high
 - run: goat scan --scanners cisco --mode node || true   # track blindness trend
 ```

@@ -1,7 +1,7 @@
 # Snyk Labs Skill Inspector — Evaluation Report
 
 **Date:** August 2026 | **Scanner:** Snyk Agent Scan (web UI, anonymous)  
-**Corpus:** 12 tier-1 entries from SkillsGoat corpus (6 malicious, 3 benign, 3 calibration)
+**Collection:** 12 tier-1 entries from SkillsGoat (6 malicious, 3 benign, 3 calibration)
 
 ---
 
@@ -101,4 +101,4 @@ Snyk's Skill Inspector is **the most accurate scanner when it works** but **unre
 
 ---
 
-*Generated as part of SkillsGoat evaluation corpus. See `results.csv` for raw data, `evidence/` for raw outputs.*
+*Generated as part of SkillsGoat evaluation. See `results.csv` for raw data, `evidence/` for raw outputs.*

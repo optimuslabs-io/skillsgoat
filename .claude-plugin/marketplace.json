@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "skillsgoat",
-      "description": "Deliberately vulnerable AI agent skill corpus. Installing this plugin loads the fixtures into the agent. Endpoints are inert.",
+      "description": "Deliberately vulnerable AI agent skill collection. Installing this plugin loads the fixtures into the agent. Endpoints are inert.",
       "version": "0.3.0",
       "author": {
         "name": "Optimus Labs",
