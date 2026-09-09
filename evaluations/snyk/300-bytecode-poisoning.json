@@ -1,7 +1,7 @@
 {
   "scan_path_responses": [
     {
-      "client": "/Users/nipung/skillsgoat/pasture/hidden-artifact-packing/300-bytecode-poisoning/skill",
+      "client": "<REPO>/pasture/hidden-artifact-packing/300-bytecode-poisoning/skill",
       "path": "~/skillsgoat/pasture/hidden-artifact-packing/300-bytecode-poisoning",
       "server_risks": [],
       "skill_risks": [

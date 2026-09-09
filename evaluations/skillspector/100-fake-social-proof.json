@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "sql-optimizer-pro",
-    "source": "/Users/nipung/skillsgoat/pasture/reputation-laundering/100-fake-social-proof/skill",
-    "scanned_at": "2026-09-03T00:54:24.282217+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/55fa5bfa6c22e1b2/skill",
+    "scanned_at": "2026-09-09T05:49:05.794044+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 11,
       "executable": false,
-      "size_bytes": 354,
+      "size_bytes": 357,
       "source_url": null,
       "source_identity": null,
       "source_digest": null

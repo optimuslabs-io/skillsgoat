@@ -6,7 +6,7 @@
 
 ## Executive Summary
 
-SkillsGoat is a **high-quality, comprehensive corpus** (70 atomic + 35 compound = 105 fixtures) with excellent ground truth. However, the **developer experience for scanner/model evaluation has significant friction points** that prevent "zero-to-results" in under 5 minutes.
+SkillsGoat is a **high-quality, comprehensive corpus** (76 atomic + 35 compound = 111 fixtures) with excellent ground truth. However, the **developer experience for scanner/model evaluation has significant friction points** that prevent "zero-to-results" in under 5 minutes.
 
 **Bottom line:** The corpus is excellent. The tooling around it needs work to make it a "drop-in" benchmark for any scanner or model.
 
@@ -17,7 +17,7 @@ SkillsGoat is a **high-quality, comprehensive corpus** (70 atomic + 35 compound 
 ### ✅ What Works Well
 | Aspect | Status | Notes |
 |--------|--------|-------|
-| Corpus quality | ✅ Excellent | 70 atomic + 35 compound = 105 fixtures, rich ground truth |
+| Corpus quality | ✅ Excellent | 76 atomic + 35 compound = 111 fixtures, rich ground truth |
 | Ground truth format | ✅ Excellent | `expected.yaml` with AST10/SkillSpector/V-code mappings |
 | Categories/taxonomy | ✅ Excellent | 35 categories, well-organized tiers (000-300) |
 | Safety practices | ✅ Excellent | Canaries, inert payloads, SAFETY.md |
@@ -301,7 +301,9 @@ goat scan --scanners skillspector,cisco --fail-on blind>5 --format sarif --outpu
 |---------|----------------|-------------|----------|
 | **SkillSpector** | ✅ Full (static + LLM) | Adapter refactor | 🟢 Done |
 | **Cisco skill-scanner** | ✅ Static | LLM adapter, SARIF | 🟠 High |
-| **Snyk Labs** | ⚠️ UI only | CLI wrapper or API | 🟠 High |
+| **Snyk Labs** | ✅ CLI (`snyk-agent-scan`, 12-entry subset) | Full corpus + Labs UI protocol already documented | 🟡 Medium |
+| **Nova Hunting** | ⚠️ Adapter present, eval is all JSON parse errors | Finish parser, re-run matrix | 🟠 High |
+| **Socket / Gen / Metano / Manifold / Air** | ⚠️ UI protocol + drivers; Metano snapshot only; Socket/Gen `unsupported` | Three-surface plugin matrix (`evaluations/ui/PROTOCOL.md`) | 🟠 High |
 | **Invariant/Fable** | ❌ | Proxy adapter | 🟡 Medium |
 | **Trail of Bits aid** | ✅ Standalone | Wrapper | 🟡 Medium |
 | **Semgrep** | ❌ | Rules + wrapper | 🟡 Medium |
@@ -311,16 +313,16 @@ goat scan --scanners skillspector,cisco --fail-on blind>5 --format sarif --outpu
 
 ## Quick Wins (Do This Week)
 
-| Task | Effort | Impact |
-|------|--------|--------|
-| Add `pyproject.toml` + `pip install -e .` | 30 min | 🔴 Critical |
-| Add `Dockerfile` + `docker-compose.yml` | 30 min | 🔴 Critical |
-| Add `Makefile` with `make scan-all` | 20 min | 🔴 Critical |
-| Add `--format sarif|junit|jsonl` to scan | 2 hrs | 🟠 High |
-| Add GitHub Actions workflow | 1 hr | 🟠 High |
-| Extract scanner adapters (SkillSpector, Cisco) | 3 hrs | 🟠 High |
-| Add `--output-dir` + per-entry JSON | 1 hr | 🟠 High |
-| Add `--fail-on` for CI gates | 30 min | 🟠 High |
+| Task | Effort | Impact | Status |
+|------|--------|--------|--------|
+| Add `pyproject.toml` + `pip install -e .` | 30 min | 🔴 Critical | ✅ Files exist; `goat.py` vs `src/goat` still diverged |
+| Add `Dockerfile` + `docker-compose.yml` | 30 min | 🔴 Critical | ⚠️ Dockerfile installs extras before `COPY .` |
+| Add `Makefile` with `make scan-all` | 20 min | 🔴 Critical | ⚠️ Duplicate `report` / `report-chains` targets; first loop is invalid |
+| Add `--format sarif|junit|jsonl` to scan | 2 hrs | 🟠 High | ❌ |
+| Add GitHub Actions workflow | 1 hr | 🟠 High | ❌ |
+| Extract scanner adapters (SkillSpector, Cisco) | 3 hrs | 🟠 High | ⚠️ `src/goat/scanners/` exists but scan path still uses `SCANNER_CONFIGS` |
+| Add `--output-dir` + per-entry JSON | 1 hr | 🟠 High | ❌ |
+| Add `--fail-on` for CI gates | 30 min | 🟠 High | ❌ (`make ci-gate` sketched, unproven) |
 
 ---
 
@@ -390,19 +392,63 @@ make install && make scan-skillspector
 | 2026-08-27 | SARIF + JUnit + HTML output | Standard formats for CI/CD integration |
 | 2026-08-27 | `make scan-all` as golden path | Matches developer expectations |
 | 2026-08-27 | `--fail-on` for CI gates | Enables PR blocking on regression |
+| 2026-09-08 | Land packaging/install/plugin-distribution on PR #1; treat remaining items below as the follow-up plan | Corpus + install path shipped half-wired; do not start Phase 2/3 until P0 is closed |
+
+---
+
+## Follow-up from packaging PR (2026-09-08)
+
+Items found unfinished on `feat/install-packaging-plugin-distribution` ([PR #1](https://github.com/optimuslabs-io/skillsgoat/pull/1)). Do these before new corpus work.
+
+### P0 — correctness (broken or lying)
+
+1. [ ] **One CLI.** Delete `goat_cli.py` and `src/goat/main_old.py`. Make `goat.py` and `src/goat/main.py` the same program (`setup` lives only on root `goat.py` today; `pip install` `goat` has Nova configs but no `setup`).
+2. [x] **Restore bytecode payload.** `300-bytecode-poisoning` deleted `utils.cpython-314.pyc`. Regenerate with `python3 tools/gen_binaries.py` so the ToB primitive still has divergent `.pyc`.
+3. [x] **Regenerate `docs/CHAINS.md`.** Disk has 35 chains including `c35-encrypted-prompt-injection`; catalog still says 34 and omits C35. Run `python3 goat.py chain-report`.
+4. [ ] **Fix `Makefile`.** `report` and `report-chains` are defined twice; the first `report-scanners` loop is syntactically invalid.
+5. [ ] **Fix Dockerfile.** `pip install -e ".[dev,scanners]"` runs before `COPY .`, so the editable package is missing at install time.
+
+### P1 — finish what this PR started
+
+6. [ ] **Wire or delete `src/goat/scanners/`.** Adapter package is unused; `cmd_scan` still uses hardcoded `SCANNER_CONFIGS`. Either call `create_scanner()` from the scan path or drop the unused module.
+7. [ ] **Nova eval that is not all errors.** Adapter JSON parse does not match `novarun` output (`evaluations/nova/report.md`). Fix parser, re-run matrix.
+8. [ ] **Score new fixtures.** Plugin-distribution (`200-clawhub-listing`, `200-vibe-coded-plugin`, `200-vercel-skills-sh-pack`, `200-ide-native-impersonation`) and C35 are absent from Cisco/SkillSpector/Snyk matrices.
+9. [ ] **`tests/` directory** referenced by `pyproject.toml` does not exist. Add lint/selftest (and one adapter) tests or remove the pytest config.
+10. [x] **Stale counts.** After P0 catalog regen, confirm README “74 fixtures + 35 chains” and `USABILITY_REVIEW` fixture counts.
+
+### P2 — eval coverage and CI
+
+11. [ ] **UI three-surface matrix** for Metano / Gen / Socket / Manifold / Air per `evaluations/ui/PROTOCOL.md` (skill-md / directory / plugin). Today: Metano form snapshot only; Socket/Gen scored `unsupported`; Manifold/Air not probed. Do not upload pasture fixtures to public report feeds.
+12. [ ] **Snyk CLI beyond the 12-entry subset** once P1 matrices exist.
+13. [ ] GitHub Actions: `goat lint` + `goat selftest` on PR (scanners optional).
+14. [ ] `--format sarif|junit`, `--fail-on`, `goat doctor`.
+15. [ ] Document scanner adapter SDK only after adapters are actually on the scan path.
+
+### P3 — deferred (README roadmap; not this follow-up)
+
+16. [ ] Version-drift suite (benign→poisoned pairs).
+17. [ ] Judge-benchmark leaderboard.
+18. [ ] Live-agent detonation / gym layer.
+19. [ ] Publish install routes after PR merge (`claude plugins marketplace add`, `npx skills add`) and verify they resolve.
+
+### Left uncommitted on purpose
+
+- `src/goat/main_old.py` — delete in P0, do not merge as a third CLI.
 
 ---
 
 ## Next Steps
 
-1. [ ] Create `pyproject.toml` + `Dockerfile` + `Makefile`
-2. [ ] Refactor `goat.py` → `src/goat/` package with scanner adapters
+Phase 1 files landed on PR #1; they are not done. Execute **P0 → P1 → P2** above. P3 stays roadmap.
+
+1. [x] Create `pyproject.toml` + `Dockerfile` + `Makefile` (repair in P0)
+2. [ ] Refactor `goat.py` → `src/goat/` package with scanner adapters **wired into `scan`**
 3. [ ] Add GitHub Actions workflow
-3. [ ] Add SARIF/JUnit/HTML output formats
-4. [ ] Write integration test for SkillSpector adapter
-5. [ ] Add `goat doctor` command for environment diagnostics
-5. [ ] Document scanner adapter SDK for vendors
+4. [ ] Add SARIF/JUnit/HTML output formats
+5. [ ] Write integration test for SkillSpector adapter (`tests/` missing)
+6. [ ] Add `goat doctor` command for environment diagnostics
+7. [ ] Document scanner adapter SDK for vendors
 
 ---
 
-*Review complete. Ready to implement Phase 1.*
+*Updated 2026-09-08 with unfinished work from the packaging/install PR.*

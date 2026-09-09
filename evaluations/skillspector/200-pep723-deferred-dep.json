@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "report-gen",
-    "source": "/Users/nipung/skillsgoat/pasture/deferred-resolution/200-pep723-deferred-dep/skill",
-    "scanned_at": "2026-09-03T00:53:42.046803+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/b99096bcf1a33dc1/skill",
+    "scanned_at": "2026-09-09T05:47:05.815635+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 12,
       "executable": false,
-      "size_bytes": 236,
+      "size_bytes": 237,
       "source_url": null,
       "source_identity": null,
       "source_digest": null

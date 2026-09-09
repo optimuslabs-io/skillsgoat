@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "dev-env-setup",
-    "source": "/Users/nipung/skillsgoat/pasture/llm-judge-manipulation/300-corporate-narrative/skill",
-    "scanned_at": "2026-09-03T00:54:07.627116+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/87b843d23cafe41e/skill",
+    "scanned_at": "2026-09-09T05:48:10.135887+00:00"
   },
   "risk_assessment": {
     "score": 22,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 19,
       "executable": false,
-      "size_bytes": 608,
+      "size_bytes": 609,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -26,7 +26,7 @@
       "type": "shell",
       "lines": 23,
       "executable": true,
-      "size_bytes": 706,
+      "size_bytes": 715,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "PE3",
-      "finding_id": "finding-671bd442e6624d2aa6057f8e1c2b3528",
+      "finding_id": "finding-9d922ff3130e490cb985a024d93657b9",
       "category": "Privilege Escalation",
       "pattern": "Credential Access",
       "severity": "HIGH",

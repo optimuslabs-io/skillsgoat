@@ -1,7 +1,7 @@
 {
   "scan_path_responses": [
     {
-      "client": "/Users/nipung/skillsgoat/pasture/calibration/000-env-harvest-loop/skill",
+      "client": "<REPO>/pasture/calibration/000-env-harvest-loop/skill",
       "path": "~/skillsgoat/pasture/calibration/000-env-harvest-loop",
       "server_risks": [],
       "skill_risks": [

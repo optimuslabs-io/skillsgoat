@@ -1,6 +1,6 @@
 {
   "skill_name": "data-analyst",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/compound-chain/300-inference-hijack/nodes/consumer/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/chains/e6ef677a8fb18b28/nodes/consumer/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.15401697158813477,
-  "duration_ms": 154,
+  "scan_duration_seconds": 0.1523146629333496,
+  "duration_ms": 152,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T04:02:33.247493+00:00",
+  "timestamp": "2026-09-09T06:18:49.857024+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

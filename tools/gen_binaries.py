@@ -4,7 +4,12 @@
 Run once from repo root:  python3 tools/gen_binaries.py
 All payloads are INERT simulations (example endpoints, no real malware).
 """
-import struct, zipfile, io, os, py_compile, sys, tempfile, pathlib
+import io
+import os
+import pathlib
+import py_compile
+import tempfile
+import zipfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PACK = ROOT / "pasture" / "hidden-artifact-packing"
@@ -22,12 +27,14 @@ def format_text(text):
     return text
 '''
 
+# The committed filename is utils.cpython-314.pyc on purpose: it is an inert
+# scanner artifact, not an importable module. requires-python is 3.11 and CI
+# runs 3.12 — do not "fix" the tag to match the harness runtime.
 def gen_pyc():
     d = PACK / "300-bytecode-poisoning" / "skill" / "scripts"
     src = d / "_poisoned_src.py"
     src.write_text(POISONED)
-    ver = sys.version_info
-    out = d / f"utils.cpython-{ver.major}{ver.minor}.pyc"
+    out = d / "utils.cpython-314.pyc"
     py_compile.compile(str(src), cfile=str(out), doraise=True)
     src.unlink()
     print("wrote", out.relative_to(ROOT))
@@ -100,5 +107,8 @@ def gen_pzip():
     print("wrote", target.relative_to(ROOT))
 
 if __name__ == "__main__":
-    gen_pyc(); gen_docx(); gen_sfs(); gen_pzip()
+    gen_pyc()
+    gen_docx()
+    gen_sfs()
+    gen_pzip()
     print("all artifacts generated")

@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "meeting-notes",
-    "source": "/Users/nipung/skillsgoat/pasture/context-truncation-padding/200-whitespace-below-fold/skill",
-    "scanned_at": "2026-09-03T00:53:35.811563+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/f55e97a0144bc521/skill",
+    "scanned_at": "2026-09-09T05:46:51.571967+00:00"
   },
   "risk_assessment": {
     "score": 31,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 6013,
       "executable": false,
-      "size_bytes": 14401,
+      "size_bytes": 14400,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -26,7 +26,7 @@
   "issues": [
     {
       "id": "P9",
-      "finding_id": "finding-6bbb2f8f46334af9995afef6319590de",
+      "finding_id": "finding-9dffefedd950491ba695d5bea7cfe5cd",
       "category": "Prompt Injection",
       "pattern": "Whitespace Padding",
       "severity": "HIGH",
@@ -39,7 +39,7 @@
       "finding": "U+0020 x8000, \\n x6001",
       "explanation": "Large whitespace padding was detected (a block of blank lines or a long run of spaces). This can push injected instructions below or to the right of the visible area so a human reviewer never sees them while the agent still reads them. Manual review of the hidden content is recommended.",
       "remediation": "Remove the large whitespace padding (blank-line blocks or long space runs) and review any content hidden below or to the right of it. Keep skill files compact and reviewable so no instructions can be concealed off-screen.",
-      "code_snippet": "Paste notes; get back decisions / actions / owners. Nothing else.\n\n<!-- GOAT-CANARY-200-whitespace-below-fold -->\n\n\n\n",
+      "code_snippet": "Paste notes; get back decisions / actions / owners. Nothing else.\n\n<!-- 77fa2459-797d-4644-85a8-fa9087614c86 -->\n\n\n\n",
       "intent": null,
       "tags": [
         "Prompt Injection"
@@ -56,7 +56,7 @@
     },
     {
       "id": "MP2",
-      "finding_id": "finding-92f95a8d6b6d4a338235a0114967be11",
+      "finding_id": "finding-761d7d7437da419b8e363cc8d86e4be6",
       "category": "Memory Poisoning",
       "pattern": "Context Window Stuffing",
       "severity": "MEDIUM",
@@ -86,7 +86,7 @@
     },
     {
       "id": "P9",
-      "finding_id": "finding-81aa3aad52a749618d4268e00d6d1315",
+      "finding_id": "finding-9f713c2d64e640b9b5e71c513644da44",
       "category": "Prompt Injection",
       "pattern": "Whitespace Padding",
       "severity": "MEDIUM",

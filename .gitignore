@@ -1,8 +1,12 @@
 __pycache__/
-*.py[cod]!pasture/**/skill/**
+*.py[cod]
+!pasture/**/skill/**
 evaluations/*/report.json
 .DS_Store
 .venv/
+
+# detonation HOME override (SKILLSGOAT_SANDBOX default)
+.sandbox-home/
 
 # plans & talk materials stay local-only
 /docs/TALK_ABSTRACT.md
@@ -10,6 +14,8 @@ evaluations/*/report.json
 /plans/
 *.plan.md
 /evaluations/.composite/
+/evaluations/.blind/
+/evaluations/.rescan.log
 evaluations/snyk-labs/evidence/*.png
 evaluations/ui/artifacts/
 evaluations/ui/probes/**/*.png

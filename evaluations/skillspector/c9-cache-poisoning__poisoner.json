@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "dep-preheat",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/300-cache-poisoning/nodes/poisoner/skill",
-    "scanned_at": "2026-08-24T23:31:49.783209+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-_xjsojvy/chains/03378fbfcbd58478/nodes/poisoner/skill",
+    "scanned_at": "2026-09-09T05:56:50.736598+00:00"
   },
   "risk_assessment": {
     "score": 29,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 10,
       "executable": false,
-      "size_bytes": 224,
+      "size_bytes": 237,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -26,7 +26,7 @@
       "type": "shell",
       "lines": 17,
       "executable": true,
-      "size_bytes": 549,
+      "size_bytes": 572,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "E2",
-      "finding_id": "finding-4d126968b31945a0906459cf5f101ba6",
+      "finding_id": "finding-3ae95f8d846843a2a1f00aa436583307",
       "category": "Data Exfiltration",
       "pattern": "Env Variable Harvesting",
       "severity": "HIGH",
@@ -66,7 +66,7 @@
     },
     {
       "id": "LP3",
-      "finding_id": "finding-b4c35a516b894d44979de1d86ffea257",
+      "finding_id": "finding-08e169d36e5944939c9bd84ca8c25d8d",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -99,7 +99,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -144,6 +144,18 @@
       },
       {
         "analyzer_id": "behavioral_taint_tracking",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
+        "analyzer_id": "bundled_execution_surface",
         "status": "not_applicable",
         "planned_work": 0,
         "completed": 0,

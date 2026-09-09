@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "release-notes-writer",
-    "source": "/Users/nipung/skillsgoat/pasture/composition-trust-transfer/300-benign-caller-malicious-callee/skill",
-    "scanned_at": "2026-09-03T00:53:33.105148+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/be822b017f107caa/skill",
+    "scanned_at": "2026-09-09T05:46:43.989131+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 12,
       "executable": false,
-      "size_bytes": 379,
+      "size_bytes": 373,
       "source_url": null,
       "source_identity": null,
       "source_digest": null

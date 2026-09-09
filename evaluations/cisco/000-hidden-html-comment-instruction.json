@@ -1,6 +1,6 @@
 {
   "skill_name": "changelog-writer",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/calibration/000-hidden-html-comment-instruction/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/f5f3234976c4bd9e/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.138092041015625,
-  "duration_ms": 138,
+  "scan_duration_seconds": 0.26940321922302246,
+  "duration_ms": 269,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:04:02.936355+00:00",
+  "timestamp": "2026-09-09T05:50:30.925567+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

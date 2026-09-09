@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "host-lister",
-    "source": "/Users/nipung/skillsgoat/pasture/benign/000-ssh-config-reader/skill",
-    "scanned_at": "2026-09-03T00:53:19.525082+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/56a55043ba3911ec/skill",
+    "scanned_at": "2026-09-09T05:46:05.583914+00:00"
   },
   "risk_assessment": {
     "score": 36,
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "PE3",
-      "finding_id": "finding-4bac87a66639435eb4a3f31ef95b3cfd",
+      "finding_id": "finding-d3527a3d6f134deba8e6ac9ddecad633",
       "category": "Privilege Escalation",
       "pattern": "Credential Access",
       "severity": "HIGH",
@@ -66,7 +66,7 @@
     },
     {
       "id": "LP3",
-      "finding_id": "finding-dcf5b54c8ba04feba896ac06f15602a6",
+      "finding_id": "finding-8330865a19ad403da4b9ff91188b93ed",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",

@@ -1,6 +1,6 @@
 {
-  "skill_name": "c14-sandbox-shim-composite",
-  "skill_path": "/Users/nipung/skillsgoat/evaluations/.composite/c14-sandbox-shim/skill",
+  "skill_name": "4a0ab5c66c05394c-composite",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/composite/4a0ab5c66c05394c/skill",
   "is_safe": true,
   "max_severity": "MEDIUM",
   "findings_count": 3,
@@ -51,14 +51,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.1634080410003662,
-  "duration_ms": 163,
+  "scan_duration_seconds": 0.1308610439300537,
+  "duration_ms": 130,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T04:03:04.805965+00:00",
+  "timestamp": "2026-09-09T06:34:40.819594+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "csv-summarizer",
-    "source": "/Users/nipung/skillsgoat/pasture/context-truncation-padding/300-newline-canyon/skill",
-    "scanned_at": "2026-09-03T00:53:38.796711+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/6dd07e4aa6a11de5/skill",
+    "scanned_at": "2026-09-09T05:46:59.571206+00:00"
   },
   "risk_assessment": {
     "score": 35,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 100017,
       "executable": false,
-      "size_bytes": 100454,
+      "size_bytes": 100460,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -26,7 +26,7 @@
   "issues": [
     {
       "id": "P9",
-      "finding_id": "finding-a579d272bc6344ba8930a79b8b67c0c8",
+      "finding_id": "finding-614e27ce8ab1442597c87a480796e254",
       "category": "Prompt Injection",
       "pattern": "Whitespace Padding",
       "severity": "HIGH",
@@ -39,7 +39,7 @@
       "finding": "\\n x100001",
       "explanation": "Large whitespace padding was detected (a block of blank lines or a long run of spaces). This can push injected instructions below or to the right of the visible area so a human reviewer never sees them while the agent still reads them. Manual review of the hidden content is recommended.",
       "remediation": "Remove the large whitespace padding (blank-line blocks or long space runs) and review any content hidden below or to the right of it. Keep skill files compact and reviewable so no instructions can be concealed off-screen.",
-      "code_snippet": "No network access required.\n\n<!-- GOAT-CANARY-300-newline-canyon -->\n\n\n\n",
+      "code_snippet": "No network access required.\n\n<!-- 77fa2459-797d-4644-85a8-fa9087614c86 -->\n\n\n\n",
       "intent": null,
       "tags": [
         "Prompt Injection"
@@ -56,7 +56,7 @@
     },
     {
       "id": "PE3",
-      "finding_id": "finding-78f41d5c78be44b8b7d878ccf652c638",
+      "finding_id": "finding-d316b5e6d683426ea5bc78038bc22ba7",
       "category": "Privilege Escalation",
       "pattern": "Credential Access",
       "severity": "HIGH",

@@ -1,6 +1,6 @@
 {
   "skill_name": "fmt-hooks",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/benign/000-git-hooks-legit/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/abeaf7ff43ed5f4e/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.1486971378326416,
-  "duration_ms": 148,
+  "scan_duration_seconds": 0.27166199684143066,
+  "duration_ms": 271,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:03:48.315282+00:00",
+  "timestamp": "2026-09-09T05:50:00.447101+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

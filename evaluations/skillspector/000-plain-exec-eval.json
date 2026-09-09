@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "rule-engine",
-    "source": "/Users/nipung/skillsgoat/pasture/calibration/000-plain-exec-eval/skill",
-    "scanned_at": "2026-09-03T00:53:28.078577+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/6614184e12729dd6/skill",
+    "scanned_at": "2026-09-09T05:46:28.978044+00:00"
   },
   "risk_assessment": {
     "score": 93,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 9,
       "executable": false,
-      "size_bytes": 222,
+      "size_bytes": 227,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "TT5",
-      "finding_id": "finding-14e32b91b03649448a9a1d27325be257",
+      "finding_id": "finding-c21eb91b137948178a0d74efabc5a58d",
       "category": "Data Flow",
       "pattern": "Tainted flow: 'src' from urllib.request.urlopen (line 7, network input) \u2192 exec (code execution)",
       "severity": "CRITICAL",
@@ -66,7 +66,7 @@
     },
     {
       "id": "AST1",
-      "finding_id": "finding-20f196d553234bbfa70f7f13069f37db",
+      "finding_id": "finding-e05847efb6024d84b29a694261b2e635",
       "category": "Dangerous Code Execution",
       "pattern": "exec() call detected",
       "severity": "HIGH",
@@ -96,7 +96,7 @@
     },
     {
       "id": "LP3",
-      "finding_id": "finding-09e39b9a1ef849919c06c8a077a1a487",
+      "finding_id": "finding-0e4b74afb9354622b4ba5f61e4836752",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",

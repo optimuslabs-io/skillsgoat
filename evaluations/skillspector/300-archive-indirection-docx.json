@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "context-loader",
-    "source": "/Users/nipung/skillsgoat/pasture/hidden-artifact-packing/300-archive-indirection-docx/skill",
-    "scanned_at": "2026-09-03T00:54:00.275949+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/ccc76318ca7c434f/skill",
+    "scanned_at": "2026-09-09T05:47:51.893450+00:00"
   },
   "risk_assessment": {
     "score": 64,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 15,
       "executable": false,
-      "size_bytes": 487,
+      "size_bytes": 483,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -76,7 +76,7 @@
   "issues": [
     {
       "id": "AE1",
-      "finding_id": "finding-4232f6ec91da4130a3bbd73698b1b805",
+      "finding_id": "finding-319eda37b8f94cdcbd2528228328a378",
       "category": "analysis-evasion",
       "pattern": null,
       "severity": "HIGH",
@@ -108,7 +108,7 @@
     },
     {
       "id": "SC9",
-      "finding_id": "finding-e8b04a1504af41458b65201f061d8f9d",
+      "finding_id": "finding-9e4156f0972841f0a6d9e6656d61a925",
       "category": "Supply Chain",
       "pattern": "Concealed Executable Artifact",
       "severity": "HIGH",
@@ -153,7 +153,7 @@
     },
     {
       "id": "LP3",
-      "finding_id": "finding-53f2a9f93e8b457e9873d582f6a603ff",
+      "finding_id": "finding-44a451a3f73d4afeb3bcdff3d4be4d18",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",

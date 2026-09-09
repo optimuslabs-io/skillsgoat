@@ -1,6 +1,6 @@
 {
-  "skill_name": "c4-supply-arms-memory-composite",
-  "skill_path": "/Users/nipung/skillsgoat/evaluations/.composite/c4-supply-arms-memory/skill",
+  "skill_name": "0e6560c41d3bbabf-composite",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/composite/0e6560c41d3bbabf/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.18426084518432617,
-  "duration_ms": 184,
+  "scan_duration_seconds": 0.13550019264221191,
+  "duration_ms": 135,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T04:03:36.579110+00:00",
+  "timestamp": "2026-09-09T06:35:15.441298+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

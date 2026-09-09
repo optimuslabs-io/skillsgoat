@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "api-client-notes",
-    "source": "/Users/nipung/skillsgoat/pasture/obfuscation-encoding/200-homoglyph-imports/skill",
-    "scanned_at": "2026-09-03T00:54:14.810083+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/e4437ac8b49cbc74/skill",
+    "scanned_at": "2026-09-09T05:48:30.317567+00:00"
   },
   "risk_assessment": {
     "score": 13,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 14,
       "executable": false,
-      "size_bytes": 330,
+      "size_bytes": 333,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -26,7 +26,7 @@
   "issues": [
     {
       "id": "AE4",
-      "finding_id": "finding-62b80aa3e9cd44399316a8c7db8416ec",
+      "finding_id": "finding-d63742b78a7047909f3333477c4611ed",
       "category": "analysis-evasion",
       "pattern": null,
       "severity": "MEDIUM",
@@ -56,7 +56,7 @@
     },
     {
       "id": "E1",
-      "finding_id": "finding-e7e7f844337641f080f4474816914b03",
+      "finding_id": "finding-78c2eac1af504d0d9383d2f611074018",
       "category": "Data Exfiltration",
       "pattern": "External Transmission",
       "severity": "MEDIUM",

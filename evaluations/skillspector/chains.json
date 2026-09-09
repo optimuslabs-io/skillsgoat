@@ -1,9 +1,12 @@
 {
   "scanner": "skillspector",
   "mode": "both",
-  "chains": 14,
-  "structurally_blind": 13,
-  "blindness_rate": 0.929,
+  "scanned_at": "2026-09-09T06:00:06.695720+00:00",
+  "scanner_version": "SkillSpector v2.11.0",
+  "llm_enabled": false,
+  "chains": 35,
+  "structurally_blind": 27,
+  "blindness_rate": 0.771,
   "rows": [
     {
       "chain": "c8-command-shadowing",
@@ -157,6 +160,54 @@
       }
     },
     {
+      "chain": "c16-alignment-evasion",
+      "nodes": [
+        {
+          "chain": "c16-alignment-evasion",
+          "node": "injector",
+          "status": "NODE-WEAK",
+          "score": 16,
+          "summary": "16 LOW SAFE (2 issues)"
+        },
+        {
+          "chain": "c16-alignment-evasion",
+          "node": "victim",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 16,
+        "summary": "16 LOW SAFE (2 issues)"
+      }
+    },
+    {
+      "chain": "c33-author-factory-pattern",
+      "nodes": [
+        {
+          "chain": "c33-author-factory-pattern",
+          "node": "writer",
+          "status": "NODE-WEAK",
+          "score": 38,
+          "summary": "38 MEDIUM CAUTION (3 issues)"
+        },
+        {
+          "chain": "c33-author-factory-pattern",
+          "node": "executor",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 38,
+        "summary": "38 MEDIUM CAUTION (3 issues)"
+      }
+    },
+    {
       "chain": "c9-cache-poisoning",
       "nodes": [
         {
@@ -178,6 +229,325 @@
         "status": "GRAPH-WEAK",
         "score": 29,
         "summary": "29 MEDIUM CAUTION (2 issues)"
+      }
+    },
+    {
+      "chain": "c29-cloud-backup-exfil",
+      "nodes": [
+        {
+          "chain": "c29-cloud-backup-exfil",
+          "node": "writer",
+          "status": "NODE-FLAGGED",
+          "score": 64,
+          "summary": "64 HIGH DO_NOT_INSTALL (5 issues)"
+        },
+        {
+          "chain": "c29-cloud-backup-exfil",
+          "node": "executor",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-CAUGHT",
+        "score": 64,
+        "summary": "64 HIGH DO_NOT_INSTALL (5 issues)"
+      }
+    },
+    {
+      "chain": "c20-code-doc-bypass",
+      "nodes": [
+        {
+          "chain": "c20-code-doc-bypass",
+          "node": "writer",
+          "status": "NODE-WEAK",
+          "score": 7,
+          "summary": "7 LOW SAFE (1 issues)"
+        },
+        {
+          "chain": "c20-code-doc-bypass",
+          "node": "executor",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 7,
+        "summary": "7 LOW SAFE (1 issues)"
+      }
+    },
+    {
+      "chain": "c30-code-review-prompt-inj",
+      "nodes": [
+        {
+          "chain": "c30-code-review-prompt-inj",
+          "node": "writer",
+          "status": "NODE-WEAK",
+          "score": 31,
+          "summary": "31 MEDIUM CAUTION (3 issues)"
+        },
+        {
+          "chain": "c30-code-review-prompt-inj",
+          "node": "executor",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 35,
+        "summary": "35 MEDIUM CAUTION (4 issues)"
+      }
+    },
+    {
+      "chain": "c26-credential-access",
+      "nodes": [
+        {
+          "chain": "c26-credential-access",
+          "node": "writer",
+          "status": "NODE-WEAK",
+          "score": 45,
+          "summary": "45 MEDIUM CAUTION (5 issues)"
+        },
+        {
+          "chain": "c26-credential-access",
+          "node": "executor",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 45,
+        "summary": "45 MEDIUM CAUTION (5 issues)"
+      }
+    },
+    {
+      "chain": "c31-dep-manager-supply-chain",
+      "nodes": [
+        {
+          "chain": "c31-dep-manager-supply-chain",
+          "node": "writer",
+          "status": "NODE-FLAGGED",
+          "score": 70,
+          "summary": "70 HIGH DO_NOT_INSTALL (4 issues)"
+        },
+        {
+          "chain": "c31-dep-manager-supply-chain",
+          "node": "executor",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-CAUGHT",
+        "score": 70,
+        "summary": "70 HIGH DO_NOT_INSTALL (4 issues)"
+      }
+    },
+    {
+      "chain": "c35-encrypted-prompt-injection",
+      "nodes": [
+        {
+          "chain": "c35-encrypted-prompt-injection",
+          "node": "writer",
+          "status": "NODE-FLAGGED",
+          "score": 74,
+          "summary": "74 HIGH DO_NOT_INSTALL (4 issues)"
+        },
+        {
+          "chain": "c35-encrypted-prompt-injection",
+          "node": "executor",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW CAUTION (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-CAUGHT",
+        "score": 74,
+        "summary": "74 HIGH DO_NOT_INSTALL (4 issues)"
+      }
+    },
+    {
+      "chain": "c25-excessive-permissions",
+      "nodes": [
+        {
+          "chain": "c25-excessive-permissions",
+          "node": "writer",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW CAUTION (0 issues)"
+        },
+        {
+          "chain": "c25-excessive-permissions",
+          "node": "executor",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-BYPASSED",
+        "score": 0,
+        "summary": "0 LOW SAFE (0 issues)"
+      }
+    },
+    {
+      "chain": "c22-exfil-commands",
+      "nodes": [
+        {
+          "chain": "c22-exfil-commands",
+          "node": "writer",
+          "status": "NODE-WEAK",
+          "score": 42,
+          "summary": "42 MEDIUM CAUTION (4 issues)"
+        },
+        {
+          "chain": "c22-exfil-commands",
+          "node": "executor",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 42,
+        "summary": "42 MEDIUM CAUTION (4 issues)"
+      }
+    },
+    {
+      "chain": "c28-external-script-fetch",
+      "nodes": [
+        {
+          "chain": "c28-external-script-fetch",
+          "node": "writer",
+          "status": "NODE-FLAGGED",
+          "score": 51,
+          "summary": "51 HIGH DO_NOT_INSTALL (3 issues)"
+        },
+        {
+          "chain": "c28-external-script-fetch",
+          "node": "executor",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-CAUGHT",
+        "score": 56,
+        "summary": "56 HIGH DO_NOT_INSTALL (4 issues)"
+      }
+    },
+    {
+      "chain": "c23-external-transmission",
+      "nodes": [
+        {
+          "chain": "c23-external-transmission",
+          "node": "writer",
+          "status": "NODE-WEAK",
+          "score": 33,
+          "summary": "33 MEDIUM CAUTION (2 issues)"
+        },
+        {
+          "chain": "c23-external-transmission",
+          "node": "executor",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 33,
+        "summary": "33 MEDIUM CAUTION (2 issues)"
+      }
+    },
+    {
+      "chain": "c17-flow-bypass",
+      "nodes": [
+        {
+          "chain": "c17-flow-bypass",
+          "node": "initiator",
+          "status": "NODE-WEAK",
+          "score": 7,
+          "summary": "7 LOW SAFE (1 issues)"
+        },
+        {
+          "chain": "c17-flow-bypass",
+          "node": "intermediate",
+          "status": "NODE-WEAK",
+          "score": 8,
+          "summary": "8 LOW SAFE (1 issues)"
+        },
+        {
+          "chain": "c17-flow-bypass",
+          "node": "dropper",
+          "status": "NODE-FLAGGED",
+          "score": 64,
+          "summary": "64 HIGH DO_NOT_INSTALL (4 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-CAUGHT",
+        "score": 76,
+        "summary": "76 HIGH DO_NOT_INSTALL (6 issues)"
+      }
+    },
+    {
+      "chain": "c24-fs-enumeration",
+      "nodes": [
+        {
+          "chain": "c24-fs-enumeration",
+          "node": "writer",
+          "status": "NODE-WEAK",
+          "score": 11,
+          "summary": "11 LOW SAFE (2 issues)"
+        },
+        {
+          "chain": "c24-fs-enumeration",
+          "node": "executor",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 11,
+        "summary": "11 LOW SAFE (2 issues)"
+      }
+    },
+    {
+      "chain": "c15-gatekeeper-evasion",
+      "nodes": [
+        {
+          "chain": "c15-gatekeeper-evasion",
+          "node": "writer",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        },
+        {
+          "chain": "c15-gatekeeper-evasion",
+          "node": "obeyer",
+          "status": "NODE-FLAGGED",
+          "score": 67,
+          "summary": "67 HIGH DO_NOT_INSTALL (3 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-CAUGHT",
+        "score": 67,
+        "summary": "67 HIGH DO_NOT_INSTALL (3 issues)"
       }
     },
     {
@@ -205,6 +575,54 @@
       }
     },
     {
+      "chain": "c21-instruction-override",
+      "nodes": [
+        {
+          "chain": "c21-instruction-override",
+          "node": "writer",
+          "status": "NODE-WEAK",
+          "score": 20,
+          "summary": "20 LOW SAFE (1 issues)"
+        },
+        {
+          "chain": "c21-instruction-override",
+          "node": "executor",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 20,
+        "summary": "20 LOW SAFE (1 issues)"
+      }
+    },
+    {
+      "chain": "c19-meta-skill-injection",
+      "nodes": [
+        {
+          "chain": "c19-meta-skill-injection",
+          "node": "generator",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        },
+        {
+          "chain": "c19-meta-skill-injection",
+          "node": "executor",
+          "status": "NODE-WEAK",
+          "score": 29,
+          "summary": "29 MEDIUM CAUTION (2 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 29,
+        "summary": "29 MEDIUM CAUTION (2 issues)"
+      }
+    },
+    {
       "chain": "c10-pr-secret-drain",
       "nodes": [
         {
@@ -229,14 +647,38 @@
       }
     },
     {
+      "chain": "c32-publisher-concentration",
+      "nodes": [
+        {
+          "chain": "c32-publisher-concentration",
+          "node": "writer",
+          "status": "NODE-WEAK",
+          "score": 29,
+          "summary": "29 MEDIUM CAUTION (2 issues)"
+        },
+        {
+          "chain": "c32-publisher-concentration",
+          "node": "executor",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 29,
+        "summary": "29 MEDIUM CAUTION (2 issues)"
+      }
+    },
+    {
       "chain": "c5-repoconfig-rootkit",
       "nodes": [
         {
           "chain": "c5-repoconfig-rootkit",
           "node": "carrier",
-          "status": "NODE-CLEAN",
-          "score": 0,
-          "summary": "0 LOW SAFE (0 issues)"
+          "status": "NODE-WEAK",
+          "score": 25,
+          "summary": "25 MEDIUM CAUTION (1 issues)"
         },
         {
           "chain": "c5-repoconfig-rootkit",
@@ -274,6 +716,30 @@
         "status": "GRAPH-CAUGHT",
         "score": 63,
         "summary": "63 HIGH DO_NOT_INSTALL (7 issues)"
+      }
+    },
+    {
+      "chain": "c18-semantic-gap",
+      "nodes": [
+        {
+          "chain": "c18-semantic-gap",
+          "node": "doc",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        },
+        {
+          "chain": "c18-semantic-gap",
+          "node": "writer",
+          "status": "NODE-WEAK",
+          "score": 16,
+          "summary": "16 LOW SAFE (2 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 16,
+        "summary": "16 LOW SAFE (2 issues)"
       }
     },
     {
@@ -347,7 +813,59 @@
         "score": 0,
         "summary": "0 LOW SAFE (0 issues)"
       }
+    },
+    {
+      "chain": "c34-unicode-tag-attack",
+      "nodes": [
+        {
+          "chain": "c34-unicode-tag-attack",
+          "node": "writer",
+          "status": "NODE-FLAGGED",
+          "score": 64,
+          "summary": "64 HIGH DO_NOT_INSTALL (4 issues)"
+        },
+        {
+          "chain": "c34-unicode-tag-attack",
+          "node": "executor",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-CAUGHT",
+        "score": 64,
+        "summary": "64 HIGH DO_NOT_INSTALL (4 issues)"
+      }
+    },
+    {
+      "chain": "c27-unpinned-deps",
+      "nodes": [
+        {
+          "chain": "c27-unpinned-deps",
+          "node": "writer",
+          "status": "NODE-WEAK",
+          "score": 7,
+          "summary": "7 LOW SAFE (9 issues)"
+        },
+        {
+          "chain": "c27-unpinned-deps",
+          "node": "executor",
+          "status": "NODE-CLEAN",
+          "score": 0,
+          "summary": "0 LOW SAFE (0 issues)"
+        }
+      ],
+      "graph": {
+        "status": "GRAPH-WEAK",
+        "score": 7,
+        "summary": "7 LOW SAFE (9 issues)"
+      }
     }
   ],
-  "metric_version": 2
+  "blind": true,
+  "blind_salt": "e93c515caf155d52599ce28135d2ad4c",
+  "canary_token": "8749ea6a-c843-44f6-a9ce-3b8813557fd5",
+  "staged_atomics": 0,
+  "staged_chains": 35
 }

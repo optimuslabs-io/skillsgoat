@@ -1,6 +1,6 @@
 {
   "skill_name": "release-zip",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/obfuscation-encoding/200-rtl-override-labels/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/10d9b9e7343cd8e7/skill",
   "is_safe": true,
   "max_severity": "MEDIUM",
   "findings_count": 2,
@@ -39,14 +39,14 @@
       }
     }
   ],
-  "scan_duration_seconds": 0.1356201171875,
-  "duration_ms": 135,
+  "scan_duration_seconds": 0.2079181671142578,
+  "duration_ms": 207,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:05:13.392585+00:00",
+  "timestamp": "2026-09-09T05:53:09.748898+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

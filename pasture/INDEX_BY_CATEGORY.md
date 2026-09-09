@@ -12,11 +12,11 @@
 | dispersion-splitting | `200-extension-disguise`, `200-gitignore-hide`, `200-helper-sourced-payload`, `200-split-across-files` |
 | dormant-trigger | `200-codeword-activation`, `200-env-gated-behavior` |
 | excessive-permission-scope | `100-overbroad-permissions` |
-| external-staging | `100-config-url-fetch` |
+| external-staging | `100-config-url-fetch`, `200-runtime-instruction-fetch` |
 | format-spec-noncompliance | `100-missing-required-fields`, `200-symlink-escape`, `200-unsafe-yaml-frontmatter`, `300-nested-bundle-recursion` |
 | hidden-artifact-packing | `200-image-metadata-payload`, `300-archive-indirection-docx`, `300-bytecode-poisoning`, `300-password-zip-drop`, `300-sfs-xor-pack` |
 | indirect-injection | `100-indirect-resource-injection` |
-| llm-judge-manipulation | `200-plausibility-comments`, `300-corporate-narrative`, `300-judge-self-injection` |
+| llm-judge-manipulation | `200-plausibility-comments`, `300-corporate-narrative`, `300-cover-link-offload`, `300-judge-self-injection` |
 | mcp-tool-poisoning | `200-mcp-json-directives` |
 | memory-poisoning | `100-memory-file-write`, `300-soul-identity-hijack` |
 | model-artifact-theft | `200-adapter-cache-harvest` |

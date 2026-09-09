@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Harness vulnerability (private)
+    url: https://github.com/optimuslabs-io/skillsgoat/security/advisories/new
+    about: Bugs in goat.py / setup / CI that could leak host paths or weaken inertness. Do not file a public issue with a working exploit.
+  - name: Scanner miss (vendor first)
+    url: https://github.com/optimuslabs-io/skillsgoat/blob/main/SECURITY.md
+    about: If a maintained scanner misses a fixture it claims to cover, notify the vendor privately first. Then use the Scanner disclosure template.

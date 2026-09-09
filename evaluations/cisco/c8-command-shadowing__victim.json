@@ -1,6 +1,6 @@
 {
   "skill_name": "release-manager",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/compound-chain/200-command-shadowing/nodes/victim/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/chains/f2b4344b9045c3a1/nodes/victim/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.15748000144958496,
-  "duration_ms": 157,
+  "scan_duration_seconds": 0.13422608375549316,
+  "duration_ms": 134,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T04:01:18.621738+00:00",
+  "timestamp": "2026-09-09T06:00:15.178081+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

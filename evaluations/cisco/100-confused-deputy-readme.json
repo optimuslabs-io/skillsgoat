@@ -1,6 +1,6 @@
 {
   "skill_name": "dep-docs",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/confused-deputy/100-confused-deputy-readme/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/de8484b11ce270aa/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.14483380317687988,
-  "duration_ms": 144,
+  "scan_duration_seconds": 0.19102692604064941,
+  "duration_ms": 191,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:04:18.394365+00:00",
+  "timestamp": "2026-09-09T05:50:57.965306+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

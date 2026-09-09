@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "skillsgoat"
 version = "0.3.0"
-description = "Vulnerable-by-design AI agent skill corpus for scanner evaluation"
+description = "Labeled goat of agent skills for scoring scanners"
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.11"
@@ -20,32 +20,43 @@ dev = [
     "mypy>=1.10",
     "pre-commit>=3.0",
 ]
+# ./setup installs .[dev] only. It never installs [scanners].
+# Pin SHAs/versions; do not float on git HEAD in a vulnerable-by-design repo.
 scanners = [
-    "skillspector @ git+https://github.com/NVIDIA/SkillSpector.git",
-    "cisco-ai-skill-scanner",
-    "snyk-agent-scan",
+    "skillspector @ git+https://github.com/NVIDIA/SkillSpector.git@704bc9544260c2f41222dc0f92982521709496ab",
+    "cisco-ai-skill-scanner==2.1.0",
+    "snyk-agent-scan==0.6.2",
 ]
 llm = [
     "litellm>=1.40",
     "anthropic>=0.30",
     "openai>=1.30",
 ]
-snyk = ["snyk-agent-scan"]
+snyk = ["snyk-agent-scan==0.6.2"]
 
 [project.scripts]
 goat = "goat.main:main"
 
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["src"]
 python_files = ["test_*.py"]
 python_functions = ["test_*"]
-asyncio_mode = "auto"
 
 [tool.ruff]
 line-length = 100
 target-version = "py311"
-select = ["E", "F", "I", "W", "UP", "B", "C4", "SIM"]
-ignore = ["E501", "S101"]
+extend-exclude = ["src/goat/scanners"]
+
+[tool.ruff.lint]
+select = ["E", "F"]
+ignore = ["E501"]
 
 [tool.mypy]
 python_version = "3.11"

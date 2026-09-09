@@ -1,6 +1,6 @@
 {
   "skill_name": "model-doctor",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/model-artifact-theft/200-adapter-cache-harvest/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/f4b4f1d3fabf53be/skill",
   "is_safe": true,
   "max_severity": "MEDIUM",
   "findings_count": 3,
@@ -60,14 +60,14 @@
       }
     }
   ],
-  "scan_duration_seconds": 0.13384294509887695,
-  "duration_ms": 133,
+  "scan_duration_seconds": 0.21357297897338867,
+  "duration_ms": 213,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:05:10.011710+00:00",
+  "timestamp": "2026-09-09T05:53:03.463033+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

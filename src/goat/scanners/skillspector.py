@@ -1,6 +1,7 @@
 """SkillSpector scanner adapter."""
 
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -75,7 +76,7 @@ class SkillSpectorAdapter(ScannerAdapter):
     def validate_config(self) -> List[str]:
         issues = []
         if not self.is_available():
-            issues.append("skillspector not found. Install with: pip install 'skillspector @ git+https://github.com/NVIDIA/SkillSpector.git'")
+            issues.append("skillspector not found. Install with: pip install -e '.[scanners]' (pinned SHA in pyproject.toml)")
         if self.requires_api_key:
             provider = self.provider or "nv_inference"
             if provider in ("openai", "openai_compatible") and not os.environ.get("OPENAI_API_KEY"):
@@ -104,12 +105,10 @@ class SkillSpectorAdapter(ScannerAdapter):
             cmd.extend(["--provider", self.provider])
         if self.model:
             cmd.extend(["--model", self.model])
-        if self.no_llm or no_llm:
-            cmd.append("--no-llm")
-        
+
         try:
             result = subprocess.run(
-                [self._skillspector_path, "scan", str(target), "--format", "json"],
+                cmd,
                 capture_output=True, text=True, timeout=self.timeout
             )
             return "success", result.stdout

@@ -1,15 +1,14 @@
-"""SkillsGoat - Vulnerable-by-design AI agent skill corpus."""
+"""SkillsGoat — vulnerable-by-design AI agent skill corpus."""
 
-from .scanners import (
-    list_scanners,
-    list_available_scanners,
-    create_scanner,
-    register_scanner,
-)
+from __future__ import annotations
 
-__all__ = [
-    "list_scanners",
-    "list_available_scanners", 
-    "create_scanner",
-    "register_scanner",
-]
+from typing import Any
+
+__all__ = ["main"]
+
+
+def __getattr__(name: str) -> Any:
+    if name == "main":
+        from goat.main import main as _main
+        return _main
+    raise AttributeError(name)

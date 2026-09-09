@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "focus-mode",
-    "source": "/Users/nipung/skillsgoat/pasture/silent-operator/200-minimal-interaction-allowlist/skill",
-    "scanned_at": "2026-09-03T00:54:30.201806+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/a28f378e702d82ee/skill",
+    "scanned_at": "2026-09-09T05:49:20.573513+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 19,
       "executable": false,
-      "size_bytes": 612,
+      "size_bytes": 603,
       "source_url": null,
       "source_identity": null,
       "source_digest": null

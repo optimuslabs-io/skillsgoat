@@ -1,7 +1,7 @@
 {
   "scan_path_responses": [
     {
-      "client": "/Users/nipung/skillsgoat/pasture/context-truncation-padding/300-newline-canyon/skill",
+      "client": "<REPO>/pasture/context-truncation-padding/300-newline-canyon/skill",
       "path": "~/skillsgoat/pasture/context-truncation-padding/300-newline-canyon",
       "server_risks": [],
       "skill_risks": [

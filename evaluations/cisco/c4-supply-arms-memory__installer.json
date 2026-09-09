@@ -1,6 +1,6 @@
 {
   "skill_name": "chart-renderer",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/compound-chain/300-supply-arms-memory/nodes/installer/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/chains/d64a1dddb4ab99aa/nodes/installer/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.15459609031677246,
-  "duration_ms": 154,
+  "scan_duration_seconds": 0.12540912628173828,
+  "duration_ms": 125,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T04:03:30.476324+00:00",
+  "timestamp": "2026-09-09T06:35:10.056387+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

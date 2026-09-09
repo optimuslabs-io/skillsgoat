@@ -1,7 +1,6 @@
 # syntax = docker/dockerfile:1.4
 FROM python:3.12-slim AS base
 
-# Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     curl \
@@ -10,14 +9,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /skillsgoat
 
-# Install Python dependencies
-COPY pyproject.toml README.md ./
-RUN pip install --no-cache-dir -e ".[dev,scanners]"
-
-# Copy source
+# Copy the tree first so the editable install can see src/goat.
 COPY . .
+# Default is .[dev] only — same as ./setup. The compose `scan` service
+# passes GOAT_EXTRAS=dev,scanners so skillspector is actually on PATH.
+ARG GOAT_EXTRAS=dev
+RUN pip install --no-cache-dir -e ".[${GOAT_EXTRAS}]"
 
-# Create non-root user
 RUN useradd -m -u 1000 skillsgoat && chown -R skillsgoat:skillsgoat /skillsgoat
 USER skillsgoat
 

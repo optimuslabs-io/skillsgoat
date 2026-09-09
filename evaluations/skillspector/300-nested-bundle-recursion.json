@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "migration-assistant",
-    "source": "/Users/nipung/skillsgoat/pasture/format-spec-noncompliance/300-nested-bundle-recursion/skill",
-    "scanned_at": "2026-09-03T00:53:57.851926+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/3a376e5d59ae854a/skill",
+    "scanned_at": "2026-09-09T05:47:46.177839+00:00"
   },
   "risk_assessment": {
     "score": 16,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 11,
       "executable": false,
-      "size_bytes": 327,
+      "size_bytes": 324,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -26,7 +26,7 @@
       "type": "markdown",
       "lines": 8,
       "executable": false,
-      "size_bytes": 166,
+      "size_bytes": 163,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -46,7 +46,7 @@
   "issues": [
     {
       "id": "LP3",
-      "finding_id": "finding-195f2315c4854ac682b6163188774b1f",
+      "finding_id": "finding-b6270bbd89494e709fe074359050c888",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -76,7 +76,7 @@
     },
     {
       "id": "E1",
-      "finding_id": "finding-ba31ad966fe34d6c94dab49d1ec95b6b",
+      "finding_id": "finding-e53c80aa91054f2c86e201670922a03c",
       "category": "Data Exfiltration",
       "pattern": "External Transmission",
       "severity": "MEDIUM",

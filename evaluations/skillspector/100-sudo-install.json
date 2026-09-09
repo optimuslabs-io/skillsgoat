@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "toolchain-setup",
-    "source": "/Users/nipung/skillsgoat/pasture/supply-chain-trust-bypass/100-sudo-install/skill",
-    "scanned_at": "2026-09-03T00:54:32.547945+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/4c0820340107761e/skill",
+    "scanned_at": "2026-09-09T05:49:26.108302+00:00"
   },
   "risk_assessment": {
     "score": 13,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 10,
       "executable": false,
-      "size_bytes": 175,
+      "size_bytes": 183,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "PE2",
-      "finding_id": "finding-6b00219885d64529907be82e8a4b9e74",
+      "finding_id": "finding-3f67dbaf315746cb82306ebeb8e430ba",
       "category": "Privilege Escalation",
       "pattern": "Sudo/Root Execution",
       "severity": "MEDIUM",
@@ -66,7 +66,7 @@
     },
     {
       "id": "PE2",
-      "finding_id": "finding-6b00219885d64529907be82e8a4b9e74",
+      "finding_id": "finding-3f67dbaf315746cb82306ebeb8e430ba",
       "category": "Privilege Escalation",
       "pattern": "Sudo/Root Execution",
       "severity": "MEDIUM",

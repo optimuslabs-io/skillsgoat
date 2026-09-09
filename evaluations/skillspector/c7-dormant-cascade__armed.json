@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "cache-warmer",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/200-dormant-cascade/nodes/armed/skill",
-    "scanned_at": "2026-08-24T23:31:06.325530+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-_xjsojvy/chains/c236f7c4dcab812b/nodes/armed/skill",
+    "scanned_at": "2026-09-09T05:56:05.207588+00:00"
   },
   "risk_assessment": {
     "score": 46,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 10,
       "executable": false,
-      "size_bytes": 163,
+      "size_bytes": 186,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "TM1",
-      "finding_id": "finding-fed4f719ead34fe981905b0637afff5f",
+      "finding_id": "finding-337e288fa34f41e092f0f5a97c63db25",
       "category": "Tool Misuse",
       "pattern": "Tool Parameter Abuse",
       "severity": "HIGH",
@@ -66,7 +66,7 @@
     },
     {
       "id": "LP3",
-      "finding_id": "finding-d958bc412fe64524a6278e1bf4233587",
+      "finding_id": "finding-5861eb1a352c4f1586f1d1a7410334e9",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -96,7 +96,7 @@
     },
     {
       "id": "E1",
-      "finding_id": "finding-b2e23c1268504024b754065d46be9298",
+      "finding_id": "finding-ba274c42186d4ad89da3aa537ff5f405",
       "category": "Data Exfiltration",
       "pattern": "External Transmission",
       "severity": "MEDIUM",
@@ -129,7 +129,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -174,6 +174,18 @@
       },
       {
         "analyzer_id": "behavioral_taint_tracking",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
+        "analyzer_id": "bundled_execution_surface",
         "status": "not_applicable",
         "planned_work": 0,
         "completed": 0,

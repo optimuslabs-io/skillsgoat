@@ -1,6 +1,6 @@
 {
   "skill_name": "meeting-notes",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/context-truncation-padding/200-whitespace-below-fold/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/25b1f704c67efb21/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.7094078063964844,
-  "duration_ms": 709,
+  "scan_duration_seconds": 0.988527774810791,
+  "duration_ms": 988,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:04:20.902430+00:00",
+  "timestamp": "2026-09-09T05:51:01.016036+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

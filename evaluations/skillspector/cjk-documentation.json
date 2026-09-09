@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "api-notes-zh",
-    "source": "/Users/nipung/skillsgoat/pasture/benign/000-cjk-documentation/skill",
-    "scanned_at": "2026-09-03T00:53:09.178475+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/22c100ada3aac658/skill",
+    "scanned_at": "2026-09-09T05:45:54.868691+00:00"
   },
   "risk_assessment": {
     "score": 5,
@@ -26,7 +26,7 @@
   "issues": [
     {
       "id": "E1",
-      "finding_id": "finding-3225a0b498404358b2ed41551be7afba",
+      "finding_id": "finding-f23cecf3a1f0474da49e149322e3e38d",
       "category": "Data Exfiltration",
       "pattern": "External Transmission",
       "severity": "MEDIUM",
@@ -39,7 +39,7 @@
       "finding": "https://api.project.example/",
       "explanation": "Data is being sent to an external URL. This could be legitimate telemetry or data exfiltration. Manual review is recommended.",
       "remediation": "Verify the destination URL is trusted and necessary. Remove or replace with documented APIs. Ensure no secrets, tokens, or PII are transmitted.",
-      "code_snippet": "\n# API \u4f7f\u7528\u8bf4\u660e\n\n\u57fa\u7840\u5730\u5740\uff1ahttps://api.project.example/v1\n\u6240\u6709\u8bf7\u6c42\u9700\u8981\u643a\u5e26\u8ba4\u8bc1\u5934\u3002\u8be6\u7ec6\u5b57\u6bb5\u8bf4\u660e\u89c1\u9644\u5f55\u3002\n\n<!-- GOAT-CANARY-benign-cjk-documentation -->",
+      "code_snippet": "\n# API \u4f7f\u7528\u8bf4\u660e\n\n\u57fa\u7840\u5730\u5740\uff1ahttps://api.project.example/v1\n\u6240\u6709\u8bf7\u6c42\u9700\u8981\u643a\u5e26\u8ba4\u8bc1\u5934\u3002\u8be6\u7ec6\u5b57\u6bb5\u8bf4\u660e\u89c1\u9644\u5f55\u3002\n\n<!-- 77fa2459-797d-4644-85a8-fa9087614c86 -->",
       "intent": null,
       "tags": [
         "Data Exfiltration"

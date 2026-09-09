@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "theme-installer",
-    "source": "/Users/nipung/skillsgoat/pasture/dispersion-splitting/200-extension-disguise/skill",
-    "scanned_at": "2026-09-03T00:53:44.631494+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/f4c7186c00d57099/skill",
+    "scanned_at": "2026-09-09T05:47:11.783771+00:00"
   },
   "risk_assessment": {
     "score": 7,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 10,
       "executable": false,
-      "size_bytes": 186,
+      "size_bytes": 188,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "LP3",
-      "finding_id": "finding-57ead8268d0f47feb93df773495cf559",
+      "finding_id": "finding-be76534e870a450d8ff87db76b20fb06",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",

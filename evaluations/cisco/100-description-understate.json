@@ -1,6 +1,6 @@
 {
   "skill_name": "file-lister",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/description-behavior-mismatch/100-description-understate/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/2e873b7ab6ea77b3/skill",
   "is_safe": true,
   "max_severity": "MEDIUM",
   "findings_count": 3,
@@ -60,14 +60,14 @@
       }
     }
   ],
-  "scan_duration_seconds": 0.1301579475402832,
-  "duration_ms": 130,
+  "scan_duration_seconds": 0.2383570671081543,
+  "duration_ms": 238,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:04:27.898309+00:00",
+  "timestamp": "2026-09-09T05:51:14.171608+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

@@ -1,7 +1,7 @@
 {
   "scan_path_responses": [
     {
-      "client": "/Users/nipung/skillsgoat/pasture/benign/000-registry-mirror-documented/skill",
+      "client": "<REPO>/pasture/benign/000-registry-mirror-documented/skill",
       "path": "~/skillsgoat/pasture/benign/000-registry-mirror-documented",
       "server_risks": [],
       "skill_risks": [

@@ -1,0 +1,57 @@
+cff-version: 1.2.0
+title: SkillsGoat
+message: If you use SkillsGoat, please cite it.
+type: dataset
+authors:
+  - family-names: Gupta
+    given-names: Nipun
+    affiliation: "Optimus Labs"
+license: MIT
+version: "0.3.0"
+date-released: "2026-09-09"
+repository-code: "https://github.com/optimuslabs-io/skillsgoat"
+abstract: >
+  Labeled goat of agent skills (SKILL.md bundles) for scoring scanners.
+  76 atomics (66 malicious, 10 benign) and 35 compound chains. Network C2
+  is inert.
+keywords:
+  - agent skills
+  - SKILL.md
+  - security evaluation
+  - malware corpus
+references:
+  - type: article
+    title: "Agent Skills in the Wild: An Empirical Study of Security Vulnerabilities at Scale"
+    authors:
+      - family-names: Liu
+        given-names: Yi
+      - family-names: Wang
+        given-names: Weizhe
+      - family-names: Feng
+        given-names: Ruitao
+      - family-names: Zhang
+        given-names: Yao
+      - family-names: Xu
+        given-names: Guangquan
+      - family-names: Deng
+        given-names: Gelei
+      - family-names: Li
+        given-names: Yuekang
+      - family-names: Zhang
+        given-names: Leo
+    year: 2026
+    doi: 10.48550/arXiv.2601.10338
+    url: "https://arxiv.org/abs/2601.10338"
+    notes: Technique source for in-the-wild compound chains; not this dataset.
+  - type: article
+    title: "SkillProbe: Security Auditing for Emerging Agent Skill Marketplaces via Multi-Agent Collaboration"
+    year: 2026
+    doi: 10.48550/arXiv.2603.21019
+    url: "https://arxiv.org/abs/2603.21019"
+    notes: Technique source for SkillProbe-inspired compound chains; not this dataset.
+  - type: article
+    title: "Cloak and Detonate: Scanner Evasion and Dynamic Detection of Agent Skill Malware"
+    year: 2026
+    doi: 10.48550/arXiv.2607.02357
+    url: "https://arxiv.org/abs/2607.02357"
+    notes: Technique source for SFS packing and disperse fixtures; not this dataset.

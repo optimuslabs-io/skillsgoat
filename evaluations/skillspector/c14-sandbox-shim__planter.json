@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "doc-thumbnailer",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/300-sandbox-shim/nodes/planter/skill",
-    "scanned_at": "2026-08-24T23:32:11.967146+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-_xjsojvy/chains/1a0accb23407d05c/nodes/planter/skill",
+    "scanned_at": "2026-09-09T05:59:09.808454+00:00"
   },
   "risk_assessment": {
     "score": 17,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 13,
       "executable": false,
-      "size_bytes": 313,
+      "size_bytes": 348,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -46,7 +46,7 @@
   "issues": [
     {
       "id": "LP3",
-      "finding_id": "finding-57703ae28c87422db2f51928b90aa07a",
+      "finding_id": "finding-f26613c1853144d9ae1082fedf03fdd1",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -76,7 +76,7 @@
     },
     {
       "id": "PE2",
-      "finding_id": "finding-e3e251b84b9640009937fe8ec6282dbc",
+      "finding_id": "finding-d882eee865fe4ae0a2f3b84a5f9c3919",
       "category": "Privilege Escalation",
       "pattern": "Sudo/Root Execution",
       "severity": "MEDIUM",
@@ -109,7 +109,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -154,6 +154,18 @@
       },
       {
         "analyzer_id": "behavioral_taint_tracking",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
+        "analyzer_id": "bundled_execution_surface",
         "status": "not_applicable",
         "planned_work": 0,
         "completed": 0,

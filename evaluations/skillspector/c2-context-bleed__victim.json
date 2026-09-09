@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "backup-helper",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/200-context-bleed/nodes/victim/skill",
-    "scanned_at": "2026-08-24T23:31:00.989675+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-_xjsojvy/chains/53f0d030a7b0528b/nodes/victim/skill",
+    "scanned_at": "2026-09-09T05:55:50.960784+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 13,
       "executable": false,
-      "size_bytes": 381,
+      "size_bytes": 396,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -28,7 +28,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": false,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -73,6 +73,18 @@
       },
       {
         "analyzer_id": "behavioral_taint_tracking",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
+        "analyzer_id": "bundled_execution_surface",
         "status": "not_applicable",
         "planned_work": 0,
         "completed": 0,

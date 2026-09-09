@@ -1,9 +1,10 @@
 # Using SkillsGoat
 
-Install the same way as gstack / mattpocock / impeccable:
-[.agents/install-block.md](../.agents/install-block.md). Paste-to-agent,
-`./setup`, Claude plugin, or `npx skills@latest add optimuslabs-io/skillsgoat`.
-That loads the goat fixtures into the agent. Then pick your role.
+Run clone, tests, and `--goat` in a **local or cloud sandbox** you already
+trust. Default path: clone, `./setup`, then `goat lint` / `goat selftest` /
+`pytest`. Canonical copy: [.agents/install-block.md](../.agents/install-block.md).
+`./setup --goat` loads the fixtures into the agent. Do not `npx skills add`
+this corpus. We do not endorse a sandbox vendor. Disclaimers: [docs/SAFETY.md](SAFETY.md).
 
 ---
 
@@ -13,17 +14,31 @@ SkillsGoat won't scan arbitrary skills for you (that's the scanners' job).
 It tells you how much to trust your scanner before you rely on it:
 
 ```bash
-cd ~/skillsgoat && python3 -m venv .venv && .venv/bin/pip install pyyaml
-# + install at least one scanner:
-.venv/bin/pip install "skillspector @ git+https://github.com/NVIDIA/skillspector.git"
-#    or:  pip install cisco-ai-skill-scanner   (then `skill-scanner` on PATH)
+# inside a local or cloud sandbox — see docs/SAFETY.md
+cd ~/skillsgoat && ./setup
+# ./setup never installs [scanners]. Pin from pyproject.toml:
+.venv/bin/pip install -e ".[scanners]"
+#    skillspector @ git+https://github.com/NVIDIA/SkillSpector.git@<sha>
+#    cisco-ai-skill-scanner==2.1.0
+#    snyk-agent-scan==0.6.2
 ```
 
-Run the acceptance test:
+Harness tests (do not execute pasture scripts):
 
 ```bash
-.venv/bin/python goat.py scan --scanners skillspector --no-llm --mode atomic   # single-skill recall/FP matrix
-.venv/bin/python goat.py scan --scanners skillspector --no-llm --mode both     # compound-chain blindness
+.venv/bin/goat lint
+.venv/bin/goat selftest
+.venv/bin/python -m pytest -q
+```
+
+Scanner acceptance test (may upload skill text to the scanner). **`--blind` is
+the default** — hashed fixture dirs, canaries replaced, `expected.yaml` not in
+the scanner's input. Do not publish `--no-blind` scores.
+
+```bash
+.venv/bin/goat scan --scanners skillspector --no-llm --mode atomic
+.venv/bin/goat scan --scanners skillspector --no-llm --mode both
+.venv/bin/goat scan --blind --assert-only   # leak gate; no scanners
 ```
 
 Read `evaluations/skillspector/report.md`. Decision rule for production gating:
@@ -57,14 +72,14 @@ A CLEAN verdict means "passed the patterns *this* tool knows." See README Scope 
 The corpus is your regression suite and adversarial benchmark:
 
 ```bash
-goat.py scan --scanners yours --mode atomic      # wire your CLI into SCANNER_CONFIGS in goat.py (~5 lines)
-goat.py scan --scanners skillspector --mode both # compare against incumbents
+goat scan --scanners yours --mode atomic      # wire your CLI into SCANNER_CONFIGS in goat.main (~5 lines)
+goat scan --scanners skillspector --mode both # compare against incumbents
 ```
 
 - Ground truth per entry: `pasture/*/*/expected.yaml`; per chain: `pasture/compound-chain/*/chain.yaml`
-- Score = caught / weak-flagged / bypassed over 64 malicious entries + FP-rate over 10 benign twins + structural-blindness over 35 chains
+- Score = caught / weak-flagged / bypassed over 66 malicious entries + FP-rate over 10 benign twins + structural-blindness over 35 chains. Cite only `--blind` matrices (`"blind": true` in `matrix.json`).
 - Ship fixes, re-run, watch bypass count drop. The ToB-derived entries (`300-bytecode-poisoning`, `300-archive-indirection-docx`) show which past gaps closed between scanner versions
-- Never train/tune on the corpus then report scores on it as if held-out; disclose tuning (canary tokens make corpus leakage detectable)
+- Never train/tune on the corpus then report scores on it as if held-out; disclose tuning. `--blind` strips canaries so a grep of `GOAT-CANARY-*` cannot grade the set.
 
 ---
 
@@ -76,11 +91,11 @@ Two gates:
 # .github/workflows/skill-gate.yml (sketch)
 - run: goat.py lint                                   # corpus hygiene (if contributing)
 - run: skill-scanner scan-all ./skills --fail-on-severity high
-- run: goat.py scan --scanners cisco --no-llm --mode node || true   # track blindness trend
+- run: goat scan --scanners cisco --no-llm --mode node || true   # track blindness trend
 ```
 
 - Gate installs on scanner verdicts, but size the trust by the measured blindness. Chains prove CLEAN is not safe, so privileged agents also need allowlisted egress and memory-write monitoring (the channels C1/C11 exploit).
-- Re-run the matrix monthly. Pin the scanner version in `evaluations/<scanner>/matrix.json` metadata when you do.
+- Re-run the matrix monthly. Pin the scanner version and `scanned_at` in `evaluations/<scanner>/matrix.json`, then update the ledger in [evaluations/README.md](../evaluations/README.md). Never cite a score without that date.
 
 ---
 

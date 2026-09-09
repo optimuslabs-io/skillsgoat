@@ -1,6 +1,6 @@
 {
   "skill_name": "latency-probe",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/side-channel-exfiltration/200-dns-label-exfil/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/cf72a30bb807a24f/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.13170623779296875,
-  "duration_ms": 131,
+  "scan_duration_seconds": 0.19301795959472656,
+  "duration_ms": 193,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:05:30.123011+00:00",
+  "timestamp": "2026-09-09T05:53:47.174953+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

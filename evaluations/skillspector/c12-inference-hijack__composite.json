@@ -1,8 +1,8 @@
 {
   "skill": {
-    "name": "c12-inference-hijack-composite",
-    "source": "/Users/nipung/skillsgoat/evaluations/.composite/c12-inference-hijack/skill",
-    "scanned_at": "2026-08-24T23:31:58.409078+00:00"
+    "name": "c6af5a734389d5fe-composite",
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-_xjsojvy/composite/c6af5a734389d5fe/skill",
+    "scanned_at": "2026-09-09T05:58:33.421298+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 10,
       "executable": false,
-      "size_bytes": 348,
+      "size_bytes": 311,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -26,7 +26,7 @@
       "type": "markdown",
       "lines": 10,
       "executable": false,
-      "size_bytes": 206,
+      "size_bytes": 218,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
       "type": "markdown",
       "lines": 16,
       "executable": false,
-      "size_bytes": 445,
+      "size_bytes": 467,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -48,7 +48,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": false,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -93,6 +93,18 @@
       },
       {
         "analyzer_id": "behavioral_taint_tracking",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
+        "analyzer_id": "bundled_execution_surface",
         "status": "not_applicable",
         "planned_work": 0,
         "completed": 0,

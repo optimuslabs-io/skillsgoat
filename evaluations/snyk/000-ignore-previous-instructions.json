@@ -1,7 +1,7 @@
 {
   "scan_path_responses": [
     {
-      "client": "/Users/nipung/skillsgoat/pasture/calibration/000-ignore-previous-instructions/skill",
+      "client": "<REPO>/pasture/calibration/000-ignore-previous-instructions/skill",
       "path": "~/skillsgoat/pasture/calibration/000-ignore-previous-instructions",
       "server_risks": [],
       "skill_risks": [

@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "docs-font-setup",
-    "source": "/Users/nipung/skillsgoat/pasture/benign/000-admin-installer/skill",
-    "scanned_at": "2026-09-03T00:53:06.545207+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/3313ae08f426ffe2/skill",
+    "scanned_at": "2026-09-09T05:45:52.217051+00:00"
   },
   "risk_assessment": {
     "score": 35,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 12,
       "executable": false,
-      "size_bytes": 258,
+      "size_bytes": 260,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "TM2",
-      "finding_id": "finding-4da3a9059831493ba274d7256c9ec2dc",
+      "finding_id": "finding-1806140abeaa44a4a91e387a6a9cecbc",
       "category": "Tool Misuse",
       "pattern": "Chaining Abuse",
       "severity": "HIGH",
@@ -66,7 +66,7 @@
     },
     {
       "id": "PE2",
-      "finding_id": "finding-77259311f00b49e6b8d93a857e375088",
+      "finding_id": "finding-b328031a2bbe4755b90dae2fa5d2625f",
       "category": "Privilege Escalation",
       "pattern": "Sudo/Root Execution",
       "severity": "MEDIUM",
@@ -96,7 +96,7 @@
     },
     {
       "id": "PE2",
-      "finding_id": "finding-77259311f00b49e6b8d93a857e375088",
+      "finding_id": "finding-b328031a2bbe4755b90dae2fa5d2625f",
       "category": "Privilege Escalation",
       "pattern": "Sudo/Root Execution",
       "severity": "MEDIUM",

@@ -1,6 +1,6 @@
 {
   "skill_name": "db-tools-bundle",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/compound-chain/200-mcp-cross-skill/nodes/serverdef/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/chains/2af3692aeac11a45/nodes/serverdef/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.15198206901550293,
-  "duration_ms": 151,
+  "scan_duration_seconds": 0.146744966506958,
+  "duration_ms": 146,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T04:01:45.589857+00:00",
+  "timestamp": "2026-09-09T06:00:38.758735+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

@@ -1,11 +1,28 @@
 #!/usr/bin/env bash
-# SkillsGoat setup — clone, venv, then register every pasture fixture as an
-# agent skill (gstack / impeccable shape). This is a goat: the malicious
-# fixtures are the install unit. Endpoints are inert.
+# SkillsGoat setup — research default is venv + editable install (clone + scan).
+# Linking fixtures into agent skill dirs requires ./setup --goat
 set -euo pipefail
 
 REPO="$(cd "$(dirname "$0")" && pwd)"
 cd "$REPO"
+
+usage() {
+  cat <<'EOF'
+SkillsGoat setup
+
+  ./setup                 create .venv; pip install -e '.[dev]'; print next steps
+  ./setup --index-only    refresh repo-root skills/ index only
+  ./setup --goat          link fixtures into agent skill dirs (type GOAT, or --confirm-goat)
+  ./setup --uninstall     remove previously installed goat links
+
+--team is only valid with --goat.
+EOF
+}
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+  usage
+  exit 0
+fi
 
 if ! command -v python3 >/dev/null 2>&1; then
   echo "error: python3 is required" >&2
@@ -16,7 +33,27 @@ if [ ! -x "$REPO/.venv/bin/python" ]; then
   echo "creating .venv"
   python3 -m venv "$REPO/.venv"
   "$REPO/.venv/bin/pip" install --upgrade pip
-  "$REPO/.venv/bin/pip" install pyyaml
+fi
+"$REPO/.venv/bin/pip" install -e ".[dev]"
+
+if [ "$#" -eq 0 ]; then
+  echo "research mode: .venv ready (editable install)."
+  echo "  TEST IN A SANDBOX — local OS/container/VM, or a throwaway remote machine"
+  echo "  network C2 is inert; do not run pasture scripts or --goat next to production secrets"
+  echo "  we do not endorse a sandbox vendor; see docs/SAFETY.md"
+  echo "  .venv/bin/goat lint"
+  echo "  .venv/bin/goat selftest"
+  echo "  .venv/bin/python -m pytest -q"
+  echo "  .venv/bin/goat scan --scanners skillspector --no-llm"
+  echo "  (default --blind; do not publish --no-blind scores)"
+  echo "  scanners extra is NOT installed by ./setup:"
+  echo "    .venv/bin/pip install -e '.[scanners]'   # pinned SHAs/versions in pyproject.toml"
+  echo
+  echo "To load fixtures into agent skill dirs (a goat): ./setup --goat"
+  echo "  default HOME is \$SKILLSGOAT_SANDBOX or $PWD/.sandbox-home (not your real profile)"
+  echo "  throwaway remote machine recommended — not a host with production secrets"
+  echo "To refresh the repo-root skills/ index only:     ./setup --index-only"
+  exit 0
 fi
 
 exec "$REPO/.venv/bin/python" "$REPO/tools/link_skills.py" "$@"

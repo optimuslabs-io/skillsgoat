@@ -1,8 +1,8 @@
 {
   "skill": {
-    "name": "c4-supply-arms-memory-composite",
-    "source": "/Users/nipung/skillsgoat/evaluations/.composite/c4-supply-arms-memory/skill",
-    "scanned_at": "2026-08-24T23:32:33.321688+00:00"
+    "name": "4a3ed035f9e39181-composite",
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-_xjsojvy/composite/4a3ed035f9e39181/skill",
+    "scanned_at": "2026-09-09T05:59:40.158963+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 10,
       "executable": false,
-      "size_bytes": 350,
+      "size_bytes": 305,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -26,7 +26,7 @@
       "type": "markdown",
       "lines": 12,
       "executable": false,
-      "size_bytes": 306,
+      "size_bytes": 321,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
       "type": "markdown",
       "lines": 12,
       "executable": false,
-      "size_bytes": 221,
+      "size_bytes": 244,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -58,7 +58,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -108,6 +108,18 @@
         "skipped": 0,
         "failed": 0,
         "unaccounted": 0
+      },
+      {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
       },
       {
         "analyzer_id": "mcp_least_privilege",

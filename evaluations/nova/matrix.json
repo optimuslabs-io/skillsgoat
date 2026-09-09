@@ -1,8 +1,9 @@
 {
   "scanner": "nova",
   "llm_enabled": false,
-  "scanned_at": "2026-09-02T23:17:41.099449+00:00",
-  "total": 70,
+  "scanner_version": "usage: novarun [-h] -r RULE (-p PROMPT | -f FILE) [-v] [-c CONFIG] [-s]",
+  "scanned_at": "2026-09-09T05:55:31.903613+00:00",
+  "total": 76,
   "caught": 0,
   "weak_flagged": 0,
   "bypassed": 0,
@@ -188,6 +189,11 @@
       "status": "ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
     },
     {
+      "id": "200-runtime-instruction-fetch",
+      "truth": "malicious",
+      "status": "ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+    },
+    {
       "id": "100-missing-required-fields",
       "truth": "malicious",
       "status": "ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
@@ -244,6 +250,11 @@
     },
     {
       "id": "300-corporate-narrative",
+      "truth": "malicious",
+      "status": "ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+    },
+    {
+      "id": "300-cover-link-offload",
       "truth": "malicious",
       "status": "ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
     },
@@ -308,6 +319,26 @@
       "status": "ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
     },
     {
+      "id": "200-clawhub-listing",
+      "truth": "malicious",
+      "status": "ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+    },
+    {
+      "id": "200-ide-native-impersonation",
+      "truth": "malicious",
+      "status": "ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+    },
+    {
+      "id": "200-vercel-skills-sh-pack",
+      "truth": "malicious",
+      "status": "ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+    },
+    {
+      "id": "200-vibe-coded-plugin",
+      "truth": "malicious",
+      "status": "ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+    },
+    {
       "id": "100-settings-json-hook",
       "truth": "malicious",
       "status": "ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
@@ -362,5 +393,10 @@
       "truth": "malicious",
       "status": "ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
     }
-  ]
+  ],
+  "blind": true,
+  "blind_salt": "85df1c573d4b312482517984824e498f",
+  "canary_token": "0a64a1fb-761a-4151-a53f-c0be7e704c92",
+  "staged_atomics": 76,
+  "staged_chains": 0
 }

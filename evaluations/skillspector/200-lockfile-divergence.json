@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "dep-setup",
-    "source": "/Users/nipung/skillsgoat/pasture/deferred-resolution/200-lockfile-divergence/skill",
-    "scanned_at": "2026-09-03T00:53:40.800781+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/66911e52f077d5e2/skill",
+    "scanned_at": "2026-09-09T05:47:02.973660+00:00"
   },
   "risk_assessment": {
     "score": 7,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 12,
       "executable": false,
-      "size_bytes": 274,
+      "size_bytes": 275,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "SC4",
-      "finding_id": "finding-2d9575abefc54af5b439d8297b03e4ec",
+      "finding_id": "finding-37fc0491d4154e898759b068c87a6314",
       "category": "Supply Chain",
       "pattern": "Known Vulnerable Dependency: requests==2.32.3 \u2014 4 advisory(ies): CVE-2024-47081 (Requests vulnerable to .netrc credentials leak via malicious URLs); CVE-2026-25645 (Requests has Insecure Temp File Reuse in its extract_zipped_paths() utility func); CVE-2024-47081 (Requests vulnerable to .netrc credentials leak via malicious URLs) +1 more",
       "severity": "MEDIUM",

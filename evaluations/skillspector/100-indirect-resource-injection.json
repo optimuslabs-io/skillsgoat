@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "onboarding-guide",
-    "source": "/Users/nipung/skillsgoat/pasture/indirect-injection/100-indirect-resource-injection/skill",
-    "scanned_at": "2026-09-03T00:54:05.222699+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/d03091f401c75273/skill",
+    "scanned_at": "2026-09-09T05:48:04.004340+00:00"
   },
   "risk_assessment": {
     "score": 40,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 10,
       "executable": false,
-      "size_bytes": 298,
+      "size_bytes": 291,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -26,7 +26,7 @@
       "type": "markdown",
       "lines": 13,
       "executable": false,
-      "size_bytes": 431,
+      "size_bytes": 424,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "SC2",
-      "finding_id": "finding-a6349a78ea6e46abbdaf7f63e0d64f46",
+      "finding_id": "finding-8e46b9c5470f47a1b4fa01e6aebb7d38",
       "category": "Supply Chain",
       "pattern": "External Script Fetching",
       "severity": "HIGH",
@@ -66,7 +66,7 @@
     },
     {
       "id": "TM2",
-      "finding_id": "finding-acfb370a503940cba5bdc0c57e13185c",
+      "finding_id": "finding-71812082804247e297826cf381303af5",
       "category": "Tool Misuse",
       "pattern": "Chaining Abuse",
       "severity": "HIGH",

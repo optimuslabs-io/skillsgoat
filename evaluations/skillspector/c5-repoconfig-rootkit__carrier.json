@@ -1,14 +1,14 @@
 {
   "skill": {
     "name": "team-workspace",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/300-repoconfig-rootkit/nodes/carrier/skill",
-    "scanned_at": "2026-08-24T23:32:06.192221+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-_xjsojvy/chains/4d470807cde84e61/nodes/carrier/skill",
+    "scanned_at": "2026-09-09T05:59:02.883170+00:00"
   },
   "risk_assessment": {
-    "score": 0,
-    "severity": "LOW",
-    "recommendation": "SAFE",
-    "max_issue_severity": "NONE"
+    "score": 25,
+    "severity": "MEDIUM",
+    "recommendation": "CAUTION",
+    "max_issue_severity": "HIGH"
   },
   "components": [
     {
@@ -26,7 +26,7 @@
       "type": "markdown",
       "lines": 11,
       "executable": false,
-      "size_bytes": 297,
+      "size_bytes": 311,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,19 +36,52 @@
       "type": "shell",
       "lines": 10,
       "executable": true,
-      "size_bytes": 482,
+      "size_bytes": 505,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
     }
   ],
   "structured_summaries": [],
-  "issues": [],
+  "issues": [
+    {
+      "id": "AE1",
+      "finding_id": "finding-180d591e68544ceb948be4b0653a5d40",
+      "category": "analysis-evasion",
+      "pattern": null,
+      "severity": "HIGH",
+      "confidence": 1.0,
+      "location": {
+        "file": "SKILL.md",
+        "start_line": 8,
+        "end_line": null
+      },
+      "finding": ".claude/settings.json (partial)",
+      "explanation": "Referenced artifact was not completely inspected",
+      "remediation": "Make the referenced artifact locally available and fully analyzable, or remove the reference.",
+      "code_snippet": "Carries the team's standard agent workspace settings (.claude/settings.json)",
+      "intent": null,
+      "tags": [
+        "coverage",
+        "reference",
+        "target-disposition:partial"
+      ],
+      "evidence": {},
+      "match_fingerprint": "b1b1b7ef903ddaabc19328b1be0f2f4dbd062da2189c53d98b18d0b729a34dd9",
+      "occurrences": [
+        {
+          "file": "SKILL.md",
+          "start_line": 8,
+          "end_line": null
+        }
+      ]
+    }
+  ],
   "suppressed_count": 0,
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -58,15 +91,29 @@
   "execution_successful": true,
   "analysis_completeness": {
     "total_components": 3,
-    "scanned_components": 3,
-    "coverage_percent": 100.0,
-    "is_complete": true,
-    "status": "complete",
+    "scanned_components": 2,
+    "coverage_percent": 66.7,
+    "is_complete": false,
+    "status": "partial",
     "execution_successful": true,
-    "fully_inspected_files": 3,
-    "partially_inspected_files": 0,
+    "fully_inspected_files": 2,
+    "partially_inspected_files": 1,
     "entirely_uninspected_files": 0,
-    "ledger_exceptions": [],
+    "ledger_exceptions": [
+      {
+        "outcome": "partial",
+        "phase": "static",
+        "reason_code": "opaque_content",
+        "message": "Artifact contents could not be fully interpreted.",
+        "path": ".claude/settings.json",
+        "start_line": null,
+        "end_line": null,
+        "fatal": false,
+        "analyzers": [
+          "bundled_execution_surface"
+        ]
+      }
+    ],
     "scope_exclusions": [],
     "analyzer_statuses": [
       {
@@ -102,6 +149,16 @@
         "unaccounted": 0,
         "reason_code": "no_applicable_files",
         "message": "No files matched this analyzer's applicability contract."
+      },
+      {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "degraded",
+        "planned_work": 1,
+        "completed": 0,
+        "partial": 1,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
       },
       {
         "analyzer_id": "mcp_least_privilege",
@@ -144,6 +201,16 @@
         "unaccounted": 0,
         "reason_code": "no_applicable_files",
         "message": "No files matched this analyzer's applicability contract."
+      },
+      {
+        "analyzer_id": "reference_coverage",
+        "status": "completed",
+        "planned_work": 1,
+        "completed": 1,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0
       },
       {
         "analyzer_id": "static_patterns_agent_snooping",
@@ -317,8 +384,10 @@
         "disposition": "analyzed"
       }
     ],
-    "limitations": [],
-    "findings_before_filtering": 0,
-    "findings_after_filtering": 0
+    "limitations": [
+      "Analyzer bundled_execution_surface status: degraded."
+    ],
+    "findings_before_filtering": 1,
+    "findings_after_filtering": 1
   }
 }

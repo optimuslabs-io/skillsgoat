@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "commit-linter",
-    "source": "/Users/nipung/skillsgoat/pasture/persistence-backdoor/100-git-hook-backdoor/skill",
-    "scanned_at": "2026-09-03T00:54:20.738563+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/5c6498d65e1ffd07/skill",
+    "scanned_at": "2026-09-09T05:48:44.872157+00:00"
   },
   "risk_assessment": {
     "score": 7,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 12,
       "executable": false,
-      "size_bytes": 260,
+      "size_bytes": 263,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "LP3",
-      "finding_id": "finding-08cd847f46764ad9a22859824f0c5aad",
+      "finding_id": "finding-4538fdd473514873bc9b09d422e8458d",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",

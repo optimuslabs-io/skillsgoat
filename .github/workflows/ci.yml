@@ -1,0 +1,31 @@
+# GitHub-hosted runner is ephemeral. Reproduce locally in a sandbox
+# you already trust. See docs/SAFETY.md.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: pip install -e ".[dev]"
+      - name: Lint corpus
+        run: goat lint
+      - name: Selftest
+        run: goat selftest
+      - name: Blind leak gate
+        run: goat scan --blind --assert-only
+      - name: Bytecode fixture
+        run: test -f pasture/hidden-artifact-packing/300-bytecode-poisoning/skill/scripts/utils.cpython-314.pyc
+      - name: Ruff
+        run: ruff check src/goat goat.py tools tests
+      - name: Pytest
+        run: pytest -q

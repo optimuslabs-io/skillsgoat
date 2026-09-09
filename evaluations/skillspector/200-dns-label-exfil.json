@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "latency-probe",
-    "source": "/Users/nipung/skillsgoat/pasture/side-channel-exfiltration/200-dns-label-exfil/skill",
-    "scanned_at": "2026-09-03T00:54:27.805126+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/79784b18fffb3399/skill",
+    "scanned_at": "2026-09-09T05:49:14.690780+00:00"
   },
   "risk_assessment": {
     "score": 29,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 10,
       "executable": false,
-      "size_bytes": 218,
+      "size_bytes": 223,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "PE3",
-      "finding_id": "finding-1cf40b0d8cc44f5085d5e13c59473e5c",
+      "finding_id": "finding-7c99b2c0f8c5412694c6f3486f33ebd4",
       "category": "Privilege Escalation",
       "pattern": "Credential Access",
       "severity": "HIGH",

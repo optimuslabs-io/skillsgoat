@@ -1,6 +1,6 @@
 {
   "skill_name": "file-archiver",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/compound-chain/200-memory-handoff/nodes/obeyer/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/chains/e7d845893bf60457/nodes/obeyer/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.15658807754516602,
-  "duration_ms": 156,
+  "scan_duration_seconds": 0.14117932319641113,
+  "duration_ms": 141,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T04:01:59.096215+00:00",
+  "timestamp": "2026-09-09T06:00:51.699694+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

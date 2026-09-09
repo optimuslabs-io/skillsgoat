@@ -1,10 +1,14 @@
 # Evaluation matrix — cisco
 
-- scanned_at: 2026-08-25T04:00:50.281171+00:00
+- scanned_at: 2026-09-09T05:54:04.788465+00:00
 - llm_enabled: False
+- scanner_version: skill-scanner 2.0.13
+- blind: True
+- canary_token: 91029c07-ceeb-48e5-ac52-4248dc814486
+- blind_salt: 4db3e56520b14a68eb8f613806c5bd7c
 - caught (block-threshold): **5**
-- weak-flagged (detected, below block): **53**
-- bypassed (zero detection): **0**
+- weak-flagged (detected, below block): **58**
+- bypassed (zero detection): **1**
 - benign_fp_rate: **1.0**
 
 | Entry | Ground truth | Result | Scanner |
@@ -44,6 +48,7 @@
 | 200-env-gated-behavior | malicious | WEAK-FLAG | INFO (1 findings) |
 | 100-overbroad-permissions | malicious | WEAK-FLAG | INFO (1 findings) |
 | 100-config-url-fetch | malicious | WEAK-FLAG | INFO (1 findings) |
+| 200-runtime-instruction-fetch | malicious | WEAK-FLAG | INFO (1 findings) |
 | 100-missing-required-fields | malicious | ERROR: no json: Error loading skill: SKILL.md missing required field: name |  |
 | 200-symlink-escape | malicious | WEAK-FLAG | INFO (1 findings) |
 | 200-unsafe-yaml-frontmatter | malicious | ERROR: no json: Error loading skill: Failed to parse YAML frontmatter: while scanning a tag
@@ -59,6 +64,7 @@ did not find expected whitespace or line break
 | 100-indirect-resource-injection | malicious | WEAK-FLAG | INFO (1 findings) |
 | 200-plausibility-comments | malicious | WEAK-FLAG | INFO (1 findings) |
 | 300-corporate-narrative | malicious | WEAK-FLAG | INFO (1 findings) |
+| 300-cover-link-offload | malicious | WEAK-FLAG | MEDIUM (3 findings) |
 | 300-judge-self-injection | malicious | WEAK-FLAG | INFO (1 findings) |
 | 200-mcp-json-directives | malicious | WEAK-FLAG | INFO (1 findings) |
 | 100-memory-file-write | malicious | WEAK-FLAG | INFO (1 findings) |
@@ -71,6 +77,10 @@ did not find expected whitespace or line break
 | 300-charcode-exec | malicious | WEAK-FLAG | INFO (1 findings) |
 | 100-git-hook-backdoor | malicious | WEAK-FLAG | INFO (1 findings) |
 | 100-shellrc-persistence | malicious | WEAK-FLAG | INFO (1 findings) |
+| 200-clawhub-listing | malicious | BYPASSED | SAFE (0 findings) |
+| 200-ide-native-impersonation | malicious | WEAK-FLAG | LOW (4 findings) |
+| 200-vercel-skills-sh-pack | malicious | WEAK-FLAG | LOW (4 findings) |
+| 200-vibe-coded-plugin | malicious | WEAK-FLAG | LOW (2 findings) |
 | 100-settings-json-hook | malicious | WEAK-FLAG | INFO (1 findings) |
 | 100-fake-social-proof | malicious | WEAK-FLAG | INFO (1 findings) |
 | 200-wallet-exhaustion-loop | malicious | WEAK-FLAG | INFO (1 findings) |

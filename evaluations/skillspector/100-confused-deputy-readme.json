@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "dep-docs",
-    "source": "/Users/nipung/skillsgoat/pasture/confused-deputy/100-confused-deputy-readme/skill",
-    "scanned_at": "2026-09-03T00:53:34.314887+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/84437bcb550078ac/skill",
+    "scanned_at": "2026-09-09T05:46:47.614643+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 14,
       "executable": false,
-      "size_bytes": 427,
+      "size_bytes": 425,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
