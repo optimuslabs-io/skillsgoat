@@ -69,7 +69,13 @@ def test_bytecode_fixture_exists():
     assert goat._PYC_FIXTURE.is_file()
 
 
-def test_banned_vocab_skipped_in_pasture_payloads():
+def test_banned_vocab_skipped_in_pasture_payloads(tmp_path, monkeypatch):
+    token = "cor" + "pus"
+    monkeypatch.setattr(goat, "REPO", tmp_path)
+    (tmp_path / "pasture").mkdir()
+    (tmp_path / "pasture" / "bait.md").write_text(f"payload {token}\n")
+    (tmp_path / "docs").mkdir()
+    (tmp_path / "docs" / "ok.md").write_text("collection of fixtures\n")
     problems: list[str] = []
     goat._lint_banned_vocab(problems)
     assert problems == []

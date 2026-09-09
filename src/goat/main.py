@@ -266,15 +266,25 @@ def _dump_json(path: Path, obj, raw_paths: bool = False) -> None:
     path.write_text(json.dumps(obj, indent=2) + "\n")
 
 
-def _gitignored(rel: Path) -> bool:
+def _iter_lint_paths() -> list[Path]:
+    """Tracked and non-ignored untracked files. Walks the tree if git is absent."""
     try:
-        r = subprocess.run(
-            ["git", "check-ignore", "-q", "--", str(rel)],
-            cwd=REPO, capture_output=True,
+        proc = subprocess.run(
+            ["git", "ls-files", "-z", "-c", "-o", "--exclude-standard"],
+            cwd=REPO, capture_output=True, check=False,
         )
     except OSError:
-        return False
-    return r.returncode == 0
+        proc = None
+    if proc is not None and proc.returncode == 0:
+        out: list[Path] = []
+        for raw in proc.stdout.split(b"\0"):
+            if not raw:
+                continue
+            p = REPO / Path(raw.decode())
+            if p.is_file() and not p.is_symlink():
+                out.append(p)
+        return out
+    return [p for p in REPO.rglob("*") if p.is_file() and not p.is_symlink()]
 
 
 def _lint_banned_vocab(problems: list[str]) -> None:
@@ -287,15 +297,14 @@ def _lint_banned_vocab(problems: list[str]) -> None:
     }
     skip_suffix = {".pyc", ".png", ".jpg", ".jpeg", ".webp", ".gif",
                    ".zip", ".docx", ".dat", ".woff", ".woff2"}
-    for p in REPO.rglob("*"):
-        if not p.is_file() or p.is_symlink():
+    for p in _iter_lint_paths():
+        try:
+            rel = p.relative_to(REPO)
+        except ValueError:
             continue
-        rel = p.relative_to(REPO)
         if any(part in skip_dirs or part.endswith(".egg-info") for part in rel.parts):
             continue
         if p.suffix.lower() in skip_suffix:
-            continue
-        if _gitignored(rel):
             continue
         try:
             text = p.read_text(encoding="utf-8")
