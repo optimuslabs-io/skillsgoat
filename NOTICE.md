@@ -30,9 +30,5 @@ NVIDIA SkillSpector, Cisco skill-scanner, and Snyk Agent Scan are
 **evaluation targets**. Pattern codes in `expected.yaml` map to those
 tools so matrices can be scored. They are not sources for fixtures.
 
-Phase 2 planned citations (CSA TrapDoor/GlassWorm, Air Circus /
-SkillJacking / RepoJacking, Datadog dynamic context) are **not** in this
-tree yet. Do not list them as lineage until those fixtures land.
-
 Impersonation fixtures (vendor org names, IDE-native chrome) are
 research-labeled. They must not use real `github.com/<vendor>/...` URLs.

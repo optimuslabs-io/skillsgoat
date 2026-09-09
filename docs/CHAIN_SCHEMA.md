@@ -66,12 +66,12 @@ result of this collection layer.
 
 ## Scope exclusions (deliberate)
 
-| Excluded | Why | Later home | Source |
-|---|---|---|---|
-| Platform vulnerabilities (ClawJacked-class harness bugs) | platform bug ≠ skill content | vendor CVE process | Oasis Security CVE-2026-28363 |
-| Prompt-only exploitation of installed benign skills | nothing ships; needs live-agent detonation | Phase 3 gym | SkillAttack, arXiv:2604.04989 |
-| Fleet rug-pull / dependency takeover of installed skills | registry lifecycle problem | Phase 2 version-drift suite | Air Security SkillJacking (Jul 2026) |
-| Base-model jailbreaks / training-data poisoning | model-layer, not skills layer | OWASP LLM Top 10 | — |
+| Excluded | Why | Source |
+|---|---|---|
+| Platform vulnerabilities (ClawJacked-class harness bugs) | platform bug ≠ skill content | Oasis Security CVE-2026-28363 |
+| Prompt-only exploitation of installed benign skills | nothing malicious ships in any bundle | SkillAttack, arXiv:2604.04989 |
+| Fleet rug-pull / dependency takeover of installed skills | registry lifecycle, not skill content in this tree | Air Security SkillJacking (Jul 2026) |
+| Base-model jailbreaks / training-data poisoning | model-layer, not skills layer | OWASP LLM Top 10 |
 
 ## Safety
 
@@ -81,8 +81,8 @@ payloads contain markers not malware, node + chain canaries trace leaks.
 
 ## Appendix: AIBOM manifest format (example)
 
-Per-entry AIBOM stubs were removed as boilerplate; when packaging pipelines
-land, manifests should follow OWASP Universal Agentic Skill Format:
+Per-entry AIBOM stubs were removed as boilerplate. Manifests should follow
+OWASP Universal Agentic Skill Format:
 
 ```yaml
 format: universal-agentic-skill-format/1.0

@@ -12,6 +12,7 @@ evaluations/*/report.json
 /docs/TALK_ABSTRACT.md
 /talks/
 /plans/
+/USABILITY_REVIEW.md
 *.plan.md
 /evaluations/.composite/
 /evaluations/.blind/

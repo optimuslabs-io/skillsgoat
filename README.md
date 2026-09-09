@@ -32,12 +32,12 @@ Every entry has `skill/` (the only thing you point a scanner at), `expected.yaml
 
 SkillsGoat covers malicious and vulnerable skill *content*: what ships inside a bundle, and what happens when an agent loads it. These adjacent threats are out of scope:
 
-| Excluded | Why | Where it lives later |
-|---|---|---|
-| **Platform vulnerabilities** (localhost WebSocket hijacking, checkout-time RCE from harness bugs) | Bugs in the agent platform itself, not skill content | Vendor advisories / CVE process |
-| **Prompt-only exploitation** (adversarial prompts weaponizing *already-installed benign* skills — SkillAttack-style) | Nothing malicious ships in any bundle; needs a live-agent detonation harness | Phase 3: gym/detonation layer |
-| **Registry & lifecycle attacks on installed fleets** (rug-pulls, deleted-account dependency takeover, fleet update drift) | Registry/ops problem; needs a marketplace simulator | Phase 2: version-drift suite |
-| **Model-layer attacks** (base-model jailbreaks, training-data poisoning) | Independent of the skills layer | OWASP LLM Top 10 territory |
+| Excluded | Why |
+|---|---|
+| **Platform vulnerabilities** (localhost WebSocket hijacking, checkout-time RCE from harness bugs) | Bugs in the agent platform itself, not skill content. Report those upstream. |
+| **Prompt-only exploitation** (adversarial prompts weaponizing *already-installed benign* skills — SkillAttack-style) | Nothing malicious ships in any bundle. |
+| **Registry & lifecycle attacks on installed fleets** (rug-pulls, deleted-account dependency takeover, fleet update drift) | Registry/ops problem, not skill content in this tree. |
+| **Model-layer attacks** (base-model jailbreaks, training-data poisoning) | Independent of the skills layer. See OWASP LLM Top 10. |
 
 In scope: injection, obfuscation, packing, persistence, memory/soul poisoning, supply-chain chaining, marketplace-hosted packs (Vercel skills.sh, ClawHub, Cursor plugins, third-party trees that impersonate native Claude/Codex/Copilot/Grok skills), and compound cross-skill attacks under `pasture/compound-chain/`.
 
@@ -46,10 +46,6 @@ Evaluate UI-only vendors (Metano, Gen, Socket, Manifold, Air) with browser autom
 ## Compound chains
 
 Single-skill fixtures test one weakness at a time. Real compromises chain across **state channels** (agent memory, context window, repo/env state, shared tool layer) and **trust edges** (skill→skill, dep→skill, external→skill, session→future). Under `pasture/compound-chain/`, a **node** is one skill in the bundle and the **graph** is how those skills compose. Nodes are written to look ordinary alone; ground truth (`chain.yaml`) is graph-level. Contexts: developer endpoint, long-lived server agent, CI/CD runner, hosted sandbox. See [docs/CHAIN_SCHEMA.md](docs/CHAIN_SCHEMA.md).
-
-## Roadmap
-
-Next: version-drift suite (benign→poisoned paired fixtures), judge-benchmark leaderboard, detonation layer (run the skill in a sandbox and watch runtime behavior).
 
 ## Install and test (research clone)
 

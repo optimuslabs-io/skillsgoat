@@ -107,10 +107,6 @@ categories:
     description: "Cost/retry bombs — wallet exhaustion via paid API hammering."
     maps: [AST03]
 
-  # ---- Planned: version-drift suite (docs/EVOLUTION.md Phase 2) ----
-  - slug: version-drift
-    description: "Paired-version fixtures (benign v1 -> poisoned v2); tests gates on semantic diffs, shrink-attacks, ownership transfers."
-    maps: [AST07]
   - slug: search-poisoning
     description: "Descriptions tuned to outrank legitimate skills in discovery/retrieval."
     maps: [AST04]
