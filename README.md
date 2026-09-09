@@ -101,17 +101,9 @@ evaluations/ui/             browser/computer-use protocol for UI-only vendors
 
 ## Credits & lineage
 
-This corpus is original. The goat *shape* follows
-[nandangupta-security/SkillsGoat](https://github.com/nandangupta-security/SkillsGoat)
-and [AI Goat](https://github.com/orcasecurity-research/AIGoat). Four atomics
-derive Trail of Bits [overtly-malicious-skills](https://github.com/trailofbits/overtly-malicious-skills)
-primitives (rewritten, not copied). Compound chains cite SkillProbe
-([arXiv:2603.21019](https://arxiv.org/abs/2603.21019)) and *Agent Skills in
-the Wild* ([arXiv:2601.10338](https://arxiv.org/abs/2601.10338)).
+This corpus is original. The goat shape is WebGoat / DVWA / [AI Goat](https://github.com/orcasecurity-research/AIGoat). Four atomics derive Trail of Bits [overtly-malicious-skills](https://github.com/trailofbits/overtly-malicious-skills) primitives (rewritten, not copied). Compound chains cite SkillProbe ([arXiv:2603.21019](https://arxiv.org/abs/2603.21019)) and *Agent Skills in the Wild* ([arXiv:2601.10338](https://arxiv.org/abs/2601.10338)).
 
-SkillSpector, Cisco skill-scanner, and Snyk Agent Scan are evaluation
-targets, not sources. Full lineage: [NOTICE.md](NOTICE.md). Cite this
-dataset with [CITATION.cff](CITATION.cff).
+SkillSpector, Cisco skill-scanner, and Snyk Agent Scan are evaluation targets, not sources. Full lineage: [NOTICE.md](NOTICE.md). Cite this dataset with [CITATION.cff](CITATION.cff).
 
 ## Responsible use
 

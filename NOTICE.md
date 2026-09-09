@@ -7,8 +7,7 @@ copies of live campaigns, upstream skill trees, or vendor exploit PoCs.
 
 ## Shape
 
-- [nandangupta-security/SkillsGoat](https://github.com/nandangupta-security/SkillsGoat) — goat-shaped corpus (WebGoat for agent skills)
-- [orcasecurity-research/AIGoat](https://github.com/orcasecurity-research/AIGoat) — one fixture per class; `200-image-metadata-payload` is AI-Goat-style
+- WebGoat / DVWA / [AI Goat](https://github.com/orcasecurity-research/AIGoat) — deliberately vulnerable, labeled examples. `200-image-metadata-payload` is AI-Goat-style (command in PNG tEXt).
 
 ## Derived primitives (rewritten, inert)
 
