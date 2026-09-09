@@ -1,6 +1,6 @@
 {
   "skill_name": "c8-command-shadowing-composite",
-  "skill_path": "/Users/nipung/skillsgoat/evaluations/.composite/c8-command-shadowing/skill",
+  "skill_path": "<REPO>/evaluations/.composite/c8-command-shadowing/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

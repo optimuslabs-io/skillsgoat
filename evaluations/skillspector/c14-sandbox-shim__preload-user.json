@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "office-doc-converter",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/300-sandbox-shim/nodes/preload-user/skill",
+    "source": "<REPO>/pasture/compound-chain/300-sandbox-shim/nodes/preload-user/skill",
     "scanned_at": "2026-08-24T23:32:14.150211+00:00"
   },
   "risk_assessment": {

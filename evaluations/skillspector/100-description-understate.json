@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "file-lister",
-    "source": "/Users/nipung/skillsgoat/pasture/description-behavior-mismatch/100-description-understate/skill",
+    "source": "<REPO>/pasture/description-behavior-mismatch/100-description-understate/skill",
     "scanned_at": "2026-09-03T00:53:43.414487+00:00"
   },
   "risk_assessment": {

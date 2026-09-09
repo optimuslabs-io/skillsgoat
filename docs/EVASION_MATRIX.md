@@ -82,7 +82,9 @@ Full per-node/composite JSON: `evaluations/skillspector/chains.json`. Narrative 
 [CHAINS.md](CHAINS.md).
 
 
-## Scanner comparison — static-only (Aug 2026, metric v2 — strict)
+## Scanner comparison — static-only (metric v2 — strict)
+
+Last run: SkillSpector **2026-09-03**, Cisco **2026-08-25**. These are not a same-day bake-off. Full ledger: [evaluations/README.md](../evaluations/README.md).
 
 Structural blindness v2 = **zero hard-blocks anywhere in a chain** (nodes or
 composite). Sub-threshold WEAK findings no longer rescue a score — v1 counted

@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "migration-assistant",
-    "source": "/Users/nipung/skillsgoat/pasture/format-spec-noncompliance/300-nested-bundle-recursion/skill",
+    "source": "<REPO>/pasture/format-spec-noncompliance/300-nested-bundle-recursion/skill",
     "scanned_at": "2026-09-03T00:53:57.851926+00:00"
   },
   "risk_assessment": {

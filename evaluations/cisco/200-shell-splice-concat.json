@@ -1,6 +1,6 @@
 {
   "skill_name": "cache-refresh",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/obfuscation-encoding/200-shell-splice-concat/skill",
+  "skill_path": "<REPO>/pasture/obfuscation-encoding/200-shell-splice-concat/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

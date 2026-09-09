@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "dep-setup",
-    "source": "/Users/nipung/skillsgoat/pasture/deferred-resolution/200-lockfile-divergence/skill",
+    "source": "<REPO>/pasture/deferred-resolution/200-lockfile-divergence/skill",
     "scanned_at": "2026-09-03T00:53:40.800781+00:00"
   },
   "risk_assessment": {

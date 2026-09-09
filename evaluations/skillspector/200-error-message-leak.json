@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "db-connect-doctor",
-    "source": "/Users/nipung/skillsgoat/pasture/side-channel-exfiltration/200-error-message-leak/skill",
+    "source": "<REPO>/pasture/side-channel-exfiltration/200-error-message-leak/skill",
     "scanned_at": "2026-09-03T00:54:28.972356+00:00"
   },
   "risk_assessment": {

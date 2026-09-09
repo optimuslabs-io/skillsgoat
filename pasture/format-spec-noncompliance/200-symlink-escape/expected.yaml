@@ -10,7 +10,8 @@ maps:
 inert: true
 canary: GOAT-CANARY-200-symlink-escape
 why: |
-  resources/config.yaml is a symlink to ~/.ssh/config (outside the bundle).
+  resources/config.yaml is a relative symlink that escapes skill/ to
+  fixtures/escape-target.yaml (fake ssh-config-shaped text, still in-repo).
   Scanners that enforce bundle-path containment see a benign config file;
-  anything that follows links reads credentials. The spec never defines
-  link policy; extraction tools differ wildly.
+  anything that follows links reads outside the scannable tree. The spec
+  never defines link policy; extraction tools differ wildly.

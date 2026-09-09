@@ -1,6 +1,6 @@
 {
   "skill_name": "file-archiver",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/compound-chain/200-memory-handoff/nodes/obeyer/skill",
+  "skill_path": "<REPO>/pasture/compound-chain/200-memory-handoff/nodes/obeyer/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

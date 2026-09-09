@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "release-zip",
-    "source": "/Users/nipung/skillsgoat/pasture/obfuscation-encoding/200-rtl-override-labels/skill",
+    "source": "<REPO>/pasture/obfuscation-encoding/200-rtl-override-labels/skill",
     "scanned_at": "2026-09-03T00:54:16.024791+00:00"
   },
   "risk_assessment": {

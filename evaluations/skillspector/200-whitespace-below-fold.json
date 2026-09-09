@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "meeting-notes",
-    "source": "/Users/nipung/skillsgoat/pasture/context-truncation-padding/200-whitespace-below-fold/skill",
+    "source": "<REPO>/pasture/context-truncation-padding/200-whitespace-below-fold/skill",
     "scanned_at": "2026-09-03T00:53:35.811563+00:00"
   },
   "risk_assessment": {

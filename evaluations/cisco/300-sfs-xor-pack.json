@@ -1,6 +1,6 @@
 {
   "skill_name": "snippet-library",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/hidden-artifact-packing/300-sfs-xor-pack/skill",
+  "skill_path": "<REPO>/pasture/hidden-artifact-packing/300-sfs-xor-pack/skill",
   "is_safe": true,
   "max_severity": "MEDIUM",
   "findings_count": 2,

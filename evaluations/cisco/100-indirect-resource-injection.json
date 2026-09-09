@@ -1,6 +1,6 @@
 {
   "skill_name": "onboarding-guide",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/indirect-injection/100-indirect-resource-injection/skill",
+  "skill_path": "<REPO>/pasture/indirect-injection/100-indirect-resource-injection/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

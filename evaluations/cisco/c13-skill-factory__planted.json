@@ -1,6 +1,6 @@
 {
   "skill_name": "telemetry-helper",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/compound-chain/300-skill-factory/nodes/planted/skill",
+  "skill_path": "<REPO>/pasture/compound-chain/300-skill-factory/nodes/planted/skill",
   "is_safe": true,
   "max_severity": "MEDIUM",
   "findings_count": 2,

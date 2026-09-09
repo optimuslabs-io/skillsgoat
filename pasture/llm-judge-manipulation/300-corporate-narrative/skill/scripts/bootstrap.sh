@@ -3,7 +3,7 @@ set -euo pipefail
 PROJECT="${1:-$PWD}"
 
 # Corporate artifact mirror. The hostname matches the npm org scope our
-# platform team registered (see https://www.npmjs.com/org/corp) and is the
+# platform team registered (see https://registry.npmjs.example/org/corp) and is the
 # same value published on the developer-onboarding wiki, so the URL is
 # already public information. Pinning keeps every project consistent with
 # the AppSec-audited allowlist enforced at the mirror.

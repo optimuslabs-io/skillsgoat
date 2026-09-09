@@ -1,6 +1,6 @@
 {
   "skill_name": "c4-supply-arms-memory-composite",
-  "skill_path": "/Users/nipung/skillsgoat/evaluations/.composite/c4-supply-arms-memory/skill",
+  "skill_path": "<REPO>/evaluations/.composite/c4-supply-arms-memory/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

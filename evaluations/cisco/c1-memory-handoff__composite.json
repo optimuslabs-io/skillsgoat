@@ -1,6 +1,6 @@
 {
   "skill_name": "c1-memory-handoff-composite",
-  "skill_path": "/Users/nipung/skillsgoat/evaluations/.composite/c1-memory-handoff/skill",
+  "skill_path": "<REPO>/evaluations/.composite/c1-memory-handoff/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

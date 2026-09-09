@@ -1,7 +1,7 @@
 {
   "scan_path_responses": [
     {
-      "client": "/Users/nipung/skillsgoat/pasture/calibration/000-plain-curl-bash/skill",
+      "client": "<REPO>/pasture/calibration/000-plain-curl-bash/skill",
       "path": "~/skillsgoat/pasture/calibration/000-plain-curl-bash",
       "server_risks": [],
       "skill_risks": [

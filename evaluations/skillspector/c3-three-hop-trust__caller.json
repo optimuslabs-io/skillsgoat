@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "release-notes-writer",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/200-three-hop-trust/nodes/caller/skill",
+    "source": "<REPO>/pasture/compound-chain/200-three-hop-trust/nodes/caller/skill",
     "scanned_at": "2026-08-24T23:31:22.133076+00:00"
   },
   "risk_assessment": {

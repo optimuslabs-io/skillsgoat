@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "c8-command-shadowing-composite",
-    "source": "/Users/nipung/skillsgoat/evaluations/.composite/c8-command-shadowing/skill",
+    "source": "<REPO>/evaluations/.composite/c8-command-shadowing/skill",
     "scanned_at": "2026-08-24T23:30:55.785072+00:00"
   },
   "risk_assessment": {

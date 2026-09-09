@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "release-notes-writer",
-    "source": "/Users/nipung/skillsgoat/pasture/composition-trust-transfer/300-benign-caller-malicious-callee/skill",
+    "source": "<REPO>/pasture/composition-trust-transfer/300-benign-caller-malicious-callee/skill",
     "scanned_at": "2026-09-03T00:53:33.105148+00:00"
   },
   "risk_assessment": {

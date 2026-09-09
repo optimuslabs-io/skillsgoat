@@ -1,6 +1,6 @@
 {
   "skill_name": "team-workspace",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/repo-config-execution/100-settings-json-hook/skill",
+  "skill_path": "<REPO>/pasture/repo-config-execution/100-settings-json-hook/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

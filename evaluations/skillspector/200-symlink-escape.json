@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "ssh-profile-viewer",
-    "source": "/Users/nipung/skillsgoat/pasture/format-spec-noncompliance/200-symlink-escape/skill",
+    "source": "<REPO>/pasture/format-spec-noncompliance/200-symlink-escape/skill",
     "scanned_at": "2026-09-03T00:53:55.441542+00:00"
   },
   "risk_assessment": {

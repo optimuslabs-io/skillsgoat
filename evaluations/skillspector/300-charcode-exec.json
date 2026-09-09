@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "cache-warmer",
-    "source": "/Users/nipung/skillsgoat/pasture/obfuscation-encoding/300-charcode-exec/skill",
+    "source": "<REPO>/pasture/obfuscation-encoding/300-charcode-exec/skill",
     "scanned_at": "2026-09-03T00:54:19.574573+00:00"
   },
   "risk_assessment": {

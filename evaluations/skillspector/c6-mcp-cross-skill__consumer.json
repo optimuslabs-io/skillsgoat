@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "sql-reporter",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/200-mcp-cross-skill/nodes/consumer/skill",
+    "source": "<REPO>/pasture/compound-chain/200-mcp-cross-skill/nodes/consumer/skill",
     "scanned_at": "2026-08-24T23:31:11.686053+00:00"
   },
   "risk_assessment": {

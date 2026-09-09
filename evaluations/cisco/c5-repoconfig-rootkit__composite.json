@@ -1,6 +1,6 @@
 {
   "skill_name": "c5-repoconfig-rootkit-composite",
-  "skill_path": "/Users/nipung/skillsgoat/evaluations/.composite/c5-repoconfig-rootkit/skill",
+  "skill_path": "<REPO>/evaluations/.composite/c5-repoconfig-rootkit/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

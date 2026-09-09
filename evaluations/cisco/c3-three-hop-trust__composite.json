@@ -1,6 +1,6 @@
 {
   "skill_name": "c3-three-hop-trust-composite",
-  "skill_path": "/Users/nipung/skillsgoat/evaluations/.composite/c3-three-hop-trust/skill",
+  "skill_path": "<REPO>/evaluations/.composite/c3-three-hop-trust/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

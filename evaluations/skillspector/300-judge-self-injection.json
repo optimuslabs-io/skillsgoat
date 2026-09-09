@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "notebook-tidy",
-    "source": "/Users/nipung/skillsgoat/pasture/llm-judge-manipulation/300-judge-self-injection/skill",
+    "source": "<REPO>/pasture/llm-judge-manipulation/300-judge-self-injection/skill",
     "scanned_at": "2026-09-03T00:54:08.840591+00:00"
   },
   "risk_assessment": {

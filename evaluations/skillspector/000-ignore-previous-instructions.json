@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "focus-assistant",
-    "source": "/Users/nipung/skillsgoat/pasture/calibration/000-ignore-previous-instructions/skill",
+    "source": "<REPO>/pasture/calibration/000-ignore-previous-instructions/skill",
     "scanned_at": "2026-09-03T00:53:25.731339+00:00"
   },
   "risk_assessment": {

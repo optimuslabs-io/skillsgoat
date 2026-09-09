@@ -1,6 +1,6 @@
 {
   "skill_name": "release-notes-writer",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/composition-trust-transfer/300-benign-caller-malicious-callee/skill",
+  "skill_path": "<REPO>/pasture/composition-trust-transfer/300-benign-caller-malicious-callee/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

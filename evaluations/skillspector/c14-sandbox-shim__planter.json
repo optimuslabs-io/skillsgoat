@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "doc-thumbnailer",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/300-sandbox-shim/nodes/planter/skill",
+    "source": "<REPO>/pasture/compound-chain/300-sandbox-shim/nodes/planter/skill",
     "scanned_at": "2026-08-24T23:32:11.967146+00:00"
   },
   "risk_assessment": {

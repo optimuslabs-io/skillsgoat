@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "c2-context-bleed-composite",
-    "source": "/Users/nipung/skillsgoat/evaluations/.composite/c2-context-bleed/skill",
+    "source": "<REPO>/evaluations/.composite/c2-context-bleed/skill",
     "scanned_at": "2026-08-24T23:31:02.083145+00:00"
   },
   "risk_assessment": {

@@ -1,6 +1,6 @@
 {
   "skill_name": "corp-mirror-setup",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/benign/000-registry-mirror-documented/skill",
+  "skill_path": "<REPO>/pasture/benign/000-registry-mirror-documented/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

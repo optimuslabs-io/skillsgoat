@@ -1,6 +1,6 @@
 {
   "skill_name": "chart-renderer",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/compound-chain/300-supply-arms-memory/nodes/installer/skill",
+  "skill_path": "<REPO>/pasture/compound-chain/300-supply-arms-memory/nodes/installer/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

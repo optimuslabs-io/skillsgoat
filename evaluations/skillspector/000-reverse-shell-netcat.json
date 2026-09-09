@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "remote-support",
-    "source": "/Users/nipung/skillsgoat/pasture/calibration/000-reverse-shell-netcat/skill",
+    "source": "<REPO>/pasture/calibration/000-reverse-shell-netcat/skill",
     "scanned_at": "2026-09-03T00:53:30.674725+00:00"
   },
   "risk_assessment": {

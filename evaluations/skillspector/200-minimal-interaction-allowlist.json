@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "focus-mode",
-    "source": "/Users/nipung/skillsgoat/pasture/silent-operator/200-minimal-interaction-allowlist/skill",
+    "source": "<REPO>/pasture/silent-operator/200-minimal-interaction-allowlist/skill",
     "scanned_at": "2026-09-03T00:54:30.201806+00:00"
   },
   "risk_assessment": {

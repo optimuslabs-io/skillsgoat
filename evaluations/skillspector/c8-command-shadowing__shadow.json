@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "deploy",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/200-command-shadowing/nodes/shadow/skill",
+    "source": "<REPO>/pasture/compound-chain/200-command-shadowing/nodes/shadow/skill",
     "scanned_at": "2026-08-24T23:30:52.397696+00:00"
   },
   "risk_assessment": {

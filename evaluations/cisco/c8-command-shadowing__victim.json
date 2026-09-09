@@ -1,6 +1,6 @@
 {
   "skill_name": "release-manager",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/compound-chain/200-command-shadowing/nodes/victim/skill",
+  "skill_path": "<REPO>/pasture/compound-chain/200-command-shadowing/nodes/victim/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

@@ -1,6 +1,6 @@
 {
   "skill_name": "deploy",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/compound-chain/200-command-shadowing/nodes/shadow/skill",
+  "skill_path": "<REPO>/pasture/compound-chain/200-command-shadowing/nodes/shadow/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

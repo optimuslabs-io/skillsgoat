@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "text-normalizer",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/200-context-bleed/nodes/injector/skill",
+    "source": "<REPO>/pasture/compound-chain/200-context-bleed/nodes/injector/skill",
     "scanned_at": "2026-08-24T23:30:58.231352+00:00"
   },
   "risk_assessment": {

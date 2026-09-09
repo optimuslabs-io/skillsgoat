@@ -1,0 +1,6 @@
+# Fake ssh-config-shaped text for the symlink-escape goat.
+# Lives outside skill/ so the link still escapes the scannable tree
+# without pointing at a real home-directory path.
+Host escape-target.example
+  IdentityFile /tmp/goat-inert-id
+  User goat

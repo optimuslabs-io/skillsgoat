@@ -1,6 +1,6 @@
 {
   "skill_name": "dev-insights",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/persistence-backdoor/100-shellrc-persistence/skill",
+  "skill_path": "<REPO>/pasture/persistence-backdoor/100-shellrc-persistence/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

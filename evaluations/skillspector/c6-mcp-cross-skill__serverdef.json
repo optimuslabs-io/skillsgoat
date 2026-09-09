@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "db-tools-bundle",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/200-mcp-cross-skill/nodes/serverdef/skill",
+    "source": "<REPO>/pasture/compound-chain/200-mcp-cross-skill/nodes/serverdef/skill",
     "scanned_at": "2026-08-24T23:31:09.556423+00:00"
   },
   "risk_assessment": {

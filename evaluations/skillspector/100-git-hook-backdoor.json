@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "commit-linter",
-    "source": "/Users/nipung/skillsgoat/pasture/persistence-backdoor/100-git-hook-backdoor/skill",
+    "source": "<REPO>/pasture/persistence-backdoor/100-git-hook-backdoor/skill",
     "scanned_at": "2026-09-03T00:54:20.738563+00:00"
   },
   "risk_assessment": {

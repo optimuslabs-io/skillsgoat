@@ -4,11 +4,11 @@ A deliberately vulnerable corpus for testing whether agent-skill scanners catch 
 
 Agent skills (`SKILL.md` bundles) ship executable behavior for Claude Code, Codex CLI, OpenClaw, and Cursor. They run with your local privileges. Their descriptions land in model context before anyone reads the files, and the ecosystem ships them unsigned and unscanned. SkillsGoat is built like WebGoat, DVWA, and AI Goat: one fixture per documented class of skill compromise, including techniques that already bypass current scanners.
 
-> ⚠️ **These skills are malicious by design.** Installing SkillsGoat loads the fixtures into the agent skill path. That is the goat. Endpoints are inert `*.example` / RFC 5737 addresses; archives contain markers, not malware. Don't do this on a machine with production secrets. See [docs/SAFETY.md](docs/SAFETY.md).
+> ⚠️ **These skills are malicious by design.** Run SkillsGoat in a sandbox. Installing it (`./setup --goat`) loads fixtures into the agent skill path — that is the goat. Endpoints are inert `*.example` / RFC 5737 addresses; archives contain markers, not malware. Do not clone this onto a machine with production secrets. Free default: [nono](https://nono.sh) (local kernel isolation). Throwaway machine: [Daytona](https://www.daytona.io) (sandbox credits, no card). See [docs/SAFETY.md](docs/SAFETY.md).
 
 ## What's inside
 
-**74 attack fixtures + 35 compound chains**, each with machine-readable ground truth:
+**74 atomic fixtures (64 malicious + 10 benign) + 35 compound chains**, each with machine-readable ground truth:
 
 - **Calibration set (10):** must-catch patterns. A scanner missing these is broken, not weak.
 - **Classics (10):** metadata injection, indirect injection, exfiltration, destructive commands, curl-pipe-bash, over-permission, persistence, memory poisoning, confused deputy, typosquatting.
@@ -43,40 +43,35 @@ Single-skill fixtures test one weakness at a time. Real compromises chain across
 
 Next: version-drift suite (benign→poisoned paired fixtures), judge-benchmark leaderboard, detonation layer.
 
-## Install (30 seconds)
+## Install (research clone)
 
-The install commands live in [.agents/install-block.md](.agents/install-block.md).
-
-Open Claude Code and paste this. Claude does the rest.
-
-> Install SkillsGoat: run **`git clone --single-branch --depth 1 https://github.com/optimuslabs-io/skillsgoat.git ~/.claude/skills/skillsgoat && cd ~/.claude/skills/skillsgoat && ./setup`**. Then add a "SkillsGoat" section to CLAUDE.md that says this is a goat (fixtures are malicious by design, endpoints inert), to use `/setup-skillsgoat` after git pull, and to evaluate scanners with `python3 goat.py scan --scanners skillspector --no-llm`. Then ask the user if they also want SkillsGoat on the current project so teammates get it (`./setup --team`).
-
-### Claude Code plugin
+**Sandbox first.** Canonical commands: [.agents/install-block.md](.agents/install-block.md).
+[nono](https://nono.sh) is the free local default; [Daytona](https://www.daytona.io)
+is the free throwaway machine. Details: [docs/SAFETY.md](docs/SAFETY.md).
 
 ```bash
-claude plugins marketplace add optimuslabs-io/skillsgoat
-claude plugins install skillsgoat
+brew install nono   # https://nono.sh
+git clone --single-branch --depth 1 https://github.com/optimuslabs-io/skillsgoat.git
+cd skillsgoat && ./setup
+nono run --allow . -- .venv/bin/python goat.py lint
+nono run --allow . -- .venv/bin/python goat.py scan --scanners skillspector --no-llm
 ```
 
-Or `/plugin marketplace add optimuslabs-io/skillsgoat` then `/plugin install skillsgoat`. Then `/setup-skillsgoat` once.
+`./setup` creates a venv and stops. It does **not** link fixtures into
+`~/.claude/skills`. To load the goat into agent dirs: `./setup --goat`
+(type `GOAT`, or `--confirm-goat` in CI) — do that inside a Daytona
+sandbox, or run the agent under nono afterwards.
 
-### Codex, Cursor, Copilot, Grok, and other agents
-
-```bash
-npx skills@latest add optimuslabs-io/skillsgoat
-```
-
-Pick the skills and which agents to install them on. **Make sure `setup-skillsgoat` is one of them.** This installs the pasture fixtures.
-
-The plugin route and the skills.sh route are exclusive. Installing both leaves every fixture twice.
-
-Then run `/setup-skillsgoat` once per machine (and `./setup --team` in a shared repo). After that: `python3 goat.py lint`, `python3 goat.py scan --scanners skillspector --no-llm`.
+Plugin manifests (`.claude-plugin/`) stay in the tree for discovery
+testing. Do not treat `claude plugins install` or `npx skills add` as
+the default path; both can list or load the corpus without the typed
+confirm. See [docs/SAFETY.md](docs/SAFETY.md).
 
 ## Layout
 
 ```
 taxonomy.yaml               fixed category registry
-setup                       gstack-style installer (links fixtures into agent dirs)
+setup                       venv + research-mode (use --goat to link fixtures)
 skills/                     npx skills add discovery index (symlinks into pasture)
 pack/skills/setup-skillsgoat
 .claude-plugin/             Claude marketplace plugin (loads skills/)
@@ -88,6 +83,7 @@ docs/
   SAFETY.md                 inert-payload policy, canaries, disclosure
 tools/gen_binaries.py       regenerates .pyc/.docx/.dat/.zip artifacts
 evaluations/<scanner>/      per-scanner matrices and raw JSON
+evaluations/README.md       last-run dates (cite these with any score)
 evaluations/ui/             browser/computer-use protocol for UI-only vendors
 ```
 

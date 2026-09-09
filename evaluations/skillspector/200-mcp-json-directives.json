@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "db-tools-bundle",
-    "source": "/Users/nipung/skillsgoat/pasture/mcp-tool-poisoning/200-mcp-json-directives/skill",
+    "source": "<REPO>/pasture/mcp-tool-poisoning/200-mcp-json-directives/skill",
     "scanned_at": "2026-09-03T00:54:10.047164+00:00"
   },
   "risk_assessment": {

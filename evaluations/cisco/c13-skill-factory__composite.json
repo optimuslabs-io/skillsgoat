@@ -1,6 +1,6 @@
 {
   "skill_name": "c13-skill-factory-composite",
-  "skill_path": "/Users/nipung/skillsgoat/evaluations/.composite/c13-skill-factory/skill",
+  "skill_path": "<REPO>/evaluations/.composite/c13-skill-factory/skill",
   "is_safe": true,
   "max_severity": "MEDIUM",
   "findings_count": 2,

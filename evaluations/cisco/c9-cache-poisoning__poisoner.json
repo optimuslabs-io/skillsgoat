@@ -1,6 +1,6 @@
 {
   "skill_name": "dep-preheat",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/compound-chain/300-cache-poisoning/nodes/poisoner/skill",
+  "skill_path": "<REPO>/pasture/compound-chain/300-cache-poisoning/nodes/poisoner/skill",
   "is_safe": true,
   "max_severity": "MEDIUM",
   "findings_count": 2,
@@ -12,7 +12,7 @@
       "severity": "MEDIUM",
       "title": "Undeclared network usage",
       "description": "Skill code uses network libraries but doesn't declare network requirement",
-      "file_path": "/Users/nipung/skillsgoat/pasture/compound-chain/300-cache-poisoning/nodes/poisoner/skill/SKILL.md",
+      "file_path": "<REPO>/pasture/compound-chain/300-cache-poisoning/nodes/poisoner/skill/SKILL.md",
       "line_number": null,
       "snippet": null,
       "remediation": "Declare network usage in compatibility field or remove network calls",

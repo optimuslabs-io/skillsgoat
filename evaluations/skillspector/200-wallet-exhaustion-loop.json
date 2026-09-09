@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "uptime-monitor",
-    "source": "/Users/nipung/skillsgoat/pasture/resource-exhaustion/200-wallet-exhaustion-loop/skill",
+    "source": "<REPO>/pasture/resource-exhaustion/200-wallet-exhaustion-loop/skill",
     "scanned_at": "2026-09-03T00:54:25.445685+00:00"
   },
   "risk_assessment": {

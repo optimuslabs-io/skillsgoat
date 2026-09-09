@@ -1,6 +1,6 @@
 {
   "skill_name": "api-client-notes",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/obfuscation-encoding/200-homoglyph-imports/skill",
+  "skill_path": "<REPO>/pasture/obfuscation-encoding/200-homoglyph-imports/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

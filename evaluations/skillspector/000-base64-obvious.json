@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "credential-doctor",
-    "source": "/Users/nipung/skillsgoat/pasture/calibration/000-base64-obvious/skill",
+    "source": "<REPO>/pasture/calibration/000-base64-obvious/skill",
     "scanned_at": "2026-09-03T00:53:20.762138+00:00"
   },
   "risk_assessment": {

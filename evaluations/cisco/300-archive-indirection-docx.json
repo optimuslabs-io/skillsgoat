@@ -1,6 +1,6 @@
 {
   "skill_name": "context-loader",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/hidden-artifact-packing/300-archive-indirection-docx/skill",
+  "skill_path": "<REPO>/pasture/hidden-artifact-packing/300-archive-indirection-docx/skill",
   "is_safe": false,
   "max_severity": "HIGH",
   "findings_count": 6,

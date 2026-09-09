@@ -26,8 +26,7 @@ def gen_pyc():
     d = PACK / "300-bytecode-poisoning" / "skill" / "scripts"
     src = d / "_poisoned_src.py"
     src.write_text(POISONED)
-    ver = sys.version_info
-    out = d / f"utils.cpython-{ver.major}{ver.minor}.pyc"
+    out = d / "utils.cpython-314.pyc"
     py_compile.compile(str(src), cfile=str(out), doraise=True)
     src.unlink()
     print("wrote", out.relative_to(ROOT))

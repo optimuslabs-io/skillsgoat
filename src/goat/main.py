@@ -138,7 +138,158 @@ def read_skill_files(skill_dir: Path) -> dict[str, str]:
     return out
 
 
-# ---------------------------------------------------------------- lint
+# ---------------------------------------------------------------- lint / safety
+
+_URL_RE = re.compile(r"https?://[^\s\"'<>\\)`\]]+", re.I)
+_HOME_RE = re.compile(r"(?:/Users/|/home/)")
+_PYC_FIXTURE = (
+    PASTURE / "hidden-artifact-packing" / "300-bytecode-poisoning"
+    / "skill" / "scripts" / "utils.cpython-314.pyc"
+)
+_SKIP_LINT_SUFFIXES = {
+    ".pyc", ".png", ".jpg", ".jpeg", ".gif", ".webp", ".woff", ".zip",
+    ".docx", ".dat", ".pdf", ".so", ".dylib",
+}
+
+
+def decode_smuggled(text: str) -> str:
+    chars: list[str] = []
+    for ch in text:
+        o = ord(ch)
+        if 0xE0020 <= o <= 0xE007E:
+            chars.append(chr(o - 0xE0000))
+        elif 0xE0000 <= o <= 0xE001F:
+            continue
+        elif 0xFE00 <= o <= 0xFE0F or 0xE0100 <= o <= 0xE01EF:
+            continue
+        else:
+            chars.append(ch)
+    s = "".join(chars)
+    for z in ("\u200b", "\u200c", "\u200d", "\ufeff"):
+        s = s.replace(z, "")
+    return s
+
+
+def _hostname_allowed(host: str) -> bool:
+    host = host.lower().rstrip(".")
+    if "@" in host:
+        host = host.rsplit("@", 1)[-1]
+    if host.startswith("[") and "]" in host:
+        host = host[1:host.index("]")]
+    elif host.count(":") == 1:
+        host = host.split(":")[0]
+    if host in {"localhost", "127.0.0.1", "::1"}:
+        return True
+    if re.fullmatch(r"192\.0\.2\.\d+", host):
+        return True
+    if re.fullmatch(r"198\.51\.100\.\d+", host):
+        return True
+    if re.fullmatch(r"203\.0\.113\.\d+", host):
+        return True
+    if host in {"example.com", "example.net", "example.org"}:
+        return True
+    if host.endswith(".example.com") or host.endswith(".example.net") or host.endswith(".example.org"):
+        return True
+    if host == "example" or host.endswith(".example"):
+        return True
+    return False
+
+
+def _urls_disallowed(text: str) -> list[str]:
+    from urllib.parse import urlparse
+
+    bad = []
+    for raw in _URL_RE.findall(text):
+        raw = raw.rstrip(".,;:)]}>\"'")
+        try:
+            host = urlparse(raw).hostname or ""
+        except ValueError:
+            bad.append(raw)
+            continue
+        if not host or not _hostname_allowed(host):
+            bad.append(raw)
+    return bad
+
+
+def sanitize_paths(obj, repo_root: Path):
+    repo = str(Path(repo_root).resolve())
+    home = str(Path.home())
+
+    def clean_str(s: str) -> str:
+        if repo:
+            s = s.replace(repo, "<REPO>")
+        if home:
+            s = s.replace(home, "<HOME>")
+        s = re.sub(r"/Users/[^/\s\"']+", "<HOME>", s)
+        s = re.sub(r"/home/[^/\s\"']+", "<HOME>", s)
+        return s
+
+    if isinstance(obj, dict):
+        return {
+            clean_str(k) if isinstance(k, str) else k: sanitize_paths(v, repo_root)
+            for k, v in obj.items()
+        }
+    if isinstance(obj, list):
+        return [sanitize_paths(v, repo_root) for v in obj]
+    if isinstance(obj, str):
+        return clean_str(obj)
+    return obj
+
+
+def _dump_json(path: Path, obj, raw_paths: bool = False) -> None:
+    if not raw_paths:
+        obj = sanitize_paths(obj, REPO_ROOT)
+    path.write_text(json.dumps(obj, indent=2) + "\n")
+
+
+def _lint_safety(problems: list[str]) -> None:
+    repo_res = str(REPO_ROOT.resolve())
+    if not _PYC_FIXTURE.is_file():
+        problems.append(
+            f"{_PYC_FIXTURE.relative_to(REPO_ROOT)}: bytecode fixture missing "
+            "(run python3 tools/gen_binaries.py; do not make clean first)"
+        )
+
+    for p in PASTURE.rglob("*"):
+        rel = str(p.relative_to(REPO_ROOT))
+        if p.is_symlink():
+            target = os.readlink(p)
+            if target.startswith("/") or target.startswith("~") or "$HOME" in target:
+                problems.append(f"{rel}: absolute/home symlink -> {target}")
+                continue
+            resolved = (p.parent / target).resolve()
+            if not str(resolved).startswith(repo_res + os.sep) and str(resolved) != repo_res:
+                problems.append(f"{rel}: symlink escapes repo -> {target}")
+            continue
+        if not p.is_file() or p.suffix.lower() in _SKIP_LINT_SUFFIXES:
+            continue
+        try:
+            data = p.read_bytes()
+        except OSError:
+            continue
+        if b"\0" in data[:8192]:
+            continue
+        text = data.decode("utf-8", errors="replace")
+        if _HOME_RE.search(text):
+            problems.append(f"{rel}: committed home-directory path")
+        for url in _urls_disallowed(text) + _urls_disallowed(decode_smuggled(text)):
+            problems.append(f"{rel}: live/non-inert URL {url}")
+
+    eval_root = REPO_ROOT / "evaluations"
+    if eval_root.is_dir():
+        for p in eval_root.rglob("*"):
+            if not p.is_file() or p.suffix.lower() in _SKIP_LINT_SUFFIXES:
+                continue
+            try:
+                data = p.read_bytes()
+            except OSError:
+                continue
+            if b"\0" in data[:8192]:
+                continue
+            text = data.decode("utf-8", errors="replace")
+            if _HOME_RE.search(text):
+                problems.append(f"{p.relative_to(REPO_ROOT)}: committed home-directory path")
+
 
 def cmd_lint(args) -> int:
     tax = load_taxonomy()
@@ -209,6 +360,8 @@ def cmd_lint(args) -> int:
                 problems.append(f"{where}: edge references unknown node: {e}")
             elif not e.get("via"):
                 problems.append(f"{where}: edge missing 'via': {e}")
+
+    _lint_safety(problems)
 
     for p in problems:
         print(f"LINT FAIL: {p}")
@@ -428,7 +581,7 @@ def scan_chain_node(scanner, chain, nname, nmeta, use_llm, timeout):
             "score": score, "summary": summary}
 
 
-def cmd_scan_chains(scanner, mode, use_llm, timeout):
+def cmd_scan_chains(scanner, mode, use_llm, timeout, raw_paths: bool = False):
     outdir = REPO_ROOT / "evaluations" / scanner
     outdir.mkdir(parents=True, exist_ok=True)
     chains = discover_chains()
@@ -443,8 +596,7 @@ def cmd_scan_chains(scanner, mode, use_llm, timeout):
                 node_rows.append(r)
                 print(f"[{scanner}] {c['id']:32s} node:{nname:14s} {r['status']}")
                 raw, _ = run_scanner(scanner, nmeta["skill_dir"], use_llm=use_llm, timeout=timeout)
-                (outdir / f"{c['id']}__{nname}.json").write_text(
-                    json.dumps(raw or {}, indent=2))
+                _dump_json(outdir / f"{c['id']}__{nname}.json", raw or {}, raw_paths)
         graph_row = None
         if mode in ("composite", "both"):
             sk = assemble_composite(c, tmp / c["id"])
@@ -452,7 +604,7 @@ def cmd_scan_chains(scanner, mode, use_llm, timeout):
             if err:
                 graph_status = f"ERROR: {err}"
             else:
-                (outdir / f"{c['id']}__composite.json").write_text(json.dumps(report, indent=2))
+                _dump_json(outdir / f"{c['id']}__composite.json", report, raw_paths)
                 state, score, summary = scanner_verdict(scanner, report)
                 expect = c["graph_verdict"]
                 graph_status = {"caught": "GRAPH-CAUGHT", "weak": "GRAPH-WEAK", "missed": "GRAPH-BYPASSED"}[state]
@@ -472,7 +624,7 @@ def cmd_scan_chains(scanner, mode, use_llm, timeout):
              "structurally_blind": blind,
              "blindness_rate": round(blind / max(len(chains), 1), 3),
              "rows": rows}
-    (outdir / "chains.json").write_text(json.dumps(recap, indent=2))
+    _dump_json(outdir / "chains.json", recap, raw_paths)
     print(f"\n[{scanner}] chains={len(chains)} structurally_blind={blind}/{len(chains)} "
           f"({recap['blindness_rate']:.0%}) → evaluations/{scanner}/chains.json\n")
     return recap
@@ -490,8 +642,9 @@ def cmd_scan(args) -> int:
         return 2
     mode = getattr(args, "mode", "atomic")
     if mode in ("node", "composite", "both"):
+        raw_paths = getattr(args, "raw_paths", False)
         for sc in scanners:
-            cmd_scan_chains(sc, mode, not args.no_llm, args.timeout)
+            cmd_scan_chains(sc, mode, not args.no_llm, args.timeout, raw_paths)
         return 0
     entries = discover_entries()
     ids = getattr(args, "ids", "") or ""
@@ -517,7 +670,7 @@ def cmd_scan(args) -> int:
             if err:
                 row = {"id": e["id"], "truth": e["verdict"], "status": f"ERROR: {err}"}
             else:
-                (outdir / f"{e['id']}.json").write_text(json.dumps(report, indent=2))
+                _dump_json(outdir / f"{e['id']}.json", report, getattr(args, "raw_paths", False))
                 state, score, summary = scanner_verdict(scanner, report)
                 if summary.startswith("ERROR:"):
                     row = {"id": e["id"], "truth": e["verdict"], "status": summary}
@@ -556,7 +709,7 @@ def cmd_scan(args) -> int:
             "benign_fp_rate": round(fp / max(fp + tn, 1), 3),
             "rows": matrix,
         }
-        (outdir / "matrix.json").write_text(json.dumps(recap, indent=2))
+        _dump_json(outdir / "matrix.json", recap, getattr(args, "raw_paths", False))
         md = [f"# Evaluation matrix — {scanner}\n",
               f"- scanned_at: {recap['scanned_at']}",
               f"- llm_enabled: {recap['llm_enabled']}",
@@ -702,6 +855,8 @@ def main() -> int:
     scan.add_argument("--timeout", type=int, default=180)
     scan.add_argument("--ids", default="",
                       help="comma-separated entry ids to scan (default: all)")
+    scan.add_argument("--raw-paths", action="store_true",
+                      help="do not sanitize absolute paths in written eval JSON")
     scan.set_defaults(func=cmd_scan)
 
     sub.add_parser("chain-report", help="generate docs/CHAINS.md").set_defaults(func=cmd_chain_report)

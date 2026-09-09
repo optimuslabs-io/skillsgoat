@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "dep-preheat",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/300-cache-poisoning/nodes/poisoner/skill",
+    "source": "<REPO>/pasture/compound-chain/300-cache-poisoning/nodes/poisoner/skill",
     "scanned_at": "2026-08-24T23:31:49.783209+00:00"
   },
   "risk_assessment": {

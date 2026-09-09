@@ -1,75 +1,72 @@
 # The canonical install block
 
-One install story. `README.md` and `docs/USAGE.md` must say **this**.
+README and docs/USAGE.md must say **this**. Run SkillsGoat in a sandbox.
+Default is clone + scan. `./setup --goat` loads fixtures into the agent
+skill path on purpose. Endpoints are inert (`*.example` / RFC 5737).
 
-SkillsGoat is a goat. These commands load the malicious fixtures into the
-agent skill path on purpose. Endpoints are inert (`*.example` / RFC 5737).
-Do this on a throwaway profile, not a machine with production secrets.
-`npx skills add` may list the repo on skills.sh (canaries will show the leak).
+Do not list this repo on skills.sh. Do not `npx skills add` it.
+Plugin manifests stay in the tree for discovery testing; they are not
+the documented 30-second path.
 
-## Paste this to your agent (30 seconds)
+## Sandbox first (required recommendation)
 
-Open Claude Code (or Cursor / Codex / OpenClaw) and paste:
+Do not clone this onto a machine that holds production secrets, and do
+not `./setup --goat` on the host agent profile you use for real work.
 
-> Install SkillsGoat: run **`git clone --single-branch --depth 1 https://github.com/optimuslabs-io/skillsgoat.git ~/.claude/skills/skillsgoat && cd ~/.claude/skills/skillsgoat && ./setup`**. Then add a "SkillsGoat" section to CLAUDE.md that says this is a goat (fixtures are malicious by design, endpoints inert), to use `/setup-skillsgoat` after git pull, and to evaluate scanners with `python3 goat.py scan --scanners skillspector --no-llm`. Then ask the user if they also want SkillsGoat on the current project so teammates get it (`./setup --team`).
+**Free local (default):** [nono](https://nono.sh) — open-source kernel
+isolation (Seatbelt on macOS, Landlock on Linux). `brew install nono`.
+Confine clone + scan + the agent to this repo; secrets under `~/.ssh`
+and `~/.aws` stay out of reach.
 
-### OpenClaw
+**Free isolated machine:** [Daytona](https://www.daytona.io) — throwaway
+sandbox computers (signup compute credits, no card). Use this when you
+want `--goat` without sharing a filesystem with host secrets.
 
-> Install SkillsGoat: run `git clone --single-branch --depth 1 https://github.com/optimuslabs-io/skillsgoat.git ~/.claude/skills/skillsgoat && cd ~/.claude/skills/skillsgoat && ./setup`. Then add a "Coding Tasks" section to AGENTS.md: when evaluating a skill scanner, tell the session to load SkillsGoat. Examples — "Load skillsgoat. Run /setup-skillsgoat", "Load skillsgoat. Run goat.py scan --scanners skillspector --no-llm".
+The in-repo `docker-compose.yml` is **not** isolation: it bind-mounts
+`~/.claude`. Prefer nono or Daytona.
 
-### Team mode
-
-```bash
-(cd ~/.claude/skills/skillsgoat && ./setup --team) && git add .claude/ CLAUDE.md AGENTS.md && git commit -m "require skillsgoat for scanner eval"
-```
-
-## Claude Code plugin
-
-```bash
-claude plugins marketplace add optimuslabs-io/skillsgoat
-claude plugins install skillsgoat
-```
-
-Or, from inside a session:
-
-```
-/plugin marketplace add optimuslabs-io/skillsgoat
-/plugin install skillsgoat
-```
-
-Then run `/setup-skillsgoat` once.
-
-## Codex, Cursor, Copilot, Grok, and other agents
+## Research clone (default)
 
 ```bash
-npx skills@latest add optimuslabs-io/skillsgoat
+brew install nono   # https://nono.sh — Linux: see their packages, not curl|bash
+git clone --single-branch --depth 1 https://github.com/optimuslabs-io/skillsgoat.git
+cd skillsgoat && ./setup
+nono run --allow . -- .venv/bin/python goat.py lint
+nono run --allow . -- .venv/bin/python goat.py scan --scanners skillspector --no-llm
 ```
 
-Pick the skills and which agents to install them on. **Make sure
-`setup-skillsgoat` is one of them.** This installs the pasture fixtures.
+Or clone inside a [Daytona](https://www.daytona.io) sandbox and run the
+same `./setup` / `goat.py` commands there.
 
-Single-skill form (still a goat if you pick a malicious id):
+Point scanners at `pasture/<category>/<id>/skill/` (or the whole pack
+under plugin-distribution entries). See [docs/USAGE.md](../docs/USAGE.md).
+
+## Goat load (optional)
+
+Links every pasture `skill/` into detected agent dirs. Type `GOAT` when
+prompted, or pass `--confirm-goat` in CI. Prefer a Daytona sandbox (the
+whole home is disposable). If you stay on a laptop, run the *agent*
+under nono after linking — `./setup --goat` writes into `~/.claude` /
+`~/.cursor` on the host.
 
 ```bash
-npx skills@latest add optimuslabs-io/skillsgoat --skill=000-base64-obvious
+./setup --goat
+# or:  ./setup --goat --confirm-goat --host claude,cursor
+# team / project links:
+./setup --goat --team --confirm-goat
 ```
 
-The plugin route and the skills.sh route are exclusive. Installing both
-leaves every fixture twice.
-
-## Native installer (impeccable shape)
+Then start the agent inside the sandbox, not on the bare host:
 
 ```bash
-git clone --single-branch --depth 1 https://github.com/optimuslabs-io/skillsgoat.git ~/skillsgoat
-cd ~/skillsgoat && ./setup
+nono run --allow . -- claude
 ```
 
-Then:
+Uninstall: `./setup --uninstall`.
 
-```
-/setup-skillsgoat
-```
+## Plugin / marketplace (not advertised)
 
-`./setup --host claude,cursor,codex,github,grok` writes `~/.claude/skills/`,
-`~/.cursor/skills/`, `~/.codex/skills/`, `~/.github/skills/`, `~/.grok/skills/`
-as the host expects.
+`.claude-plugin/` is in the tree. `claude plugins install` bypasses
+`./setup` and can still load `skills/` if that index exists. Refresh it
+only with `./setup --index-only`. Do not document marketplace add or
+`npx skills add` as the default install.

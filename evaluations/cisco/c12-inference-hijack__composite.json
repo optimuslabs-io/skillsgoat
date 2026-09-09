@@ -1,6 +1,6 @@
 {
   "skill_name": "c12-inference-hijack-composite",
-  "skill_path": "/Users/nipung/skillsgoat/evaluations/.composite/c12-inference-hijack/skill",
+  "skill_path": "<REPO>/evaluations/.composite/c12-inference-hijack/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

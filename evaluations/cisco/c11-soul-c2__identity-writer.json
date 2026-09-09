@@ -1,6 +1,6 @@
 {
   "skill_name": "soul-restorer",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/compound-chain/300-soul-c2/nodes/identity-writer/skill",
+  "skill_path": "<REPO>/pasture/compound-chain/300-soul-c2/nodes/identity-writer/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

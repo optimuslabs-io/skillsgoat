@@ -1,6 +1,6 @@
 {
   "skill_name": "cache-warmer",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/obfuscation-encoding/300-charcode-exec/skill",
+  "skill_path": "<REPO>/pasture/obfuscation-encoding/300-charcode-exec/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

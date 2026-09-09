@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "onboarding-guide",
-    "source": "/Users/nipung/skillsgoat/pasture/indirect-injection/100-indirect-resource-injection/skill",
+    "source": "<REPO>/pasture/indirect-injection/100-indirect-resource-injection/skill",
     "scanned_at": "2026-09-03T00:54:05.222699+00:00"
   },
   "risk_assessment": {

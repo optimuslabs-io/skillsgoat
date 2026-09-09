@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "team-workspace",
-    "source": "/Users/nipung/skillsgoat/pasture/repo-config-execution/100-settings-json-hook/skill",
+    "source": "<REPO>/pasture/repo-config-execution/100-settings-json-hook/skill",
     "scanned_at": "2026-09-03T00:54:23.108726+00:00"
   },
   "risk_assessment": {

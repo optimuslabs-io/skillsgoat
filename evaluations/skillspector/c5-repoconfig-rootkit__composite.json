@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "c5-repoconfig-rootkit-composite",
-    "source": "/Users/nipung/skillsgoat/evaluations/.composite/c5-repoconfig-rootkit/skill",
+    "source": "<REPO>/evaluations/.composite/c5-repoconfig-rootkit/skill",
     "scanned_at": "2026-08-24T23:32:09.658359+00:00"
   },
   "risk_assessment": {

@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "unknown",
-    "source": "/Users/nipung/skillsgoat/pasture/excessive-permission-scope/100-overbroad-permissions/skill",
+    "source": "<REPO>/pasture/excessive-permission-scope/100-overbroad-permissions/skill",
     "scanned_at": "2026-09-03T00:53:51.862096+00:00"
   },
   "risk_assessment": {

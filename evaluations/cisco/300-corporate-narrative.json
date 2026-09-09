@@ -1,6 +1,6 @@
 {
   "skill_name": "dev-env-setup",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/llm-judge-manipulation/300-corporate-narrative/skill",
+  "skill_path": "<REPO>/pasture/llm-judge-manipulation/300-corporate-narrative/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

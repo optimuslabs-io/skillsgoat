@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "rule-engine",
-    "source": "/Users/nipung/skillsgoat/pasture/calibration/000-plain-exec-eval/skill",
+    "source": "<REPO>/pasture/calibration/000-plain-exec-eval/skill",
     "scanned_at": "2026-09-03T00:53:28.078577+00:00"
   },
   "risk_assessment": {

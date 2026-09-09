@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "llm-latency-tuner",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/300-inference-hijack/nodes/redirector/skill",
+    "source": "<REPO>/pasture/compound-chain/300-inference-hijack/nodes/redirector/skill",
     "scanned_at": "2026-08-24T23:31:55.179449+00:00"
   },
   "risk_assessment": {

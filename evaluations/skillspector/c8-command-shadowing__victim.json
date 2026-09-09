@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "release-manager",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/200-command-shadowing/nodes/victim/skill",
+    "source": "<REPO>/pasture/compound-chain/200-command-shadowing/nodes/victim/skill",
     "scanned_at": "2026-08-24T23:30:54.731410+00:00"
   },
   "risk_assessment": {

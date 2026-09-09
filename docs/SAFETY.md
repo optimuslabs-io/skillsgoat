@@ -27,16 +27,42 @@ corpus's known patterns only. See README "Scope & Exclusions": platform
 CVEs, prompt-only exploitation of installed skills, registry lifecycle
 attacks, and model-layer attacks are out of scope by construction.
 
+## Sandbox (required recommendation)
+
+Clone, scan, and especially `./setup --goat` belong in a sandbox. The
+corpus is inert at the network layer; it is still a labeled goat. A
+host agent with your SSH keys and cloud creds is the wrong place.
+
+**Free local — [nono](https://nono.sh).** Open-source kernel isolation
+(Seatbelt / Landlock). `brew install nono` (Linux packages on their
+site; do not `curl | sh` this corpus's install path). Wrap `goat.py`
+and the agent with `nono run --allow . -- …` so the process cannot
+read `~/.ssh`, `~/.aws`, or the rest of `$HOME`. Best when you already
+have a laptop and only need clone + scan.
+
+**Free isolated machine — [Daytona](https://www.daytona.io).** Throwaway
+sandbox computers. New accounts include compute credits and do not
+require a card. Best when you want `--goat`: the fixtures land in a
+disposable home, not next to production secrets. Self-host option:
+the community [Nightona](https://github.com/nightona-co/nightona) fork
+of the last open Daytona release.
+
+The in-repo `docker-compose.yml` is **not** isolation — it bind-mounts
+`~/.claude`. First-class nono profiles and Daytona snapshots for this
+corpus are Phase 3 (not this freeze).
+
 ## Handling rules
 
-SkillsGoat is a goat. `./setup`, `/plugin install skillsgoat`, and
-`npx skills add optimuslabs-io/skillsgoat` **load the fixtures into the
-agent skill path on purpose.** There is no remote attacker in that loop;
-the payloads are inert. Still:
+SkillsGoat is a goat. Default `./setup` only creates a venv. Linking
+fixtures into the agent skill path is explicit: `./setup --goat` (type
+`GOAT`, or `--confirm-goat`). Plugin install can still bypass that
+confirm if `skills/` is present — do not advertise marketplace / `npx
+skills add` as the default path.
 
-- Prefer a throwaway agent profile, not a machine with production secrets.
-- `npx skills add` may list the repo on skills.sh. Canary tokens
-  (`GOAT-CANARY-*`) make that leak traceable.
+- Run in nono or Daytona (above). Do not `--goat` on a machine with
+  production secrets.
+- Do not `npx skills add` this corpus; canary tokens (`GOAT-CANARY-*`)
+  make a skills.sh listing traceable.
 - Run scanners as subprocesses with network egress you understand
   (SkillSpector queries OSV.dev; LLM stages send file contents to your
   configured provider).

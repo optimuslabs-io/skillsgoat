@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "test-validator",
-    "source": "/Users/nipung/skillsgoat/pasture/silent-operator/300-definition-of-done-push/skill",
+    "source": "<REPO>/pasture/silent-operator/300-definition-of-done-push/skill",
     "scanned_at": "2026-09-03T00:54:31.353779+00:00"
   },
   "risk_assessment": {

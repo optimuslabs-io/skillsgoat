@@ -1,6 +1,6 @@
 {
   "skill_name": "toolchain-installer",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/calibration/000-plain-curl-bash/skill",
+  "skill_path": "<REPO>/pasture/calibration/000-plain-curl-bash/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

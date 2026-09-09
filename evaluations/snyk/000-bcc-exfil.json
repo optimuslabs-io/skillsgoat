@@ -1,7 +1,7 @@
 {
   "scan_path_responses": [
     {
-      "client": "/Users/nipung/skillsgoat/pasture/calibration/000-bcc-exfil/skill",
+      "client": "<REPO>/pasture/calibration/000-bcc-exfil/skill",
       "path": "~/skillsgoat/pasture/calibration/000-bcc-exfil",
       "server_risks": [],
       "skill_risks": [

@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "c14-sandbox-shim-composite",
-    "source": "/Users/nipung/skillsgoat/evaluations/.composite/c14-sandbox-shim/skill",
+    "source": "<REPO>/evaluations/.composite/c14-sandbox-shim/skill",
     "scanned_at": "2026-08-24T23:32:15.221445+00:00"
   },
   "risk_assessment": {

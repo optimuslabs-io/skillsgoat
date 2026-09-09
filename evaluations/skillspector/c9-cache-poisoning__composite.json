@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "c9-cache-poisoning-composite",
-    "source": "/Users/nipung/skillsgoat/evaluations/.composite/c9-cache-poisoning/skill",
+    "source": "<REPO>/evaluations/.composite/c9-cache-poisoning/skill",
     "scanned_at": "2026-08-24T23:31:53.018053+00:00"
   },
   "risk_assessment": {

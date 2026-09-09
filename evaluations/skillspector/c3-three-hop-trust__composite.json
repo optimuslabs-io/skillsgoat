@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "c3-three-hop-trust-composite",
-    "source": "/Users/nipung/skillsgoat/evaluations/.composite/c3-three-hop-trust/skill",
+    "source": "<REPO>/evaluations/.composite/c3-three-hop-trust/skill",
     "scanned_at": "2026-08-24T23:31:47.468109+00:00"
   },
   "risk_assessment": {

@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "telemetry-helper",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/300-skill-factory/nodes/planted/skill",
+    "source": "<REPO>/pasture/compound-chain/300-skill-factory/nodes/planted/skill",
     "scanned_at": "2026-08-24T23:32:20.978962+00:00"
   },
   "risk_assessment": {

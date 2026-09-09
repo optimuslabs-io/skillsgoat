@@ -197,6 +197,29 @@ def _append_block(path: Path, heading: str, block: str, dry: bool) -> None:
 
 
 def run(args: argparse.Namespace) -> int:
+    if getattr(args, "team", False) and not getattr(args, "goat", False) and not args.uninstall:
+        print("error: --team requires --goat", file=sys.stderr)
+        return 2
+    if not args.uninstall and not args.index_only and not getattr(args, "goat", False):
+        print(
+            "error: pass --index-only (skills/ index) or --goat (link fixtures into agent dirs).\n"
+            "       ./setup with no flags only creates the venv.",
+            file=sys.stderr,
+        )
+        return 2
+    if getattr(args, "goat", False) and not args.uninstall:
+        if not getattr(args, "confirm_goat", False):
+            if not sys.stdin.isatty():
+                print("error: non-interactive --goat requires --confirm-goat", file=sys.stderr)
+                return 2
+            try:
+                got = input("Type GOAT to link malicious fixtures into agent skill dirs: ")
+            except EOFError:
+                got = ""
+            if got.strip() != "GOAT":
+                print("aborted (did not type GOAT)")
+                return 1
+
     project = Path(args.project).resolve()
     hosts = [h.strip() for h in args.host.split(",") if h.strip()]
     if hosts == ["auto"]:
@@ -216,9 +239,10 @@ def run(args: argparse.Namespace) -> int:
         return 1
 
     print(f"units: {len(units)} (pasture fixtures + setup-skillsgoat)")
-    for line in refresh_skills_index(units, args.dry_run):
-        if args.verbose:
-            print(line)
+    if args.index_only or getattr(args, "goat", False):
+        for line in refresh_skills_index(units, args.dry_run):
+            if args.verbose:
+                print(line)
 
     if args.index_only:
         print(f"index only: {REPO / 'skills'}")
@@ -249,7 +273,8 @@ def run(args: argparse.Namespace) -> int:
         STATE_FILE.write_text(json.dumps({"repo": str(REPO), "hosts": installed}, indent=2) + "\n")
 
     print("done. this is a goat — fixtures are now on the agent skill path.")
-    print("next: /setup-skillsgoat  (or re-run ./setup after git pull)")
+    print("next: /setup-skillsgoat  (or re-run ./setup --goat after git pull)")
+    print("run the agent in a sandbox (nono / Daytona) — see docs/SAFETY.md")
     return 0
 
 
@@ -267,7 +292,17 @@ def build_parser() -> argparse.ArgumentParser:
     ap.add_argument(
         "--index-only",
         action="store_true",
-        help="refresh repo-root skills/ symlinks only (for npx skills add); do not link into agent dirs",
+        help="refresh repo-root skills/ symlinks only; do not link into agent dirs",
+    )
+    ap.add_argument(
+        "--goat",
+        action="store_true",
+        help="link every pasture skill into detected agent dirs (type GOAT, or --confirm-goat)",
+    )
+    ap.add_argument(
+        "--confirm-goat",
+        action="store_true",
+        help="skip the interactive GOAT prompt (CI / goat.py setup)",
     )
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("-v", "--verbose", action="store_true")

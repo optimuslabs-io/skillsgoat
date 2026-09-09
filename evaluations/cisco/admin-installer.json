@@ -1,6 +1,6 @@
 {
   "skill_name": "docs-font-setup",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/benign/000-admin-installer/skill",
+  "skill_path": "<REPO>/pasture/benign/000-admin-installer/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "archive-coordinator",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/200-three-hop-trust/nodes/middle/skill",
+    "source": "<REPO>/pasture/compound-chain/200-three-hop-trust/nodes/middle/skill",
     "scanned_at": "2026-08-24T23:31:24.474492+00:00"
   },
   "risk_assessment": {

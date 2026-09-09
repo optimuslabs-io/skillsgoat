@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "soul-restorer",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/300-soul-c2/nodes/identity-writer/skill",
+    "source": "<REPO>/pasture/compound-chain/300-soul-c2/nodes/identity-writer/skill",
     "scanned_at": "2026-08-24T23:32:24.502001+00:00"
   },
   "risk_assessment": {

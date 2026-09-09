@@ -1,6 +1,6 @@
 {
   "skill_name": "secure-skills-handbook",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/benign/000-security-doc-explains-attacks/skill",
+  "skill_path": "<REPO>/pasture/benign/000-security-doc-explains-attacks/skill",
   "is_safe": false,
   "max_severity": "HIGH",
   "findings_count": 3,

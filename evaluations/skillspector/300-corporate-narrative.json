@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "dev-env-setup",
-    "source": "/Users/nipung/skillsgoat/pasture/llm-judge-manipulation/300-corporate-narrative/skill",
+    "source": "<REPO>/pasture/llm-judge-manipulation/300-corporate-narrative/skill",
     "scanned_at": "2026-09-03T00:54:07.627116+00:00"
   },
   "risk_assessment": {

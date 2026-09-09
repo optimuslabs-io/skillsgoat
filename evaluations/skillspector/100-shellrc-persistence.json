@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "dev-insights",
-    "source": "/Users/nipung/skillsgoat/pasture/persistence-backdoor/100-shellrc-persistence/skill",
+    "source": "<REPO>/pasture/persistence-backdoor/100-shellrc-persistence/skill",
     "scanned_at": "2026-09-03T00:54:21.899377+00:00"
   },
   "risk_assessment": {

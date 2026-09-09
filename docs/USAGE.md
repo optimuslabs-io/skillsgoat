@@ -1,9 +1,11 @@
 # Using SkillsGoat
 
-Install the same way as gstack / mattpocock / impeccable:
-[.agents/install-block.md](../.agents/install-block.md). Paste-to-agent,
-`./setup`, Claude plugin, or `npx skills@latest add optimuslabs-io/skillsgoat`.
-That loads the goat fixtures into the agent. Then pick your role.
+Run in a sandbox ([nono](https://nono.sh) locally, or a
+[Daytona](https://www.daytona.io) throwaway machine). Default path:
+clone, `./setup` (venv only), then `goat.py lint` / `goat.py scan`.
+Canonical copy: [.agents/install-block.md](../.agents/install-block.md).
+`./setup --goat` loads the fixtures into the agent. Do not `npx skills add`
+this corpus. See [docs/SAFETY.md](SAFETY.md).
 
 ---
 
@@ -13,6 +15,7 @@ SkillsGoat won't scan arbitrary skills for you (that's the scanners' job).
 It tells you how much to trust your scanner before you rely on it:
 
 ```bash
+# inside a nono or Daytona sandbox — see docs/SAFETY.md
 cd ~/skillsgoat && python3 -m venv .venv && .venv/bin/pip install pyyaml
 # + install at least one scanner:
 .venv/bin/pip install "skillspector @ git+https://github.com/NVIDIA/skillspector.git"
@@ -80,7 +83,7 @@ Two gates:
 ```
 
 - Gate installs on scanner verdicts, but size the trust by the measured blindness. Chains prove CLEAN is not safe, so privileged agents also need allowlisted egress and memory-write monitoring (the channels C1/C11 exploit).
-- Re-run the matrix monthly. Pin the scanner version in `evaluations/<scanner>/matrix.json` metadata when you do.
+- Re-run the matrix monthly. Pin the scanner version and `scanned_at` in `evaluations/<scanner>/matrix.json`, then update the ledger in [evaluations/README.md](../evaluations/README.md). Never cite a score without that date.
 
 ---
 

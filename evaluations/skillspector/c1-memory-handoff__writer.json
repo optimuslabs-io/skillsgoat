@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "preference-sync",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/200-memory-handoff/nodes/writer/skill",
+    "source": "<REPO>/pasture/compound-chain/200-memory-handoff/nodes/writer/skill",
     "scanned_at": "2026-08-24T23:31:15.602748+00:00"
   },
   "risk_assessment": {

@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "report-gen",
-    "source": "/Users/nipung/skillsgoat/pasture/deferred-resolution/200-pep723-deferred-dep/skill",
+    "source": "<REPO>/pasture/deferred-resolution/200-pep723-deferred-dep/skill",
     "scanned_at": "2026-09-03T00:53:42.046803+00:00"
   },
   "risk_assessment": {

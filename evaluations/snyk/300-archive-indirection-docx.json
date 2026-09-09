@@ -1,7 +1,7 @@
 {
   "scan_path_responses": [
     {
-      "client": "/Users/nipung/skillsgoat/pasture/hidden-artifact-packing/300-archive-indirection-docx/skill",
+      "client": "<REPO>/pasture/hidden-artifact-packing/300-archive-indirection-docx/skill",
       "path": "~/skillsgoat/pasture/hidden-artifact-packing/300-archive-indirection-docx",
       "server_risks": [],
       "skill_risks": [

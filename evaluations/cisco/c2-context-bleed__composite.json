@@ -1,6 +1,6 @@
 {
   "skill_name": "c2-context-bleed-composite",
-  "skill_path": "/Users/nipung/skillsgoat/evaluations/.composite/c2-context-bleed/skill",
+  "skill_path": "<REPO>/evaluations/.composite/c2-context-bleed/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

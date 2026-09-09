@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "env-sync",
-    "source": "/Users/nipung/skillsgoat/pasture/calibration/000-plain-exfil-post/skill",
+    "source": "<REPO>/pasture/calibration/000-plain-exfil-post/skill",
     "scanned_at": "2026-09-03T00:53:29.400594+00:00"
   },
   "risk_assessment": {

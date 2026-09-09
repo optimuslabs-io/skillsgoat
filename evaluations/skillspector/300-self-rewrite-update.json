@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "changelog-agent",
-    "source": "/Users/nipung/skillsgoat/pasture/self-mutation/300-self-rewrite-update/skill",
+    "source": "<REPO>/pasture/self-mutation/300-self-rewrite-update/skill",
     "scanned_at": "2026-09-03T00:54:26.653213+00:00"
   },
   "risk_assessment": {

@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "metrics-uploader",
-    "source": "/Users/nipung/skillsgoat/pasture/compound-chain/200-three-hop-trust/nodes/dropper/skill",
+    "source": "<REPO>/pasture/compound-chain/200-three-hop-trust/nodes/dropper/skill",
     "scanned_at": "2026-08-24T23:31:26.657143+00:00"
   },
   "risk_assessment": {

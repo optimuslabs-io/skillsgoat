@@ -1,6 +1,6 @@
 {
   "skill_name": "env-audit",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/benign/000-env-names-only/skill",
+  "skill_path": "<REPO>/pasture/benign/000-env-names-only/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

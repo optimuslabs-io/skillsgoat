@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "toolchain-setup",
-    "source": "/Users/nipung/skillsgoat/pasture/supply-chain-trust-bypass/100-sudo-install/skill",
+    "source": "<REPO>/pasture/supply-chain-trust-bypass/100-sudo-install/skill",
     "scanned_at": "2026-09-03T00:54:32.547945+00:00"
   },
   "risk_assessment": {

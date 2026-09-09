@@ -1,6 +1,6 @@
 {
   "skill_name": "db-tools-bundle",
-  "skill_path": "/Users/nipung/skillsgoat/pasture/mcp-tool-poisoning/200-mcp-json-directives/skill",
+  "skill_path": "<REPO>/pasture/mcp-tool-poisoning/200-mcp-json-directives/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,

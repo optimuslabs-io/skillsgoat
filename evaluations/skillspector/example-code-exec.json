@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "calc-demo",
-    "source": "/Users/nipung/skillsgoat/pasture/benign/000-example-code-exec/skill",
+    "source": "<REPO>/pasture/benign/000-example-code-exec/skill",
     "scanned_at": "2026-09-03T00:53:11.899086+00:00"
   },
   "risk_assessment": {

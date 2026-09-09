@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "support-bundle",
-    "source": "/Users/nipung/skillsgoat/pasture/calibration/000-env-harvest-loop/skill",
+    "source": "<REPO>/pasture/calibration/000-env-harvest-loop/skill",
     "scanned_at": "2026-09-03T00:53:23.386937+00:00"
   },
   "risk_assessment": {

@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: SkillsGoat
+message: If you use this corpus, please cite it.
+type: dataset
+authors:
+  - name: SkillsGoat contributors
+license: MIT
+repository-code: "https://github.com/optimuslabs-io/skillsgoat"
+abstract: >
+  Deliberately vulnerable agent-skill corpus (WebGoat for SKILL.md bundles)
+  for evaluating skill scanners. 74 atomic fixtures (64 malicious, 10 benign)
+  plus compound chains. Payloads are inert.

@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "c4-supply-arms-memory-composite",
-    "source": "/Users/nipung/skillsgoat/evaluations/.composite/c4-supply-arms-memory/skill",
+    "source": "<REPO>/evaluations/.composite/c4-supply-arms-memory/skill",
     "scanned_at": "2026-08-24T23:32:33.321688+00:00"
   },
   "risk_assessment": {

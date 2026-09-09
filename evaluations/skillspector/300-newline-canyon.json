@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "csv-summarizer",
-    "source": "/Users/nipung/skillsgoat/pasture/context-truncation-padding/300-newline-canyon/skill",
+    "source": "<REPO>/pasture/context-truncation-padding/300-newline-canyon/skill",
     "scanned_at": "2026-09-03T00:53:38.796711+00:00"
   },
   "risk_assessment": {

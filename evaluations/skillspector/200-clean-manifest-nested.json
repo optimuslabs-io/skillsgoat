@@ -1,7 +1,7 @@
 {
   "skill": {
     "name": "chart-renderer",
-    "source": "/Users/nipung/skillsgoat/pasture/transitive-dependency-poisoning/200-clean-manifest-nested/skill",
+    "source": "<REPO>/pasture/transitive-dependency-poisoning/200-clean-manifest-nested/skill",
     "scanned_at": "2026-09-03T00:54:34.626409+00:00"
   },
   "risk_assessment": {
