@@ -3,7 +3,7 @@
 A labeled goat of agent skills: a deliberately vulnerable target with answer keys, same idea as WebGoat. 76 atomics (66 malicious, 10 benign) and 35 compound chains.
 
 - **Pasture** — the fixture tree (`pasture/`). We coined the name; goats graze there. An entry is `pasture/<category>/<id>/`.
-- **Collection** — the fixture set in this repo. Prefer this over “corpus.”
+- **Collection** — the fixture set in this repo.
 - **Bundle** — one skill pack: a `skill/` tree, a marketplace/IDE pack, or a compound-chain node.
 - **Repo** — this GitHub tree (harness plus collection).
 - **Atomic** — one skill, one technique.

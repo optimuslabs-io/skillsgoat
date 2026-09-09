@@ -67,3 +67,23 @@ def test_absolute_symlink_would_fail(tmp_path: Path):
 
 def test_bytecode_fixture_exists():
     assert goat._PYC_FIXTURE.is_file()
+
+
+def test_banned_vocab_skipped_in_pasture_payloads():
+    problems: list[str] = []
+    goat._lint_banned_vocab(problems)
+    assert problems == []
+
+
+def test_banned_vocab_flags_harness_text(tmp_path, monkeypatch):
+    token = "cor" + "pus"
+    monkeypatch.setattr(goat, "REPO", tmp_path)
+    (tmp_path / "docs").mkdir()
+    (tmp_path / "docs" / "note.md").write_text(f"this {token} is a labeled goat\n")
+    (tmp_path / "pasture").mkdir()
+    (tmp_path / "pasture" / "bait.md").write_text(f"payload {token}\n")
+    problems: list[str] = []
+    goat._lint_banned_vocab(problems)
+    assert len(problems) == 1
+    assert problems[0].startswith("docs/note.md")
+    assert not any(p.startswith("pasture/") for p in problems)

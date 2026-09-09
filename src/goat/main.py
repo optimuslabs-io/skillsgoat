@@ -266,6 +266,50 @@ def _dump_json(path: Path, obj, raw_paths: bool = False) -> None:
     path.write_text(json.dumps(obj, indent=2) + "\n")
 
 
+def _gitignored(rel: Path) -> bool:
+    try:
+        r = subprocess.run(
+            ["git", "check-ignore", "-q", "--", str(rel)],
+            cwd=REPO, capture_output=True,
+        )
+    except OSError:
+        return False
+    return r.returncode == 0
+
+
+def _lint_banned_vocab(problems: list[str]) -> None:
+    """Reject a banned academic-dataset synonym outside pasture payloads."""
+    token = "cor" + "pus"
+    skip_dirs = {
+        ".git", ".venv", ".sandbox-home", ".cursor",
+        "pasture", "skills",
+        "__pycache__", ".pytest_cache", ".mypy_cache", ".ruff_cache",
+    }
+    skip_suffix = {".pyc", ".png", ".jpg", ".jpeg", ".webp", ".gif",
+                   ".zip", ".docx", ".dat", ".woff", ".woff2"}
+    for p in REPO.rglob("*"):
+        if not p.is_file() or p.is_symlink():
+            continue
+        rel = p.relative_to(REPO)
+        if any(part in skip_dirs or part.endswith(".egg-info") for part in rel.parts):
+            continue
+        if p.suffix.lower() in skip_suffix:
+            continue
+        if _gitignored(rel):
+            continue
+        try:
+            text = p.read_text(encoding="utf-8")
+        except (UnicodeDecodeError, OSError):
+            continue
+        for i, line in enumerate(text.splitlines(), 1):
+            if token in line.lower():
+                problems.append(
+                    f"{rel}:{i}: banned vocabulary (use collection, bundle, "
+                    "pasture, or repo)"
+                )
+                break
+
+
 def _lint_safety(problems: list[str]) -> None:
     """URL allowlist, decoded unicode, symlink policy, home paths, bytecode file."""
     repo_res = str(REPO.resolve())
@@ -415,6 +459,7 @@ def cmd_lint(args) -> int:
                 problems.append(f"{where}: edge missing 'via': {e}")
 
     _lint_safety(problems)
+    _lint_banned_vocab(problems)
 
     for p in problems:
         print(f"LINT FAIL: {p}")

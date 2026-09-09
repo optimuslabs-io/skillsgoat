@@ -39,6 +39,9 @@ Chains live under `pasture/compound-chain/<id>/` with `chain.yaml` and
   do not `make clean` before committing it). The `cpython-314` tag is
   intentional: the file is an inert artifact, not an importable module on
   the 3.11/3.12 harness runtime.
+- Say **collection**, **bundle**, **pasture**, or **repo**. `goat lint`
+  rejects the academic-dataset synonym outside `pasture/` (fixtures may
+  still use any wording as payload).
 
 ## Dual-use
 
