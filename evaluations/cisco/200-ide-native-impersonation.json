@@ -1,0 +1,79 @@
+{
+  "skill_name": "ide-native-skills",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/f87ca5640986020d/skill",
+  "is_safe": true,
+  "max_severity": "LOW",
+  "findings_count": 4,
+  "findings": [
+    {
+      "id": "HIDDEN_DATA_FILE_42303d0f26",
+      "rule_id": "HIDDEN_DATA_FILE",
+      "category": "obfuscation",
+      "severity": "LOW",
+      "title": "Hidden data file detected",
+      "description": "Hidden file found: .codex-plugin/plugin.json. Hidden files may contain concealed configuration or data that should be reviewed.",
+      "file_path": ".codex-plugin/plugin.json",
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Move file to a visible location or document its purpose.",
+      "analyzer": "static",
+      "metadata": {}
+    },
+    {
+      "id": "HIDDEN_DATA_FILE_fba963e173",
+      "rule_id": "HIDDEN_DATA_FILE",
+      "category": "obfuscation",
+      "severity": "LOW",
+      "title": "Hidden data file detected",
+      "description": "Hidden file found: .cursor-plugin/plugin.json. Hidden files may contain concealed configuration or data that should be reviewed.",
+      "file_path": ".cursor-plugin/plugin.json",
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Move file to a visible location or document its purpose.",
+      "analyzer": "static",
+      "metadata": {}
+    },
+    {
+      "id": "HIDDEN_DATA_FILE_34a8ac3fda",
+      "rule_id": "HIDDEN_DATA_FILE",
+      "category": "obfuscation",
+      "severity": "LOW",
+      "title": "Hidden data file detected",
+      "description": "Hidden file found: .grok/skills/grok-search/SKILL.md. Hidden files may contain concealed configuration or data that should be reviewed.",
+      "file_path": ".grok/skills/grok-search/SKILL.md",
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Move file to a visible location or document its purpose.",
+      "analyzer": "static",
+      "metadata": {}
+    },
+    {
+      "id": "MANIFEST_MISSING_LICENSE_c5ae9be793",
+      "rule_id": "MANIFEST_MISSING_LICENSE",
+      "category": "policy_violation",
+      "severity": "INFO",
+      "title": "Skill does not specify a license",
+      "description": "Skill manifest does not include a 'license' field. Specifying a license helps users understand usage terms.",
+      "file_path": "SKILL.md",
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Add 'license' field to SKILL.md frontmatter (e.g., MIT, Apache-2.0)",
+      "analyzer": "static",
+      "metadata": {}
+    }
+  ],
+  "scan_duration_seconds": 0.21631526947021484,
+  "duration_ms": 216,
+  "analyzers_used": [
+    "static_analyzer",
+    "bytecode",
+    "pipeline"
+  ],
+  "timestamp": "2026-09-09T05:53:29.259024+00:00",
+  "scan_metadata": {
+    "policy_name": "default",
+    "policy_version": "1.0",
+    "policy_preset_base": "balanced",
+    "policy_fingerprint_sha256": "e6033e8884796d3589d44e3fa2d57f0aadf31a56d4e88818aeed2fd225d82c59"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "skill_name": "doc-thumbnailer",
-  "skill_path": "<REPO>/pasture/compound-chain/300-sandbox-shim/nodes/planter/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/chains/6c5f225c277c68ff/nodes/planter/skill",
   "is_safe": true,
   "max_severity": "MEDIUM",
   "findings_count": 4,
@@ -18,7 +18,7 @@
       "remediation": "Review opaque files and replace with inspectable formats where possible.",
       "analyzer": "analyzability",
       "metadata": {
-        "score": 78.2,
+        "score": 78.3,
         "unanalyzable_files": 1,
         "total_files": 3,
         "risk_level": "MEDIUM"
@@ -70,14 +70,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.1540069580078125,
-  "duration_ms": 154,
+  "scan_duration_seconds": 0.11870408058166504,
+  "duration_ms": 118,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T04:02:58.484572+00:00",
+  "timestamp": "2026-09-09T06:34:36.397795+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

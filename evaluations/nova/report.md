@@ -1,7 +1,11 @@
 # Evaluation matrix — nova
 
-- scanned_at: 2026-09-02T23:17:41.099449+00:00
+- scanned_at: 2026-09-09T05:55:31.903613+00:00
 - llm_enabled: False
+- scanner_version: usage: novarun [-h] -r RULE (-p PROMPT | -f FILE) [-v] [-c CONFIG] [-s]
+- blind: True
+- canary_token: 0a64a1fb-761a-4151-a53f-c0be7e704c92
+- blind_salt: 85df1c573d4b312482517984824e498f
 - caught (block-threshold): **0**
 - weak-flagged (detected, below block): **0**
 - bypassed (zero detection): **0**
@@ -44,6 +48,7 @@
 | 200-env-gated-behavior | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
 | 100-overbroad-permissions | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
 | 100-config-url-fetch | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
+| 200-runtime-instruction-fetch | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
 | 100-missing-required-fields | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
 | 200-symlink-escape | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
 | 200-unsafe-yaml-frontmatter | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
@@ -56,6 +61,7 @@
 | 100-indirect-resource-injection | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
 | 200-plausibility-comments | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
 | 300-corporate-narrative | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
+| 300-cover-link-offload | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
 | 300-judge-self-injection | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
 | 200-mcp-json-directives | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
 | 100-memory-file-write | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
@@ -68,6 +74,10 @@
 | 300-charcode-exec | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
 | 100-git-hook-backdoor | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
 | 100-shellrc-persistence | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
+| 200-clawhub-listing | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
+| 200-ide-native-impersonation | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
+| 200-vercel-skills-sh-pack | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
+| 200-vibe-coded-plugin | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
 | 100-settings-json-hook | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
 | 100-fake-social-proof | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |
 | 200-wallet-exhaustion-loop | malicious | ERROR: bad json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1) |  |

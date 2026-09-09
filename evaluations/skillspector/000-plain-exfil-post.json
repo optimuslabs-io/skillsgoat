@@ -1,13 +1,13 @@
 {
   "skill": {
     "name": "env-sync",
-    "source": "<REPO>/pasture/calibration/000-plain-exfil-post/skill",
-    "scanned_at": "2026-09-03T00:53:29.400594+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/b6bd0f886c2539cf/skill",
+    "scanned_at": "2026-09-09T05:46:32.356212+00:00"
   },
   "risk_assessment": {
-    "score": 57,
-    "severity": "HIGH",
-    "recommendation": "DO_NOT_INSTALL",
+    "score": 39,
+    "severity": "MEDIUM",
+    "recommendation": "CAUTION",
     "max_issue_severity": "HIGH"
   },
   "components": [
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 11,
       "executable": false,
-      "size_bytes": 260,
+      "size_bytes": 264,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -35,38 +35,8 @@
   "structured_summaries": [],
   "issues": [
     {
-      "id": "P2",
-      "finding_id": "finding-4820325d9b1449f8953ec2cb30edf2af",
-      "category": "Prompt Injection",
-      "pattern": "Hidden Instructions",
-      "severity": "HIGH",
-      "confidence": 0.7,
-      "location": {
-        "file": "SKILL.md",
-        "start_line": 11,
-        "end_line": null
-      },
-      "finding": "<!-- GOAT-CANARY-000-plain-exfil-post -->",
-      "explanation": "Hidden instructions were detected in comments or invisible text. These could contain malicious directives. Manual review is recommended.",
-      "remediation": "Audit all comments and invisible characters. Remove any instructions that direct the agent to perform unauthorized actions. Use plain, reviewable content.",
-      "code_snippet": "Runs `scripts/sync_env.sh` to back up local environment configuration.\n\nUsage: ask the agent to \"sync my env\".\n<!-- GOAT-CANARY-000-plain-exfil-post -->",
-      "intent": null,
-      "tags": [
-        "Prompt Injection"
-      ],
-      "evidence": {},
-      "match_fingerprint": "7e367fb85c889c25ab25ab24869c2e893066feb7d255287c1e4e2f323210516c",
-      "occurrences": [
-        {
-          "file": "SKILL.md",
-          "start_line": 11,
-          "end_line": null
-        }
-      ]
-    },
-    {
       "id": "PE3",
-      "finding_id": "finding-c966552855094114b7eccf0770712146",
+      "finding_id": "finding-33da830f943e4ef3a99fa9baa48530a9",
       "category": "Privilege Escalation",
       "pattern": "Credential Access",
       "severity": "HIGH",
@@ -96,7 +66,7 @@
     },
     {
       "id": "LP3",
-      "finding_id": "finding-9413e8329a7f443dadabc05fef66f64e",
+      "finding_id": "finding-0d6a3ddd630640b2b3d23bf50536e14e",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -126,7 +96,7 @@
     },
     {
       "id": "E1",
-      "finding_id": "finding-e402cfb2f44c493f9acddfcbe96d5490",
+      "finding_id": "finding-269dcd57860946c3926a0498ffe166aa",
       "category": "Data Exfiltration",
       "pattern": "External Transmission",
       "severity": "MEDIUM",
@@ -156,7 +126,7 @@
     },
     {
       "id": "E1",
-      "finding_id": "finding-160f03a71ab44cf4a4137e28c519423d",
+      "finding_id": "finding-c8f94084e8684507b9dd6d8f2492b840",
       "category": "Data Exfiltration",
       "pattern": "External Transmission",
       "severity": "MEDIUM",
@@ -471,7 +441,7 @@
       }
     ],
     "limitations": [],
-    "findings_before_filtering": 5,
-    "findings_after_filtering": 5
+    "findings_before_filtering": 4,
+    "findings_after_filtering": 4
   }
 }

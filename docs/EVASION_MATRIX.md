@@ -25,7 +25,7 @@ June 2026 demonstrated bypasses.
 
 V5 packing, V6 deferred, V7 staging, V8 silence, and V9 dormancy are
 *structurally* invisible to static analysis (Cloak-and-Detonate measured ≥90%
-universal bypass). The corpus is the static floor; sandboxed detonation with
+universal bypass). The pasture is the static floor; sandboxed detonation with
 taint tracking (SkillDetonate-style) is the required complement.
 
 ## The format layer: spec-noncompliance fixtures
@@ -36,7 +36,7 @@ schema-gated: unsafe-YAML deserialization gadgets in frontmatter,
 frontmatter-free instruction files that agents still obey, symlinks escaping
 the bundle into ~/.ssh, and full nested skills riding inside resources/.
 Parser differentials here are invisible to content scanners by construction.
-Run `goat.py inventory` for the live file-type census (15+ types incl.
+Run `goat inventory` for the live file-type census (15+ types incl.
 compiled bytecode, ZIP archives, XOR blobs, image metadata carriers).
 
 ## Plugin install unit (not an evasion family)
@@ -65,46 +65,56 @@ keyword-only tools will fail both directions.
 
 ## Compound chains (pasture/compound-chain/) — measured results
 
-14 multi-skill chains where every node is individually clean; ground truth is
-graph-level (`chain.yaml`). SkillSpector v2.9.6, static-only:
+> `goat scan --blind`, SkillSpector **v2.11.0**, `--no-llm`,
+> **2026-09-09**. Provenance: `evaluations/skillspector/chains.json`
+> (`blind: true`). Ledger: [evaluations/README.md](../evaluations/README.md).
+
+35 multi-skill chains (72 nodes). Ground truth is graph-level (`chain.yaml`).
 
 | Metric | Result |
 |---|---|
-| Nodes hard-flagged | **0 / 28** |
-| Nodes weak-flagged (below block) | 7 / 28 |
-| Chains fully bypassed (all nodes clean AND graph-level zero detection) | **7 / 14 — 50% structural blindness** |
-| Composites caught at block threshold | 1 / 14 (c14 sandbox-shim — shim/LD_PRELOAD rules added post-ToB) |
-| Composites weak-flagged | 6 / 14 |
+| Nodes hard-flagged | **8 / 72** |
+| Nodes weak-flagged (below block) | 23 / 72 |
+| Nodes clean | 41 / 72 |
+| Composites caught at block threshold | **8 / 35** (c14 sandbox-shim, c15, c17, c28, c29, c31, c34, c35) |
+| Composites weak-flagged | 19 / 35 |
+| Structural blindness v2 (zero hard-blocks anywhere) | **27 / 35 — 77%** |
+| All-nodes-clean *and* graph-bypassed | 7 / 35 (c1, c2, c4, c6, c11, c12, c25) |
 
-Chains fully invisible: c1 memory-handoff · c2 context-bleed · c4 supply-arms-memory ·
-c5 repoconfig-rootkit · c6 mcp-cross-skill · c11 soul-c2 · c12 inference-hijack.
 Full per-node/composite JSON: `evaluations/skillspector/chains.json`. Narrative catalog:
-[CHAINS.md](CHAINS.md).
+[CHAINS.md](CHAINS.md). Ledger: [evaluations/README.md](../evaluations/README.md).
 
 
 ## Scanner comparison — static-only (metric v2 — strict)
 
-Last run: SkillSpector **2026-09-03**, Cisco **2026-08-25**. These are not a same-day bake-off. Full ledger: [evaluations/README.md](../evaluations/README.md).
+Same-day **`--blind`** bake-off: SkillSpector **2.11.0** and Cisco
+skill-scanner **2.0.13**, both `--no-llm`, **2026-09-09**, 76 atomics
+(66 malicious, 10 benign) and 35 chains. Each `matrix.json` /
+`chains.json` records `blind: true`, `blind_salt`, and `canary_token`.
+Full ledger: [evaluations/README.md](../evaluations/README.md).
 
 Structural blindness v2 = **zero hard-blocks anywhere in a chain** (nodes or
-composite). Sub-threshold WEAK findings no longer rescue a score — v1 counted
+composite). Sub-threshold WEAK findings do not rescue a score — v1 counted
 them as visibility, which let Cisco's keyword noise (weak-flagged on all ten
-benign controls too) masquerade as coverage. Correction first published with
-this table.
+benign controls too) masquerade as coverage.
 
-| Metric | SkillSpector v2.9.6 | Cisco skill-scanner (static) |
+| Metric | SkillSpector 2.11.0 | Cisco skill-scanner 2.0.13 |
 |---|---|---|
-| Atomic: caught at block threshold | 8 / 55 | 5 / 55 |
-| Atomic: zero-detection bypasses | 13 | **0** |
+| Atomic: caught at block threshold | **9 / 66** | **5 / 66** |
+| Atomic: zero-detection bypasses | 20 | 1 |
+| Atomic: ingest errors | 0 | 2 (`100-missing-required-fields`, `200-unsafe-yaml-frontmatter`) |
 | Calibration misses (silent) | 2 | 0 |
-| Benign twins FALSE-POSITIVE / FP-WEAK | 0 / 6 | 2 / 8 |
-| Chain nodes hard-flagged | 0 / 28 | **0 / 28** |
-| Composites caught | 1 / 14 | **0 / 14** |
-| **Structural blindness (v2, strict)** | **13 / 14** | **14 / 14** |
+| Benign twins FALSE-POSITIVE / FP-WEAK / CLEAN | 0 / 6 / 4 | 2 / 8 / 0 |
+| Chain nodes hard-flagged | **8 / 72** | **7 / 72** |
+| Composites caught | **8 / 35** | **7 / 35** |
+| **Structural blindness (v2, strict)** | **27 / 35** | **28 / 35** |
 
-Fully invisible to both tools: memory handoff · context bleed · supply-arms-memory ·
-repoconfig rootkit · MCP cross-skill poisoning · Soul-as-C2 · inference hijack.
-One composite caught once (c14 sandbox-shim — LD_PRELOAD rules added post-ToB).
+Cisco strict recall in `matrix.json` is 5/64 because the two ingest errors are
+excluded from the denominator. Benign FP-rate is 1.0 (every twin flagged).
+
+22 of 35 chains are v2-blind to **both** tools. The original seven remain in
+that set: memory handoff · context bleed · supply-arms-memory · repoconfig
+rootkit · MCP cross-skill poisoning · Soul-as-C2 · inference hijack.
 
 Raw evidence: `evaluations/{skillspector,cisco}/` (per-entry JSON + matrices).
 Composite mode is predictive: no whole-graph skill scanner ships today.

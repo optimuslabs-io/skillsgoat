@@ -1,6 +1,6 @@
 {
   "skill_name": "soul-restorer",
-  "skill_path": "<REPO>/pasture/compound-chain/300-soul-c2/nodes/identity-writer/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/chains/19133182e67adcd6/nodes/identity-writer/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.25444769859313965,
-  "duration_ms": 254,
+  "scan_duration_seconds": 0.12650299072265625,
+  "duration_ms": 126,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T04:03:20.134625+00:00",
+  "timestamp": "2026-09-09T06:35:00.657533+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

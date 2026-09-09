@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "mail-assist",
-    "source": "<REPO>/pasture/calibration/000-bcc-exfil/skill",
-    "scanned_at": "2026-09-03T00:53:22.098211+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/4132db8157c4fbbb/skill",
+    "scanned_at": "2026-09-09T05:46:09.591879+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 15,
       "executable": false,
-      "size_bytes": 366,
+      "size_bytes": 377,
       "source_url": null,
       "source_identity": null,
       "source_digest": null

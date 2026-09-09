@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "team-runbook",
-    "source": "<REPO>/pasture/benign/000-long-legitimate/skill",
-    "scanned_at": "2026-09-03T00:53:15.580688+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/45ad8e8bedacb4e5/skill",
+    "scanned_at": "2026-09-09T05:46:01.017473+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 1809,
       "executable": false,
-      "size_bytes": 60444,
+      "size_bytes": 60451,
       "source_url": null,
       "source_identity": null,
       "source_digest": null

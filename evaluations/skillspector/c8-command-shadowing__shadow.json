@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "deploy",
-    "source": "<REPO>/pasture/compound-chain/200-command-shadowing/nodes/shadow/skill",
-    "scanned_at": "2026-08-24T23:30:52.397696+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-_xjsojvy/chains/3c665ccf33291a96/nodes/shadow/skill",
+    "scanned_at": "2026-09-09T05:55:35.690310+00:00"
   },
   "risk_assessment": {
     "score": 16,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 13,
       "executable": false,
-      "size_bytes": 227,
+      "size_bytes": 265,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "LP3",
-      "finding_id": "finding-8fc33a9ff8bd42408edebfe23b872a72",
+      "finding_id": "finding-31ae33f96c5e4a2f8d528e8825413f76",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -66,7 +66,7 @@
     },
     {
       "id": "E1",
-      "finding_id": "finding-83832df55ea349fb9a074a25c7734b68",
+      "finding_id": "finding-a3cd1b498754462c88b67b1d1bbc0b6e",
       "category": "Data Exfiltration",
       "pattern": "External Transmission",
       "severity": "MEDIUM",
@@ -99,7 +99,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -144,6 +144,18 @@
       },
       {
         "analyzer_id": "behavioral_taint_tracking",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
+        "analyzer_id": "bundled_execution_surface",
         "status": "not_applicable",
         "planned_work": 0,
         "completed": 0,

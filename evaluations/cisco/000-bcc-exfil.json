@@ -1,6 +1,6 @@
 {
   "skill_name": "mail-assist",
-  "skill_path": "<REPO>/pasture/calibration/000-bcc-exfil/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/0b606349785a183f/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.1774919033050537,
-  "duration_ms": 177,
+  "scan_duration_seconds": 0.27680015563964844,
+  "duration_ms": 276,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:03:59.092032+00:00",
+  "timestamp": "2026-09-09T05:50:22.836009+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

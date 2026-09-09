@@ -1,6 +1,6 @@
 {
-  "skill_name": "c13-skill-factory-composite",
-  "skill_path": "<REPO>/evaluations/.composite/c13-skill-factory/skill",
+  "skill_name": "5da469dd0a08717d-composite",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/composite/5da469dd0a08717d/skill",
   "is_safe": true,
   "max_severity": "MEDIUM",
   "findings_count": 2,
@@ -40,14 +40,14 @@
       }
     }
   ],
-  "scan_duration_seconds": 0.16669988632202148,
-  "duration_ms": 166,
+  "scan_duration_seconds": 0.1255490779876709,
+  "duration_ms": 125,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T04:03:15.312198+00:00",
+  "timestamp": "2026-09-09T06:34:57.068250+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

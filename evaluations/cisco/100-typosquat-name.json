@@ -1,6 +1,6 @@
 {
   "skill_name": "git-hub-pr-reviewer   # popular original: github-pr-reviewer (4.1M installs)",
-  "skill_path": "<REPO>/pasture/typosquatting/100-typosquat-name/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/745bb3b282f64e9a/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 2,
@@ -34,14 +34,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.14346885681152344,
-  "duration_ms": 143,
+  "scan_duration_seconds": 0.19379496574401855,
+  "duration_ms": 193,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T04:00:49.897721+00:00",
+  "timestamp": "2026-09-09T05:54:02.248436+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

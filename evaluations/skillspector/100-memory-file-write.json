@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "preference-sync",
-    "source": "<REPO>/pasture/memory-poisoning/100-memory-file-write/skill",
-    "scanned_at": "2026-09-03T00:54:11.201680+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/d2322e4b4ccc0da7/skill",
+    "scanned_at": "2026-09-09T05:48:21.633489+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 14,
       "executable": false,
-      "size_bytes": 388,
+      "size_bytes": 391,
       "source_url": null,
       "source_identity": null,
       "source_digest": null

@@ -1,6 +1,6 @@
 {
   "skill_name": "credential-doctor",
-  "skill_path": "<REPO>/pasture/calibration/000-base64-obvious/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/195b388d0a55be52/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.13747096061706543,
-  "duration_ms": 137,
+  "scan_duration_seconds": 0.2374100685119629,
+  "duration_ms": 237,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:03:57.336899+00:00",
+  "timestamp": "2026-09-09T05:50:19.218950+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

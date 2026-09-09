@@ -1,8 +1,8 @@
 {
   "skill": {
-    "name": "c13-skill-factory-composite",
-    "source": "<REPO>/evaluations/.composite/c13-skill-factory/skill",
-    "scanned_at": "2026-08-24T23:32:22.290842+00:00"
+    "name": "054f4f20bee3f2a8-composite",
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-_xjsojvy/composite/054f4f20bee3f2a8/skill",
+    "scanned_at": "2026-09-09T05:59:27.344206+00:00"
   },
   "risk_assessment": {
     "score": 38,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 10,
       "executable": false,
-      "size_bytes": 338,
+      "size_bytes": 303,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -26,7 +26,7 @@
       "type": "markdown",
       "lines": 18,
       "executable": false,
-      "size_bytes": 660,
+      "size_bytes": 682,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
       "type": "markdown",
       "lines": 10,
       "executable": false,
-      "size_bytes": 192,
+      "size_bytes": 205,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -56,7 +56,7 @@
   "issues": [
     {
       "id": "E2",
-      "finding_id": "finding-8f3cbe89c0824c8385a3e9b6c4349e82",
+      "finding_id": "finding-b67da091bb894528bd9a74ead777ef41",
       "category": "Data Exfiltration",
       "pattern": "Env Variable Harvesting",
       "severity": "HIGH",
@@ -86,7 +86,7 @@
     },
     {
       "id": "LP3",
-      "finding_id": "finding-4d690b1c85ae44b2a4a32c7e2e64b81c",
+      "finding_id": "finding-20d7714a2d4b4246a39fe33dd85132c3",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -116,7 +116,7 @@
     },
     {
       "id": "E1",
-      "finding_id": "finding-76978f0fcc674e7baae943a0c8c3035e",
+      "finding_id": "finding-a5651becca2b45bb8e32015ed65accd6",
       "category": "Data Exfiltration",
       "pattern": "External Transmission",
       "severity": "MEDIUM",
@@ -149,7 +149,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -199,6 +199,18 @@
         "skipped": 0,
         "failed": 0,
         "unaccounted": 0
+      },
+      {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
       },
       {
         "analyzer_id": "mcp_least_privilege",

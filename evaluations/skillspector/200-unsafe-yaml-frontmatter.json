@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "unknown",
-    "source": "<REPO>/pasture/format-spec-noncompliance/200-unsafe-yaml-frontmatter/skill",
-    "scanned_at": "2026-09-03T00:53:56.602868+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/ee29eb0d4e72ca76/skill",
+    "scanned_at": "2026-09-09T05:47:43.065738+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 15,
       "executable": false,
-      "size_bytes": 341,
+      "size_bytes": 338,
       "source_url": null,
       "source_identity": null,
       "source_digest": null

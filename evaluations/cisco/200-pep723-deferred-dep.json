@@ -1,6 +1,6 @@
 {
   "skill_name": "report-gen",
-  "skill_path": "<REPO>/pasture/deferred-resolution/200-pep723-deferred-dep/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/6e47f25547f2ea4e/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.12930870056152344,
-  "duration_ms": 129,
+  "scan_duration_seconds": 0.2282261848449707,
+  "duration_ms": 228,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:04:26.265141+00:00",
+  "timestamp": "2026-09-09T05:51:11.298830+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "meeting-notes",
-    "source": "<REPO>/pasture/dormant-trigger/200-codeword-activation/skill",
-    "scanned_at": "2026-09-03T00:53:49.425808+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/deed4f8e48b8155c/skill",
+    "scanned_at": "2026-09-09T05:47:22.147615+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 17,
       "executable": false,
-      "size_bytes": 493,
+      "size_bytes": 494,
       "source_url": null,
       "source_identity": null,
       "source_digest": null

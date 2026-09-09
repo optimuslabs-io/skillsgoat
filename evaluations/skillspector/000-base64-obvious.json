@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "credential-doctor",
-    "source": "<REPO>/pasture/calibration/000-base64-obvious/skill",
-    "scanned_at": "2026-09-03T00:53:20.762138+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/f717758dd8020f00/skill",
+    "scanned_at": "2026-09-09T05:46:07.249700+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 12,
       "executable": false,
-      "size_bytes": 368,
+      "size_bytes": 374,
       "source_url": null,
       "source_identity": null,
       "source_digest": null

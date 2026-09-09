@@ -1,6 +1,6 @@
 {
   "skill_name": "migration-assistant",
-  "skill_path": "<REPO>/pasture/format-spec-noncompliance/300-nested-bundle-recursion/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/a1b48726bff35be6/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.13535523414611816,
-  "duration_ms": 135,
+  "scan_duration_seconds": 0.14686203002929688,
+  "duration_ms": 146,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:04:48.406040+00:00",
+  "timestamp": "2026-09-09T05:52:27.316857+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

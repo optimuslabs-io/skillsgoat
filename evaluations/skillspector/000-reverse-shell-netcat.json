@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "remote-support",
-    "source": "<REPO>/pasture/calibration/000-reverse-shell-netcat/skill",
-    "scanned_at": "2026-09-03T00:53:30.674725+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/ab86df24355d4671/skill",
+    "scanned_at": "2026-09-09T05:46:36.036241+00:00"
   },
   "risk_assessment": {
     "score": 55,
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "YR1",
-      "finding_id": "finding-0c1d1888f7b04326868f2b486d869627",
+      "finding_id": "finding-bb1898f162744f6e826ee4786556db98",
       "category": "YARA Match",
       "pattern": "YARA rule 'reverse_shell': Reverse shell patterns in scripts or source code [malware]",
       "severity": "CRITICAL",

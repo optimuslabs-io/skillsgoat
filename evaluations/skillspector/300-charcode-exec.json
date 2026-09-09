@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "cache-warmer",
-    "source": "<REPO>/pasture/obfuscation-encoding/300-charcode-exec/skill",
-    "scanned_at": "2026-09-03T00:54:19.574573+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/44f13c52e4aa4484/skill",
+    "scanned_at": "2026-09-09T05:48:41.746598+00:00"
   },
   "risk_assessment": {
     "score": 4,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 10,
       "executable": false,
-      "size_bytes": 186,
+      "size_bytes": 193,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "AST7",
-      "finding_id": "finding-ff2773871e5444caaab2b9017c2e9811",
+      "finding_id": "finding-1b6d5f491eab40e0a2fd57eb5a446fdb",
       "category": "Dangerous Code Execution",
       "pattern": "Dynamic attribute access via getattr()",
       "severity": "LOW",
@@ -66,7 +66,7 @@
     },
     {
       "id": "AST7",
-      "finding_id": "finding-7c1042a320c943988d1aac7d21b30821",
+      "finding_id": "finding-20aaf37b9c6a4293881c896e094e0251",
       "category": "Dangerous Code Execution",
       "pattern": "Dynamic attribute access via getattr()",
       "severity": "LOW",

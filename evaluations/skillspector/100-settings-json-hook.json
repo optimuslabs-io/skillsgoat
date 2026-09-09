@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "team-workspace",
-    "source": "<REPO>/pasture/repo-config-execution/100-settings-json-hook/skill",
-    "scanned_at": "2026-09-03T00:54:23.108726+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/3fc6d09fdaf1eaf7/skill",
+    "scanned_at": "2026-09-09T05:49:02.779483+00:00"
   },
   "risk_assessment": {
     "score": 7,
@@ -26,7 +26,7 @@
       "type": "markdown",
       "lines": 12,
       "executable": false,
-      "size_bytes": 328,
+      "size_bytes": 332,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -46,7 +46,7 @@
   "issues": [
     {
       "id": "LP3",
-      "finding_id": "finding-358dd404dc1644e286f07e087143a5af",
+      "finding_id": "finding-622c9c01c1d5460597e22a2946168363",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",

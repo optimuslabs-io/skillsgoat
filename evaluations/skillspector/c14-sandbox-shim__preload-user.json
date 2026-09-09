@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "office-doc-converter",
-    "source": "<REPO>/pasture/compound-chain/300-sandbox-shim/nodes/preload-user/skill",
-    "scanned_at": "2026-08-24T23:32:14.150211+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-_xjsojvy/chains/1a0accb23407d05c/nodes/preload-user/skill",
+    "scanned_at": "2026-09-09T05:59:12.535861+00:00"
   },
   "risk_assessment": {
     "score": 52,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 12,
       "executable": false,
-      "size_bytes": 380,
+      "size_bytes": 391,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "E2",
-      "finding_id": "finding-377c06cea0a64e0ab6b77cb791887fee",
+      "finding_id": "finding-c035a90030c943cd9e78220cafee0675",
       "category": "Data Exfiltration",
       "pattern": "Env Variable Harvesting",
       "severity": "HIGH",
@@ -66,7 +66,7 @@
     },
     {
       "id": "LP3",
-      "finding_id": "finding-b5ed4a7342804dfd8f0e4b3499a2b714",
+      "finding_id": "finding-54ebe79ee8e3457e8f6a91cac2276182",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -96,7 +96,7 @@
     },
     {
       "id": "AST4",
-      "finding_id": "finding-089e1fe5835d4f9994d3aaf9c491d39b",
+      "finding_id": "finding-d46cb76e1127437686e0fe677fdf932f",
       "category": "Dangerous Code Execution",
       "pattern": "subprocess module call",
       "severity": "MEDIUM",
@@ -126,7 +126,7 @@
     },
     {
       "id": "TT2",
-      "finding_id": "finding-7860ab332ba149a090eaeec21c5e1de7",
+      "finding_id": "finding-69013e8d4059425994101cd16e23922d",
       "category": "Data Flow",
       "pattern": "Tainted flow: 'shim' from os.environ.get (line 6, credential/environment) \u2192 subprocess.run (code execution)",
       "severity": "MEDIUM",
@@ -156,7 +156,7 @@
     },
     {
       "id": "AST4",
-      "finding_id": "finding-7927fc88f93e4bfe914b80f71458ee88",
+      "finding_id": "finding-5ac941940ceb433e8bea55137e34af89",
       "category": "Dangerous Code Execution",
       "pattern": "subprocess module call",
       "severity": "MEDIUM",
@@ -186,7 +186,7 @@
     },
     {
       "id": "TT2",
-      "finding_id": "finding-ec83eae909714e2ebedf74348c4b7209",
+      "finding_id": "finding-805c14dc43444dc6ac9e59954c6c94fe",
       "category": "Data Flow",
       "pattern": "Tainted flow: 'env' from os.environ.get (line 15, credential/environment) \u2192 subprocess.run (code execution)",
       "severity": "MEDIUM",
@@ -219,7 +219,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -290,6 +290,18 @@
         "skipped": 0,
         "failed": 0,
         "unaccounted": 0
+      },
+      {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
       },
       {
         "analyzer_id": "mcp_least_privilege",

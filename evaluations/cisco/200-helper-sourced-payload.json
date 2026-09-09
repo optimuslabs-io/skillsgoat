@@ -1,6 +1,6 @@
 {
   "skill_name": "project-setup",
-  "skill_path": "<REPO>/pasture/dispersion-splitting/200-helper-sourced-payload/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/8de96a027eda8036/skill",
   "is_safe": true,
   "max_severity": "LOW",
   "findings_count": 2,
@@ -34,14 +34,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.12836885452270508,
-  "duration_ms": 128,
+  "scan_duration_seconds": 0.19099116325378418,
+  "duration_ms": 190,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:04:32.853193+00:00",
+  "timestamp": "2026-09-09T05:51:22.223574+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

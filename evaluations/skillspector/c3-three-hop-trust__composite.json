@@ -1,8 +1,8 @@
 {
   "skill": {
-    "name": "c3-three-hop-trust-composite",
-    "source": "<REPO>/evaluations/.composite/c3-three-hop-trust/skill",
-    "scanned_at": "2026-08-24T23:31:47.468109+00:00"
+    "name": "13f0f3e97a790f31-composite",
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-_xjsojvy/composite/13f0f3e97a790f31/skill",
+    "scanned_at": "2026-09-09T05:56:33.636195+00:00"
   },
   "risk_assessment": {
     "score": 16,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 11,
       "executable": false,
-      "size_bytes": 375,
+      "size_bytes": 336,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -26,7 +26,7 @@
       "type": "markdown",
       "lines": 11,
       "executable": false,
-      "size_bytes": 318,
+      "size_bytes": 333,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
       "type": "markdown",
       "lines": 12,
       "executable": false,
-      "size_bytes": 223,
+      "size_bytes": 246,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -56,7 +56,7 @@
       "type": "markdown",
       "lines": 11,
       "executable": false,
-      "size_bytes": 332,
+      "size_bytes": 347,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -66,7 +66,7 @@
   "issues": [
     {
       "id": "LP3",
-      "finding_id": "finding-876976f9fab2436f91779e3d1d59026a",
+      "finding_id": "finding-3108692f16574fbf9d64ed44c0f051eb",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -96,7 +96,7 @@
     },
     {
       "id": "E1",
-      "finding_id": "finding-c068370f17a640458829e5447a472b17",
+      "finding_id": "finding-d8015ba4e4e44c42baada9e770045564",
       "category": "Data Exfiltration",
       "pattern": "External Transmission",
       "severity": "MEDIUM",
@@ -129,7 +129,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -174,6 +174,18 @@
       },
       {
         "analyzer_id": "behavioral_taint_tracking",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
+        "analyzer_id": "bundled_execution_surface",
         "status": "not_applicable",
         "planned_work": 0,
         "completed": 0,

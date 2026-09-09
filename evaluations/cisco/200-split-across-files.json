@@ -1,6 +1,6 @@
 {
   "skill_name": "release-prep",
-  "skill_path": "<REPO>/pasture/dispersion-splitting/200-split-across-files/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/9c18dfec194a4139/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.14644718170166016,
-  "duration_ms": 146,
+  "scan_duration_seconds": 0.20628809928894043,
+  "duration_ms": 206,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:04:34.511596+00:00",
+  "timestamp": "2026-09-09T05:51:24.825642+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

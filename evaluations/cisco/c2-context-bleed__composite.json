@@ -1,6 +1,6 @@
 {
-  "skill_name": "c2-context-bleed-composite",
-  "skill_path": "<REPO>/evaluations/.composite/c2-context-bleed/skill",
+  "skill_name": "bd6d810fde174cd3-composite",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/composite/bd6d810fde174cd3/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.1854548454284668,
-  "duration_ms": 185,
+  "scan_duration_seconds": 0.1481342315673828,
+  "duration_ms": 148,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T04:01:31.031572+00:00",
+  "timestamp": "2026-09-09T06:00:25.966008+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "deploy-helper",
-    "source": "<REPO>/pasture/dormant-trigger/200-env-gated-behavior/skill",
-    "scanned_at": "2026-09-03T00:53:50.639906+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/d1dcc39751801082/skill",
+    "scanned_at": "2026-09-09T05:47:24.958914+00:00"
   },
   "risk_assessment": {
     "score": 45,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 10,
       "executable": false,
-      "size_bytes": 188,
+      "size_bytes": 190,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "PE3",
-      "finding_id": "finding-f8f908086d2c4345a0047a11cedf6ab1",
+      "finding_id": "finding-e13ef5e7d3124c9985eceafa87f1e3b9",
       "category": "Privilege Escalation",
       "pattern": "Credential Access",
       "severity": "HIGH",
@@ -66,7 +66,7 @@
     },
     {
       "id": "LP3",
-      "finding_id": "finding-ab6dbf5c7e194c3e8d4a79822a104f7c",
+      "finding_id": "finding-88d29aae2f79403b9deb673bf653ad61",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -96,7 +96,7 @@
     },
     {
       "id": "E1",
-      "finding_id": "finding-8acb497b261c4efa804b4a6bda504f57",
+      "finding_id": "finding-1e6814c6ac2548338cf7546c3e47520e",
       "category": "Data Exfiltration",
       "pattern": "External Transmission",
       "severity": "MEDIUM",

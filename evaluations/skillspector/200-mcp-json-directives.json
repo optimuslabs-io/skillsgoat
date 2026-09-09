@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "db-tools-bundle",
-    "source": "<REPO>/pasture/mcp-tool-poisoning/200-mcp-json-directives/skill",
-    "scanned_at": "2026-09-03T00:54:10.047164+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/b30c84a1e0a07fb1/skill",
+    "scanned_at": "2026-09-09T05:48:18.968735+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -26,7 +26,7 @@
       "type": "markdown",
       "lines": 11,
       "executable": false,
-      "size_bytes": 272,
+      "size_bytes": 273,
       "source_url": null,
       "source_identity": null,
       "source_digest": null

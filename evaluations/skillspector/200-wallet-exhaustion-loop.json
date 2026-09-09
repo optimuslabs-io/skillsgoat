@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "uptime-monitor",
-    "source": "<REPO>/pasture/resource-exhaustion/200-wallet-exhaustion-loop/skill",
-    "scanned_at": "2026-09-03T00:54:25.445685+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/3dfd5a51a9ed68e8/skill",
+    "scanned_at": "2026-09-09T05:49:08.598403+00:00"
   },
   "risk_assessment": {
     "score": 7,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 11,
       "executable": false,
-      "size_bytes": 278,
+      "size_bytes": 276,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "LP3",
-      "finding_id": "finding-07a15009ba3e46d7a1d388c75e2c18f1",
+      "finding_id": "finding-73bd171e8653440396cc4e636d4c1eaf",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",

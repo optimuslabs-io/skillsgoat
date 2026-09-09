@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "support-bundle",
-    "source": "<REPO>/pasture/calibration/000-env-harvest-loop/skill",
-    "scanned_at": "2026-09-03T00:53:23.386937+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/4a58410e32de6eb2/skill",
+    "scanned_at": "2026-09-09T05:46:14.449784+00:00"
   },
   "risk_assessment": {
     "score": 29,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 9,
       "executable": false,
-      "size_bytes": 232,
+      "size_bytes": 236,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "E2",
-      "finding_id": "finding-12a687c31ac7418db9aeade067e5869f",
+      "finding_id": "finding-bbf9d69562a54c7387aeeecd12f9a940",
       "category": "Data Exfiltration",
       "pattern": "Env Variable Harvesting",
       "severity": "HIGH",
@@ -66,7 +66,7 @@
     },
     {
       "id": "LP3",
-      "finding_id": "finding-165923756d1c4f4e884d7c6367d9e432",
+      "finding_id": "finding-46920452328b46f3a44955303d6b53c2",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",

@@ -1,6 +1,6 @@
 {
   "skill_name": "toolchain-setup",
-  "skill_path": "<REPO>/pasture/supply-chain-trust-bypass/100-sudo-install/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/88dfa5e0aa9dd0c0/skill",
   "is_safe": true,
   "max_severity": "MEDIUM",
   "findings_count": 2,
@@ -40,14 +40,14 @@
       }
     }
   ],
-  "scan_duration_seconds": 0.14227795600891113,
-  "duration_ms": 142,
+  "scan_duration_seconds": 0.21306610107421875,
+  "duration_ms": 213,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T04:00:46.044483+00:00",
+  "timestamp": "2026-09-09T05:53:56.995400+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

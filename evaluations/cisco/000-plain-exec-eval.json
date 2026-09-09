@@ -1,6 +1,6 @@
 {
   "skill_name": "rule-engine",
-  "skill_path": "<REPO>/pasture/calibration/000-plain-exec-eval/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/39309601c332ad29/skill",
   "is_safe": false,
   "max_severity": "CRITICAL",
   "findings_count": 6,
@@ -12,7 +12,7 @@
       "severity": "MEDIUM",
       "title": "Undeclared network usage",
       "description": "Skill code uses network libraries but doesn't declare network requirement",
-      "file_path": "<REPO>/pasture/calibration/000-plain-exec-eval/skill/SKILL.md",
+      "file_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/39309601c332ad29/skill/SKILL.md",
       "line_number": null,
       "snippet": null,
       "remediation": "Declare network usage in compatibility field or remove network calls",
@@ -107,14 +107,14 @@
       }
     }
   ],
-  "scan_duration_seconds": 0.1811070442199707,
-  "duration_ms": 181,
+  "scan_duration_seconds": 0.37791991233825684,
+  "duration_ms": 377,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:04:08.529575+00:00",
+  "timestamp": "2026-09-09T05:50:42.979153+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

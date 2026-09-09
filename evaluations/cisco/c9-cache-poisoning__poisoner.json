@@ -1,6 +1,6 @@
 {
   "skill_name": "dep-preheat",
-  "skill_path": "<REPO>/pasture/compound-chain/300-cache-poisoning/nodes/poisoner/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/chains/ef8321c7085c1097/nodes/poisoner/skill",
   "is_safe": true,
   "max_severity": "MEDIUM",
   "findings_count": 2,
@@ -12,7 +12,7 @@
       "severity": "MEDIUM",
       "title": "Undeclared network usage",
       "description": "Skill code uses network libraries but doesn't declare network requirement",
-      "file_path": "<REPO>/pasture/compound-chain/300-cache-poisoning/nodes/poisoner/skill/SKILL.md",
+      "file_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/chains/ef8321c7085c1097/nodes/poisoner/skill/SKILL.md",
       "line_number": null,
       "snippet": null,
       "remediation": "Declare network usage in compatibility field or remove network calls",
@@ -34,14 +34,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.2984492778778076,
-  "duration_ms": 298,
+  "scan_duration_seconds": 0.14411282539367676,
+  "duration_ms": 144,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T04:02:18.952121+00:00",
+  "timestamp": "2026-09-09T06:01:28.031588+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

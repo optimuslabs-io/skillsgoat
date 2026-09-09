@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "brand-assets",
-    "source": "<REPO>/pasture/benign/000-base64-logo-asset/skill",
-    "scanned_at": "2026-09-03T00:53:07.913667+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/1b5a9790d54efa21/skill",
+    "scanned_at": "2026-09-09T05:45:53.420014+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 12,
       "executable": false,
-      "size_bytes": 320,
+      "size_bytes": 326,
       "source_url": null,
       "source_identity": null,
       "source_digest": null

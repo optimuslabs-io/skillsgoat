@@ -1,6 +1,6 @@
 {
-  "skill_name": "c3-three-hop-trust-composite",
-  "skill_path": "<REPO>/evaluations/.composite/c3-three-hop-trust/skill",
+  "skill_name": "992709fae02eb7bb-composite",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/composite/992709fae02eb7bb/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.2197580337524414,
-  "duration_ms": 219,
+  "scan_duration_seconds": 0.1555168628692627,
+  "duration_ms": 155,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T04:02:14.921213+00:00",
+  "timestamp": "2026-09-09T06:01:06.412600+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

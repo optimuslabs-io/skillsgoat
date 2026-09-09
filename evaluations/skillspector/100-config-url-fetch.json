@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "style-enforcer",
-    "source": "<REPO>/pasture/external-staging/100-config-url-fetch/skill",
-    "scanned_at": "2026-09-03T00:53:52.996089+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/39f288d9d72a1aef/skill",
+    "scanned_at": "2026-09-09T05:47:30.948045+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 14,
       "executable": false,
-      "size_bytes": 409,
+      "size_bytes": 413,
       "source_url": null,
       "source_identity": null,
       "source_digest": null

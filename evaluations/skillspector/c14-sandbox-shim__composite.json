@@ -1,8 +1,8 @@
 {
   "skill": {
-    "name": "c14-sandbox-shim-composite",
-    "source": "<REPO>/evaluations/.composite/c14-sandbox-shim/skill",
-    "scanned_at": "2026-08-24T23:32:15.221445+00:00"
+    "name": "8d18a29a87c2b854-composite",
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-_xjsojvy/composite/8d18a29a87c2b854/skill",
+    "scanned_at": "2026-09-09T05:59:13.910717+00:00"
   },
   "risk_assessment": {
     "score": 63,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 10,
       "executable": false,
-      "size_bytes": 359,
+      "size_bytes": 320,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -26,7 +26,7 @@
       "type": "markdown",
       "lines": 13,
       "executable": false,
-      "size_bytes": 313,
+      "size_bytes": 348,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -56,7 +56,7 @@
       "type": "markdown",
       "lines": 12,
       "executable": false,
-      "size_bytes": 380,
+      "size_bytes": 391,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -76,7 +76,7 @@
   "issues": [
     {
       "id": "E2",
-      "finding_id": "finding-d0d1352f0ca14d4c986b15a2abe88ae9",
+      "finding_id": "finding-8925704b17d84938b07876ee777814cf",
       "category": "Data Exfiltration",
       "pattern": "Env Variable Harvesting",
       "severity": "HIGH",
@@ -106,7 +106,7 @@
     },
     {
       "id": "LP3",
-      "finding_id": "finding-1b4a82d197054fe09cebbb386510d6fa",
+      "finding_id": "finding-aba8a10ad6b94fe994d4242c429a756c",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -136,7 +136,7 @@
     },
     {
       "id": "PE2",
-      "finding_id": "finding-c29d975960a541a6abd777e3910119f7",
+      "finding_id": "finding-be7f535eceee4f7a9c88985d6875029a",
       "category": "Privilege Escalation",
       "pattern": "Sudo/Root Execution",
       "severity": "MEDIUM",
@@ -166,7 +166,7 @@
     },
     {
       "id": "AST4",
-      "finding_id": "finding-6ca0fc4e5b814da882da946c0d273f15",
+      "finding_id": "finding-641c3a5d889a49038d2eeb466f6d7702",
       "category": "Dangerous Code Execution",
       "pattern": "subprocess module call",
       "severity": "MEDIUM",
@@ -196,7 +196,7 @@
     },
     {
       "id": "TT2",
-      "finding_id": "finding-33dfef707b4142f0bbb7d1be981b4528",
+      "finding_id": "finding-f036ca2d3a7e4b769d151c6315183f2a",
       "category": "Data Flow",
       "pattern": "Tainted flow: 'shim' from os.environ.get (line 6, credential/environment) \u2192 subprocess.run (code execution)",
       "severity": "MEDIUM",
@@ -226,7 +226,7 @@
     },
     {
       "id": "AST4",
-      "finding_id": "finding-3c0884e26ba8442898624feb4286da07",
+      "finding_id": "finding-dfc66f23663a4ee9992168ff3a65fb75",
       "category": "Dangerous Code Execution",
       "pattern": "subprocess module call",
       "severity": "MEDIUM",
@@ -256,7 +256,7 @@
     },
     {
       "id": "TT2",
-      "finding_id": "finding-80cd13055c014ffcac07653cc80940a0",
+      "finding_id": "finding-c6f69f1eb8e74b0fbc92930e5a4cec19",
       "category": "Data Flow",
       "pattern": "Tainted flow: 'env' from os.environ.get (line 15, credential/environment) \u2192 subprocess.run (code execution)",
       "severity": "MEDIUM",
@@ -289,7 +289,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -339,6 +339,18 @@
         "skipped": 0,
         "failed": 0,
         "unaccounted": 0
+      },
+      {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
       },
       {
         "analyzer_id": "mcp_least_privilege",

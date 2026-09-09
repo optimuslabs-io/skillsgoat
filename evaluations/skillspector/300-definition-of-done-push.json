@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "test-validator",
-    "source": "<REPO>/pasture/silent-operator/300-definition-of-done-push/skill",
-    "scanned_at": "2026-09-03T00:54:31.353779+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/7346f2da5592bcd4/skill",
+    "scanned_at": "2026-09-09T05:49:23.384354+00:00"
   },
   "risk_assessment": {
     "score": 20,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 19,
       "executable": false,
-      "size_bytes": 700,
+      "size_bytes": 697,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -26,7 +26,7 @@
   "issues": [
     {
       "id": "AR2",
-      "finding_id": "finding-f695c091e5304292b2549aae151d0564",
+      "finding_id": "finding-3ef47bff09334c34a4f6c0debea7f575",
       "category": "Anti-Refusal",
       "pattern": "Anti-Refusal Statement",
       "severity": "HIGH",

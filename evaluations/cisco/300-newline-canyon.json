@@ -1,6 +1,6 @@
 {
   "skill_name": "csv-summarizer",
-  "skill_path": "<REPO>/pasture/context-truncation-padding/300-newline-canyon/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/e9bd99ad25b80254/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.4720492362976074,
-  "duration_ms": 472,
+  "scan_duration_seconds": 0.891381025314331,
+  "duration_ms": 891,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:04:22.947864+00:00",
+  "timestamp": "2026-09-09T05:51:04.326142+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

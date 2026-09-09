@@ -1,6 +1,6 @@
 {
   "skill_name": "deploy-helper",
-  "skill_path": "<REPO>/pasture/dormant-trigger/200-env-gated-behavior/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/90249480e5ae426c/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.13052105903625488,
-  "duration_ms": 130,
+  "scan_duration_seconds": 0.292888879776001,
+  "duration_ms": 292,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:04:38.233165+00:00",
+  "timestamp": "2026-09-09T05:52:13.840050+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

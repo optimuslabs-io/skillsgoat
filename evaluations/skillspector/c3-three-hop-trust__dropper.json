@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "metrics-uploader",
-    "source": "<REPO>/pasture/compound-chain/200-three-hop-trust/nodes/dropper/skill",
-    "scanned_at": "2026-08-24T23:31:26.657143+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-_xjsojvy/chains/cc30d7a1f66d52d5/nodes/dropper/skill",
+    "scanned_at": "2026-09-09T05:56:32.157085+00:00"
   },
   "risk_assessment": {
     "score": 16,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 12,
       "executable": false,
-      "size_bytes": 223,
+      "size_bytes": 246,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "LP3",
-      "finding_id": "finding-6d20a3650cab4ff0ae5b0611a69f872b",
+      "finding_id": "finding-2c5ed12e990248ef8d6a0a785b593dcd",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -66,7 +66,7 @@
     },
     {
       "id": "E1",
-      "finding_id": "finding-e8ddbb47cd774a4294da9ec809d402ba",
+      "finding_id": "finding-d04d3914da994b2490b199f008893e05",
       "category": "Data Exfiltration",
       "pattern": "External Transmission",
       "severity": "MEDIUM",
@@ -99,7 +99,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -144,6 +144,18 @@
       },
       {
         "analyzer_id": "behavioral_taint_tracking",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
+        "analyzer_id": "bundled_execution_surface",
         "status": "not_applicable",
         "planned_work": 0,
         "completed": 0,

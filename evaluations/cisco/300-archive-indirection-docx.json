@@ -1,6 +1,6 @@
 {
   "skill_name": "context-loader",
-  "skill_path": "<REPO>/pasture/hidden-artifact-packing/300-archive-indirection-docx/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/50b8acd3792ad48c/skill",
   "is_safe": false,
   "max_severity": "HIGH",
   "findings_count": 6,
@@ -68,7 +68,7 @@
         "actual_type": "document/docx",
         "actual_family": "document",
         "claimed_extension": ".docx",
-        "confidence_score": 0.9975987076759338
+        "confidence_score": 0.9978502988815308
       }
     },
     {
@@ -106,14 +106,14 @@
       }
     }
   ],
-  "scan_duration_seconds": 0.142927885055542,
-  "duration_ms": 142,
+  "scan_duration_seconds": 0.13609910011291504,
+  "duration_ms": 136,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:04:51.791091+00:00",
+  "timestamp": "2026-09-09T05:52:30.623849+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

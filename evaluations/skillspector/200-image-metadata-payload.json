@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "theme-applier",
-    "source": "<REPO>/pasture/hidden-artifact-packing/200-image-metadata-payload/skill",
-    "scanned_at": "2026-09-03T00:53:59.095836+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/69695742ab7b3f82/skill",
+    "scanned_at": "2026-09-09T05:47:48.945477+00:00"
   },
   "risk_assessment": {
     "score": 82,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 14,
       "executable": false,
-      "size_bytes": 427,
+      "size_bytes": 425,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -46,7 +46,7 @@
   "issues": [
     {
       "id": "AE1",
-      "finding_id": "finding-cf36d106337d45419e8f4e5b7bfbff58",
+      "finding_id": "finding-0869cbbe3e914d43a3dbe8c17cdd6c73",
       "category": "analysis-evasion",
       "pattern": null,
       "severity": "HIGH",
@@ -78,7 +78,7 @@
     },
     {
       "id": "AE1",
-      "finding_id": "finding-cf36d106337d45419e8f4e5b7bfbff58",
+      "finding_id": "finding-0869cbbe3e914d43a3dbe8c17cdd6c73",
       "category": "analysis-evasion",
       "pattern": null,
       "severity": "HIGH",
@@ -110,7 +110,7 @@
     },
     {
       "id": "TM1",
-      "finding_id": "finding-35f81fff58014f1ba226a9e091aa9725",
+      "finding_id": "finding-c21227244bf64df2bed4adeda7ff9ee0",
       "category": "Tool Misuse",
       "pattern": "Tool Parameter Abuse",
       "severity": "HIGH",
@@ -140,7 +140,7 @@
     },
     {
       "id": "LP3",
-      "finding_id": "finding-27659ce0894b4019af4e4297124d081a",
+      "finding_id": "finding-5b16c439d02a4464b356c6e0c54dcb94",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -170,7 +170,7 @@
     },
     {
       "id": "AST4",
-      "finding_id": "finding-52c6ffa315e74ea5a217ff2f40895ef3",
+      "finding_id": "finding-0b44ce37a2544660b0601f060b753c09",
       "category": "Dangerous Code Execution",
       "pattern": "subprocess module call",
       "severity": "MEDIUM",

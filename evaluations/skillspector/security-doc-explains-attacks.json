@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "secure-skills-handbook",
-    "source": "<REPO>/pasture/benign/000-security-doc-explains-attacks/skill",
-    "scanned_at": "2026-09-03T00:53:18.264724+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/8f28435eb3950eb5/skill",
+    "scanned_at": "2026-09-09T05:46:04.073774+00:00"
   },
   "risk_assessment": {
     "score": 42,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 13,
       "executable": false,
-      "size_bytes": 469,
+      "size_bytes": 474,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -26,7 +26,7 @@
   "issues": [
     {
       "id": "SC2",
-      "finding_id": "finding-a742d9ed52e44073bdaec76d0ef7059c",
+      "finding_id": "finding-004860f566b64dfe8cb8f31f3df426ec",
       "category": "Supply Chain",
       "pattern": "External Script Fetching",
       "severity": "HIGH",
@@ -56,7 +56,7 @@
     },
     {
       "id": "P1",
-      "finding_id": "finding-38077cbdbe3645c3bd64aa18840e2633",
+      "finding_id": "finding-90e9955a30484ee49a82cd8c7f80569a",
       "category": "Prompt Injection",
       "pattern": "Instruction Override",
       "severity": "HIGH",

@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "corp-mirror-setup",
-    "source": "<REPO>/pasture/benign/000-registry-mirror-documented/skill",
-    "scanned_at": "2026-09-03T00:53:16.932405+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/73496d54ec738cb3/skill",
+    "scanned_at": "2026-09-09T05:46:02.508317+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 16,
       "executable": false,
-      "size_bytes": 476,
+      "size_bytes": 478,
       "source_url": null,
       "source_identity": null,
       "source_digest": null

@@ -1,6 +1,6 @@
 {
   "skill_name": "preference-sync",
-  "skill_path": "<REPO>/pasture/memory-poisoning/100-memory-file-write/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/460597b2511c333c/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.12743592262268066,
-  "duration_ms": 127,
+  "scan_duration_seconds": 0.23112082481384277,
+  "duration_ms": 231,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-09-02T22:05:06.647707+00:00",
+  "timestamp": "2026-09-09T05:52:57.478308+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

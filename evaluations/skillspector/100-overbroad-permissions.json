@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "unknown",
-    "source": "<REPO>/pasture/excessive-permission-scope/100-overbroad-permissions/skill",
-    "scanned_at": "2026-09-03T00:53:51.862096+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/c38c44be77578643/skill",
+    "scanned_at": "2026-09-09T05:47:27.997092+00:00"
   },
   "risk_assessment": {
     "score": 0,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 23,
       "executable": false,
-      "size_bytes": 518,
+      "size_bytes": 517,
       "source_url": null,
       "source_identity": null,
       "source_digest": null

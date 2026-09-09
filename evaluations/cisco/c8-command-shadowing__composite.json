@@ -1,6 +1,6 @@
 {
-  "skill_name": "c8-command-shadowing-composite",
-  "skill_path": "<REPO>/evaluations/.composite/c8-command-shadowing/skill",
+  "skill_name": "563c63e501e9ab5e-composite",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/composite/563c63e501e9ab5e/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.15436601638793945,
-  "duration_ms": 154,
+  "scan_duration_seconds": 0.1551671028137207,
+  "duration_ms": 155,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T04:01:21.252544+00:00",
+  "timestamp": "2026-09-09T06:00:17.004504+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

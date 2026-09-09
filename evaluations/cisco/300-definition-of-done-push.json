@@ -1,6 +1,6 @@
 {
   "skill_name": "test-validator",
-  "skill_path": "<REPO>/pasture/silent-operator/300-definition-of-done-push/skill",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-m3gh22it/atomic/36d0d07b987d8a20/skill",
   "is_safe": true,
   "max_severity": "INFO",
   "findings_count": 1,
@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.13035011291503906,
-  "duration_ms": 130,
+  "scan_duration_seconds": 0.18382000923156738,
+  "duration_ms": 183,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T04:00:44.287560+00:00",
+  "timestamp": "2026-09-09T05:53:54.428833+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

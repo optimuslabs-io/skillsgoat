@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "snippet-library",
-    "source": "<REPO>/pasture/hidden-artifact-packing/300-sfs-xor-pack/skill",
-    "scanned_at": "2026-09-03T00:54:03.987281+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/edffe01df75f6d49/skill",
+    "scanned_at": "2026-09-09T05:48:00.872335+00:00"
   },
   "risk_assessment": {
     "score": 37,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 12,
       "executable": false,
-      "size_bytes": 339,
+      "size_bytes": 347,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -46,7 +46,7 @@
   "issues": [
     {
       "id": "AE3",
-      "finding_id": "finding-870987c8d3e14680840bdae31f0cef6e",
+      "finding_id": "finding-e888422daa404ca4b3648ac21cc9a19a",
       "category": "analysis-evasion",
       "pattern": null,
       "severity": "HIGH",
@@ -76,7 +76,7 @@
     },
     {
       "id": "LP3",
-      "finding_id": "finding-d75a36de185b4cc7be495d2d4bf871d9",
+      "finding_id": "finding-efdda4b386d7412caef60854b988a4b0",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -106,7 +106,7 @@
     },
     {
       "id": "AE4",
-      "finding_id": "finding-7516d20d134d49719a6fd5c67abfd6ba",
+      "finding_id": "finding-bf2cf16c42b0402a80fb54759d1b16ec",
       "category": "analysis-evasion",
       "pattern": null,
       "severity": "MEDIUM",

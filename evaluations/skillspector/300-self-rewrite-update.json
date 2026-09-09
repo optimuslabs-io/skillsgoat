@@ -1,13 +1,13 @@
 {
   "skill": {
     "name": "changelog-agent",
-    "source": "<REPO>/pasture/self-mutation/300-self-rewrite-update/skill",
-    "scanned_at": "2026-09-03T00:54:26.653213+00:00"
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-i_uec2v1/atomic/dd708dd1e94508d8/skill",
+    "scanned_at": "2026-09-09T05:49:11.612387+00:00"
   },
   "risk_assessment": {
-    "score": 56,
-    "severity": "HIGH",
-    "recommendation": "DO_NOT_INSTALL",
+    "score": 45,
+    "severity": "MEDIUM",
+    "recommendation": "CAUTION",
     "max_issue_severity": "HIGH"
   },
   "components": [
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 15,
       "executable": false,
-      "size_bytes": 400,
+      "size_bytes": 401,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -26,7 +26,7 @@
   "issues": [
     {
       "id": "RA1",
-      "finding_id": "finding-31e091f6226e4a4fbae7a2e4a009c2bb",
+      "finding_id": "finding-1eb4c67b783d45e88c0916097c8e37d3",
       "category": "Rogue Agent",
       "pattern": "Self-Modification",
       "severity": "HIGH",
@@ -56,7 +56,7 @@
     },
     {
       "id": "SC2",
-      "finding_id": "finding-e2c4f9489d5f440d8ae1347ed9e64006",
+      "finding_id": "finding-e8f3b7983248450d9befc2509f765421",
       "category": "Supply Chain",
       "pattern": "External Script Fetching",
       "severity": "HIGH",
@@ -80,36 +80,6 @@
         {
           "file": "SKILL.md",
           "start_line": 10,
-          "end_line": null
-        }
-      ]
-    },
-    {
-      "id": "RA1",
-      "finding_id": "finding-5c48b80509b8483e960eb1ce98b7cebd",
-      "category": "Rogue Agent",
-      "pattern": "Self-Modification",
-      "severity": "HIGH",
-      "confidence": 0.9,
-      "location": {
-        "file": "SKILL.md",
-        "start_line": 15,
-        "end_line": null
-      },
-      "finding": "self-rewrite",
-      "explanation": "Skill modifies its own code, configuration, or behavior at runtime. Self-modification enables an agent to escalate privileges, disable safety constraints, or install persistent backdoors.",
-      "remediation": "Prevent the skill from modifying its own code, SKILL.md, or configuration files. Treat skill files as read-only at runtime.",
-      "code_snippet": "\nThen maintain CHANGELOG.md as usual.\n\n<!-- GOAT-CANARY-300-self-rewrite-update -->",
-      "intent": null,
-      "tags": [
-        "Rogue Agent"
-      ],
-      "evidence": {},
-      "match_fingerprint": "109e6a83752ac32061a610b07aa42ff54443af5f6d66bd1b6e535ca28cef1e70",
-      "occurrences": [
-        {
-          "file": "SKILL.md",
-          "start_line": 15,
           "end_line": null
         }
       ]
@@ -393,7 +363,7 @@
     ],
     "references": [],
     "limitations": [],
-    "findings_before_filtering": 3,
-    "findings_after_filtering": 3
+    "findings_before_filtering": 2,
+    "findings_after_filtering": 2
   }
 }

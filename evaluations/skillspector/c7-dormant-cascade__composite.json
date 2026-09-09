@@ -1,8 +1,8 @@
 {
   "skill": {
-    "name": "c7-dormant-cascade-composite",
-    "source": "<REPO>/evaluations/.composite/c7-dormant-cascade/skill",
-    "scanned_at": "2026-08-24T23:31:07.419494+00:00"
+    "name": "bcb7cec248e78208-composite",
+    "source": "/private/var/folders/qv/g66895bx4bbg_k_b041ygvn40000gn/T/goat-blind-_xjsojvy/composite/bcb7cec248e78208/skill",
+    "scanned_at": "2026-09-09T05:56:07.424448+00:00"
   },
   "risk_assessment": {
     "score": 46,
@@ -16,7 +16,7 @@
       "type": "markdown",
       "lines": 10,
       "executable": false,
-      "size_bytes": 341,
+      "size_bytes": 290,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -26,7 +26,7 @@
       "type": "markdown",
       "lines": 10,
       "executable": false,
-      "size_bytes": 163,
+      "size_bytes": 186,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -46,7 +46,7 @@
       "type": "markdown",
       "lines": 13,
       "executable": false,
-      "size_bytes": 367,
+      "size_bytes": 381,
       "source_url": null,
       "source_identity": null,
       "source_digest": null
@@ -56,7 +56,7 @@
   "issues": [
     {
       "id": "TM1",
-      "finding_id": "finding-70a09d30773f4093825d7739e292d7d0",
+      "finding_id": "finding-5661523dd9c745a29de7f932e37b74b3",
       "category": "Tool Misuse",
       "pattern": "Tool Parameter Abuse",
       "severity": "HIGH",
@@ -86,7 +86,7 @@
     },
     {
       "id": "LP3",
-      "finding_id": "finding-20b3056cb1fb44ae90699a0977a62534",
+      "finding_id": "finding-e4c1115b0b404b4c91abb9d00fcca187",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -116,7 +116,7 @@
     },
     {
       "id": "E1",
-      "finding_id": "finding-bd6a3df886944395bc71b9767b21d8ab",
+      "finding_id": "finding-111fa42c8ab94121ac841eec3671acf4",
       "category": "Data Exfiltration",
       "pattern": "External Transmission",
       "severity": "MEDIUM",
@@ -149,7 +149,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -194,6 +194,18 @@
       },
       {
         "analyzer_id": "behavioral_taint_tracking",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
+        "analyzer_id": "bundled_execution_surface",
         "status": "not_applicable",
         "planned_work": 0,
         "completed": 0,
