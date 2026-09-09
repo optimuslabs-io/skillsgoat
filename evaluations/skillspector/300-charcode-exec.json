@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "cache-warmer",
-    "source": "/Users/nipung/skills-goat/pasture/obfuscation-encoding/300-charcode-exec/skill",
-    "scanned_at": "2026-08-23T19:15:08.267213+00:00"
+    "source": "/Users/nipung/skillsgoat/pasture/obfuscation-encoding/300-charcode-exec/skill",
+    "scanned_at": "2026-09-03T00:54:19.574573+00:00"
   },
   "risk_assessment": {
     "score": 4,
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "AST7",
-      "finding_id": "finding-f901c2e31e8640bab6ee1f050b3363ea",
+      "finding_id": "finding-ff2773871e5444caaab2b9017c2e9811",
       "category": "Dangerous Code Execution",
       "pattern": "Dynamic attribute access via getattr()",
       "severity": "LOW",
@@ -66,7 +66,7 @@
     },
     {
       "id": "AST7",
-      "finding_id": "finding-107980cb850343eb8d6de05371b7a576",
+      "finding_id": "finding-7c1042a320c943988d1aac7d21b30821",
       "category": "Dangerous Code Execution",
       "pattern": "Dynamic attribute access via getattr()",
       "severity": "LOW",
@@ -99,7 +99,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -151,6 +151,18 @@
         "unaccounted": 0
       },
       {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
         "analyzer_id": "mcp_least_privilege",
         "status": "completed",
         "planned_work": 2,
@@ -182,42 +194,6 @@
       },
       {
         "analyzer_id": "meta_analyzer",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_developer_intent",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_quality_policy",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_security_discovery",
         "status": "disabled",
         "planned_work": 0,
         "completed": 0,

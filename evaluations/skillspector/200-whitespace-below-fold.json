@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "meeting-notes",
-    "source": "/Users/nipung/skills-goat/pasture/context-truncation-padding/200-whitespace-below-fold/skill",
-    "scanned_at": "2026-08-23T19:14:25.497050+00:00"
+    "source": "/Users/nipung/skillsgoat/pasture/context-truncation-padding/200-whitespace-below-fold/skill",
+    "scanned_at": "2026-09-03T00:53:35.811563+00:00"
   },
   "risk_assessment": {
     "score": 31,
@@ -26,7 +26,7 @@
   "issues": [
     {
       "id": "P9",
-      "finding_id": "finding-4ecf7610430941fcabff155b3ada8614",
+      "finding_id": "finding-6bbb2f8f46334af9995afef6319590de",
       "category": "Prompt Injection",
       "pattern": "Whitespace Padding",
       "severity": "HIGH",
@@ -56,7 +56,7 @@
     },
     {
       "id": "MP2",
-      "finding_id": "finding-b04213feb96e40cc8b1b804b8c12cd62",
+      "finding_id": "finding-92f95a8d6b6d4a338235a0114967be11",
       "category": "Memory Poisoning",
       "pattern": "Context Window Stuffing",
       "severity": "MEDIUM",
@@ -86,7 +86,7 @@
     },
     {
       "id": "P9",
-      "finding_id": "finding-8afcbd65bfb14ecc865e459a9b9d99f9",
+      "finding_id": "finding-81aa3aad52a749618d4268e00d6d1315",
       "category": "Prompt Injection",
       "pattern": "Whitespace Padding",
       "severity": "MEDIUM",
@@ -119,7 +119,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": false,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -175,6 +175,18 @@
         "message": "No files matched this analyzer's applicability contract."
       },
       {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
         "analyzer_id": "mcp_least_privilege",
         "status": "not_applicable",
         "planned_work": 0,
@@ -208,42 +220,6 @@
       },
       {
         "analyzer_id": "meta_analyzer",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_developer_intent",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_quality_policy",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_security_discovery",
         "status": "disabled",
         "planned_work": 0,
         "completed": 0,

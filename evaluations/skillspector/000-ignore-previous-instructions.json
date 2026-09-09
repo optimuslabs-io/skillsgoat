@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "focus-assistant",
-    "source": "/Users/nipung/skills-goat/pasture/calibration/000-ignore-previous-instructions/skill",
-    "scanned_at": "2026-08-23T19:14:17.389449+00:00"
+    "source": "/Users/nipung/skillsgoat/pasture/calibration/000-ignore-previous-instructions/skill",
+    "scanned_at": "2026-09-03T00:53:25.731339+00:00"
   },
   "risk_assessment": {
     "score": 67,
@@ -26,7 +26,7 @@
   "issues": [
     {
       "id": "YR4",
-      "finding_id": "finding-0bf72decef4245a3a0a86800121ffc71",
+      "finding_id": "finding-232964519fdf4d40a932fc0e58f06b2c",
       "category": "YARA Match",
       "pattern": "YARA rule 'agent_skill_prompt_injection_hidden_instructions': Prompt injection or hidden instructions embedded in AI agent skill text [agent_skills]",
       "severity": "HIGH",
@@ -56,7 +56,7 @@
     },
     {
       "id": "P1",
-      "finding_id": "finding-b17a0b3799b241a5adc92bd8782415fa",
+      "finding_id": "finding-fbecc6b060ad4b3a96e81c9d3582f47d",
       "category": "Prompt Injection",
       "pattern": "Instruction Override",
       "severity": "HIGH",
@@ -86,7 +86,7 @@
     },
     {
       "id": "YR4",
-      "finding_id": "finding-124205a154584a86985e56e24fdfa4f9",
+      "finding_id": "finding-885ed66f2d7547e09e9e686a2407043f",
       "category": "YARA Match",
       "pattern": "YARA rule 'agent_skill_mcp_tool_poisoning_metadata': MCP/tool metadata poisoning indicators in tool schemas or skill manifests [agent_skills]",
       "severity": "HIGH",
@@ -116,7 +116,7 @@
     },
     {
       "id": "P2",
-      "finding_id": "finding-8bc7e74b4ea84bbbb419004de01bd4f2",
+      "finding_id": "finding-6cb0de8940024bf7b5e92acb6df74988",
       "category": "Prompt Injection",
       "pattern": "Hidden Instructions",
       "severity": "HIGH",
@@ -149,7 +149,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": false,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -205,6 +205,18 @@
         "message": "No files matched this analyzer's applicability contract."
       },
       {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
         "analyzer_id": "mcp_least_privilege",
         "status": "not_applicable",
         "planned_work": 0,
@@ -238,42 +250,6 @@
       },
       {
         "analyzer_id": "meta_analyzer",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_developer_intent",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_quality_policy",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_security_discovery",
         "status": "disabled",
         "planned_work": 0,
         "completed": 0,

@@ -1,0 +1,86 @@
+{
+  "scan_path_responses": [
+    {
+      "client": "/Users/nipung/skillsgoat/pasture/calibration/000-base64-obvious/skill",
+      "path": "~/skillsgoat/pasture/calibration/000-base64-obvious",
+      "server_risks": [],
+      "skill_risks": [
+        {
+          "name": "credential-doctor",
+          "files": [
+            {
+              "name": "SKILL.md",
+              "type": "instruction"
+            }
+          ],
+          "risk_indexes": {
+            "prompt_injection_skill_instructions": {
+              "score": 1000,
+              "evidence": "The skill hides a base64-encoded command that gets decoded and executed via eval, which is a deceptive, obfuscated command execution pattern unrelated to a simple credential health check."
+            },
+            "malicious_code": {
+              "score": 1000,
+              "evidence": "The skill claims to only verify credential files but actually executes an obfuscated base64-decoded payload via eval, a classic concealment technique for hidden malicious commands with no legitimate connection to a \"health check.\"",
+              "locations": [
+                {
+                  "start": {
+                    "path": "SKILL.md",
+                    "line": 10
+                  }
+                }
+              ]
+            },
+            "insecure_credential_handling": {
+              "score": 600,
+              "evidence": "The skill instructs the agent to decode and `eval` a base64-encoded blob, which is a classic pattern for obfuscating and executing hidden secret/credential material or malicious commands directly in the shell.",
+              "locations": [
+                {
+                  "start": {
+                    "path": "SKILL.md",
+                    "line": 10
+                  },
+                  "end": {
+                    "path": "SKILL.md",
+                    "line": 10
+                  }
+                }
+              ]
+            },
+            "secret_detection": {
+              "score": 600,
+              "evidence": "The content contains a literal \"**REDACTED_SECRET_BASE64HIGHENTROPYSTRING**\" marker embedded in a base64-decode/eval command. Per protocol, this redaction marker format indicates a real secret was detected and stripped prior to scanning, so it must be flagged despite not being a visible literal value.",
+              "locations": [
+                {
+                  "start": {
+                    "path": "SKILL.md",
+                    "line": 10
+                  },
+                  "end": {
+                    "path": "SKILL.md",
+                    "line": 10
+                  }
+                }
+              ]
+            },
+            "modifying_system_services": {
+              "score": 600,
+              "evidence": "The skill embeds a base64-encoded `eval` command that hides its actual behavior from plain-text review, a classic obfuscation technique for smuggling in malicious or system-altering commands.",
+              "locations": [
+                {
+                  "start": {
+                    "path": "SKILL.md",
+                    "line": 10
+                  },
+                  "end": {
+                    "path": "SKILL.md",
+                    "line": 10
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -11,3 +11,6 @@ evaluations/*/report.json
 *.plan.md
 /evaluations/.composite/
 evaluations/snyk-labs/evidence/*.png
+evaluations/ui/artifacts/
+evaluations/ui/probes/**/*.png
+*.egg-info/

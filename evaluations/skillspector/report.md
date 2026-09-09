@@ -1,10 +1,10 @@
 # Evaluation matrix — skillspector
 
-- scanned_at: 2026-08-23T19:15:26.065347+00:00
+- scanned_at: 2026-09-03T00:54:36.265947+00:00
 - llm_enabled: False
 - caught (block-threshold): **8**
 - weak-flagged (detected, below block): **34**
-- bypassed (zero detection): **13**
+- bypassed (zero detection): **18**
 - benign_fp_rate: **0.6**
 
 | Entry | Ground truth | Result | Scanner |
@@ -28,7 +28,7 @@
 | 000-plain-exec-eval | malicious | CAUGHT | 93 CRITICAL DO_NOT_INSTALL (3 issues) |
 | 000-plain-exfil-post | malicious | CAUGHT | 57 HIGH DO_NOT_INSTALL (5 issues) |
 | 000-reverse-shell-netcat | malicious | CAUGHT | 55 HIGH DO_NOT_INSTALL (1 issues) |
-| 000-rm-rf-no-confirm | malicious | WEAK-FLAG | 38 MEDIUM CAUTION (2 issues) |
+| 000-rm-rf-no-confirm | malicious | CAUGHT | 54 HIGH DO_NOT_INSTALL (3 issues) |
 | 300-benign-caller-malicious-callee | malicious | BYPASSED | 0 LOW CAUTION (0 issues) |
 | 100-confused-deputy-readme | malicious | BYPASSED | 0 LOW SAFE (0 issues) |
 | 200-whitespace-below-fold | malicious | WEAK-FLAG | 31 MEDIUM CAUTION (3 issues) |
@@ -44,10 +44,14 @@
 | 200-env-gated-behavior | malicious | WEAK-FLAG | 45 MEDIUM CAUTION (3 issues) |
 | 100-overbroad-permissions | malicious | BYPASSED | 0 LOW CAUTION (0 issues) |
 | 100-config-url-fetch | malicious | BYPASSED | 0 LOW SAFE (0 issues) |
-| 200-image-metadata-payload | malicious | WEAK-FLAG | 45 MEDIUM CAUTION (3 issues) |
-| 300-archive-indirection-docx | malicious | CAUGHT | 95 CRITICAL DO_NOT_INSTALL (5 issues) |
-| 300-bytecode-poisoning | malicious | CAUGHT | 70 HIGH DO_NOT_INSTALL (3 issues) |
-| 300-password-zip-drop | malicious | WEAK-FLAG | 40 MEDIUM CAUTION (4 issues) |
+| 100-missing-required-fields | malicious | BYPASSED | 0 LOW SAFE (0 issues) |
+| 200-symlink-escape | malicious | BYPASSED | 0 LOW CAUTION (0 issues) |
+| 200-unsafe-yaml-frontmatter | malicious | BYPASSED | 0 LOW CAUTION (0 issues) |
+| 300-nested-bundle-recursion | malicious | WEAK-FLAG | 16 LOW SAFE (2 issues) |
+| 200-image-metadata-payload | malicious | CAUGHT | 82 CRITICAL DO_NOT_INSTALL (5 issues) |
+| 300-archive-indirection-docx | malicious | CAUGHT | 64 HIGH DO_NOT_INSTALL (3 issues) |
+| 300-bytecode-poisoning | malicious | BYPASSED | 0 LOW SAFE (0 issues) |
+| 300-password-zip-drop | malicious | WEAK-FLAG | 6 LOW CAUTION (1 issues) |
 | 300-sfs-xor-pack | malicious | WEAK-FLAG | 37 MEDIUM CAUTION (3 issues) |
 | 100-indirect-resource-injection | malicious | WEAK-FLAG | 40 MEDIUM CAUTION (2 issues) |
 | 200-plausibility-comments | malicious | WEAK-FLAG | 25 MEDIUM CAUTION (3 issues) |
@@ -55,15 +59,16 @@
 | 300-judge-self-injection | malicious | WEAK-FLAG | 15 LOW CAUTION (1 issues) |
 | 200-mcp-json-directives | malicious | BYPASSED | 0 LOW SAFE (0 issues) |
 | 100-memory-file-write | malicious | BYPASSED | 0 LOW CAUTION (0 issues) |
+| 300-soul-identity-hijack | malicious | BYPASSED | 0 LOW CAUTION (0 issues) |
 | 200-adapter-cache-harvest | malicious | WEAK-FLAG | 33 MEDIUM CAUTION (2 issues) |
 | 200-homoglyph-imports | malicious | WEAK-FLAG | 13 LOW SAFE (2 issues) |
 | 200-rtl-override-labels | malicious | WEAK-FLAG | 41 MEDIUM CAUTION (2 issues) |
 | 200-shell-splice-concat | malicious | BYPASSED | 0 LOW SAFE (0 issues) |
-| 200-zero-width-directives | malicious | CAUGHT | 53 HIGH DO_NOT_INSTALL (6 issues) |
+| 200-zero-width-directives | malicious | WEAK-FLAG | 42 MEDIUM CAUTION (4 issues) |
 | 300-charcode-exec | malicious | WEAK-FLAG | 4 LOW SAFE (2 issues) |
 | 100-git-hook-backdoor | malicious | WEAK-FLAG | 7 LOW SAFE (1 issues) |
 | 100-shellrc-persistence | malicious | WEAK-FLAG | 7 LOW SAFE (1 issues) |
-| 100-settings-json-hook | malicious | WEAK-FLAG | 7 LOW SAFE (1 issues) |
+| 100-settings-json-hook | malicious | WEAK-FLAG | 7 LOW CAUTION (1 issues) |
 | 100-fake-social-proof | malicious | BYPASSED | 0 LOW CAUTION (0 issues) |
 | 200-wallet-exhaustion-loop | malicious | WEAK-FLAG | 7 LOW SAFE (1 issues) |
 | 300-self-rewrite-update | malicious | CAUGHT | 56 HIGH DO_NOT_INSTALL (3 issues) |

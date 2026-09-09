@@ -22,6 +22,7 @@
 | model-artifact-theft | `200-adapter-cache-harvest` |
 | obfuscation-encoding | `200-homoglyph-imports`, `200-rtl-override-labels`, `200-shell-splice-concat`, `200-zero-width-directives`, `300-charcode-exec` |
 | persistence-backdoor | `100-git-hook-backdoor`, `100-shellrc-persistence` |
+| plugin-distribution | `200-clawhub-listing`, `200-ide-native-impersonation`, `200-vercel-skills-sh-pack`, `200-vibe-coded-plugin` |
 | repo-config-execution | `100-settings-json-hook` |
 | reputation-laundering | `100-fake-social-proof` |
 | resource-exhaustion | `200-wallet-exhaustion-loop` |

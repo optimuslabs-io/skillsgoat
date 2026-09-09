@@ -6,10 +6,13 @@ Commands:
   index                      regenerate pasture/INDEX_BY_*.md (+ --emit-aibom)
   new                        scaffold a new entry
   scan                       run external scanners against the corpus, score vs expected.yaml
+  setup                      link pasture fixtures into agent skill dirs (the goat install)
   selftest                   harness sanity checks
 
 Ground truth lives in each entry's expected.yaml, OUTSIDE the scannable
-skill/ directory. Point scanners at skill/ only.
+skill/ directory. Point scanners at skill/ only. Plugin-distribution entries
+use skill/ as a marketplace or IDE pack (Vercel skills.sh, ClawHub, Cursor
+plugin, or fake native Claude/Codex/Copilot/Grok paths), not a lone SKILL.md.
 """
 
 from __future__ import annotations
@@ -311,6 +314,11 @@ SCANNER_CONFIGS = {
         "json_flag": ["--format", "json"],
         "no_llm_flag": [],
     },
+    "snyk": {
+        "cmd": ["snyk-agent-scan", "scan"],
+        "json_flag": ["--json"],
+        "no_llm_flag": [],
+    },
 }
 
 
@@ -323,6 +331,8 @@ def resolve_exe(name: str):
 
 
 def run_scanner(scanner: str, skill_dir: Path, use_llm: bool, timeout: int):
+    if scanner == "snyk" and not os.environ.get("SNYK_TOKEN"):
+        return None, "SNYK_TOKEN is not set (https://app.snyk.io/account)"
     cfg = SCANNER_CONFIGS[scanner]
     exe = resolve_exe(cfg["cmd"][0])
     if not exe:
@@ -372,7 +382,38 @@ def scanner_verdict(scanner: str, report: dict) -> tuple[str, float, str]:
             state = "missed"
         return state, {"SAFE": 0, "LOW": 25, "MEDIUM": 50, "HIGH": 75, "CRITICAL": 100}.get(sev, 0), \
                f"{sev} ({findings} findings)"
+    if scanner == "snyk":
+        return _snyk_verdict(report)
     return "missed", -1, "?"
+
+
+def _snyk_verdict(report: dict) -> tuple[str, float, str]:
+    """Score Snyk Agent Scan JSON (scan_path_responses[].skill_risks[].risk_indexes)."""
+    findings, errors = [], []
+    for path in report.get("scan_path_responses") or []:
+        err = path.get("error") or {}
+        if err.get("message"):
+            errors.append(str(err["message"]))
+        for skill in path.get("skill_risks") or []:
+            serr = skill.get("error") or {}
+            if serr.get("message"):
+                errors.append(str(serr["message"]))
+            for name, risk in (skill.get("risk_indexes") or {}).items():
+                if not isinstance(risk, dict):
+                    continue
+                findings.append((name, int(risk.get("score") or 0)))
+    if errors and not findings:
+        return "missed", -1, f"ERROR: {errors[0][:160]}"
+    max_score = max((s for _, s in findings), default=0)
+    # Agent Scan scores 0–1000; top two printer bands (>=600) are the block bar.
+    if max_score >= 600:
+        state = "caught"
+    elif findings:
+        state = "weak"
+    else:
+        state = "missed"
+    names = ",".join(n for n, _ in findings[:4]) or "none"
+    return state, float(max_score), f"{max_score}/1000 {len(findings)} risks ({names})"
 
 
 def scan_chain_node(scanner, chain, nname, nmeta, use_llm, timeout):
@@ -441,12 +482,27 @@ def cmd_scan(args) -> int:
     if unknown:
         print(f"unknown scanners: {unknown}; known: {list(SCANNER_CONFIGS)}", file=sys.stderr)
         return 2
+    if "snyk" in scanners and not os.environ.get("SNYK_TOKEN"):
+        print("snyk requires SNYK_TOKEN. Get an API token at https://app.snyk.io/account",
+              file=sys.stderr)
+        return 2
     mode = getattr(args, "mode", "atomic")
     if mode in ("node", "composite", "both"):
         for sc in scanners:
             cmd_scan_chains(sc, mode, not args.no_llm, args.timeout)
         return 0
     entries = discover_entries()
+    ids = getattr(args, "ids", "") or ""
+    if ids.strip():
+        want = {x.strip() for x in ids.split(",") if x.strip()}
+        entries = [e for e in entries if e["id"] in want]
+        missing = want - {e["id"] for e in entries}
+        if missing:
+            print(f"unknown ids: {sorted(missing)}", file=sys.stderr)
+            return 2
+        if not entries:
+            print("no matching entries", file=sys.stderr)
+            return 2
     rows, misses = [], []
     for scanner in scanners:
         outdir = REPO / "evaluations" / scanner
@@ -461,6 +517,12 @@ def cmd_scan(args) -> int:
             else:
                 (outdir / f"{e['id']}.json").write_text(json.dumps(report, indent=2))
                 state, score, summary = scanner_verdict(scanner, report)
+                if summary.startswith("ERROR:"):
+                    row = {"id": e["id"], "truth": e["verdict"], "status": summary}
+                    rows.append(row)
+                    print(f"[{scanner}] {row['id']:42s} {row['status']}")
+                    matrix.append(row)
+                    continue
                 truth_mal = e["verdict"] == "malicious"
                 if truth_mal:
                     status = {"caught": "CAUGHT", "weak": "WEAK-FLAG", "missed": "BYPASSED"}[state]
@@ -538,6 +600,20 @@ def cmd_selftest(args) -> int:
         print(f"selftest OK — {len(mal)} malicious / {len(benign)} benign / "
               f"{len(cal)} calibration / {nchains} compound chains across tiers {sorted(tiers)}")
     return 0 if ok else 1
+
+
+def cmd_setup(args) -> int:
+    """Install the goat: register every pasture skill/ as an agent skill."""
+    import importlib.util
+
+    path = REPO / "tools" / "link_skills.py"
+    spec = importlib.util.spec_from_file_location("link_skills", path)
+    if spec is None or spec.loader is None:
+        print(f"error: cannot load {path}", file=sys.stderr)
+        return 2
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod.run(args)
 
 
 def docs_matrix_families():
@@ -636,11 +712,24 @@ def main() -> int:
                       choices=["atomic", "node", "composite", "both"],
                       help="atomic=single entries; node/composite/both=compound chains")
     scan.add_argument("--timeout", type=int, default=180)
+    scan.add_argument("--ids", default="",
+                      help="comma-separated entry ids to scan (default: all)")
     scan.set_defaults(func=cmd_scan)
 
     sub.add_parser("chain-report", help="generate docs/CHAINS.md").set_defaults(func=cmd_chain_report)
     sub.add_parser("inventory", help="census of bundle file types/symlinks").set_defaults(func=cmd_inventory)
     sub.add_parser("selftest", help="harness sanity checks").set_defaults(func=cmd_selftest)
+
+    setup = sub.add_parser("setup", help="link fixtures into agent skill dirs")
+    setup.add_argument("--host", default="auto")
+    setup.add_argument("--scope", choices=["global", "project"], default="global")
+    setup.add_argument("--project", default=".")
+    setup.add_argument("--team", action="store_true")
+    setup.add_argument("--uninstall", action="store_true")
+    setup.add_argument("--index-only", action="store_true")
+    setup.add_argument("--dry-run", action="store_true")
+    setup.add_argument("-v", "--verbose", action="store_true")
+    setup.set_defaults(func=cmd_setup)
 
     args = ap.parse_args()
     return args.func(args)

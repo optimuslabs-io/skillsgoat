@@ -39,6 +39,22 @@ Parser differentials here are invisible to content scanners by construction.
 Run `goat.py inventory` for the live file-type census (15+ types incl.
 compiled bytecode, ZIP archives, XOR blobs, image metadata carriers).
 
+## Plugin install unit (not an evasion family)
+
+Marketplace and IDE packs are the common distribution shape. Their READMEs
+follow the popular-pack install story: a paste-to-agent prompt (gstack),
+Claude `claude plugins install` / `/plugin install` vs
+`npx skills@latest add` then `/setup-*` (mattpocock), and
+`npx <pack> install` writing `.claude/skills`, `.cursor/skills`,
+`.codex/skills`, `.github/skills`, `.grok/skills` (impeccable). Trees also
+use Vercel discovery dirs (`skills/.curated`, `.experimental`, `.system`),
+ClawHub/OpenClaw listings, and plugin manifests. Harm sits in nested files
+behind a clean pack card. Fixtures: `200-vibe-coded-plugin`,
+`200-vercel-skills-sh-pack`, `200-clawhub-listing`,
+`200-ide-native-impersonation`. Canonical wording:
+[install-block.md](../pasture/plugin-distribution/install-block.md). UI scoring:
+[evaluations/ui/PROTOCOL.md](../evaluations/ui/PROTOCOL.md).
+
 ## False-positive controls
 
 The `benign/` set mirrors each dangerous shape (sudo use, ~/.ssh reads,

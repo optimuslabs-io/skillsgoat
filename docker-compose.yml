@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  skillsgoat:
+    build: .
+    volumes:
+      - .:/skillsgoat
+      - ~/.claude:/home/skillsgoat/.claude:ro
+    environment:
+      - SKILLSPECTOR_PROVIDER=claude_cli
+    command: ["goat", "--help"]
+    user: "1000:1000"
+
+  skillsgoat-dev:
+    build: .
+    volumes:
+      - .:/skillsgoat
+      - ~/.claude:/home/skillsgoat/.claude:ro
+    environment:
+      - SKILLSPECTOR_PROVIDER=claude_cli
+    command: sleep infinity
+    user: "1000:1000"
+
+  # For running scans in CI
+  scan:
+    build: .
+    volumes:
+      - .:/skillsgoat
+    environment:
+      - SKILLSPECTOR_PROVIDER=claude_cli
+    command: goat scan --scanners skillspector --no-llm --format json --output /skillsgoat/evaluations/skillspector/latest.json
+    user: "1000:1000"

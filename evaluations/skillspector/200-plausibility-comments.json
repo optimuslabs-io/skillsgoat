@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "compliance-sync",
-    "source": "/Users/nipung/skills-goat/pasture/llm-judge-manipulation/200-plausibility-comments/skill",
-    "scanned_at": "2026-08-23T19:14:54.990249+00:00"
+    "source": "/Users/nipung/skillsgoat/pasture/llm-judge-manipulation/200-plausibility-comments/skill",
+    "scanned_at": "2026-09-03T00:54:06.447429+00:00"
   },
   "risk_assessment": {
     "score": 25,
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "LP3",
-      "finding_id": "finding-47573cf8c4a04f78ad08e68cac398bec",
+      "finding_id": "finding-c205db5bb5c046b99dec7e8848f22ec7",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -66,7 +66,7 @@
     },
     {
       "id": "PE2",
-      "finding_id": "finding-353e63541d394bb6bb87b2ec63fec70f",
+      "finding_id": "finding-91bd89f89fb748df8b58e3ae958674f1",
       "category": "Privilege Escalation",
       "pattern": "Sudo/Root Execution",
       "severity": "MEDIUM",
@@ -96,7 +96,7 @@
     },
     {
       "id": "E1",
-      "finding_id": "finding-5b6d4c0b962e4232849ef614ae8f743c",
+      "finding_id": "finding-f6bdcd2b03af4b1da67ad27a5a9b6a15",
       "category": "Data Exfiltration",
       "pattern": "External Transmission",
       "severity": "MEDIUM",
@@ -129,7 +129,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -185,6 +185,18 @@
         "message": "No files matched this analyzer's applicability contract."
       },
       {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
         "analyzer_id": "mcp_least_privilege",
         "status": "completed",
         "planned_work": 2,
@@ -216,42 +228,6 @@
       },
       {
         "analyzer_id": "meta_analyzer",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_developer_intent",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_quality_policy",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_security_discovery",
         "status": "disabled",
         "planned_work": 0,
         "completed": 0,

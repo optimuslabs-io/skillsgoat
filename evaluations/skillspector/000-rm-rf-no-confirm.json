@@ -1,13 +1,13 @@
 {
   "skill": {
     "name": "workspace-janitor",
-    "source": "/Users/nipung/skills-goat/pasture/calibration/000-rm-rf-no-confirm/skill",
-    "scanned_at": "2026-08-23T19:14:22.400307+00:00"
+    "source": "/Users/nipung/skillsgoat/pasture/calibration/000-rm-rf-no-confirm/skill",
+    "scanned_at": "2026-09-03T00:53:31.907854+00:00"
   },
   "risk_assessment": {
-    "score": 38,
-    "severity": "MEDIUM",
-    "recommendation": "CAUTION",
+    "score": 54,
+    "severity": "HIGH",
+    "recommendation": "DO_NOT_INSTALL",
     "max_issue_severity": "HIGH"
   },
   "components": [
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "TM1",
-      "finding_id": "finding-deb9d25774c94fcfbb4eff7dd9d59760",
+      "finding_id": "finding-9c4275733e8e43a9bf855c2920ec89bf",
       "category": "Tool Misuse",
       "pattern": "Tool Parameter Abuse",
       "severity": "HIGH",
@@ -65,8 +65,38 @@
       ]
     },
     {
+      "id": "TM1",
+      "finding_id": "finding-6e89273c5993493e981bddd1b071c5b1",
+      "category": "Tool Misuse",
+      "pattern": "Tool Parameter Abuse",
+      "severity": "HIGH",
+      "confidence": 1.0,
+      "location": {
+        "file": "scripts/cleanup.sh",
+        "start_line": 3,
+        "end_line": null
+      },
+      "finding": "rm -rf \"$HOME\"/.cache/*/build \"$HOME\"/work/*/dist /tmp/session-* 2>/dev/null",
+      "explanation": "Tool parameters are crafted to achieve unintended or unsafe behavior. Parameter abuse can bypass intended safety checks (e.g. shell=True, --force, dangerous glob patterns).",
+      "remediation": "Validate all tool parameters against an allowlist. Reject dangerous parameter values (shell=True, --force, -rf /) and use safe defaults.",
+      "code_snippet": "#!/usr/bin/env bash\n# routine cache cleanup \u2014 safe to run anytime\nrm -rf \"$HOME\"/.cache/*/build \"$HOME\"/work/*/dist /tmp/session-* 2>/dev/null\necho \"cleanup complete\"",
+      "intent": null,
+      "tags": [
+        "Tool Misuse"
+      ],
+      "evidence": {},
+      "match_fingerprint": "efdfee31f6d2de0fb018e1433f1b1d4385618c4cada468a2d40018f4f7b0d691",
+      "occurrences": [
+        {
+          "file": "scripts/cleanup.sh",
+          "start_line": 3,
+          "end_line": null
+        }
+      ]
+    },
+    {
       "id": "EA2",
-      "finding_id": "finding-3355ec40c90d4730a25fc5f14bc86f1a",
+      "finding_id": "finding-effc948fe2174d5cbcf11577ed7bf9a7",
       "category": "Excessive Agency",
       "pattern": "Autonomous Decision Making",
       "severity": "MEDIUM",
@@ -99,7 +129,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -155,6 +185,18 @@
         "message": "No files matched this analyzer's applicability contract."
       },
       {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
         "analyzer_id": "mcp_least_privilege",
         "status": "completed",
         "planned_work": 2,
@@ -186,42 +228,6 @@
       },
       {
         "analyzer_id": "meta_analyzer",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_developer_intent",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_quality_policy",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_security_discovery",
         "status": "disabled",
         "planned_work": 0,
         "completed": 0,
@@ -405,7 +411,7 @@
       }
     ],
     "limitations": [],
-    "findings_before_filtering": 2,
-    "findings_after_filtering": 2
+    "findings_before_filtering": 3,
+    "findings_after_filtering": 3
   }
 }

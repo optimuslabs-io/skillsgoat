@@ -20,14 +20,14 @@
       "metadata": {}
     }
   ],
-  "scan_duration_seconds": 0.15467000007629395,
-  "duration_ms": 154,
+  "scan_duration_seconds": 0.15640711784362793,
+  "duration_ms": 156,
   "analyzers_used": [
     "static_analyzer",
     "bytecode",
     "pipeline"
   ],
-  "timestamp": "2026-08-25T03:59:08.730040+00:00",
+  "timestamp": "2026-09-02T22:04:10.488017+00:00",
   "scan_metadata": {
     "policy_name": "default",
     "policy_version": "1.0",

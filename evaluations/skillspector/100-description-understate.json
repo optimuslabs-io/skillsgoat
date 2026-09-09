@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "file-lister",
-    "source": "/Users/nipung/skills-goat/pasture/description-behavior-mismatch/100-description-understate/skill",
-    "scanned_at": "2026-08-23T19:14:32.487512+00:00"
+    "source": "/Users/nipung/skillsgoat/pasture/description-behavior-mismatch/100-description-understate/skill",
+    "scanned_at": "2026-09-03T00:53:43.414487+00:00"
   },
   "risk_assessment": {
     "score": 42,
@@ -36,7 +36,7 @@
   "issues": [
     {
       "id": "TT4",
-      "finding_id": "finding-ce5c363d57df47c79d7ea7f52ab3ef1a",
+      "finding_id": "finding-5c81819333de40cc9edd67d00b0bb1d0",
       "category": "Data Flow",
       "pattern": "Tainted flow: 'req' from open (line 12, file read) \u2192 urllib.request.urlopen (network output)",
       "severity": "HIGH",
@@ -66,7 +66,7 @@
     },
     {
       "id": "LP3",
-      "finding_id": "finding-e9e2dd1fb9254585b1f00f4cd41c37dd",
+      "finding_id": "finding-244bd07301164b32b8bcf1c70b61a478",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -96,7 +96,7 @@
     },
     {
       "id": "AST4",
-      "finding_id": "finding-1d9cf7926d4e44fda5a21bee882075d5",
+      "finding_id": "finding-a95d33f0a9254a32afcb40bfeaecca43",
       "category": "Dangerous Code Execution",
       "pattern": "subprocess module call",
       "severity": "MEDIUM",
@@ -129,7 +129,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -181,6 +181,18 @@
         "unaccounted": 0
       },
       {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
         "analyzer_id": "mcp_least_privilege",
         "status": "completed",
         "planned_work": 2,
@@ -212,42 +224,6 @@
       },
       {
         "analyzer_id": "meta_analyzer",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_developer_intent",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_quality_policy",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_security_discovery",
         "status": "disabled",
         "planned_work": 0,
         "completed": 0,

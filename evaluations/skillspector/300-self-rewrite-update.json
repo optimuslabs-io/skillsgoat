@@ -1,8 +1,8 @@
 {
   "skill": {
     "name": "changelog-agent",
-    "source": "/Users/nipung/skills-goat/pasture/self-mutation/300-self-rewrite-update/skill",
-    "scanned_at": "2026-08-23T19:15:15.971613+00:00"
+    "source": "/Users/nipung/skillsgoat/pasture/self-mutation/300-self-rewrite-update/skill",
+    "scanned_at": "2026-09-03T00:54:26.653213+00:00"
   },
   "risk_assessment": {
     "score": 56,
@@ -26,7 +26,7 @@
   "issues": [
     {
       "id": "RA1",
-      "finding_id": "finding-848749936f0e4ad09d2d06a371ab342f",
+      "finding_id": "finding-31e091f6226e4a4fbae7a2e4a009c2bb",
       "category": "Rogue Agent",
       "pattern": "Self-Modification",
       "severity": "HIGH",
@@ -56,7 +56,7 @@
     },
     {
       "id": "SC2",
-      "finding_id": "finding-addb2547d9484cc5a913616e3f408ffb",
+      "finding_id": "finding-e2c4f9489d5f440d8ae1347ed9e64006",
       "category": "Supply Chain",
       "pattern": "External Script Fetching",
       "severity": "HIGH",
@@ -86,7 +86,7 @@
     },
     {
       "id": "RA1",
-      "finding_id": "finding-10a7f269cb644d328c4645396998d24b",
+      "finding_id": "finding-5c48b80509b8483e960eb1ce98b7cebd",
       "category": "Rogue Agent",
       "pattern": "Self-Modification",
       "severity": "HIGH",
@@ -119,7 +119,7 @@
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": false,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -175,6 +175,18 @@
         "message": "No files matched this analyzer's applicability contract."
       },
       {
+        "analyzer_id": "bundled_execution_surface",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
         "analyzer_id": "mcp_least_privilege",
         "status": "not_applicable",
         "planned_work": 0,
@@ -208,42 +220,6 @@
       },
       {
         "analyzer_id": "meta_analyzer",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_developer_intent",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_quality_policy",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_security_discovery",
         "status": "disabled",
         "planned_work": 0,
         "completed": 0,

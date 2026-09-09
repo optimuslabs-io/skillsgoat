@@ -1,12 +1,12 @@
 {
   "skill": {
     "name": "context-loader",
-    "source": "/Users/nipung/skills-goat/pasture/hidden-artifact-packing/300-archive-indirection-docx/skill",
-    "scanned_at": "2026-08-23T19:14:47.669133+00:00"
+    "source": "/Users/nipung/skillsgoat/pasture/hidden-artifact-packing/300-archive-indirection-docx/skill",
+    "scanned_at": "2026-09-03T00:54:00.275949+00:00"
   },
   "risk_assessment": {
-    "score": 95,
-    "severity": "CRITICAL",
+    "score": 64,
+    "severity": "HIGH",
     "recommendation": "DO_NOT_INSTALL",
     "max_issue_severity": "HIGH"
   },
@@ -76,7 +76,7 @@
   "issues": [
     {
       "id": "AE1",
-      "finding_id": "finding-cfcff79e840745cb881b1ac0a58b66f7",
+      "finding_id": "finding-4232f6ec91da4130a3bbd73698b1b805",
       "category": "analysis-evasion",
       "pattern": null,
       "severity": "HIGH",
@@ -107,38 +107,8 @@
       ]
     },
     {
-      "id": "AE3",
-      "finding_id": "finding-a123a3157fb74a88a17099830e144d20",
-      "category": "analysis-evasion",
-      "pattern": null,
-      "severity": "HIGH",
-      "confidence": 0.9,
-      "location": {
-        "file": "resources/templates.docx",
-        "start_line": 1,
-        "end_line": null
-      },
-      "finding": null,
-      "explanation": "Text artifact contains embedded NUL bytes",
-      "remediation": "Review the flagged content for security risks. Ensure no credentials, secrets, or sensitive data are exposed.",
-      "code_snippet": null,
-      "intent": null,
-      "tags": [
-        "artifact-integrity"
-      ],
-      "evidence": {},
-      "match_fingerprint": null,
-      "occurrences": [
-        {
-          "file": "resources/templates.docx",
-          "start_line": 1,
-          "end_line": null
-        }
-      ]
-    },
-    {
       "id": "SC9",
-      "finding_id": "finding-74b4e17183f148cd9b30497da9fecb52",
+      "finding_id": "finding-e8b04a1504af41458b65201f061d8f9d",
       "category": "Supply Chain",
       "pattern": "Concealed Executable Artifact",
       "severity": "HIGH",
@@ -183,7 +153,7 @@
     },
     {
       "id": "LP3",
-      "finding_id": "finding-fa41f7143c9742659d94da1fca2b3c82",
+      "finding_id": "finding-53f2a9f93e8b457e9873d582f6a603ff",
       "category": "MCP Least Privilege",
       "pattern": null,
       "severity": "MEDIUM",
@@ -210,43 +180,13 @@
           "end_line": null
         }
       ]
-    },
-    {
-      "id": "AE4",
-      "finding_id": "finding-7089325e4deb4d2d8162e3b4a60b0431",
-      "category": "analysis-evasion",
-      "pattern": null,
-      "severity": "MEDIUM",
-      "confidence": 0.8,
-      "location": {
-        "file": "resources/templates.docx",
-        "start_line": 1,
-        "end_line": null
-      },
-      "finding": null,
-      "explanation": "Suspicious Unicode normalization or mixed-script content",
-      "remediation": "Review the flagged content for security risks. Ensure no credentials, secrets, or sensitive data are exposed.",
-      "code_snippet": null,
-      "intent": null,
-      "tags": [
-        "artifact-integrity"
-      ],
-      "evidence": {},
-      "match_fingerprint": null,
-      "occurrences": [
-        {
-          "file": "resources/templates.docx",
-          "start_line": 1,
-          "end_line": null
-        }
-      ]
     }
   ],
   "suppressed_count": 0,
   "suppressed": [],
   "metadata": {
     "has_executable_scripts": true,
-    "skillspector_version": "2.9.6",
+    "skillspector_version": "2.11.0",
     "llm_requested": false,
     "llm_available": false,
     "meta_analysis_applied": false,
@@ -291,6 +231,18 @@
       },
       {
         "analyzer_id": "behavioral_taint_tracking",
+        "status": "not_applicable",
+        "planned_work": 0,
+        "completed": 0,
+        "partial": 0,
+        "skipped": 0,
+        "failed": 0,
+        "unaccounted": 0,
+        "reason_code": "no_applicable_files",
+        "message": "No files matched this analyzer's applicability contract."
+      },
+      {
+        "analyzer_id": "bundled_execution_surface",
         "status": "not_applicable",
         "planned_work": 0,
         "completed": 0,
@@ -352,42 +304,6 @@
         "skipped": 0,
         "failed": 0,
         "unaccounted": 0
-      },
-      {
-        "analyzer_id": "semantic_developer_intent",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_quality_policy",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
-      },
-      {
-        "analyzer_id": "semantic_security_discovery",
-        "status": "disabled",
-        "planned_work": 0,
-        "completed": 0,
-        "partial": 0,
-        "skipped": 0,
-        "failed": 0,
-        "unaccounted": 0,
-        "reason_code": "disabled_by_configuration",
-        "message": "Analyzer was disabled by the requested configuration."
       },
       {
         "analyzer_id": "static_patterns_agent_snooping",
@@ -562,7 +478,7 @@
       }
     ],
     "limitations": [],
-    "findings_before_filtering": 5,
-    "findings_after_filtering": 5
+    "findings_before_filtering": 3,
+    "findings_after_filtering": 3
   }
 }

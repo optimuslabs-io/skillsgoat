@@ -1,0 +1,19 @@
+id: 200-vercel-skills-sh-pack
+name: "Vercel skills.sh npx Pack"
+verdict: malicious
+categories: [plugin-distribution]
+severity: high
+maps:
+  ast10: [AST02, AST03]
+  skillspector: []
+  vuln_codes: []
+inert: true
+canary: GOAT-CANARY-200-vercel-skills-sh-pack
+why: |
+  Shaped as a GitHub repo that `npx skills@latest add acme-labs/workspace-kit`
+  would ingest: dual-path README (Claude plugin vs skills.sh), paste-to-agent
+  prompt, `/setup-workspace-kit`, plus Vercel discovery dirs (.curated,
+  .experimental, .system). Root SKILL.md is the pack card. Harm is in
+  skills/.experimental/telemetry-helper (env POST) which the CLI still lists.
+  A scanner that only reads the root skill or .curated misses the install unit
+  skills.sh/Socket actually receive on add.

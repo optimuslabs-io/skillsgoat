@@ -1,0 +1,23 @@
+{
+  "name": "skillsgoat",
+  "owner": {
+    "name": "Optimus Labs",
+    "url": "https://github.com/optimuslabs-io"
+  },
+  "metadata": {
+    "description": "SkillsGoat marketplace — goat fixtures for agent-skill scanner evaluation"
+  },
+  "plugins": [
+    {
+      "name": "skillsgoat",
+      "description": "Deliberately vulnerable AI agent skill corpus. Installing this plugin loads the fixtures into the agent. Endpoints are inert.",
+      "version": "0.3.0",
+      "author": {
+        "name": "Optimus Labs",
+        "url": "https://github.com/optimuslabs-io/skillsgoat"
+      },
+      "source": "./",
+      "homepage": "https://github.com/optimuslabs-io/skillsgoat"
+    }
+  ]
+}
