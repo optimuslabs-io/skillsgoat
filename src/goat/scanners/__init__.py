@@ -8,7 +8,7 @@ in goat.main. These modules are sketches. A broken adapter must not prevent
 from __future__ import annotations
 
 import importlib
-import sys
+import warnings
 
 from .base import (
     ChainScanResult,
@@ -25,7 +25,11 @@ for _mod in ("skillspector", "cisco", "snyk", "nova"):
     try:
         importlib.import_module(f".{_mod}", __package__)
     except Exception as exc:  # pragma: no cover
-        print(f"warning: scanner {_mod!r} failed to load: {exc}", file=sys.stderr)
+        warnings.warn(
+            f"scanner {_mod!r} failed to load: {exc}",
+            RuntimeWarning,
+            stacklevel=2,
+        )
 
 __all__ = [
     "ScanResult",

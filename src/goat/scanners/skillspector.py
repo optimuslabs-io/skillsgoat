@@ -105,9 +105,7 @@ class SkillSpectorAdapter(ScannerAdapter):
             cmd.extend(["--provider", self.provider])
         if self.model:
             cmd.extend(["--model", self.model])
-        if self.no_llm or no_llm:
-            cmd.append("--no-llm")
-        
+
         try:
             result = subprocess.run(
                 cmd,

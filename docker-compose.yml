@@ -14,7 +14,10 @@ services:
     user: "1000:1000"
 
   scan:
-    build: .
+    build:
+      context: .
+      args:
+        GOAT_EXTRAS: "dev,scanners"
     volumes:
       - .:/skillsgoat
     command: ["scan", "--scanners", "skillspector", "--no-llm"]
