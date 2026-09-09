@@ -45,7 +45,8 @@ cd skillsgoat && ./setup
 .venv/bin/goat selftest
 .venv/bin/python -m pytest -q
 # optional scanner eval (may upload skill text to the scanner/LLM):
-.venv/bin/goat scan --scanners skillspector --no-llm
+.venv/bin/goat scan --scanners skillspector --no-llm   # --blind is the default
+.venv/bin/goat scan --blind --assert-only              # leak gate; no scanners
 ```
 
 Point scanners at `pasture/<category>/<id>/skill/` (or the whole pack
@@ -53,13 +54,15 @@ under plugin-distribution entries). See [docs/USAGE.md](../docs/USAGE.md).
 
 ## Goat load (optional)
 
-Links every pasture `skill/` into detected agent dirs. Type `GOAT` when
-prompted, or pass `--confirm-goat` in CI. Prefer a throwaway remote
-machine (the whole home is disposable). If you stay on a laptop, run the
-*agent* inside the same local sandbox after linking — `./setup --goat`
-writes into `~/.claude` / `~/.cursor` on the host.
+Links every pasture `skill/` into detected agent dirs **under
+`$SKILLSGOAT_SANDBOX` or `./.sandbox-home`**, not your real `$HOME`, unless
+you pass `--real-home`. Type `GOAT` when prompted, or pass `--confirm-goat`
+in CI. Prefer a throwaway remote machine. Detonate the agent with
+`HOME=$SKILLSGOAT_SANDBOX TMPDIR=$SKILLSGOAT_SANDBOX/tmp` so scripts that
+append to `~/.zshrc` cannot dirty your real shell config.
 
 ```bash
+export SKILLSGOAT_SANDBOX="$PWD/.sandbox-home"
 ./setup --goat
 # or:  ./setup --goat --confirm-goat --host claude,cursor
 # team / project links:

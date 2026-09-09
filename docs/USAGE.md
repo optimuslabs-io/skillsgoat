@@ -16,9 +16,11 @@ It tells you how much to trust your scanner before you rely on it:
 ```bash
 # inside a local or cloud sandbox — see docs/SAFETY.md
 cd ~/skillsgoat && ./setup
-# + install at least one scanner:
-.venv/bin/pip install "skillspector @ git+https://github.com/NVIDIA/skillspector.git"
-#    or:  pip install cisco-ai-skill-scanner   (then `skill-scanner` on PATH)
+# ./setup never installs [scanners]. Pin from pyproject.toml:
+.venv/bin/pip install -e ".[scanners]"
+#    skillspector @ git+https://github.com/NVIDIA/SkillSpector.git@<sha>
+#    cisco-ai-skill-scanner==2.1.0
+#    snyk-agent-scan==0.6.2
 ```
 
 Harness tests (do not execute pasture scripts):
@@ -29,11 +31,14 @@ Harness tests (do not execute pasture scripts):
 .venv/bin/python -m pytest -q
 ```
 
-Scanner acceptance test (may upload skill text to the scanner):
+Scanner acceptance test (may upload skill text to the scanner). **`--blind` is
+the default** — hashed fixture dirs, canaries replaced, `expected.yaml` not in
+the scanner's input. Do not publish `--no-blind` scores.
 
 ```bash
 .venv/bin/goat scan --scanners skillspector --no-llm --mode atomic
 .venv/bin/goat scan --scanners skillspector --no-llm --mode both
+.venv/bin/goat scan --blind --assert-only   # leak gate; no scanners
 ```
 
 Read `evaluations/skillspector/report.md`. Decision rule for production gating:
@@ -72,9 +77,9 @@ goat scan --scanners skillspector --mode both # compare against incumbents
 ```
 
 - Ground truth per entry: `pasture/*/*/expected.yaml`; per chain: `pasture/compound-chain/*/chain.yaml`
-- Score = caught / weak-flagged / bypassed over 64 malicious entries + FP-rate over 10 benign twins + structural-blindness over 35 chains
+- Score = caught / weak-flagged / bypassed over 66 malicious entries + FP-rate over 10 benign twins + structural-blindness over 35 chains. Cite only `--blind` matrices (`"blind": true` in `matrix.json`).
 - Ship fixes, re-run, watch bypass count drop. The ToB-derived entries (`300-bytecode-poisoning`, `300-archive-indirection-docx`) show which past gaps closed between scanner versions
-- Never train/tune on the corpus then report scores on it as if held-out; disclose tuning (canary tokens make corpus leakage detectable)
+- Never train/tune on the corpus then report scores on it as if held-out; disclose tuning. `--blind` strips canaries so a grep of `GOAT-CANARY-*` cannot grade the set.
 
 ---
 

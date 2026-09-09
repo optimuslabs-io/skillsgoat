@@ -6,6 +6,18 @@ trust. Inert URLs do not mean it is safe to run pasture scripts or a live
 agent next to production secrets. We do not endorse a sandbox vendor.
 See [docs/SAFETY.md](docs/SAFETY.md).
 
+## Why GitHub hosts this
+
+This is permitted research tooling: labeled, inert-C2 fixtures for scoring
+scanners, not a malware distribution kit. Network endpoints are RFC 2606 /
+RFC 5737. Payloads do not phone home. GitHub's Acceptable Use Policy allows
+security research and malware samples that are clearly marked and not used
+to compromise others. Fixtures stay behind `goat lint`; live C2 is a lint
+failure.
+
+If this GitHub copy is taken down, the citable archive is Zenodo (DOI to be
+attached on the `v0.3.0` dataset release). Cite [CITATION.cff](CITATION.cff).
+
 ## Report a vulnerability in the harness
 
 If you find a bug in `goat.py`, `setup`, `tools/link_skills.py`, CI, or

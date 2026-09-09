@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: SkillsGoat
-message: If you use this corpus, please cite it.
+message: If you use SkillsGoat, please cite it.
 type: dataset
 authors:
   - family-names: Gupta
@@ -11,9 +11,9 @@ version: "0.3.0"
 date-released: "2026-09-09"
 repository-code: "https://github.com/optimuslabs-io/skillsgoat"
 abstract: >
-  Deliberately vulnerable agent-skill corpus (WebGoat for SKILL.md bundles)
-  for evaluating skill scanners. 74 atomic fixtures (64 malicious, 10 benign)
-  plus 35 compound chains. Payloads are inert.
+  Labeled goat of agent skills (SKILL.md bundles) for scoring scanners.
+  76 atomics (66 malicious, 10 benign) and 35 compound chains. Network C2
+  is inert.
 keywords:
   - agent skills
   - SKILL.md

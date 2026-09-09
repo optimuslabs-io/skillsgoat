@@ -1,7 +1,8 @@
 # Compound Chain Catalog
 
-35 chains. Every node scans CLEAN alone; only the graph is malicious.
-Ground truth: `chain.yaml` per entry. Schema: [CHAIN_SCHEMA.md](CHAIN_SCHEMA.md).
+35 chains. Nodes are written to look individually ordinary; ground truth is
+graph-level (`chain.yaml`). Schema: [CHAIN_SCHEMA.md](CHAIN_SCHEMA.md).
+Measured scanner results: [EVASION_MATRIX.md](EVASION_MATRIX.md).
 
 ## c8-command-shadowing — Command Shadowing Chain (tier 200)
 

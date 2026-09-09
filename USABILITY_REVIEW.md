@@ -6,7 +6,7 @@
 
 ## Executive Summary
 
-SkillsGoat is a **high-quality, comprehensive corpus** (70 atomic + 35 compound = 105 fixtures) with excellent ground truth. However, the **developer experience for scanner/model evaluation has significant friction points** that prevent "zero-to-results" in under 5 minutes.
+SkillsGoat is a **high-quality, comprehensive corpus** (76 atomic + 35 compound = 111 fixtures) with excellent ground truth. However, the **developer experience for scanner/model evaluation has significant friction points** that prevent "zero-to-results" in under 5 minutes.
 
 **Bottom line:** The corpus is excellent. The tooling around it needs work to make it a "drop-in" benchmark for any scanner or model.
 
@@ -17,7 +17,7 @@ SkillsGoat is a **high-quality, comprehensive corpus** (70 atomic + 35 compound 
 ### ✅ What Works Well
 | Aspect | Status | Notes |
 |--------|--------|-------|
-| Corpus quality | ✅ Excellent | 70 atomic + 35 compound = 105 fixtures, rich ground truth |
+| Corpus quality | ✅ Excellent | 76 atomic + 35 compound = 111 fixtures, rich ground truth |
 | Ground truth format | ✅ Excellent | `expected.yaml` with AST10/SkillSpector/V-code mappings |
 | Categories/taxonomy | ✅ Excellent | 35 categories, well-organized tiers (000-300) |
 | Safety practices | ✅ Excellent | Canaries, inert payloads, SAFETY.md |

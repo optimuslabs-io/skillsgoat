@@ -1,14 +1,16 @@
 # SkillsGoat
 
-A deliberately vulnerable corpus for testing whether agent-skill scanners catch real attacks.
+A labeled goat of agent skills. 76 atomics (66 malicious, 10 benign) and 35 compound chains.
 
-Agent skills (`SKILL.md` bundles) ship executable behavior for Claude Code, Codex CLI, OpenClaw, and Cursor. They run with your local privileges. Their descriptions land in model context before anyone reads the files, and the ecosystem ships them unsigned and unscanned. SkillsGoat is built like WebGoat, DVWA, and AI Goat: one fixture per documented class of skill compromise, including techniques that already bypass current scanners.
+Point a scanner at `pasture/<category>/<id>/skill/`. Answer keys live outside that directory (`expected.yaml`, `chain.yaml`). Network C2 is inert (`*.example` / RFC 5737).
+
+Any agent that loads a `SKILL.md` bundle runs it with local privileges. The description lands in model context before anyone reads the files.
 
 > ⚠️ **These skills are malicious by design.** Clone, test (`goat lint` / `selftest` / `pytest` / `goat scan`), and `./setup --goat` in a **local or cloud sandbox** you already trust. Network endpoints are inert (`*.example` / RFC 5737); running a pasture script or a live agent against this tree can still touch local files. Do not do this on a machine with production secrets. We do not endorse a sandbox vendor. Disclaimers: [docs/SAFETY.md](docs/SAFETY.md).
 
 ## What's inside
 
-**74 atomic fixtures (64 malicious + 10 benign) + 35 compound chains**, each with machine-readable ground truth:
+**76 atomic fixtures (66 malicious + 10 benign) + 35 compound chains**, each with machine-readable ground truth:
 
 - **Calibration set (10):** must-catch patterns. A scanner missing these is broken, not weak.
 - **Classics (10):** metadata injection, indirect injection, exfiltration, destructive commands, curl-pipe-bash, over-permission, persistence, memory poisoning, confused deputy, typosquatting.
@@ -55,17 +57,21 @@ cd skillsgoat && ./setup
 .venv/bin/goat lint
 .venv/bin/goat selftest
 .venv/bin/python -m pytest -q
+.venv/bin/goat scan --blind --assert-only
 ```
 
-`./setup` creates a venv, installs the package, and stops. It does **not**
+`./setup` creates a venv, installs the package (`[dev]` only — never the
+`[scanners]` extra), and stops. It does **not**
 link fixtures into `~/.claude/skills`. To load the goat into agent dirs:
-`./setup --goat` (type `GOAT`, or `--confirm-goat` in CI) — do that on a
-throwaway remote machine, or run the agent inside the same local sandbox
-afterwards.
+`./setup --goat` (type `GOAT`, or `--confirm-goat` in CI). Links go to
+`$SKILLSGOAT_SANDBOX` or `./.sandbox-home`, not your real `$HOME`, unless
+you pass `--real-home`. Do that on a
+throwaway remote machine, or run the agent with
+`HOME=$SKILLSGOAT_SANDBOX TMPDIR=$SKILLSGOAT_SANDBOX/tmp`.
 
 Plugin manifests (`.claude-plugin/`) stay in the tree for discovery
 testing. Do not treat `claude plugins install` or `npx skills add` as
-the default path; both can list or load the corpus without the typed
+the default path; both can list or load the goat without the typed
 confirm. See [docs/SAFETY.md](docs/SAFETY.md).
 
 ## Layout
@@ -87,8 +93,18 @@ docs/
 tools/gen_binaries.py       regenerates .pyc/.docx/.dat/.zip artifacts
 evaluations/<scanner>/      per-scanner matrices and raw JSON
 evaluations/README.md       last-run dates (cite these with any score)
+                            — only `"blind": true` matrices are publication-grade
 evaluations/ui/             browser/computer-use protocol for UI-only vendors
 ```
+
+## Scoring (blind)
+
+`goat scan` defaults to `--blind`. At scan time it copies each fixture into a
+hashed directory, replaces `GOAT-CANARY-*` / `GOAT-CHAIN-*` with one neutral
+UUID, and asserts `expected.yaml` / `chain.yaml` are not in the scanner's
+input. `goat lint` still requires the canary in source. Use `--no-blind` only
+to debug the live tree; do not publish those numbers. CI runs
+`goat scan --blind --assert-only`.
 
 ## Tiers
 
@@ -101,7 +117,7 @@ evaluations/ui/             browser/computer-use protocol for UI-only vendors
 
 ## Credits & lineage
 
-This corpus is original. The goat shape is WebGoat / DVWA / [AI Goat](https://github.com/orcasecurity-research/AIGoat). Four atomics derive Trail of Bits [overtly-malicious-skills](https://github.com/trailofbits/overtly-malicious-skills) primitives (rewritten, not copied). Compound chains cite SkillProbe ([arXiv:2603.21019](https://arxiv.org/abs/2603.21019)) and *Agent Skills in the Wild* ([arXiv:2601.10338](https://arxiv.org/abs/2601.10338)).
+This goat is original. The shape is WebGoat / DVWA / [AI Goat](https://github.com/orcasecurity-research/AIGoat). Four atomics derive Trail of Bits [overtly-malicious-skills](https://github.com/trailofbits/overtly-malicious-skills) primitives (rewritten, not copied). Compound chains cite SkillProbe ([arXiv:2603.21019](https://arxiv.org/abs/2603.21019)) and *Agent Skills in the Wild* ([arXiv:2601.10338](https://arxiv.org/abs/2601.10338)).
 
 SkillSpector, Cisco skill-scanner, and Snyk Agent Scan are evaluation targets, not sources. Full lineage: [NOTICE.md](NOTICE.md). Cite this dataset with [CITATION.cff](CITATION.cff).
 

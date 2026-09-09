@@ -51,6 +51,7 @@
 - `200-split-across-files` (malicious, high) — Payload Split Across Files
 - `200-codeword-activation` (malicious, high) — Codeword Sleeper Activation
 - `200-env-gated-behavior` (malicious, high) — Environment-Gated Behavior Switch
+- `200-runtime-instruction-fetch` (malicious, high) — Runtime Instruction Fetch
 - `200-symlink-escape` (malicious, high) — Symlink Path Escape
 - `200-unsafe-yaml-frontmatter` (malicious, critical) — Unsafe YAML Frontmatter Deserialization
 - `200-image-metadata-payload` (malicious, high) — Image Metadata Command Carrier
@@ -81,6 +82,7 @@
 - `300-password-zip-drop` (malicious, critical) — Password-Archived Payload Drop
 - `300-sfs-xor-pack` (malicious, critical) — Whole-Skill XOR Packing (SFS)
 - `300-corporate-narrative` (malicious, critical) — Corporate-Narrative Registry Hijack
+- `300-cover-link-offload` (malicious, high) — Cover-Link Policy Offload
 - `300-judge-self-injection` (malicious, high) — Scanner-Judge Self-Injection
 - `300-soul-identity-hijack` (malicious, critical) — Evil SOUL.md — Identity Hijack
 - `300-charcode-exec` (malicious, critical) — Charcode-Reconstructed exec()

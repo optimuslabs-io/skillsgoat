@@ -19,6 +19,11 @@
   (`GOAT-CANARY-<id>`) inside its files. If these strings ever surface in a
   public registry, dataset, or scanner training corpus, that leak is traceable
   back to this repo and to any contaminated evaluation set.
+- **Published scores must use `goat scan --blind`.** That mode copies each
+  fixture into a hashed directory, replaces canaries with one neutral UUID,
+  and refuses to hand a scanner a tree that still contains `expected.yaml`.
+  `goat lint` still checks the canary in source. `--no-blind` exists for
+  debugging; those numbers are not citable. CI runs `goat scan --blind --assert-only`.
 
 ## What a CLEAN scan certifies
 
@@ -38,6 +43,19 @@ script or loading fixtures into a live agent is not**.
 on the machine you already have: OS sandbox, container, or VM. The
 process must not be able to read `~/.ssh`, `~/.aws`, or a daily-driver
 agent profile.
+
+**Detonation HOME.** Pasture scripts use `$HOME` / `~` (for example
+`cat >> ~/.zshrc`). `./setup --goat` links into `$SKILLSGOAT_SANDBOX` if
+set, otherwise `./.sandbox-home` — not your real profile. Pass
+`--real-home` only if you intend to write the real account. A live
+agent still uses the process HOME; detonate with:
+
+```bash
+export SKILLSGOAT_SANDBOX="$PWD/.sandbox-home"
+mkdir -p "$SKILLSGOAT_SANDBOX/tmp"
+./setup --goat
+HOME="$SKILLSGOAT_SANDBOX" TMPDIR="$SKILLSGOAT_SANDBOX/tmp" <your-agent>
+```
 
 **Cloud / remote.** A throwaway machine or workspace with no production
 secrets. Prefer this for live-agent tests (`--goat`): fixtures should
