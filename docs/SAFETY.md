@@ -27,40 +27,63 @@ corpus's known patterns only. See README "Scope & Exclusions": platform
 CVEs, prompt-only exploitation of installed skills, registry lifecycle
 attacks, and model-layer attacks are out of scope by construction.
 
-## Sandbox (required recommendation)
+## Sandbox (required for clone, test, and --goat)
 
-Clone, scan, and especially `./setup --goat` belong in a sandbox. The
-corpus is inert at the network layer; it is still a labeled goat. A
-host agent with your SSH keys and cloud creds is the wrong place.
+Run SkillsGoat in a **local or cloud sandbox**. That includes `goat lint`,
+`goat selftest`, `pytest`, `goat scan`, and especially `./setup --goat`.
+The corpus is a labeled goat. Network C2 is inert; **executing a pasture
+script or loading fixtures into a live agent is not**.
 
-**Free local — [nono](https://nono.sh).** Open-source kernel isolation
-(Seatbelt / Landlock). `brew install nono` (Linux packages on their
-site; do not `curl | sh` this corpus's install path). Wrap `goat.py`
-and the agent with `nono run --allow . -- …` so the process cannot
-read `~/.ssh`, `~/.aws`, or the rest of `$HOME`. Best when you already
-have a laptop and only need clone + scan.
+**Local.** Isolate the test process (and any agent) from `$HOME` secrets
+on the machine you already have: OS sandbox, container, or VM. The
+process must not be able to read `~/.ssh`, `~/.aws`, or a daily-driver
+agent profile.
 
-**Free isolated machine — [Daytona](https://www.daytona.io).** Throwaway
-sandbox computers. New accounts include compute credits and do not
-require a card. Best when you want `--goat`: the fixtures land in a
-disposable home, not next to production secrets. Self-host option:
-the community [Nightona](https://github.com/nightona-co/nightona) fork
-of the last open Daytona release.
+**Cloud / remote.** A throwaway machine or workspace with no production
+secrets. Prefer this for live-agent tests (`--goat`): fixtures should
+land in a disposable home.
 
-The in-repo `docker-compose.yml` is **not** isolation — it bind-mounts
-`~/.claude`. First-class nono profiles and Daytona snapshots for this
-corpus are Phase 3 (not this freeze).
+This project does **not** name or endorse a sandbox vendor. Use a
+boundary you already operate and trust. Named product recommendations
+wait until we have tested that product and, if ever, announced a
+partnership.
+
+`docker compose` in this repo is **not** a security boundary (it
+bind-mounts the working tree). GitHub Actions is an ephemeral runner; a
+laptop reproduce still needs a sandbox.
+
+```bash
+.venv/bin/goat lint
+.venv/bin/goat selftest
+.venv/bin/python -m pytest -q
+```
+
+### Disclaimers
+
+- **No safety warranty.** Inert URLs (`*.example`, RFC 5737) mean the
+  corpus must not phone home. They do **not** mean it is safe to run skill
+  scripts or a coding agent against this tree on a machine with secrets.
+- **Harness tests vs agent tests.** `goat lint` / `selftest` / `pytest`
+  do not execute pasture scripts. `goat scan` shells out to third-party
+  scanners; those tools may send skill text to a vendor or an LLM.
+  `./setup --goat` plus a live agent **will** follow fixture instructions
+  (including decode-and-execute and reads of `~/.ssh` if the sandbox
+  allows it).
+- **Do not** clone, test, or `--goat` next to production SSH keys, cloud
+  creds, or a daily-driver agent profile.
+- Canary tokens (`GOAT-CANARY-*`) make a public skills.sh listing
+  traceable. Do not `npx skills add` this corpus.
 
 ## Handling rules
 
-SkillsGoat is a goat. Default `./setup` only creates a venv. Linking
-fixtures into the agent skill path is explicit: `./setup --goat` (type
+SkillsGoat is a goat. Default `./setup` creates a venv and installs the
+package. Linking fixtures into the agent skill path is explicit: `./setup --goat` (type
 `GOAT`, or `--confirm-goat`). Plugin install can still bypass that
 confirm if `skills/` is present — do not advertise marketplace / `npx
 skills add` as the default path.
 
-- Run in nono or Daytona (above). Do not `--goat` on a machine with
-  production secrets.
+- Run tests and `--goat` in a local or cloud sandbox you already trust.
+  Do not do either on a machine with production secrets.
 - Do not `npx skills add` this corpus; canary tokens (`GOAT-CANARY-*`)
   make a skills.sh listing traceable.
 - Run scanners as subprocesses with network egress you understand

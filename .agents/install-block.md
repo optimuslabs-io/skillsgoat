@@ -1,42 +1,52 @@
 # The canonical install block
 
-README and docs/USAGE.md must say **this**. Run SkillsGoat in a sandbox.
-Default is clone + scan. `./setup --goat` loads fixtures into the agent
-skill path on purpose. Endpoints are inert (`*.example` / RFC 5737).
+README and docs/USAGE.md must say **this**. Run SkillsGoat — including
+`goat lint`, `goat selftest`, `pytest`, and scanner evals — in a **local
+or cloud sandbox**. Default is clone + scan. `./setup --goat` loads
+fixtures into the agent skill path on purpose. Endpoints are inert
+(`*.example` / RFC 5737). Local side effects are **not** inert if an
+agent or a human runs a pasture script.
 
 Do not list this repo on skills.sh. Do not `npx skills add` it.
 Plugin manifests stay in the tree for discovery testing; they are not
 the documented 30-second path.
 
-## Sandbox first (required recommendation)
+## Sandbox first (required for clone, test, and --goat)
 
-Do not clone this onto a machine that holds production secrets, and do
-not `./setup --goat` on the host agent profile you use for real work.
+Do not clone this onto a machine that holds production secrets. Do not
+run tests or `./setup --goat` on the host agent profile you use for
+real work.
 
-**Free local (default):** [nono](https://nono.sh) — open-source kernel
-isolation (Seatbelt on macOS, Landlock on Linux). `brew install nono`.
-Confine clone + scan + the agent to this repo; secrets under `~/.ssh`
-and `~/.aws` stay out of reach.
+**Local sandbox:** an OS-level or container/VM isolation on the machine
+you already have, such that the test process and any agent cannot read
+`~/.ssh`, `~/.aws`, or other production secrets.
 
-**Free isolated machine:** [Daytona](https://www.daytona.io) — throwaway
-sandbox computers (signup compute credits, no card). Use this when you
-want `--goat` without sharing a filesystem with host secrets.
+**Cloud / remote sandbox:** a throwaway machine or workspace that does
+not hold production secrets. Prefer this for `--goat` and any live-agent
+test: the whole home should be disposable.
 
-The in-repo `docker-compose.yml` is **not** isolation: it bind-mounts
-`~/.claude`. Prefer nono or Daytona.
+This project does **not** endorse a sandbox vendor. Pick a tool you
+already trust, or wait until we have tested a product and (if ever)
+announced a partnership. `docker compose` in this repo is a convenience
+wrapper, **not** a security boundary (it bind-mounts the working tree).
+GitHub Actions CI is an ephemeral runner; reproducing tests on a laptop
+still needs a sandbox.
 
-## Research clone (default)
+Disclaimers: [docs/SAFETY.md](../docs/SAFETY.md).
+
+## Research clone + test (default)
+
+Do this **inside** the sandbox you chose:
 
 ```bash
-brew install nono   # https://nono.sh — Linux: see their packages, not curl|bash
 git clone --single-branch --depth 1 https://github.com/optimuslabs-io/skillsgoat.git
 cd skillsgoat && ./setup
-nono run --allow . -- .venv/bin/python goat.py lint
-nono run --allow . -- .venv/bin/python goat.py scan --scanners skillspector --no-llm
+.venv/bin/goat lint
+.venv/bin/goat selftest
+.venv/bin/python -m pytest -q
+# optional scanner eval (may upload skill text to the scanner/LLM):
+.venv/bin/goat scan --scanners skillspector --no-llm
 ```
-
-Or clone inside a [Daytona](https://www.daytona.io) sandbox and run the
-same `./setup` / `goat.py` commands there.
 
 Point scanners at `pasture/<category>/<id>/skill/` (or the whole pack
 under plugin-distribution entries). See [docs/USAGE.md](../docs/USAGE.md).
@@ -44,10 +54,10 @@ under plugin-distribution entries). See [docs/USAGE.md](../docs/USAGE.md).
 ## Goat load (optional)
 
 Links every pasture `skill/` into detected agent dirs. Type `GOAT` when
-prompted, or pass `--confirm-goat` in CI. Prefer a Daytona sandbox (the
-whole home is disposable). If you stay on a laptop, run the *agent*
-under nono after linking — `./setup --goat` writes into `~/.claude` /
-`~/.cursor` on the host.
+prompted, or pass `--confirm-goat` in CI. Prefer a throwaway remote
+machine (the whole home is disposable). If you stay on a laptop, run the
+*agent* inside the same local sandbox after linking — `./setup --goat`
+writes into `~/.claude` / `~/.cursor` on the host.
 
 ```bash
 ./setup --goat
@@ -56,11 +66,7 @@ under nono after linking — `./setup --goat` writes into `~/.claude` /
 ./setup --goat --team --confirm-goat
 ```
 
-Then start the agent inside the sandbox, not on the bare host:
-
-```bash
-nono run --allow . -- claude
-```
+Then start the agent inside the sandbox, not on the bare host.
 
 Uninstall: `./setup --uninstall`.
 

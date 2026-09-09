@@ -5,20 +5,23 @@ description: One-time SkillsGoat setup. Default is venv + scan. Use --goat only 
 
 # Setup SkillsGoat
 
-Run this corpus in a sandbox: [nono](https://nono.sh) (local kernel
-isolation) or a [Daytona](https://www.daytona.io) throwaway machine.
-See [docs/SAFETY.md](../../../docs/SAFETY.md).
+Run this corpus — including lint, selftest, pytest, and scanner evals —
+in a **local or cloud sandbox** you already trust. Network C2 is inert;
+running pasture scripts or a live agent is not. This repo does not
+endorse a sandbox vendor. See [docs/SAFETY.md](../../../docs/SAFETY.md).
 
 Default `./setup` creates a venv and does **not** link fixtures. Linking
 is a goat: it loads malicious-looking skills into the agent path on
-purpose. Endpoints are inert (`*.example`, RFC 5737).
+purpose.
 
 ## Research mode (default)
 
 ```bash
 ./setup
-.venv/bin/python goat.py lint
-.venv/bin/python goat.py scan --scanners skillspector --no-llm
+.venv/bin/goat lint
+.venv/bin/goat selftest
+.venv/bin/python -m pytest -q
+.venv/bin/goat scan --scanners skillspector --no-llm
 ```
 
 ## Goat load

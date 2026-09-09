@@ -1,29 +1,32 @@
-"""
-Scanner Adapter Framework for SkillsGoat
+"""Optional scanner adapters.
 
-This module provides a plugin architecture for security scanners.
-Each scanner implements the ScannerAdapter interface.
+`goat scan` does **not** use this package; it shells out via SCANNER_CONFIGS
+in goat.main. These modules are sketches. A broken adapter must not prevent
+`import goat`.
 """
 
-# Import base classes first
+from __future__ import annotations
+
+import importlib
+import sys
+
 from .base import (
-    ScanResult,
     ChainScanResult,
+    ScanResult,
     ScannerAdapter,
-    register_scanner,
-    get_scanner,
-    list_scanners,
     create_scanner,
+    get_scanner,
     list_available_scanners,
+    list_scanners,
+    register_scanner,
 )
 
-# Import scanner implementations to register them
-from . import skillspector
-from . import cisco
-from . import snyk
-from . import nova
+for _mod in ("skillspector", "cisco", "snyk", "nova"):
+    try:
+        importlib.import_module(f".{_mod}", __package__)
+    except Exception as exc:  # pragma: no cover
+        print(f"warning: scanner {_mod!r} failed to load: {exc}", file=sys.stderr)
 
-# Re-export public API
 __all__ = [
     "ScanResult",
     "ChainScanResult",

@@ -6,10 +6,13 @@ Commands:
   index                      regenerate pasture/INDEX_BY_*.md (+ --emit-aibom)
   new                        scaffold a new entry
   scan                       run external scanners against the corpus, score vs expected.yaml
+  setup                      link pasture fixtures into agent skill dirs (the goat install)
   selftest                   harness sanity checks
 
 Ground truth lives in each entry's expected.yaml, OUTSIDE the scannable
-skill/ directory. Point scanners at skill/ only.
+skill/ directory. Point scanners at skill/ only. Plugin-distribution entries
+use skill/ as a marketplace or IDE pack (Vercel skills.sh, ClawHub, Cursor
+plugin, or fake native Claude/Codex/Copilot/Grok paths), not a lone SKILL.md.
 """
 
 from __future__ import annotations
@@ -30,9 +33,9 @@ except ImportError:  # pragma: no cover
     print("error: PyYAML required.  pip install pyyaml", file=sys.stderr)
     sys.exit(2)
 
-REPO_ROOT = Path(__file__).resolve().parent.parent.parent
-PASTURE = REPO_ROOT / "pasture"
-TAXONOMY = REPO_ROOT / "taxonomy.yaml"
+REPO = Path(__file__).resolve().parents[2]
+PASTURE = REPO / "pasture"
+TAXONOMY = REPO / "taxonomy.yaml"
 
 
 # ---------------------------------------------------------------- corpus model
@@ -153,6 +156,7 @@ _SKIP_LINT_SUFFIXES = {
 
 
 def decode_smuggled(text: str) -> str:
+    """Undo Unicode Tags, drop variation selectors / ZWSP so hidden URLs surface."""
     chars: list[str] = []
     for ch in text:
         o = ord(ch)
@@ -212,6 +216,7 @@ def _urls_disallowed(text: str) -> list[str]:
 
 
 def sanitize_paths(obj, repo_root: Path):
+    """Replace local absolute paths so committed eval JSON cannot dox a machine."""
     repo = str(Path(repo_root).resolve())
     home = str(Path.home())
 
@@ -238,20 +243,21 @@ def sanitize_paths(obj, repo_root: Path):
 
 def _dump_json(path: Path, obj, raw_paths: bool = False) -> None:
     if not raw_paths:
-        obj = sanitize_paths(obj, REPO_ROOT)
+        obj = sanitize_paths(obj, REPO)
     path.write_text(json.dumps(obj, indent=2) + "\n")
 
 
 def _lint_safety(problems: list[str]) -> None:
-    repo_res = str(REPO_ROOT.resolve())
+    """URL allowlist, decoded unicode, symlink policy, home paths, bytecode file."""
+    repo_res = str(REPO.resolve())
     if not _PYC_FIXTURE.is_file():
         problems.append(
-            f"{_PYC_FIXTURE.relative_to(REPO_ROOT)}: bytecode fixture missing "
+            f"{_PYC_FIXTURE.relative_to(REPO)}: bytecode fixture missing "
             "(run python3 tools/gen_binaries.py; do not make clean first)"
         )
 
     for p in PASTURE.rglob("*"):
-        rel = str(p.relative_to(REPO_ROOT))
+        rel = str(p.relative_to(REPO))
         if p.is_symlink():
             target = os.readlink(p)
             if target.startswith("/") or target.startswith("~") or "$HOME" in target:
@@ -275,7 +281,7 @@ def _lint_safety(problems: list[str]) -> None:
         for url in _urls_disallowed(text) + _urls_disallowed(decode_smuggled(text)):
             problems.append(f"{rel}: live/non-inert URL {url}")
 
-    eval_root = REPO_ROOT / "evaluations"
+    eval_root = REPO / "evaluations"
     if eval_root.is_dir():
         for p in eval_root.rglob("*"):
             if not p.is_file() or p.suffix.lower() in _SKIP_LINT_SUFFIXES:
@@ -288,7 +294,7 @@ def _lint_safety(problems: list[str]) -> None:
                 continue
             text = data.decode("utf-8", errors="replace")
             if _HOME_RE.search(text):
-                problems.append(f"{p.relative_to(REPO_ROOT)}: committed home-directory path")
+                problems.append(f"{p.relative_to(REPO)}: committed home-directory path")
 
 
 def cmd_lint(args) -> int:
@@ -300,7 +306,7 @@ def cmd_lint(args) -> int:
     if not entries:
         problems.append("no entries found under pasture/")
     for e in entries:
-        where = str(e["entry_dir"].relative_to(REPO_ROOT))
+        where = str(e["entry_dir"].relative_to(REPO))
         if e["id"] in seen_ids:
             problems.append(f"{where}: duplicate id {e['id']}")
         seen_ids.add(e["id"])
@@ -327,7 +333,7 @@ def cmd_lint(args) -> int:
     # ---- compound chains ----
     seen_chain_ids = set()
     for c in discover_chains():
-        where = str(c["entry_dir"].relative_to(REPO_ROOT))
+        where = str(c["entry_dir"].relative_to(REPO))
         if c["id"] in seen_chain_ids:
             problems.append(f"{where}: duplicate chain id {c['id']}")
         seen_chain_ids.add(c["id"])
@@ -447,7 +453,7 @@ def cmd_new(args) -> int:
         ENTRY_TEMPLATE_SKILL.format(name=args.name, cid=cid))
     (entry_dir / "expected.yaml").write_text(
         ENTRY_TEMPLATE_EXPECTED.format(name=args.name, cid=cid))
-    print(f"scaffolded {entry_dir.relative_to(REPO_ROOT)}\nnext: edit SKILL.md + expected.yaml, then run `goat.py lint`")
+    print(f"scaffolded {entry_dir.relative_to(REPO)}\nnext: edit SKILL.md + expected.yaml, then run `goat.py lint`")
     return 0
 
 
@@ -582,11 +588,11 @@ def scan_chain_node(scanner, chain, nname, nmeta, use_llm, timeout):
 
 
 def cmd_scan_chains(scanner, mode, use_llm, timeout, raw_paths: bool = False):
-    outdir = REPO_ROOT / "evaluations" / scanner
+    outdir = REPO / "evaluations" / scanner
     outdir.mkdir(parents=True, exist_ok=True)
     chains = discover_chains()
     rows, blind = [], 0
-    tmp = REPO_ROOT / "evaluations" / ".composite"
+    tmp = REPO / "evaluations" / ".composite"
     tmp.mkdir(parents=True, exist_ok=True)
     for c in chains:
         node_rows = []
@@ -606,7 +612,6 @@ def cmd_scan_chains(scanner, mode, use_llm, timeout, raw_paths: bool = False):
             else:
                 _dump_json(outdir / f"{c['id']}__composite.json", report, raw_paths)
                 state, score, summary = scanner_verdict(scanner, report)
-                expect = c["graph_verdict"]
                 graph_status = {"caught": "GRAPH-CAUGHT", "weak": "GRAPH-WEAK", "missed": "GRAPH-BYPASSED"}[state]
             print(f"[{scanner}] {c['id']:32s} composite          {graph_status}")
             graph_row = {"status": graph_status}
@@ -660,7 +665,7 @@ def cmd_scan(args) -> int:
             return 2
     rows, misses = [], []
     for scanner in scanners:
-        outdir = REPO_ROOT / "evaluations" / scanner
+        outdir = REPO / "evaluations" / scanner
         outdir.mkdir(parents=True, exist_ok=True)
         matrix = []
         detected = weak = fp = fn = tn = 0
@@ -686,7 +691,8 @@ def cmd_scan(args) -> int:
                     elif state == "weak":
                         weak += 1
                     else:
-                        fn += 1; misses.append(e["id"])
+                        fn += 1
+                        misses.append(e["id"])
                 else:  # benign truth
                     if state == "missed":
                         status, tn = "CLEAN", tn + 1
@@ -734,11 +740,13 @@ def cmd_selftest(args) -> int:
     entries = discover_entries()
     cal = [e for e in entries if "calibration" in e["categories"]]
     if len(cal) < 5:
-        print(f"selftest FAIL: calibration set too small ({len(cal)})"); ok = False
+        print(f"selftest FAIL: calibration set too small ({len(cal)})")
+        ok = False
     benign = [e for e in entries if e["verdict"] == "benign"]
     mal = [e for e in entries if e["verdict"] == "malicious"]
     if not benign or not mal:
-        print("selftest FAIL: need both verdict classes"); ok = False
+        print("selftest FAIL: need both verdict classes")
+        ok = False
     tiers = {e["tier"] for e in entries}
     missing_tiers = {"000", "100", "200", "300"} - tiers
     if missing_tiers:
@@ -757,9 +765,23 @@ def cmd_selftest(args) -> int:
     return 0 if ok else 1
 
 
+def cmd_setup(args) -> int:
+    """Install the goat: register every pasture skill/ as an agent skill."""
+    import importlib.util
+
+    path = REPO / "tools" / "link_skills.py"
+    spec = importlib.util.spec_from_file_location("link_skills", path)
+    if spec is None or spec.loader is None:
+        print(f"error: cannot load {path}", file=sys.stderr)
+        return 2
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod.run(args)
+
+
 def docs_matrix_families():
     fams = set()
-    em = REPO_ROOT / "docs" / "EVASION_MATRIX.md"
+    em = REPO / "docs" / "EVASION_MATRIX.md"
     if em.exists():
         for line in em.read_text().splitlines():
             m = re.match(r"^\|\s*(V\d+)", line)
@@ -824,7 +846,7 @@ def cmd_chain_report(args) -> int:
         if br:
             lines.append("**Blast radius:** " + "; ".join(f"{k}={v}" for k, v in br.items()))
             lines.append("")
-    out = Path("docs") / "CHAINS.md"
+    out = REPO / "docs" / "CHAINS.md"
     out.write_text("\n".join(lines) + "\n")
     print(f"wrote {out} ({len(chains)} chains)")
     return 0
@@ -832,7 +854,7 @@ def cmd_chain_report(args) -> int:
 # ---------------------------------------------------------------- main
 
 def main() -> int:
-    ap = argparse.ArgumentParser(prog="goat.py", description=__doc__,
+    ap = argparse.ArgumentParser(prog="goat", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
 
@@ -862,6 +884,21 @@ def main() -> int:
     sub.add_parser("chain-report", help="generate docs/CHAINS.md").set_defaults(func=cmd_chain_report)
     sub.add_parser("inventory", help="census of bundle file types/symlinks").set_defaults(func=cmd_inventory)
     sub.add_parser("selftest", help="harness sanity checks").set_defaults(func=cmd_selftest)
+
+    setup = sub.add_parser("setup", help="link fixtures into agent skill dirs (requires --goat)")
+    setup.add_argument("--host", default="auto")
+    setup.add_argument("--scope", choices=["global", "project"], default="global")
+    setup.add_argument("--project", default=".")
+    setup.add_argument("--team", action="store_true")
+    setup.add_argument("--uninstall", action="store_true")
+    setup.add_argument("--index-only", action="store_true")
+    setup.add_argument("--goat", action="store_true",
+                       help="link every pasture skill into agent dirs")
+    setup.add_argument("--confirm-goat", action="store_true",
+                       help="skip the interactive GOAT prompt (CI)")
+    setup.add_argument("--dry-run", action="store_true")
+    setup.add_argument("-v", "--verbose", action="store_true")
+    setup.set_defaults(func=cmd_setup)
 
     args = ap.parse_args()
     return args.func(args)

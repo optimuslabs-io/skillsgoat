@@ -1,17 +1,21 @@
 # Contributing
 
-SkillsGoat is a research corpus. Run it in a sandbox ([nono](https://nono.sh)
-or [Daytona](https://www.daytona.io); see [docs/SAFETY.md](docs/SAFETY.md)).
-Default install is clone + `goat lint` / `goat scan`. Do not add live hosts,
-real credentials, or functioning malware.
+SkillsGoat is a research corpus. **Clone and test in a local or cloud
+sandbox** you already trust. See [docs/SAFETY.md](docs/SAFETY.md) for
+disclaimers: inert C2 does not mean it is safe to run pasture scripts or
+a live agent on a machine with secrets. This repo does not endorse a
+sandbox vendor.
+
+Default install is clone + `goat lint` / `goat selftest` / `pytest`. Do
+not add live hosts, real credentials, or functioning malware.
 
 ## Add a fixture
 
 ```bash
 ./setup
-.venv/bin/python goat.py new --category obfuscation-encoding --tier 200 --name "my-technique"
+.venv/bin/goat new --category obfuscation-encoding --tier 200 --name "my-technique"
 # edit pasture/<category>/200-my-technique/{expected.yaml,skill/SKILL.md}
-.venv/bin/python goat.py lint
+.venv/bin/goat lint
 ```
 
 Chains live under `pasture/compound-chain/<id>/` with `chain.yaml` and
@@ -37,6 +41,7 @@ URL. Do not copy live C2, wallets, or ransomware. Cite techniques in
 
 ## Pull requests
 
-Run `goat lint` and `goat selftest` before opening a PR. If you add or
-re-run a scanner matrix, update `evaluations/README.md` with date,
-scanner version, and corpus snapshot in the same PR.
+Run `goat lint`, `goat selftest`, and `pytest` in a sandbox before opening
+a PR. If you add or re-run a scanner matrix, update `evaluations/README.md`
+with date, scanner version, and corpus snapshot in the same PR. Scanner
+evals may upload skill text; do that from a sandbox too.

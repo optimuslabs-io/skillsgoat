@@ -1,6 +1,7 @@
 """SkillSpector scanner adapter."""
 
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -109,7 +110,7 @@ class SkillSpectorAdapter(ScannerAdapter):
         
         try:
             result = subprocess.run(
-                [self._skillspector_path, "scan", str(target), "--format", "json"],
+                cmd,
                 capture_output=True, text=True, timeout=self.timeout
             )
             return "success", result.stdout

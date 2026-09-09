@@ -274,7 +274,7 @@ def run(args: argparse.Namespace) -> int:
 
     print("done. this is a goat — fixtures are now on the agent skill path.")
     print("next: /setup-skillsgoat  (or re-run ./setup --goat after git pull)")
-    print("run the agent in a sandbox (nono / Daytona) — see docs/SAFETY.md")
+    print("run the agent in a sandbox you already trust — see docs/SAFETY.md")
     return 0
 
 

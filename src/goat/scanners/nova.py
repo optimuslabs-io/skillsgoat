@@ -135,7 +135,7 @@ class NovaAdapter(ScannerAdapter):
                 "title": finding.get("description", finding.get("message", "")),
                 "file_path": finding.get("file", finding.get("location", "")),
                 "line_number": finding.get("line", finding.get("line_number", 0)),
-            }),
+            })
         
         if max_severity in ("CRITICAL", "HIGH"):
             status = "caught"

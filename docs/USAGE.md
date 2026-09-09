@@ -1,11 +1,10 @@
 # Using SkillsGoat
 
-Run in a sandbox ([nono](https://nono.sh) locally, or a
-[Daytona](https://www.daytona.io) throwaway machine). Default path:
-clone, `./setup` (venv only), then `goat.py lint` / `goat.py scan`.
-Canonical copy: [.agents/install-block.md](../.agents/install-block.md).
+Run clone, tests, and `--goat` in a **local or cloud sandbox** you already
+trust. Default path: clone, `./setup`, then `goat lint` / `goat selftest` /
+`pytest`. Canonical copy: [.agents/install-block.md](../.agents/install-block.md).
 `./setup --goat` loads the fixtures into the agent. Do not `npx skills add`
-this corpus. See [docs/SAFETY.md](SAFETY.md).
+this corpus. We do not endorse a sandbox vendor. Disclaimers: [docs/SAFETY.md](SAFETY.md).
 
 ---
 
@@ -15,18 +14,26 @@ SkillsGoat won't scan arbitrary skills for you (that's the scanners' job).
 It tells you how much to trust your scanner before you rely on it:
 
 ```bash
-# inside a nono or Daytona sandbox — see docs/SAFETY.md
-cd ~/skillsgoat && python3 -m venv .venv && .venv/bin/pip install pyyaml
+# inside a local or cloud sandbox — see docs/SAFETY.md
+cd ~/skillsgoat && ./setup
 # + install at least one scanner:
 .venv/bin/pip install "skillspector @ git+https://github.com/NVIDIA/skillspector.git"
 #    or:  pip install cisco-ai-skill-scanner   (then `skill-scanner` on PATH)
 ```
 
-Run the acceptance test:
+Harness tests (do not execute pasture scripts):
 
 ```bash
-.venv/bin/python goat.py scan --scanners skillspector --no-llm --mode atomic   # single-skill recall/FP matrix
-.venv/bin/python goat.py scan --scanners skillspector --no-llm --mode both     # compound-chain blindness
+.venv/bin/goat lint
+.venv/bin/goat selftest
+.venv/bin/python -m pytest -q
+```
+
+Scanner acceptance test (may upload skill text to the scanner):
+
+```bash
+.venv/bin/goat scan --scanners skillspector --no-llm --mode atomic
+.venv/bin/goat scan --scanners skillspector --no-llm --mode both
 ```
 
 Read `evaluations/skillspector/report.md`. Decision rule for production gating:
@@ -60,8 +67,8 @@ A CLEAN verdict means "passed the patterns *this* tool knows." See README Scope 
 The corpus is your regression suite and adversarial benchmark:
 
 ```bash
-goat.py scan --scanners yours --mode atomic      # wire your CLI into SCANNER_CONFIGS in goat.py (~5 lines)
-goat.py scan --scanners skillspector --mode both # compare against incumbents
+goat scan --scanners yours --mode atomic      # wire your CLI into SCANNER_CONFIGS in goat.main (~5 lines)
+goat scan --scanners skillspector --mode both # compare against incumbents
 ```
 
 - Ground truth per entry: `pasture/*/*/expected.yaml`; per chain: `pasture/compound-chain/*/chain.yaml`
@@ -79,7 +86,7 @@ Two gates:
 # .github/workflows/skill-gate.yml (sketch)
 - run: goat.py lint                                   # corpus hygiene (if contributing)
 - run: skill-scanner scan-all ./skills --fail-on-severity high
-- run: goat.py scan --scanners cisco --no-llm --mode node || true   # track blindness trend
+- run: goat scan --scanners cisco --no-llm --mode node || true   # track blindness trend
 ```
 
 - Gate installs on scanner verdicts, but size the trust by the measured blindness. Chains prove CLEAN is not safe, so privileged agents also need allowlisted egress and memory-write monitoring (the channels C1/C11 exploit).

@@ -1,6 +1,11 @@
 # Scanner evaluation ledger
 
-Do not quote recall, FP-rate, or chain blindness without a **last-run date**, a scanner version (or UI build), and which corpus snapshot was scored. Scores go stale when fixtures are added (plugin-distribution, C35+) or when a vendor ships a new engine.
+Re-run matrices from a **local or cloud sandbox** you already trust.
+`goat scan` may upload skill text to the scanner or an LLM. Do not quote
+recall, FP-rate, or chain blindness without a **last-run date**, a scanner
+version (or UI build), and which corpus snapshot was scored. Scores go
+stale when fixtures are added (plugin-distribution, C35+) or when a
+vendor ships a new engine.
 
 Re-run CLI matrices after Phase 0–1 packaging; refresh this table in the same PR as the new `matrix.json`.
 

@@ -1,5 +1,6 @@
 __pycache__/
-*.py[cod]!pasture/**/skill/**
+*.py[cod]
+!pasture/**/skill/**
 evaluations/*/report.json
 .DS_Store
 .venv/

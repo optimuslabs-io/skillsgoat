@@ -4,7 +4,12 @@
 Run once from repo root:  python3 tools/gen_binaries.py
 All payloads are INERT simulations (example endpoints, no real malware).
 """
-import struct, zipfile, io, os, py_compile, sys, tempfile, pathlib
+import io
+import os
+import pathlib
+import py_compile
+import tempfile
+import zipfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PACK = ROOT / "pasture" / "hidden-artifact-packing"
@@ -99,5 +104,8 @@ def gen_pzip():
     print("wrote", target.relative_to(ROOT))
 
 if __name__ == "__main__":
-    gen_pyc(); gen_docx(); gen_sfs(); gen_pzip()
+    gen_pyc()
+    gen_docx()
+    gen_sfs()
+    gen_pzip()
     print("all artifacts generated")

@@ -4,7 +4,7 @@ A deliberately vulnerable corpus for testing whether agent-skill scanners catch 
 
 Agent skills (`SKILL.md` bundles) ship executable behavior for Claude Code, Codex CLI, OpenClaw, and Cursor. They run with your local privileges. Their descriptions land in model context before anyone reads the files, and the ecosystem ships them unsigned and unscanned. SkillsGoat is built like WebGoat, DVWA, and AI Goat: one fixture per documented class of skill compromise, including techniques that already bypass current scanners.
 
-> ⚠️ **These skills are malicious by design.** Run SkillsGoat in a sandbox. Installing it (`./setup --goat`) loads fixtures into the agent skill path — that is the goat. Endpoints are inert `*.example` / RFC 5737 addresses; archives contain markers, not malware. Do not clone this onto a machine with production secrets. Free default: [nono](https://nono.sh) (local kernel isolation). Throwaway machine: [Daytona](https://www.daytona.io) (sandbox credits, no card). See [docs/SAFETY.md](docs/SAFETY.md).
+> ⚠️ **These skills are malicious by design.** Clone, test (`goat lint` / `selftest` / `pytest` / `goat scan`), and `./setup --goat` in a **local or cloud sandbox** you already trust. Network endpoints are inert (`*.example` / RFC 5737); running a pasture script or a live agent against this tree can still touch local files. Do not do this on a machine with production secrets. We do not endorse a sandbox vendor. Disclaimers: [docs/SAFETY.md](docs/SAFETY.md).
 
 ## What's inside
 
@@ -43,24 +43,26 @@ Single-skill fixtures test one weakness at a time. Real compromises chain across
 
 Next: version-drift suite (benign→poisoned paired fixtures), judge-benchmark leaderboard, detonation layer.
 
-## Install (research clone)
+## Install and test (research clone)
 
-**Sandbox first.** Canonical commands: [.agents/install-block.md](.agents/install-block.md).
-[nono](https://nono.sh) is the free local default; [Daytona](https://www.daytona.io)
-is the free throwaway machine. Details: [docs/SAFETY.md](docs/SAFETY.md).
+**Sandbox first** — a local OS/container/VM isolation, or a throwaway
+remote machine. Canonical commands and disclaimers:
+[.agents/install-block.md](.agents/install-block.md),
+[docs/SAFETY.md](docs/SAFETY.md). This repo does not name a sandbox vendor.
 
 ```bash
-brew install nono   # https://nono.sh
 git clone --single-branch --depth 1 https://github.com/optimuslabs-io/skillsgoat.git
 cd skillsgoat && ./setup
-nono run --allow . -- .venv/bin/python goat.py lint
-nono run --allow . -- .venv/bin/python goat.py scan --scanners skillspector --no-llm
+.venv/bin/goat lint
+.venv/bin/goat selftest
+.venv/bin/python -m pytest -q
 ```
 
-`./setup` creates a venv and stops. It does **not** link fixtures into
-`~/.claude/skills`. To load the goat into agent dirs: `./setup --goat`
-(type `GOAT`, or `--confirm-goat` in CI) — do that inside a Daytona
-sandbox, or run the agent under nono afterwards.
+`./setup` creates a venv, installs the package, and stops. It does **not**
+link fixtures into `~/.claude/skills`. To load the goat into agent dirs:
+`./setup --goat` (type `GOAT`, or `--confirm-goat` in CI) — do that on a
+throwaway remote machine, or run the agent inside the same local sandbox
+afterwards.
 
 Plugin manifests (`.claude-plugin/`) stay in the tree for discovery
 testing. Do not treat `claude plugins install` or `npx skills add` as
@@ -71,7 +73,9 @@ confirm. See [docs/SAFETY.md](docs/SAFETY.md).
 
 ```
 taxonomy.yaml               fixed category registry
-setup                       venv + research-mode (use --goat to link fixtures)
+setup                       venv + editable install (use --goat to link fixtures)
+src/goat/                   packaged CLI (`pip install -e .` → `goat`)
+src/goat/scanners/          unused adapter sketches; `goat scan` uses SCANNER_CONFIGS
 skills/                     npx skills add discovery index (symlinks into pasture)
 pack/skills/setup-skillsgoat
 .claude-plugin/             Claude marketplace plugin (loads skills/)
@@ -102,4 +106,4 @@ Inspired by [nandangupta-security/SkillsGoat](https://github.com/nandangupta-sec
 
 ## Responsible use
 
-This is defensive research tooling: ground truth for scanner evaluation and analyst training. If evaluation shows a gap in a maintained scanner, notify the vendor before publishing exploit detail. See [docs/SAFETY.md](docs/SAFETY.md).
+This is defensive research tooling: ground truth for scanner evaluation and analyst training. Test only in a sandbox. If evaluation shows a gap in a maintained scanner, notify the vendor before publishing exploit detail. See [docs/SAFETY.md](docs/SAFETY.md).

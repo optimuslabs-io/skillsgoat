@@ -1,9 +1,10 @@
 # Security Policy
 
-This repository is a labeled research corpus of **inert** malicious-looking
-agent skills. Run it in a sandbox ([nono](https://nono.sh) or
-[Daytona](https://www.daytona.io)). See [docs/SAFETY.md](docs/SAFETY.md)
-for corpus handling (canaries, URL allowlist, what a CLEAN scan certifies).
+This repository is a labeled research corpus of **inert-C2** malicious-looking
+agent skills. Clone and **test in a local or cloud sandbox** you already
+trust. Inert URLs do not mean it is safe to run pasture scripts or a live
+agent next to production secrets. We do not endorse a sandbox vendor.
+See [docs/SAFETY.md](docs/SAFETY.md).
 
 ## Report a vulnerability in the harness
 
