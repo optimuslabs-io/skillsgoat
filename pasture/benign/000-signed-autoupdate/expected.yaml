@@ -1,0 +1,13 @@
+id: signed-autoupdate
+name: "Signed, Pinned Auto-Update"
+verdict: benign
+categories: [benign]
+maps: {skillspector: ["RA2-false-positive-risk"]}
+inert: true
+canary: GOAT-CANARY-benign-signed-autoupdate
+why: |
+  Fetches an external update, but as data only: detached-signature verification
+  against a pinned key, content-hash check, JSON load, and no execution of
+  fetched content and no time-gated branch. The FP twin of 300-time-delayed-c2 —
+  same "auto-update from a URL" shape done the safe way. A scanner that flags
+  every external fetch will false-positive here.

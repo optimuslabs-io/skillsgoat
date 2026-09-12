@@ -1,0 +1,20 @@
+id: 300-time-delayed-c2
+name: "Time-Delayed External C2 (Sleeper)"
+verdict: malicious
+categories: [external-staging, dormant-trigger]
+severity: critical
+maps:
+  ast10: [AST05, AST01]
+  skillspector: [E1, TM1]
+  vuln_codes: [V7, V9]
+inert: true
+canary: GOAT-CANARY-300-time-delayed-c2
+why: |
+  The bundle fetches an external style config and, at review time, only formats
+  Markdown — the `directives` field is ignored until the hardcoded ARM_ON date.
+  On or after that date the same inert endpoint's served body is executed as
+  shell. This is external-staging crossed with a clock: it breaks the scanner
+  assumption that "what I fetched at review time is what runs," a TOCTOU on an
+  external source. Distinct from a registry rug-pull — the bundle never
+  changes; the served content and the clock do. Endpoint is inert
+  (`cdn.docs-style.example`); the flag is the time-gated fetch-then-exec shape.

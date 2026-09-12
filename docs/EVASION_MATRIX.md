@@ -20,6 +20,24 @@ June 2026 demonstrated bypasses.
 | V11 Reputation laundering | Popularity ≈ trust | Fabricated social proof fixtures | 100-fake-social-proof |
 | V12 Memory poisoning | Skill scope = session scope | MEMORY.md standing rules | 100-memory-file-write |
 | V13 Self-mutation | Point-in-time review suffices | Self-overwriting update path | 300-self-rewrite-update |
+| V14 Reconstruction-from-reference | The installed bundle is the artifact to scan | Agent is told to rebuild a skill from an external repo/URL; payload is hand-written at run time, never installed | 200-rebuild-from-link, c36-reference-reconstruction |
+| V15 Out-of-band distribution | Skills are scanned at the marketplace / install flow | Raw `git clone` or manual folder upload routes around every scanned channel; anti-marketplace steering is the tell | 200-raw-clone-sideload, 200-manual-upload-bundle |
+
+## Provenance & time: the scanned artifact is not the executed behavior
+
+Most fixtures assume the malicious thing ships in the bundle you scan. Three
+families break that on the **provenance** and **time** axes:
+
+- **V14 reconstruction-from-reference** — nothing installs; the agent rebuilds
+  the payload from an external reference, so there is no artifact to scan on
+  either side (`200-rebuild-from-link`, `c36-reference-reconstruction`).
+- **V15 out-of-band distribution** — the bundle enters by raw clone or manual
+  upload, so no registry or install-flow scanner ever sees it
+  (`200-raw-clone-sideload`, `200-manual-upload-bundle`).
+- **Temporal external staging (V7 × V9)** — an external source is innocuous at
+  review and flips after a hardcoded date; a TOCTOU on fetched content
+  (`300-time-delayed-c2`, `c37-time-gated-updater`). Distinct from a registry
+  rug-pull: the bundle never changes, only the clock and the served body.
 
 ## What only dynamic detonation catches
 
