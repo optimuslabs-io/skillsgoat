@@ -2,7 +2,7 @@
 
 **A practice target for AI agent-skill scanners, the way WebGoat is one for web scanners.** SkillsGoat is a set of agent skills that are malicious by design, each labeled with the correct answer, so you can measure whether a scanner actually catches them.
 
-- **76 single-skill fixtures** — 66 malicious, 10 benign (the benign ones look suspicious on purpose, to catch false alarms).
+- **77 single-skill fixtures** — 67 malicious, 10 benign (the benign ones look suspicious on purpose, to catch false alarms).
 - **35 compound chains** — each skill looks harmless on its own; only the combination is the attack.
 - **Every payload is inert** — fake `*.example` endpoints, no real network calls.
 
@@ -47,6 +47,7 @@ The fixtures, grouped by attack type:
 - **Evasion families V1–V13 (~30):** homoglyph/zero-width/charcode obfuscation, payload dispersion, truncation canyons, LLM-judge manipulation (cover links, judge self-injection, corporate-narrative social engineering), bytecode poisoning, archive indirection, XOR packing, deferred dependency resolution, external staging, silent operators / weaponized Definition-of-Done, dormant codeword gates, shadow features, reputation laundering, self-mutation. Four of these derive Trail of Bits [overtly-malicious-skills](https://github.com/trailofbits/overtly-malicious-skills) primitives (rewritten, not copied): newline-canyon, `.docx` archive indirection, divergent `.pyc`, corporate-narrative registry hijack.
 - **Ecosystem classes (9):** transitive dependency poisoning, composition trust-transfer, DNS/error side-channels, model artifact theft, repo-config hook execution (`.claude/settings.json`), MCP tool poisoning, marketplace / IDE packs (install flows, marketplace listings, and packs that impersonate a platform's own native skills), wallet exhaustion.
 - **Format-spec noncompliance (4):** unsafe-YAML frontmatter gadgets, frontmatter-free bundles, symlink escapes out of the bundle, nested skill-in-skill recursion. Nothing downstream enforces agentskills.io.
+- **Behavior chains (1):** single-skill multi-step attack paths where atomic signals compose into a higher-order behavior such as credential exfiltration.
 - **Benign FP-bait (10):** look suspicious on purpose; measure false-positive rates.
 
 Every entry has a `skill/` folder (the only thing you point a scanner at) and, kept outside it, an `expected.yaml` answer key: the verdict, a plain-English reason, and category mappings (OWASP AST10, SkillSpector codes, our own V1–V13 evasion families). Each also carries a `GOAT-CANARY-*` token so a leaked fixture can be traced back here.
