@@ -78,7 +78,7 @@ goat scan --scanners skillspector --mode both # compare against incumbents
 ```
 
 - Ground truth per entry: `pasture/*/*/expected.yaml`; per chain: `pasture/compound-chain/*/chain.yaml`
-- Score = caught / weak-flagged / bypassed over 66 malicious entries + FP-rate over 10 benign twins + structural-blindness over 35 chains. Cite only `--blind` matrices (`"blind": true` in `matrix.json`).
+- Score = caught / weak-flagged / bypassed over 70 malicious entries + FP-rate over 13 benign twins + structural-blindness over 37 chains. Cite only `--blind` matrices (`"blind": true` in `matrix.json`).
 - Ship fixes, re-run, watch bypass count drop. The ToB-derived entries (`300-bytecode-poisoning`, `300-archive-indirection-docx`) show which past gaps closed between scanner versions
 - Never train/tune on the collection then report scores on it as if held-out; disclose tuning. `--blind` strips canaries so a grep of `GOAT-CANARY-*` cannot grade the set.
 
