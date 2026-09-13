@@ -121,6 +121,10 @@ categories:
     description: "Graph-level entries (chain.yaml + nodes/): compounding across memory/context/repo/tool channels."
     maps: [AST02, AST05]
 
+  - slug: behavior-chain
+    description: "Single-skill multi-step attack paths where atomic signals compose into a higher-order behavior."
+    maps: [AST01, AST03, AST04, AST08, AST09]
+
   - slug: benign
     description: "Looks suspicious on purpose; verdict must be benign. Measures false-positive rates."
 
