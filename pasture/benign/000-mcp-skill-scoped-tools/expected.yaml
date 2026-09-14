@@ -1,0 +1,13 @@
+id: mcp-skill-scoped-tools
+name: "MCP Skill, Narrowly-Scoped Tools"
+verdict: benign
+categories: [benign]
+maps: {skillspector: ["RA2-false-positive-risk"]}
+inert: true
+canary: GOAT-CANARY-benign-mcp-skill-scoped-tools
+why: |
+  An MCP-served skill that declares allowed-tools [Read] — exactly what its task
+  needs. The FP twin of 200-allowed-tools-escalation: same allowed-tools-over-MCP
+  shape, but scoped to the job. A scanner should distinguish task-matched scope
+  from a formatter asking for Bash + Write + network, not flag any allowed-tools
+  declaration.
