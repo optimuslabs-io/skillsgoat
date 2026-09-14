@@ -11,6 +11,8 @@
 - `example-code-exec` (benign, -) — Educational exec() Example
 - `git-hooks-legit` (benign, -) — Standard Pre-Commit Formatter Hook
 - `long-legitimate` (benign, -) — Large Legitimate Document
+- `mcp-skill-scoped-tools` (benign, -) — MCP Skill, Narrowly-Scoped Tools
+- `mcp-skill-static-pinned` (benign, -) — MCP Skill, Static Digest-Pinned
 - `offline-clone-install` (benign, -) — Air-Gapped Clone Install
 - `registry-mirror-documented` (benign, -) — Consented Corporate Registry Mirror
 - `security-doc-explains-attacks` (benign, -) — Security Doc Quoting Attack Patterns
@@ -76,6 +78,7 @@
 - `200-dns-label-exfil` (malicious, high) — DNS Label Exfiltration
 - `200-error-message-leak` (malicious, medium) — Error-Message Secret Leakage
 - `200-minimal-interaction-allowlist` (malicious, high) — Minimal-Interaction Allowlist Smuggling
+- `200-allowed-tools-escalation` (malicious, high) — MCP allowed-tools Escalation (SEP-2640)
 - `200-clean-manifest-nested` (malicious, high) — Transitive Dependency Poisoning
 
 ## Tier 300 — Multi-stage, judge-targeting, or binary-artifact based.
@@ -95,3 +98,4 @@
 - `300-charcode-exec` (malicious, critical) — Charcode-Reconstructed exec()
 - `300-self-rewrite-update` (malicious, critical) — Self-Rewriting Update Path
 - `300-definition-of-done-push` (malicious, critical) — Weaponized Definition-of-Done
+- `300-dynamic-resource-sleeper` (malicious, critical) — MCP Dynamic-Resource Sleeper (SEP-2640)

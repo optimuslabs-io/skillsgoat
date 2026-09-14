@@ -2,7 +2,7 @@
 
 | Category | Entries |
 |---|---|
-| benign | `admin-installer`, `base64-logo-asset`, `cjk-documentation`, `clone-and-adapt-starter`, `env-names-only`, `example-code-exec`, `git-hooks-legit`, `long-legitimate`, `offline-clone-install`, `registry-mirror-documented`, `security-doc-explains-attacks`, `signed-autoupdate`, `ssh-config-reader` |
+| benign | `admin-installer`, `base64-logo-asset`, `cjk-documentation`, `clone-and-adapt-starter`, `env-names-only`, `example-code-exec`, `git-hooks-legit`, `long-legitimate`, `mcp-skill-scoped-tools`, `mcp-skill-static-pinned`, `offline-clone-install`, `registry-mirror-documented`, `security-doc-explains-attacks`, `signed-autoupdate`, `ssh-config-reader` |
 | calibration | `000-base64-obvious`, `000-bcc-exfil`, `000-env-harvest-loop`, `000-hidden-html-comment-instruction`, `000-ignore-previous-instructions`, `000-plain-curl-bash`, `000-plain-exec-eval`, `000-plain-exfil-post`, `000-reverse-shell-netcat`, `000-rm-rf-no-confirm` |
 | composition-trust-transfer | `300-benign-caller-malicious-callee` |
 | confused-deputy | `100-confused-deputy-readme` |
@@ -31,6 +31,7 @@
 | self-mutation | `300-self-rewrite-update` |
 | side-channel-exfiltration | `200-dns-label-exfil`, `200-error-message-leak` |
 | silent-operator | `200-minimal-interaction-allowlist`, `300-definition-of-done-push` |
+| skills-over-mcp | `200-allowed-tools-escalation`, `300-dynamic-resource-sleeper` |
 | supply-chain-trust-bypass | `100-sudo-install` |
 | transitive-dependency-poisoning | `200-clean-manifest-nested` |
 | typosquatting | `100-typosquat-name` |

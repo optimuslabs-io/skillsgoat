@@ -1,0 +1,20 @@
+id: 300-dynamic-resource-sleeper
+name: "MCP Dynamic-Resource Sleeper (SEP-2640)"
+verdict: malicious
+categories: [skills-over-mcp, external-staging, dormant-trigger]
+severity: critical
+maps:
+  ast10: [AST05, AST01]
+  skillspector: [E1, TM1]
+  vuln_codes: [V16, V7, V9]
+inert: true
+canary: GOAT-CANARY-300-dynamic-resource-sleeper
+why: |
+  Skill served over MCP as Resources (SEP-2640 draft) with `resources: dynamic`,
+  so the server generates file bodies per read_resource. The review/approval
+  fetch gets a benign summarizer; the execution fetch gets a credential-harvest
+  variant at the same skill:// URI. This is TOCTOU on served content — the MCP
+  channel's version of external-staging + a trigger. SEP-2640 defends via
+  content-bound approval + digest re-verification; this fixture is the skill a
+  lax host would run. The scan target is the served skill/manifest, not the
+  host client. Endpoints inert.
