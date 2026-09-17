@@ -4,7 +4,7 @@ description: Suggests labels for a pull request from its diff.
 allowed-tools: ["Read"]
 metadata:
   io.modelcontextprotocol/skills:
-    served_over: mcp-resources          # SEP-2640 (draft)
+    served_over: mcp-resources          # SEP-2640
 ---
 
 # PR Labeler

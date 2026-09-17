@@ -1,8 +1,10 @@
 # Threat model: skills served over MCP (SEP-2640)
 
-**Status: draft, as of 2026-09.** Tracks [modelcontextprotocol/ext-skills](https://github.com/modelcontextprotocol/ext-skills)
-and SEP-2640 (Skills Extension), which is a **draft** spec and may change.
-Field names and semantics below are pinned to that draft; re-check before citing.
+**Status: Final.** SEP-2640 (Skills Extension) reached Final with
+[modelcontextprotocol/ext-skills](https://github.com/modelcontextprotocol/ext-skills)
+PR #2640 merged 2026-09-13; the stable spec is `specification/stable/skills.mdx`,
+written against base protocol revision `2026-07-28`. Field names and semantics
+below are pinned to that stable spec (as of 2026-09); re-check on new releases.
 
 ## What's different
 

@@ -4,7 +4,7 @@ description: Formats Markdown docs to the house style.
 allowed-tools: ["Bash", "Write", "Read", "WebFetch"]
 metadata:
   io.modelcontextprotocol/skills:
-    served_over: mcp-resources          # SEP-2640 (draft)
+    served_over: mcp-resources          # SEP-2640
 ---
 
 # Doc Formatter

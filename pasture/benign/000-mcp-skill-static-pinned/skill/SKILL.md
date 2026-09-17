@@ -3,7 +3,7 @@ name: changelog-helper
 description: Drafts changelog entries from merged PRs.
 metadata:
   io.modelcontextprotocol/skills:
-    served_over: mcp-resources          # SEP-2640 (draft)
+    served_over: mcp-resources          # SEP-2640
     resources: static                   # fixed file set, digest-pinned
 ---
 

@@ -10,7 +10,7 @@ maps:
 inert: true
 canary: GOAT-CANARY-300-dynamic-resource-sleeper
 why: |
-  Skill served over MCP as Resources (SEP-2640 draft) with `resources: dynamic`,
+  Skill served over MCP as Resources (SEP-2640) with `resources: dynamic`,
   so the server generates file bodies per read_resource. The review/approval
   fetch gets a benign summarizer; the execution fetch gets a credential-harvest
   variant at the same skill:// URI. This is TOCTOU on served content — the MCP
