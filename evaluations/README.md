@@ -18,12 +18,22 @@ Scores go stale when fixtures are added or when a vendor ships a new engine.
 | Cisco skill-scanner | CLI | **2026-09-09T05:54Z** | 2.0.13, static / no LLM | 76 atomics; 35 chains | **yes** | Strict recall 5/64 (two ingest errors); FP-rate 1.0; chain structural blindness 28/35. [report](cisco/report.md) |
 | Nova Hunting (`novarun`) | CLI | **2026-09-09T05:55Z** | parser mismatch (`novarun --version` is usage text) | 76 atomics attempted | **yes** (staged blind; every row still `ERROR`) | Not a score. [report](nova/report.md) |
 | Snyk Agent Scan | CLI `snyk-agent-scan` | **2026-09-03** | 0.6.1 | 12 tier-1 ids, not the full pasture | **no** | Not re-run blind (`SNYK_TOKEN` unset). [report](snyk/report.md) |
+| Mondoo SkillCheck | CLI (`npx @mondoohq/skillcheck`) + hosted threat DB | never run | `@mondoohq/skillcheck` (npm) | — | n/a | Hash-reputation design: SHA-256 per skill file looked up against a threat DB; **unknown → clean, fails open**. Discovers *installed* skills (`~/.claude/skills`, `~/.cursor/skills`, …), so benchmark it via `./setup --goat` then run the CLI and diff verdicts against `expected.yaml` — not a `goat scan` adapter. 28 categories → MITRE ATLAS + OWASP LLM Top 10. |
 | Snyk Labs Skill Scan | web UI | **August 2026** (day not recorded) | anonymous Labs page | 12 tier-1 | n/a | 50% timeout. Prefer CLI date above. [report](snyk-labs/report.md) |
 | Gen Agent Trust Hub | UI / `POST /api/scan/lookup` | **2026-09-03** | https://ai.gendigital.com/skill-scanner | none (ClawHub URL only) | n/a | Format-blindness, not a collection score. [report](gen/report.md) |
 | Socket via skills.sh | UI / audit API | **2026-09-03** | skills.sh + `add-skill.vercel.sh/audit` | none (goat 404) | n/a | Do not `npx skills add` this repo. [report](socket/report.md) |
 | Metano SkillTracer | UI | probe only (no `scanned_at`) | labs.metano.ai | not scored | n/a | Public reports; do not upload pasture. [PROTOCOL](ui/PROTOCOL.md) |
 | Manifold Manifest | UI | never run | manifest.manifold.security | — | n/a | GitHub-repo input only. [drivers](ui/drivers.yaml) |
 | Air ScanAir | product graph | never run | air.security | — | n/a | Repo-graph, not a SKILL.md dropzone. [drivers](ui/drivers.yaml) |
+
+**Scanner classes matter for how you read a score.** Most rows are static/LLM
+*analyzers* that inspect a skill's content. A **hash-reputation** scanner
+instead hashes each file and looks it up in a threat database, returning clean
+for anything it has not ingested (fail-open). SkillsGoat fixtures are not
+published to any public threat database (unique canaries, inert-only policy),
+so a reputation scanner reads every fixture as clean until it ingests them —
+reproduce that with `./setup --goat` then the vendor CLI, and read it as a
+coverage gap of that design, not a detection score.
 
 The [evasion matrix comparison](../docs/EVASION_MATRIX.md) is the SkillSpector
 v2.11.0 / Cisco 2.0.13 **2026-09-09 `--blind`** bake-off on 76 atomics + 35
