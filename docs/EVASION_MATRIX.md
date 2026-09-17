@@ -22,7 +22,7 @@ June 2026 demonstrated bypasses.
 | V13 Self-mutation | Point-in-time review suffices | Self-overwriting update path | 300-self-rewrite-update |
 | V14 Reconstruction-from-reference | The installed bundle is the artifact to scan | Agent is told to rebuild a skill from an external repo/URL; payload is hand-written at run time, never installed | 200-rebuild-from-link, c36-reference-reconstruction |
 | V15 Out-of-band distribution | Skills are scanned at the marketplace / install flow | Raw `git clone` or manual folder upload routes around every scanned channel; anti-marketplace steering is the tell | 200-raw-clone-sideload, 200-manual-upload-bundle |
-| V16 Skills-over-MCP | A skill is a file bundle you can scan | Served over MCP Resources (SEP-2640 draft): dynamic/server-generated bodies, digest≠trust, allowed-tools escalation over the MCP origin — see [THREAT_MODEL_MCP_SKILLS.md](THREAT_MODEL_MCP_SKILLS.md) | 300-dynamic-resource-sleeper, 200-allowed-tools-escalation |
+| V16 Skills-over-MCP | A skill is a file bundle you can scan | Served over MCP Resources (SEP-2640): dynamic/server-generated bodies, digest≠trust, allowed-tools escalation over the MCP origin — see [THREAT_MODEL_MCP_SKILLS.md](THREAT_MODEL_MCP_SKILLS.md) | 300-dynamic-resource-sleeper, 200-allowed-tools-escalation |
 
 ## Provenance & time: the scanned artifact is not the executed behavior
 
