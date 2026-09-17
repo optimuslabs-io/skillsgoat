@@ -2,7 +2,7 @@
 
 **A practice target for AI agent-skill scanners, the way WebGoat is one for web scanners.** SkillsGoat is a set of agent skills that are malicious by design, each labeled with the correct answer, so you can measure whether a scanner actually catches them.
 
-- **83 single-skill fixtures** — 70 malicious, 13 benign (the benign ones look suspicious on purpose, to catch false alarms).
+- **87 single-skill fixtures** — 72 malicious, 15 benign (the benign ones look suspicious on purpose, to catch false alarms).
 - **37 compound chains** — each skill looks harmless on its own; only the combination is the attack.
 - **Every payload is inert** — fake `*.example` endpoints, no real network calls.
 
@@ -44,13 +44,14 @@ The fixtures, grouped by attack type:
 
 - **Calibration set (10):** must-catch patterns. A scanner missing these is broken, not weak.
 - **Classics (10):** metadata injection, indirect injection, exfiltration, destructive commands, curl-pipe-bash, over-permission, persistence, memory poisoning, confused deputy, typosquatting.
-- **Evasion families V1–V15 (~35):** homoglyph/zero-width/charcode obfuscation, payload dispersion, truncation canyons, LLM-judge manipulation (cover links, judge self-injection, corporate-narrative social engineering), bytecode poisoning, archive indirection, XOR packing, deferred dependency resolution, external staging, silent operators / weaponized Definition-of-Done, dormant codeword gates, shadow features, reputation laundering, self-mutation. Four of these derive Trail of Bits [overtly-malicious-skills](https://github.com/trailofbits/overtly-malicious-skills) primitives (rewritten, not copied): newline-canyon, `.docx` archive indirection, divergent `.pyc`, corporate-narrative registry hijack.
+- **Evasion families V1–V16 (~37):** homoglyph/zero-width/charcode obfuscation, payload dispersion, truncation canyons, LLM-judge manipulation (cover links, judge self-injection, corporate-narrative social engineering), bytecode poisoning, archive indirection, XOR packing, deferred dependency resolution, external staging, silent operators / weaponized Definition-of-Done, dormant codeword gates, shadow features, reputation laundering, self-mutation. Four of these derive Trail of Bits [overtly-malicious-skills](https://github.com/trailofbits/overtly-malicious-skills) primitives (rewritten, not copied): newline-canyon, `.docx` archive indirection, divergent `.pyc`, corporate-narrative registry hijack.
 - **Provenance & time (V14–V15 + temporal):** the scanned artifact is not the executed behavior — reconstruction-from-reference (agent rebuilds a skill from an external link; nothing installs), out-of-band distribution (raw clone / manual upload routes around the marketplace), and a time-delayed external sleeper (innocuous at review, fetch-and-exec after a date).
+- **Skills over MCP (V16):** skills served over MCP as Resources per the [SEP-2640](https://github.com/modelcontextprotocol/ext-skills) — dynamic server-generated bodies that differ between the review fetch and the run fetch, and `allowed-tools` permission escalation over the MCP origin. Threat model: [docs/THREAT_MODEL_MCP_SKILLS.md](docs/THREAT_MODEL_MCP_SKILLS.md).
 - **Ecosystem classes (9):** transitive dependency poisoning, composition trust-transfer, DNS/error side-channels, model artifact theft, repo-config hook execution (`.claude/settings.json`), MCP tool poisoning, marketplace / IDE packs (install flows, marketplace listings, and packs that impersonate a platform's own native skills), wallet exhaustion.
 - **Format-spec noncompliance (4):** unsafe-YAML frontmatter gadgets, frontmatter-free bundles, symlink escapes out of the bundle, nested skill-in-skill recursion. Nothing downstream enforces agentskills.io.
-- **Benign FP-bait (13):** look suspicious on purpose; measure false-positive rates.
+- **Benign FP-bait (15):** look suspicious on purpose; measure false-positive rates.
 
-Every entry has a `skill/` folder (the only thing you point a scanner at) and, kept outside it, an `expected.yaml` answer key: the verdict, a plain-English reason, and category mappings (OWASP AST10, SkillSpector codes, our own V1–V15 evasion families). Each also carries a `GOAT-CANARY-*` token so a leaked fixture can be traced back here.
+Every entry has a `skill/` folder (the only thing you point a scanner at) and, kept outside it, an `expected.yaml` answer key: the verdict, a plain-English reason, and category mappings (OWASP AST10, SkillSpector codes, our own V1–V16 evasion families). Each also carries a `GOAT-CANARY-*` token so a leaked fixture can be traced back here.
 
 ## Scope & Exclusions
 
@@ -63,7 +64,7 @@ SkillsGoat covers malicious and vulnerable skill *content*: what ships inside a 
 | **Registry & lifecycle attacks on installed fleets** (rug-pulls, deleted-account dependency takeover, fleet update drift) | Registry/ops problem — the *package version* changes. In scope, by contrast: a shipped bundle whose own external URL serves different content over time (`300-time-delayed-c2`) — the bundle never changes, only the clock. |
 | **Model-layer attacks** (base-model jailbreaks, training-data poisoning) | Independent of the skills layer. See OWASP LLM Top 10. |
 
-In scope: injection, obfuscation, packing, persistence, memory/soul poisoning, supply-chain chaining, marketplace-hosted packs (e.g. Vercel skills.sh, ClawHub, Cursor plugins) and third-party trees that impersonate a platform's own native skills, provenance-and-time evasion (reconstruction-from-reference, out-of-band distribution, time-delayed external staging), and compound cross-skill attacks under `pasture/compound-chain/`.
+In scope: injection, obfuscation, packing, persistence, memory/soul poisoning, supply-chain chaining, marketplace-hosted packs (e.g. Vercel skills.sh, ClawHub, Cursor plugins) and third-party trees that impersonate a platform's own native skills, provenance-and-time evasion (reconstruction-from-reference, out-of-band distribution, time-delayed external staging), skills served over MCP as Resources (SEP-2640), and compound cross-skill attacks under `pasture/compound-chain/`.
 
 Evaluate UI-only scanners with browser automation against that plugin unit, not a pasted `SKILL.md`. See [evaluations/ui/PROTOCOL.md](evaluations/ui/PROTOCOL.md).
 

@@ -114,6 +114,9 @@ categories:
   - slug: out-of-band-distribution
     description: "V15 — bundle enters via a non-marketplace channel (raw git clone, manual folder upload) that registry/install-time scanners never gate; the tell is steering the user off the scanned path."
     maps: [AST02, AST10]
+  - slug: skills-over-mcp
+    description: "V16 — skill served over MCP as Resources (SEP-2640): server-generated/dynamic content, digest-as-trust theater, allowed-tools permission escalation over the MCP origin, origin shadowing. The served manifest/skill is the scan target; host MCP-client bugs are out of scope. See docs/THREAT_MODEL_MCP_SKILLS.md."
+    maps: [AST02, AST05, AST10]
 
   - slug: search-poisoning
     description: "Descriptions tuned to outrank legitimate skills in discovery/retrieval."

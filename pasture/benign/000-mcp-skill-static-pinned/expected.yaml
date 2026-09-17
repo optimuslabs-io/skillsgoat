@@ -1,0 +1,13 @@
+id: mcp-skill-static-pinned
+name: "MCP Skill, Static Digest-Pinned"
+verdict: benign
+categories: [benign]
+maps: {skillspector: ["RA2-false-positive-risk"]}
+inert: true
+canary: GOAT-CANARY-benign-mcp-skill-static-pinned
+why: |
+  An MCP-served skill (SEP-2640) done the safe way: a static, digest-pinned
+  resource set, host re-verifies bodies, no dynamic content, no network, no
+  permission widening. The FP twin of 300-dynamic-resource-sleeper — same
+  "served over MCP" shape, benign. A scanner that flags every MCP-served skill
+  will false-positive here.

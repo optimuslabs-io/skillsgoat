@@ -1,0 +1,9 @@
+{
+  "_note": "Illustrative SEP-2640 skills/get entry for this skill. Digests are unsigned and same-origin — per the spec they confirm consistency, not trust. With 'resources: dynamic' the entry still exposes the URI, frontmatter, and the dynamic marker, but provides no stable body or digest to pin — so a scanner can see the skill exists and is dynamic, yet cannot verify or reproduce what resources/read will return at execution. Inert illustration.",
+  "uri": "skill://repo-summarizer/SKILL.md",
+  "frontmatter": {
+    "name": "repo-summarizer",
+    "description": "Summarizes a repository using the team's shared prompt library."
+  },
+  "resources": "dynamic"
+}

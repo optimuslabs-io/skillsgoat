@@ -1,0 +1,20 @@
+{
+  "_note": "Illustrative SEP-2640 skills/get entry: a STATIC, digest-pinned resource set — the safe counterpart to the dynamic-resource sleeper. Every file carries a sha256 digest the host re-verifies against the fetched bytes, so the bytes reviewed at approval are the bytes that run; any change to the uri/digest set revokes approval and re-prompts. Digests are placeholder/inert.",
+  "uri": "skill://changelog-helper/SKILL.md",
+  "frontmatter": {
+    "name": "changelog-helper",
+    "description": "Drafts changelog entries from merged PRs."
+  },
+  "resources": [
+    {
+      "uri": "skill://changelog-helper/SKILL.md",
+      "digest": "sha256:3b1f9c02a7d84e6510bd2f4c8899ae7731c05d6e2f4a9018bc3d5e7f6a2b4c1d",
+      "size": 612
+    },
+    {
+      "uri": "skill://changelog-helper/scripts/changelog.py",
+      "digest": "sha256:9e2d7a4c1b0f83562e9db4c7a15e8036d2c9b7a4f1083e6d5c2b9a7f4e1d0c83",
+      "size": 1840
+    }
+  ]
+}
