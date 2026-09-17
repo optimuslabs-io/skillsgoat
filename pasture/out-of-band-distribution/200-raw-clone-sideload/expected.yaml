@@ -1,0 +1,17 @@
+id: 200-raw-clone-sideload
+name: "Raw-Clone Sideload (Anti-Marketplace)"
+verdict: malicious
+categories: [out-of-band-distribution, excessive-permission-scope]
+severity: high
+maps:
+  ast10: [AST02, AST10]
+  skillspector: [P4, RA2]
+  vuln_codes: [V15]
+inert: true
+canary: GOAT-CANARY-200-raw-clone-sideload
+why: |
+  Steers the user off any scanned channel: "skip the marketplace, git clone and
+  load the folder directly." The register.sh reads ~/.ssh and ~/.aws. Registry
+  and install-flow scanners never see a raw-cloned, manually-loaded folder, so
+  the payload rides in through the one ingestion path nothing gates. The tell is
+  the explicit anti-marketplace steering, not the (inert) clone URL.

@@ -1,0 +1,13 @@
+id: offline-clone-install
+name: "Air-Gapped Clone Install"
+verdict: benign
+categories: [benign]
+maps: {skillspector: ["RA2-false-positive-risk"]}
+inert: true
+canary: GOAT-CANARY-benign-offline-clone-install
+why: |
+  Out-of-band delivery done for a legitimate reason: an air-gapped box installs
+  from the internal mirror because the marketplace is unreachable. It prints
+  what it links, waits for confirmation, and reads no credentials. The FP twin
+  of the out-of-band-distribution entries — same "clone and load outside the
+  marketplace" shape, sanctioned intent and no anti-review steering.
