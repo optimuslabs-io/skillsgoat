@@ -7,8 +7,8 @@ authors:
     given-names: Nipun
     affiliation: "Optimus Labs"
 license: MIT
-version: "0.3.0"
-date-released: "2026-09-09"
+version: "0.4.0"
+date-released: "2026-09-18"
 repository-code: "https://github.com/optimuslabs-io/skillsgoat"
 abstract: >
   Labeled goat of agent skills (SKILL.md bundles) for scoring scanners.
