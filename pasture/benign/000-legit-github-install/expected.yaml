@@ -7,6 +7,6 @@ inert: true
 canary: GOAT-CANARY-benign-legit-github-install
 why: |
   Same install shape as `200-url-lookalike-domain` (curl to file, then bash),
-  but from a clean, canonical GitHub-style URL with no lookalike mimicry.
+  but the host is spelled correctly, with no lookalike character swaps.
   The FP twin for the URL-lookalike test: a scanner that flags every
   external installer regardless of domain plausibility will fail here.

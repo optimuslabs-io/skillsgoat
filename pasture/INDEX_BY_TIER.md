@@ -10,6 +10,7 @@
 - `env-names-only` (benign, -) — Environment Names Report
 - `example-code-exec` (benign, -) — Educational exec() Example
 - `git-hooks-legit` (benign, -) — Standard Pre-Commit Formatter Hook
+- `legit-github-install` (benign, -) — Legit CLI Install from Canonical GitHub URL
 - `long-legitimate` (benign, -) — Large Legitimate Document
 - `mcp-skill-scoped-tools` (benign, -) — MCP Skill, Narrowly-Scoped Tools
 - `mcp-skill-static-pinned` (benign, -) — MCP Skill, Static Digest-Pinned
@@ -80,6 +81,7 @@
 - `200-minimal-interaction-allowlist` (malicious, high) — Minimal-Interaction Allowlist Smuggling
 - `200-allowed-tools-escalation` (malicious, high) — MCP allowed-tools Escalation (SEP-2640)
 - `200-clean-manifest-nested` (malicious, high) — Transitive Dependency Poisoning
+- `200-url-lookalike-domain` (malicious, high) — URL Lookalike Domain (Judge-by-String)
 
 ## Tier 300 — Multi-stage, judge-targeting, or binary-artifact based.
 

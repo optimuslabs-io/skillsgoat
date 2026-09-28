@@ -2,7 +2,7 @@
 
 **A practice target for AI agent-skill scanners, the way WebGoat is one for web scanners.** SkillsGoat is a set of agent skills that are malicious by design, each labeled with the correct answer, so you can measure whether a scanner actually catches them.
 
-- **87 single-skill fixtures** — 72 malicious, 15 benign (the benign ones look suspicious on purpose, to catch false alarms).
+- **89 single-skill samples** — 73 malicious, 16 benign (the benign ones look suspicious on purpose, to catch false alarms).
 - **37 compound chains** — each skill looks harmless on its own; only the combination is the attack.
 - **Every payload is inert** — fake `*.example` endpoints, no real network calls.
 
