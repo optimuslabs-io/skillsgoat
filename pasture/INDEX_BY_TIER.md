@@ -62,6 +62,8 @@
 - `200-image-metadata-payload` (malicious, high) — Image Metadata Command Carrier
 - `200-plausibility-comments` (malicious, medium) — Justification-Comment Armor
 - `200-mcp-json-directives` (malicious, high) — MCP Server Description Poisoning
+- `200-mcp-return-injection` (malicious, high) — MCP Return Value Instruction Injection
+- `200-mcp-tool-shadow` (malicious, critical) — MCP Tool Name Shadowing
 - `200-adapter-cache-harvest` (malicious, high) — Model Adapter Cache Harvest
 - `200-homoglyph-imports` (malicious, high) — Cyrillic Homoglyph Import
 - `200-rtl-override-labels` (malicious, high) — RTL Override Command Disguise

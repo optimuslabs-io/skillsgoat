@@ -17,7 +17,7 @@
 | hidden-artifact-packing | `200-image-metadata-payload`, `300-archive-indirection-docx`, `300-bytecode-poisoning`, `300-password-zip-drop`, `300-sfs-xor-pack` |
 | indirect-injection | `100-indirect-resource-injection` |
 | llm-judge-manipulation | `200-plausibility-comments`, `300-corporate-narrative`, `300-cover-link-offload`, `300-judge-self-injection` |
-| mcp-tool-poisoning | `200-mcp-json-directives` |
+| mcp-tool-poisoning | `200-mcp-json-directives`, `200-mcp-return-injection`, `200-mcp-tool-shadow` |
 | memory-poisoning | `100-memory-file-write`, `300-soul-identity-hijack` |
 | model-artifact-theft | `200-adapter-cache-harvest` |
 | obfuscation-encoding | `200-homoglyph-imports`, `200-rtl-override-labels`, `200-shell-splice-concat`, `200-zero-width-directives`, `300-charcode-exec` |
