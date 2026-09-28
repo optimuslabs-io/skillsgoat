@@ -10,6 +10,7 @@
 - `env-names-only` (benign, -) — Environment Names Report
 - `example-code-exec` (benign, -) — Educational exec() Example
 - `git-hooks-legit` (benign, -) — Standard Pre-Commit Formatter Hook
+- `legit-precompiled-helper` (benign, -) — Legit Precompiled Helper (.pyc)
 - `long-legitimate` (benign, -) — Large Legitimate Document
 - `mcp-skill-scoped-tools` (benign, -) — MCP Skill, Narrowly-Scoped Tools
 - `mcp-skill-static-pinned` (benign, -) — MCP Skill, Static Digest-Pinned

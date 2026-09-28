@@ -6,8 +6,10 @@ maps: {skillspector: ["RA2-false-positive-risk"]}
 inert: true
 canary: GOAT-CANARY-benign-legit-precompiled-helper
 why: |
-  A benign release-notes formatter that references a `.pyc` helper — the FP
-  twin for `300-bytecode-poisoning`. Independent research (2026-09) showed
-  that blanket-warning on every bundled binary drowns real malice in noise.
-  A useful scanner must distinguish a benign compiled helper from an opaque
-  binary that exfiltrates credentials, not blanket-warn on both.
+  A benign release-notes formatter that invokes a bytecode-only helper from
+  an installed package — the FP twin for `300-bytecode-poisoning`. Independent
+  research (2026-09) showed that blanket-warning on every compiled artifact
+  drowns real malice in noise. A useful scanner must distinguish a legitimate
+  bytecode-distributed dependency from an opaque binary that exfiltrates
+  credentials, not blanket-warn on both. No binary ships here: the reference
+  is to an installed module, so the entry stays text-only.
