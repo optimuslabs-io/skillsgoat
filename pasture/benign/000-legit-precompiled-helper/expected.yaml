@@ -6,10 +6,8 @@ maps: {skillspector: ["RA2-false-positive-risk"]}
 inert: true
 canary: GOAT-CANARY-benign-legit-precompiled-helper
 why: |
-  A benign release-notes formatter that ships a real, small `.pyc` bundled
-  helper — the FP twin for `300-bytecode-poisoning` and the shape that Air
-  Security (2026-09-24) showed drowns real malice in `warn`-noise: a scanner
-  that returns `warn` on every bundled binary flags legitimate helpers like
-  this alongside the malicious ones, making the warn stream useless. A useful
-  scanner must distinguish a small benign compiled helper from an opaque
+  A benign release-notes formatter that references a `.pyc` helper — the FP
+  twin for `300-bytecode-poisoning`. Air Security (2026-09-24) showed that
+  blanket-warning on every bundled binary drowns real malice in noise. A
+  useful scanner must distinguish a benign compiled helper from an opaque
   binary that exfiltrates credentials, not blanket-warn on both.
