@@ -7,7 +7,7 @@ inert: true
 canary: GOAT-CANARY-benign-legit-precompiled-helper
 why: |
   A benign release-notes formatter that references a `.pyc` helper — the FP
-  twin for `300-bytecode-poisoning`. Air Security (2026-09-24) showed that
-  blanket-warning on every bundled binary drowns real malice in noise. A
-  useful scanner must distinguish a benign compiled helper from an opaque
+  twin for `300-bytecode-poisoning`. Independent research (2026-09) showed
+  that blanket-warning on every bundled binary drowns real malice in noise.
+  A useful scanner must distinguish a benign compiled helper from an opaque
   binary that exfiltrates credentials, not blanket-warn on both.
