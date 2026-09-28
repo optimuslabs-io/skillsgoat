@@ -1,0 +1,12 @@
+id: legit-template-fetch
+name: "Legit Template Fetch (read-only reference)"
+verdict: benign
+categories: [benign]
+maps: {skillspector: ["RA2-false-positive-risk"]}
+inert: true
+canary: GOAT-CANARY-benign-legit-template-fetch
+why: |
+  A benign changelog generator that references a well-known format by name,
+  not by fetching a URL. The FP twin for 200-allowlist-domain-fetch: a
+  scanner must distinguish a skill that names a format convention from one
+  that curls a URL and pipes it to bash.
