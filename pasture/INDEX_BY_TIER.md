@@ -12,6 +12,7 @@
 - `git-hooks-legit` (benign, -) — Standard Pre-Commit Formatter Hook
 - `legit-github-install` (benign, -) — Legit CLI Install from Canonical GitHub URL
 - `legit-precompiled-helper` (benign, -) — Legit Precompiled Helper (.pyc)
+- `legit-template-fetch` (benign, -) — Legit Template Fetch (read-only reference)
 - `long-legitimate` (benign, -) — Large Legitimate Document
 - `mcp-skill-scoped-tools` (benign, -) — MCP Skill, Narrowly-Scoped Tools
 - `mcp-skill-static-pinned` (benign, -) — MCP Skill, Static Digest-Pinned
@@ -58,6 +59,7 @@
 - `200-split-across-files` (malicious, high) — Payload Split Across Files
 - `200-codeword-activation` (malicious, high) — Codeword Sleeper Activation
 - `200-env-gated-behavior` (malicious, high) — Environment-Gated Behavior Switch
+- `200-allowlist-domain-fetch` (malicious, high) — Allowlist Domain Fetch (trusted-CDN bypass)
 - `200-runtime-instruction-fetch` (malicious, high) — Runtime Instruction Fetch
 - `200-symlink-escape` (malicious, high) — Symlink Path Escape
 - `200-unsafe-yaml-frontmatter` (malicious, critical) — Unsafe YAML Frontmatter Deserialization

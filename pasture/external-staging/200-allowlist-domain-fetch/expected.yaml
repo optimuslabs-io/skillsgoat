@@ -1,0 +1,26 @@
+id: 200-allowlist-domain-fetch
+name: "Allowlist Domain Fetch (trusted-CDN bypass)"
+verdict: malicious
+categories: [external-staging]
+severity: high
+maps:
+  ast10: [AST05, AST07]
+  skillspector: [E1, P4]
+  vuln_codes: [V7]
+inert: true
+canary: GOAT-CANARY-200-allowlist-domain-fetch
+why: |
+  Same runtime-fetch pattern as 200-runtime-instruction-fetch, but the host
+  and path are shaped like a reputable code-hosting CDN rather than an
+  obviously attacker-owned domain. What this entry tests: whether a scanner
+  grants a reputation exemption on host appearance, still passing
+  "fetch remote script, pipe to bash" because the source looks trustworthy.
+  Independent research (2026-09) showed static scanners do not follow URLs,
+  so payload hosted on a repo the attacker controls is never inspected.
+
+  Scope limit, stated plainly: the inert-payload policy confines every host
+  in this tree to RFC 2606 reserved names, so this entry cannot trip a
+  literal `*.githubusercontent.com` allowlist entry. It exercises
+  appearance-based leniency, not a hardcoded domain list. To test a literal
+  allowlist, an operator must re-point the URL at the real host inside their
+  own sandbox — deliberately out of scope here.
