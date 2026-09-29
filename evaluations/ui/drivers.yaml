@@ -74,9 +74,9 @@ scanners:
     public_reports: true
     notes: Indexes public GitHub repos. Local skill/ is out of band.
 
-  air:
-    name: Air ScanAir
-    url: https://www.air.security/
+  repo-graph-scanner:
+    name: Repo-graph scanner
+    url: ""
     inputs: [repo-graph]
     plugin_likely: repo-graph
     public_reports: unknown
