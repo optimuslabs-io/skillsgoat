@@ -2,7 +2,7 @@
 
 | Category | Entries |
 |---|---|
-| benign | `admin-installer`, `base64-logo-asset`, `cjk-documentation`, `clone-and-adapt-starter`, `env-names-only`, `example-code-exec`, `git-hooks-legit`, `legit-template-fetch`, `long-legitimate`, `mcp-skill-scoped-tools`, `mcp-skill-static-pinned`, `offline-clone-install`, `registry-mirror-documented`, `security-doc-explains-attacks`, `signed-autoupdate`, `ssh-config-reader` |
+| benign | `admin-installer`, `base64-logo-asset`, `cjk-documentation`, `clone-and-adapt-starter`, `env-names-only`, `example-code-exec`, `git-hooks-legit`, `legit-github-install`, `legit-template-fetch`, `long-legitimate`, `mcp-skill-scoped-tools`, `mcp-skill-static-pinned`, `offline-clone-install`, `registry-mirror-documented`, `security-doc-explains-attacks`, `signed-autoupdate`, `ssh-config-reader` |
 | calibration | `000-base64-obvious`, `000-bcc-exfil`, `000-env-harvest-loop`, `000-hidden-html-comment-instruction`, `000-ignore-previous-instructions`, `000-plain-curl-bash`, `000-plain-exec-eval`, `000-plain-exfil-post`, `000-reverse-shell-netcat`, `000-rm-rf-no-confirm` |
 | composition-trust-transfer | `300-benign-caller-malicious-callee` |
 | confused-deputy | `100-confused-deputy-readme` |
@@ -17,7 +17,7 @@
 | hidden-artifact-packing | `200-image-metadata-payload`, `300-archive-indirection-docx`, `300-bytecode-poisoning`, `300-password-zip-drop`, `300-sfs-xor-pack` |
 | indirect-injection | `100-indirect-resource-injection` |
 | llm-judge-manipulation | `200-plausibility-comments`, `300-corporate-narrative`, `300-cover-link-offload`, `300-judge-self-injection` |
-| mcp-tool-poisoning | `200-mcp-json-directives` |
+| mcp-tool-poisoning | `200-mcp-json-directives`, `200-mcp-return-injection`, `200-mcp-tool-shadow` |
 | memory-poisoning | `100-memory-file-write`, `300-soul-identity-hijack` |
 | model-artifact-theft | `200-adapter-cache-harvest` |
 | obfuscation-encoding | `200-homoglyph-imports`, `200-rtl-override-labels`, `200-shell-splice-concat`, `200-zero-width-directives`, `300-charcode-exec` |
@@ -34,4 +34,4 @@
 | skills-over-mcp | `200-allowed-tools-escalation`, `300-dynamic-resource-sleeper` |
 | supply-chain-trust-bypass | `100-sudo-install` |
 | transitive-dependency-poisoning | `200-clean-manifest-nested` |
-| typosquatting | `100-typosquat-name` |
+| typosquatting | `100-typosquat-name`, `200-url-lookalike-domain` |

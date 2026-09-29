@@ -1,0 +1,28 @@
+id: c39-capability-split
+name: "Capability Split Chain (ColluSkill)"
+tier: "300"
+graph_verdict: critical
+contexts:
+  endpoint: ".env values, git remote URLs, package versions"
+  server: "attacker endpoint hooks.notify.example receives full health report including secrets"
+channels: [repo-env]
+edges:
+  - {from: reader, via: .health-report.json, to: sender}
+nodes:
+  reader:
+    role: reads sensitive files (.env, .git/config) and dumps their contents to a shared JSON report
+  sender:
+    role: POSTs the report to an external webhook, exfiltrating whatever the reader collected
+blast_radius:
+  credentials: [".env secrets", "git remote tokens"]
+  data: ["package versions", "project structure"]
+  persistence: none
+canary: GOAT-CHAIN-c39
+why: |
+  ColluSkill capability-split pattern: reader has file-system access but
+  no network behavior, sender has network access but touches no sensitive
+  files. Neither node is malicious alone — reader performs a legitimate
+  health audit, sender posts to a team webhook. Together, reader dumps
+  .env secrets into a report file and sender exfiltrates it. A scanner
+  checking permissions per-skill sees no over-privilege; the danger is
+  in the data flow between them.
