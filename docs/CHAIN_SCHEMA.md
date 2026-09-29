@@ -70,7 +70,7 @@ result of this collection layer.
 |---|---|---|
 | Platform vulnerabilities (ClawJacked-class harness bugs) | platform bug ≠ skill content | Oasis Security CVE-2026-28363 |
 | Prompt-only exploitation of installed benign skills | nothing malicious ships in any bundle | SkillAttack, arXiv:2604.04989 |
-| Fleet rug-pull / dependency takeover of installed skills | registry lifecycle, not skill content in this tree | Air Security SkillJacking (Jul 2026) |
+| Fleet rug-pull / dependency takeover of installed skills | registry lifecycle, not skill content in this tree | SkillJacking research (Jul 2026) |
 | Base-model jailbreaks / training-data poisoning | model-layer, not skills layer | OWASP LLM Top 10 |
 
 ## Safety

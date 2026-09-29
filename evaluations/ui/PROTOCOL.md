@@ -58,7 +58,7 @@ Catalog: `drivers.yaml`. Repeatable loop: `python evaluations/ui/run_ui.py`.
 | Gen Agent Trust Hub | https://ai.gendigital.com/skill-scanner | ClawHub URL only (`clawhub.ai` / `clawhub.com`). GitHub and zips rejected. | `agent-browser` |
 | Socket | skills.sh / `add-skill.vercel.sh/audit` | No upload UI. Scan happens on `npx skills add`. | `agent-browser` |
 | Manifold Manifest | https://manifest.manifold.security/ | Public GitHub repo, not a local `skill/` | `agent-browser` |
-| Air ScanAir | product graph (SkillJacking / RepoJacking) | Repo/org graph, not a skill file | computer-use / `agent-browser` |
+| Repo-graph scanner | product graph (SkillJacking / RepoJacking) | Repo/org graph, not a skill file | computer-use / `agent-browser` |
 | Snyk Labs | https://labs.snyk.io/experiments/skill-scan/ | GitHub tree URL (legacy) | `evaluations/snyk-labs/run_snyk.py` |
 
 Prefer `agent-browser` for a matrix (snapshot → `@eN` click/fill/upload →

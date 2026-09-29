@@ -24,7 +24,7 @@ Scores go stale when fixtures are added or when a vendor ships a new engine.
 | Socket via skills.sh | UI / audit API | **2026-09-03** | skills.sh + `add-skill.vercel.sh/audit` | none (goat 404) | n/a | Do not `npx skills add` this repo. [report](socket/report.md) |
 | Metano SkillTracer | UI | probe only (no `scanned_at`) | labs.metano.ai | not scored | n/a | Public reports; do not upload pasture. [PROTOCOL](ui/PROTOCOL.md) |
 | Manifold Manifest | UI | never run | manifest.manifold.security | — | n/a | GitHub-repo input only. [drivers](ui/drivers.yaml) |
-| Air ScanAir | product graph | never run | air.security | — | n/a | Repo-graph, not a SKILL.md dropzone. [drivers](ui/drivers.yaml) |
+| Repo-graph scanner | product graph | never run | — | — | n/a | Repo-graph, not a SKILL.md dropzone. [drivers](ui/drivers.yaml) |
 
 **Scanner classes matter for how you read a score.** Most rows are static/LLM
 *analyzers* that inspect a skill's content. A **hash-reputation** scanner
