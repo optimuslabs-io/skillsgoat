@@ -11,6 +11,7 @@
 - `example-code-exec` (benign, -) — Educational exec() Example
 - `git-hooks-legit` (benign, -) — Standard Pre-Commit Formatter Hook
 - `legit-github-install` (benign, -) — Legit CLI Install from Canonical GitHub URL
+- `legit-precompiled-helper` (benign, -) — Legit Precompiled Helper (.pyc)
 - `legit-template-fetch` (benign, -) — Legit Template Fetch (read-only reference)
 - `long-legitimate` (benign, -) — Large Legitimate Document
 - `mcp-skill-scoped-tools` (benign, -) — MCP Skill, Narrowly-Scoped Tools
