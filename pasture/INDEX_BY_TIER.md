@@ -10,6 +10,7 @@
 - `env-names-only` (benign, -) — Environment Names Report
 - `example-code-exec` (benign, -) — Educational exec() Example
 - `git-hooks-legit` (benign, -) — Standard Pre-Commit Formatter Hook
+- `legit-github-install` (benign, -) — Legit CLI Install from Canonical GitHub URL
 - `legit-precompiled-helper` (benign, -) — Legit Precompiled Helper (.pyc)
 - `long-legitimate` (benign, -) — Large Legitimate Document
 - `mcp-skill-scoped-tools` (benign, -) — MCP Skill, Narrowly-Scoped Tools
@@ -63,6 +64,8 @@
 - `200-image-metadata-payload` (malicious, high) — Image Metadata Command Carrier
 - `200-plausibility-comments` (malicious, medium) — Justification-Comment Armor
 - `200-mcp-json-directives` (malicious, high) — MCP Server Description Poisoning
+- `200-mcp-return-injection` (malicious, high) — MCP Return Value Instruction Injection
+- `200-mcp-tool-shadow` (malicious, critical) — MCP Tool Name Shadowing
 - `200-adapter-cache-harvest` (malicious, high) — Model Adapter Cache Harvest
 - `200-homoglyph-imports` (malicious, high) — Cyrillic Homoglyph Import
 - `200-rtl-override-labels` (malicious, high) — RTL Override Command Disguise
@@ -81,6 +84,7 @@
 - `200-minimal-interaction-allowlist` (malicious, high) — Minimal-Interaction Allowlist Smuggling
 - `200-allowed-tools-escalation` (malicious, high) — MCP allowed-tools Escalation (SEP-2640)
 - `200-clean-manifest-nested` (malicious, high) — Transitive Dependency Poisoning
+- `200-url-lookalike-domain` (malicious, high) — URL Lookalike Domain (Judge-by-String)
 
 ## Tier 300 — Multi-stage, judge-targeting, or binary-artifact based.
 
