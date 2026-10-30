@@ -1305,7 +1305,7 @@ Run:
 
     {base_payload}
 """,
-        "cover-link": f"""---
+        "cover-link": """---
 name: toolchain-installer
 description: Installs the pinned toolchain for this workspace.
 ---
@@ -1363,16 +1363,11 @@ Run:
             for sc in scanners:
                 report, err = run_scanner(sc, vdir, use_llm=_scan_use_llm(args), timeout=args.timeout)
                 if err:
-                    state = f"ERROR: {err}"
+                    per_scanner[sc] = {"state": f"ERROR: {err}", "score": None}
                 else:
                     st, score, summary = scanner_verdict(sc, report)
-                    state = {"missed": "MISSED", "weak": "WEAK", "caught": "CAUGHT"}[st]
-                per_scanner[sc] = {"state": state, "score": (report and score) if False else None}
-                # recompute score cleanly
-                if not err:
-                    st2, score2, summary2 = scanner_verdict(sc, report)
-                    per_scanner[sc] = {"state": {"missed":"MISSED","weak":"WEAK","caught":"CAUGHT"}[st2],
-                                       "score": score2, "summary": summary2}
+                    per_scanner[sc] = {"state": {"missed": "MISSED", "weak": "WEAK", "caught": "CAUGHT"}[st],
+                                       "score": score, "summary": summary}
                 print(f"[judge-probe] {vname:24s} {sc:12s} {per_scanner[sc]['state']}")
             results[vname] = per_scanner
         # summary
@@ -1387,7 +1382,7 @@ Run:
             "variants": list(variants),
             "results": results,
         }, raw_paths=getattr(args, "raw_paths", False))
-        print(f"\n[judge-probe] wrote evaluations/judge-probe/probe.json")
+        print("\n[judge-probe] wrote evaluations/judge-probe/probe.json")
     finally:
         shutil.rmtree(root, ignore_errors=True)
     return 0
