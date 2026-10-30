@@ -1,0 +1,3 @@
+{"credential-doctor":{}}
+# empty object = skills.sh has no Socket/Gen/Snyk audit yet for this slug
+# GET https://add-skill.vercel.sh/audit?source=optimuslabs-io/skillsgoat&skills=credential-doctor

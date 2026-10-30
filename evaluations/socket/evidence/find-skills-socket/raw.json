@@ -1,0 +1,23 @@
+{
+    "find-skills": {
+        "ath": {
+            "risk": "safe",
+            "analyzedAt": "2026-03-14T07:45:39.850Z"
+        },
+        "socket": {
+            "risk": "safe",
+            "alerts": 0,
+            "score": 90,
+            "analyzedAt": "2026-03-18T16:47:53.829Z"
+        },
+        "snyk": {
+            "risk": "medium",
+            "analyzedAt": "2026-03-14T07:45:26.162192+00:00"
+        },
+        "zeroleaks": {
+            "risk": "safe",
+            "score": 93,
+            "analyzedAt": "2026-04-16T07:47:59.444Z"
+        }
+    }
+}
