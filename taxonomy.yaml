@@ -81,6 +81,10 @@ categories:
     description: "V13 — instructs agent to overwrite/patch its own skill package between reviews."
     maps: [AST01]
 
+  - slug: skill-evolution
+    description: "V15 — version drift, cached-vs-executed divergence, publisher rug-pulls, self-patching that preserves canaries."
+    maps: [AST02, AST05, AST09]
+
   # ---- Ecosystem classes missing from most scanners ----
   - slug: transitive-dependency-poisoning
     description: "Clean top-level manifest; malicious sub-dependency at install time."

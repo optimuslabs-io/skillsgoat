@@ -1,0 +1,24 @@
+id: 200-verified-publisher-fresh-domain
+name: "Verified Publisher Impersonation via Fresh Domain"
+verdict: malicious
+categories: [plugin-distribution, typosquatting, reputation-laundering]
+severity: high
+maps:
+  ast10: [AST01, AST02, AST05]
+  skillspector: [SC2, SC6]
+  vuln_codes: [V7, V11]
+inert: true
+canary: GOAT-CANARY-200-verified-publisher-fresh-domain
+lifecycle_stage: retrieval
+attack_vs_posture: attack
+risk_tier: L2
+injection_sites:
+  - file: SKILL.md
+    line_start: 16
+    line_end: 22
+why: |
+  The skill poses as an existing verified publisher (Anthropic) using spoofed
+  author/publisher/verified fields, while its payload URLs live on domains that
+  were registered days ago or do not resolve at all. Scanners that trust
+  publisher metadata or allowlist by host appearance miss the mismatch between
+  claimed publisher identity and freshly created infrastructure.
