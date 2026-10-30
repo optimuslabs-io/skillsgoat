@@ -78,13 +78,19 @@
 - `200-clawhub-listing` (malicious, high) — ClawHub Marketplace Listing
 - `200-ide-native-impersonation` (malicious, high) — IDE-Native Marketplace Impersonation
 - `200-vercel-skills-sh-pack` (malicious, high) — Vercel skills.sh npx Pack
+- `200-verified-publisher-fresh-domain` (malicious, high) — Verified Publisher Impersonation via Fresh Domain
 - `200-vibe-coded-plugin` (malicious, high) — Vibe-Coded Marketplace Plugin
 - `200-rebuild-from-link` (malicious, high) — Rebuild-From-Link Reconstruction
+- `200-recently-registered-cdn` (malicious, high) — Reputation Laundering via Recently Registered CDN
 - `200-wallet-exhaustion-loop` (malicious, medium) — Wallet Exhaustion Retry Bomb
 - `200-dns-label-exfil` (malicious, high) — DNS Label Exfiltration
 - `200-error-message-leak` (malicious, medium) — Error-Message Secret Leakage
 - `200-minimal-interaction-allowlist` (malicious, high) — Minimal-Interaction Allowlist Smuggling
+- `200-self-patching-skill` (malicious, high) — Self-Patching Skill (Review-Time vs Run-Time Divergence)
+- `200-version-drift-cached` (malicious, high) — Version Drift: Cached Index Wins
 - `200-allowed-tools-escalation` (malicious, high) — MCP allowed-tools Escalation (SEP-2640)
+- `200-mcp-digest-trust-theater` (malicious, medium) — MCP Digest-as-Trust Theater (SEP-2640)
+- `200-mcp-origin-shadowing` (malicious, high) — MCP Origin Shadowing (SEP-2640)
 - `200-clean-manifest-nested` (malicious, high) — Transitive Dependency Poisoning
 - `200-url-lookalike-domain` (malicious, high) — URL Lookalike Domain (Judge-by-String)
 
@@ -105,4 +111,5 @@
 - `300-charcode-exec` (malicious, critical) — Charcode-Reconstructed exec()
 - `300-self-rewrite-update` (malicious, critical) — Self-Rewriting Update Path
 - `300-definition-of-done-push` (malicious, critical) — Weaponized Definition-of-Done
+- `300-rug-pull-publisher-update` (malicious, critical) — Publisher Rug-Pull via Silent Update
 - `300-dynamic-resource-sleeper` (malicious, critical) — MCP Dynamic-Resource Sleeper (SEP-2640)

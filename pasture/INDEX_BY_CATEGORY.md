@@ -23,15 +23,16 @@
 | obfuscation-encoding | `200-homoglyph-imports`, `200-rtl-override-labels`, `200-shell-splice-concat`, `200-zero-width-directives`, `300-charcode-exec` |
 | out-of-band-distribution | `200-manual-upload-bundle`, `200-raw-clone-sideload` |
 | persistence-backdoor | `100-git-hook-backdoor`, `100-shellrc-persistence` |
-| plugin-distribution | `200-clawhub-listing`, `200-ide-native-impersonation`, `200-vercel-skills-sh-pack`, `200-vibe-coded-plugin` |
+| plugin-distribution | `200-clawhub-listing`, `200-ide-native-impersonation`, `200-vercel-skills-sh-pack`, `200-verified-publisher-fresh-domain`, `200-vibe-coded-plugin` |
 | reconstruction-from-reference | `200-rebuild-from-link` |
 | repo-config-execution | `100-settings-json-hook` |
-| reputation-laundering | `100-fake-social-proof` |
+| reputation-laundering | `100-fake-social-proof`, `200-recently-registered-cdn` |
 | resource-exhaustion | `200-wallet-exhaustion-loop` |
 | self-mutation | `300-self-rewrite-update` |
 | side-channel-exfiltration | `200-dns-label-exfil`, `200-error-message-leak` |
 | silent-operator | `200-minimal-interaction-allowlist`, `300-definition-of-done-push` |
-| skills-over-mcp | `200-allowed-tools-escalation`, `300-dynamic-resource-sleeper` |
+| skill-evolution | `200-self-patching-skill`, `200-version-drift-cached`, `300-rug-pull-publisher-update` |
+| skills-over-mcp | `200-allowed-tools-escalation`, `200-mcp-digest-trust-theater`, `200-mcp-origin-shadowing`, `300-dynamic-resource-sleeper` |
 | supply-chain-trust-bypass | `100-sudo-install` |
 | transitive-dependency-poisoning | `200-clean-manifest-nested` |
 | typosquatting | `100-typosquat-name`, `200-url-lookalike-domain` |
