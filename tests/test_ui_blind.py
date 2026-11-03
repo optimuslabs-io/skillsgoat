@@ -125,6 +125,22 @@ def test_scan_out_root_keeps_results_out_of_repo(tmp_path, monkeypatch):
     assert after == before
 
 
+def test_optimus_adapter_scores_engine_verdict_first():
+    def rep(cls, findings=()):
+        sk = {"static_analysis_report": {"findings": list(findings)}}
+        if cls:
+            sk["engine_verdict"] = {"class": cls, "score": 40, "complete": True,
+                                    "reasons": ["rce-untrusted-host: detail"]}
+        return {"skills": [sk]}
+    high = [{"rule_id": "skill.x", "severity": "high"}]
+    assert goat._optimus_verdict(rep("malicious"))[0] == "caught"
+    assert goat._optimus_verdict(rep("suspicious"))[0] == "weak"
+    # the engine's benign decision wins over a legacy high-severity finding
+    assert goat._optimus_verdict(rep("benign", high))[0] == "missed"
+    # builds without engine_verdict keep the legacy severity lens
+    assert goat._optimus_verdict(rep(None, high))[0] == "caught"
+
+
 def test_tally_matches_scan_semantics():
     t = goat.MatrixTally("x")
     mal = {"id": "m", "verdict": "malicious", "categories": ["c"], "lifecycle_stage": "execution"}

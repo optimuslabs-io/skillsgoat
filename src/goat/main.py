@@ -699,11 +699,26 @@ def scanner_verdict(scanner: str, report: dict) -> tuple[str, float, str]:
 
 
 def _optimus_verdict(report: dict) -> tuple[str, float, str]:
-    """Score Optimus inspection JSON (skills[].static_analysis_report.findings[]).
+    """Score Optimus inspection JSON.
 
-    Severity lens matches the Cisco adapter so the numbers are comparable:
-    high/critical is the block bar, anything else detected is weak.
+    Engine v2 decides per skill in skills[].engine_verdict.class (malicious,
+    suspicious or benign); that decision is what gets scored when present.
+    Older builds have only skills[].static_analysis_report.findings[], scored
+    with the Cisco adapter's severity lens: high/critical is the block bar,
+    anything else detected is weak.
     """
+    verdicts = [s["engine_verdict"] for s in report.get("skills") or [] if s.get("engine_verdict")]
+    if verdicts:
+        order = {"malicious": 2, "suspicious": 1, "benign": 0}
+        v = max(verdicts, key=lambda x: order.get(x.get("class"), 0))
+        cls = v.get("class") or "?"
+        state = {"malicious": "caught", "suspicious": "weak"}.get(cls, "missed")
+        notes = [] if v.get("complete", True) else ["incomplete"]
+        if v.get("llm"):
+            notes.append(f"llm={v['llm']}")
+        reason = (v.get("reasons") or [""])[0].split(":")[0]
+        detail = ", ".join(x for x in [reason, *notes] if x)
+        return state, float(v.get("score") or 0), f"{cls.upper()} {v.get('score', 0)}" + (f" ({detail})" if detail else "")
     rank = {"critical": 100, "high": 75, "medium": 50, "low": 25, "info": 10}
     findings = []
     for skill in report.get("skills") or []:
@@ -1063,7 +1078,7 @@ def cmd_scan(args) -> int:
             write_matrix(outdir, recap, raw_paths)
             print(f"\n[{scanner}] caught={recap['caught']} weak={recap['weak_flagged']} "
                   f"bypassed={recap['bypassed']} fp={recap['false_positives']} "
-                  f"→ evaluations/{scanner}/report.md\n")
+                  f"→ {outdir / 'report.md'}\n")
         return 0
     finally:
         if session is not None:
