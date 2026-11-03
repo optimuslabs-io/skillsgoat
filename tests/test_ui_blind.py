@@ -110,6 +110,21 @@ def test_score_needs_a_verdict_map(tmp_path, run_ui):
                             str(tmp_path / "eval")) == 2
 
 
+def test_scan_out_root_keeps_results_out_of_repo(tmp_path, monkeypatch):
+    monkeypatch.setattr(goat, "run_scanner", lambda *a, **k: ({"ok": 1}, None))
+    monkeypatch.setattr(goat, "scanner_verdict", lambda s, r: ("caught", 100.0, "stub"))
+    monkeypatch.setattr(goat, "scanner_version", lambda s: "stub")
+    before = (Path(goat.REPO) / "evaluations" / "skillspector" / "matrix.json").read_bytes()
+    args = goat._build_parser().parse_args(
+        ["scan", "--scanners", "skillspector", "--ids", f"{MALICIOUS},{BENIGN}",
+         "--out-root", str(tmp_path / "private")])
+    assert goat.cmd_scan(args) == 0
+    m = json.loads((tmp_path / "private" / "skillspector" / "matrix.json").read_text())
+    assert m["blind"] is True and m["total"] == 2
+    after = (Path(goat.REPO) / "evaluations" / "skillspector" / "matrix.json").read_bytes()
+    assert after == before
+
+
 def test_tally_matches_scan_semantics():
     t = goat.MatrixTally("x")
     mal = {"id": "m", "verdict": "malicious", "categories": ["c"], "lifecycle_stage": "execution"}

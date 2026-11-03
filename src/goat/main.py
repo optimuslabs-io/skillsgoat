@@ -784,9 +784,15 @@ def scan_chain_node(scanner, chain, nname, skill_dir, use_llm, timeout):
             "score": score, "summary": summary}
 
 
+def _eval_root(args) -> Path:
+    """Where scan results go: evaluations/ by default, or --out-root for runs kept out of the repo."""
+    out = (getattr(args, "out_root", "") or "").strip()
+    return Path(out).expanduser().resolve() if out else REPO / "evaluations"
+
+
 def cmd_scan_chains(scanner, mode, use_llm, timeout, raw_paths: bool = False,
-                    session: BlindSession | None = None):
-    outdir = REPO / "evaluations" / scanner
+                    session: BlindSession | None = None, eval_root: Path | None = None):
+    outdir = (eval_root or REPO / "evaluations") / scanner
     outdir.mkdir(parents=True, exist_ok=True)
     chains = discover_chains()
     rows, structurally_blind = [], 0
@@ -1013,7 +1019,7 @@ def cmd_scan(args) -> int:
             raw_paths = getattr(args, "raw_paths", False)
             for sc in scanners:
                 cmd_scan_chains(sc, mode, use_llm, args.timeout, raw_paths,
-                                session=session)
+                                session=session, eval_root=_eval_root(args))
             return 0
         entries = discover_entries()
         ids = getattr(args, "ids", "") or ""
@@ -1035,7 +1041,7 @@ def cmd_scan(args) -> int:
                 return 1
         raw_paths = getattr(args, "raw_paths", False)
         for scanner in scanners:
-            outdir = REPO / "evaluations" / scanner
+            outdir = _eval_root(args) / scanner
             outdir.mkdir(parents=True, exist_ok=True)
             tally = MatrixTally(scanner)
             for e in entries:
@@ -1227,6 +1233,9 @@ def _build_parser() -> argparse.ArgumentParser:
                       help="scan the live pasture tree (leaks the answer key; do not publish)")
     scan.add_argument("--keep-blind", default="",
                       help="write the blind staging tree here instead of a temp dir")
+    scan.add_argument("--out-root", default="",
+                      help="write <scanner>/ results here instead of evaluations/ "
+                           "(for runs that must stay out of this public repo)")
     scan.add_argument("--assert-only", action="store_true",
                       help="stage a blind tree, leak-assert, and exit (no scanners)")
     scan.set_defaults(func=cmd_scan)
