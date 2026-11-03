@@ -60,6 +60,9 @@ Catalog: `drivers.yaml`. Repeatable loop: `python evaluations/ui/run_ui.py`.
 | Manifold Manifest | https://manifest.manifold.security/ | Public GitHub repo, not a local `skill/` | `agent-browser` |
 | Repo-graph scanner | product graph (SkillJacking / RepoJacking) | Repo/org graph, not a skill file | computer-use / `agent-browser` |
 | Snyk Labs | https://labs.snyk.io/experiments/skill-scan/ | GitHub tree URL (legacy) | `evaluations/snyk-labs/run_snyk.py` |
+| Anthropic Skill and Plugin Scanning | https://claude.ai/admin-settings/skills | Custom skill upload in a Claude Enterprise org with scanning on | manual, `stage` / `score` |
+| AIR Filter | not public | Customer or trial account | manual, `stage` / `score` |
+| Zenity AI Total | https://aitotal.io | Not mapped yet | `probe`, then `stage` / `score` |
 
 Prefer `agent-browser` for a matrix (snapshot → `@eN` click/fill/upload →
 screenshot). Use Cursor computer-use when the page is unknown, captcha'd, or
@@ -86,6 +89,32 @@ needs a logged-in profile you do not want to script.
    `entry_id,surface,truth,status,reported_severity,findings_count,notes`
 5. If the vendor publishes reports, abort that scanner after the empty-form
    probe unless there is a private/unlisted toggle.
+
+## Blind staging and scoring
+
+`zip` uploads straight from `pasture/`: the vendor sees fixture names and live
+canaries, and `results.csv` is keyed by entry id. Scores from that path are
+debugging artifacts, like `goat scan --no-blind`. For a ledger row, use:
+
+```
+python evaluations/ui/run_ui.py stage anthropic --sample all   # or tier1, or --ids a,b
+# upload evaluations/anthropic/blind-stage/upload/<alias>.zip, one per skill
+# fill blind-stage/results.csv: status = the vendor's verdict word per alias
+python evaluations/ui/run_ui.py score anthropic --version "<build seen in UI>"
+```
+
+- `upload/` holds one zip per entry (and its `SKILL.md`) under a salted hash
+  name, with `expected.yaml` dropped and canaries rewritten, through the same
+  staging `goat scan --blind` uses.
+- `key.json` maps aliases back to entries. It stays local and is never shown
+  to whoever records verdicts, so they score aliases, not fixtures.
+- `score` maps verdict words through the scanner's `verdicts` in
+  `drivers.yaml` (word → caught, weak or missed) and writes `matrix.json` and
+  `report.md` through the same tally as `goat scan`, with `blind: true`,
+  `verdict_source: ui` and the surface. It refuses unknown verdict words and
+  half-filled sheets unless `--partial`, which records the pending count.
+- Stage once per run. `--force` replaces the stage and its key, so finish
+  scoring the previous upload first.
 
 ## Reporting
 

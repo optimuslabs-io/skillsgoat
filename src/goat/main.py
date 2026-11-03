@@ -872,6 +872,100 @@ def _prepare_blind(entries, chains, args) -> BlindSession:
     return session
 
 
+class MatrixTally:
+    """Scores one scanner's per-entry states against ground truth.
+
+    Shared by `goat scan` and by UI scanners whose verdicts are recorded by
+    hand (evaluations/ui/run_ui.py score), so both produce the same matrix.
+    """
+
+    def __init__(self, scanner: str):
+        self.scanner = scanner
+        self.matrix: list[dict] = []
+        self.detected = self.weak = self.fp = self.fn = self.tn = 0
+        self.by_category: dict = {}
+        self.by_lifecycle: dict = {}
+        self.posture_fp = self.attack_fp = 0
+
+    def error(self, e: dict, status: str) -> dict:
+        row = {"id": e["id"], "truth": e["verdict"], "status": status}
+        self.matrix.append(row)
+        return row
+
+    def add(self, e: dict, state: str, score: float, summary: str) -> dict:
+        """state is caught | weak | missed (malicious lens)."""
+        if e["verdict"] == "malicious":
+            status = {"caught": "CAUGHT", "weak": "WEAK-FLAG", "missed": "BYPASSED"}[state]
+            if state == "caught":
+                self.detected += 1
+            elif state == "weak":
+                self.weak += 1
+            else:
+                self.fn += 1
+            for cat in (e.get("categories") or []):
+                self.by_category.setdefault(cat, {"caught": 0, "weak": 0, "missed": 0})
+                self.by_category[cat][state] += 1
+            stage = e.get("lifecycle_stage") or "unspecified"
+            self.by_lifecycle.setdefault(stage, {"caught": 0, "weak": 0, "missed": 0})
+            self.by_lifecycle[stage][state] += 1
+        elif state == "missed":
+            status = "CLEAN"
+            self.tn += 1
+        else:
+            status = "FALSE-POSITIVE" if state == "caught" else "FP-WEAK"
+            self.fp += 1
+            if e.get("attack_vs_posture") == "posture":
+                self.posture_fp += 1
+            else:
+                self.attack_fp += 1
+        row = {"id": e["id"], "truth": e["verdict"], "status": status,
+               "score": score, "scanner_summary": summary,
+               "categories": e.get("categories", []),
+               "lifecycle_stage": e.get("lifecycle_stage"),
+               "attack_vs_posture": e.get("attack_vs_posture")}
+        self.matrix.append(row)
+        return row
+
+    def recap(self, *, llm_enabled: bool, version: str, provenance: dict) -> dict:
+        d, w, fn, fp, tn = self.detected, self.weak, self.fn, self.fp, self.tn
+        recap = {
+            "scanner": self.scanner, "llm_enabled": llm_enabled,
+            "scanner_version": version,
+            "scanned_at": _dt.datetime.now(_dt.timezone.utc).isoformat(),
+            "total": len(self.matrix), "caught": d, "weak_flagged": w,
+            "bypassed": fn, "false_positives": fp, "clean_benign": tn,
+            "malicious_recall_strict": round(d / max(d + w + fn, 1), 3),
+            "malicious_detection_any": round((d + w) / max(d + w + fn, 1), 3),
+            "benign_fp_rate": round(fp / max(fp + tn, 1), 3),
+            "posture_false_positives": self.posture_fp,
+            "attack_false_positives": self.attack_fp,
+            "by_category": self.by_category,
+            "by_lifecycle_stage": self.by_lifecycle,
+            "rows": self.matrix,
+        }
+        recap.update(provenance)
+        return recap
+
+
+def write_matrix(outdir: Path, recap: dict, raw_paths: bool = False) -> None:
+    """Write matrix.json and report.md for one scanner's recap."""
+    outdir.mkdir(parents=True, exist_ok=True)
+    _dump_json(outdir / "matrix.json", recap, raw_paths)
+    md = [f"# Evaluation matrix — {recap['scanner']}\n"]
+    md.extend(_report_provenance(recap))
+    md += [
+        f"- caught (block-threshold): **{recap['caught']}**",
+        f"- weak-flagged (detected, below block): **{recap['weak_flagged']}**",
+        f"- bypassed (zero detection): **{recap['bypassed']}**",
+        f"- benign_fp_rate: **{recap['benign_fp_rate']}**\n",
+        f"- posture false positives: **{recap['posture_false_positives']}**; "
+        f"attack false positives: **{recap['attack_false_positives']}**\n",
+        "| Entry | Ground truth | Result | Scanner |", "|---|---|---|---|"]
+    for r in recap["rows"]:
+        md.append(f"| {r['id']} | {r['truth']} | {r['status']} | {r.get('scanner_summary', '')} |")
+    (outdir / "report.md").write_text("\n".join(md) + "\n")
+
+
 def cmd_scan(args) -> int:
     assert_only = getattr(args, "assert_only", False)
     use_blind = getattr(args, "blind", True) or assert_only
@@ -939,96 +1033,28 @@ def cmd_scan(args) -> int:
             except BlindLeakError as exc:
                 print(f"BLIND FAIL: {exc}", file=sys.stderr)
                 return 1
-        rows, misses = [], []
+        raw_paths = getattr(args, "raw_paths", False)
         for scanner in scanners:
             outdir = REPO / "evaluations" / scanner
             outdir.mkdir(parents=True, exist_ok=True)
-            matrix = []
-            detected = weak = fp = fn = tn = 0
-            by_category: dict = {}
-            by_lifecycle: dict = {}
-            posture_fp = 0
-            attack_fp = 0
+            tally = MatrixTally(scanner)
             for e in entries:
                 skill_dir = session.atomic[e["id"]] if session else e["skill_dir"]
                 report, err = run_scanner(scanner, skill_dir, use_llm=use_llm,
                                           timeout=args.timeout)
                 if err:
-                    row = {"id": e["id"], "truth": e["verdict"], "status": f"ERROR: {err}"}
+                    row = tally.error(e, f"ERROR: {err}")
                 else:
-                    _dump_json(outdir / f"{e['id']}.json", report, getattr(args, "raw_paths", False))
+                    _dump_json(outdir / f"{e['id']}.json", report, raw_paths)
                     state, score, summary = scanner_verdict(scanner, report)
                     if summary.startswith("ERROR:"):
-                        row = {"id": e["id"], "truth": e["verdict"], "status": summary}
-                        rows.append(row)
-                        print(f"[{scanner}] {row['id']:42s} {row['status']}")
-                        matrix.append(row)
-                        continue
-                    truth_mal = e["verdict"] == "malicious"
-                    if truth_mal:
-                        status = {"caught": "CAUGHT", "weak": "WEAK-FLAG", "missed": "BYPASSED"}[state]
-                        if state == "caught":
-                            detected += 1
-                        elif state == "weak":
-                            weak += 1
-                        else:
-                            fn += 1
-                            misses.append(e["id"])
-                        bucket_state = {"caught": "caught", "weak": "weak", "missed": "missed"}[state]
-                        for cat in (e.get("categories") or []):
-                            by_category.setdefault(cat, {"caught": 0, "weak": 0, "missed": 0})
-                            by_category[cat][bucket_state] += 1
-                        stage = e.get("lifecycle_stage") or "unspecified"
-                        by_lifecycle.setdefault(stage, {"caught": 0, "weak": 0, "missed": 0})
-                        by_lifecycle[stage][bucket_state] += 1
-                    else:  # benign truth
-                        if state == "missed":
-                            status, tn = "CLEAN", tn + 1
-                        else:
-                            status, fp = ("FALSE-POSITIVE" if state == "caught" else "FP-WEAK"), fp + 1
-                            misses.append(e["id"])
-                            if e.get("attack_vs_posture") == "posture":
-                                posture_fp += 1
-                            else:
-                                attack_fp += 1
-                    row = {"id": e["id"], "truth": e["verdict"], "status": status,
-                           "score": score, "scanner_summary": summary,
-                           "categories": e.get("categories", []),
-                           "lifecycle_stage": e.get("lifecycle_stage"),
-                           "attack_vs_posture": e.get("attack_vs_posture")}
-                rows.append(row)
+                        row = tally.error(e, summary)
+                    else:
+                        row = tally.add(e, state, score, summary)
                 print(f"[{scanner}] {row['id']:42s} {row['status']}")
-                matrix.append(row)
-            total = len(entries)
-            recap = {
-                "scanner": scanner, "llm_enabled": use_llm,
-                "scanner_version": scanner_version(scanner),
-                "scanned_at": _dt.datetime.now(_dt.timezone.utc).isoformat(),
-                "total": total, "caught": detected, "weak_flagged": weak,
-                "bypassed": fn, "false_positives": fp, "clean_benign": tn,
-                "malicious_recall_strict": round(detected / max(detected + weak + fn, 1), 3),
-                "malicious_detection_any": round((detected + weak) / max(detected + weak + fn, 1), 3),
-                "benign_fp_rate": round(fp / max(fp + tn, 1), 3),
-                "posture_false_positives": posture_fp,
-                "attack_false_positives": attack_fp,
-                "by_category": by_category,
-                "by_lifecycle_stage": by_lifecycle,
-                "rows": matrix,
-            }
-            recap.update(provenance_fields(session))
-            _dump_json(outdir / "matrix.json", recap, getattr(args, "raw_paths", False))
-            md = [f"# Evaluation matrix — {scanner}\n"]
-            md.extend(_report_provenance(recap))
-            md += [
-                  f"- caught (block-threshold): **{recap['caught']}**",
-                  f"- weak-flagged (detected, below block): **{recap['weak_flagged']}**",
-                  f"- bypassed (zero detection): **{recap['bypassed']}**",
-                  f"- benign_fp_rate: **{recap['benign_fp_rate']}**\n",
-                  f"- posture false positives: **{posture_fp}**; attack false positives: **{attack_fp}**\n",
-                  "| Entry | Ground truth | Result | Scanner |", "|---|---|---|---|"]
-            for r in matrix:
-                md.append(f"| {r['id']} | {r['truth']} | {r['status']} | {r.get('scanner_summary','')} |")
-            (outdir / "report.md").write_text("\n".join(md) + "\n")
+            recap = tally.recap(llm_enabled=use_llm, version=scanner_version(scanner),
+                                provenance=provenance_fields(session))
+            write_matrix(outdir, recap, raw_paths)
             print(f"\n[{scanner}] caught={recap['caught']} weak={recap['weak_flagged']} "
                   f"bypassed={recap['bypassed']} fp={recap['false_positives']} "
                   f"→ evaluations/{scanner}/report.md\n")

@@ -89,3 +89,59 @@ scanners:
     plugin_likely: unsupported
     public_reports: false
     notes: Legacy UI eval lives in evaluations/snyk-labs/. CLI is goat.py --scanners snyk.
+
+  # Scanners below are scored with `run_ui.py stage` / `score` (blind). `verdicts`
+  # maps the vendor's own verdict words to caught | weak | missed; score refuses
+  # to run until it is filled in from what the UI actually shows.
+
+  anthropic:
+    name: Anthropic Skill and Plugin Scanning
+    url: https://claude.ai/admin-settings/skills
+    inputs: [skill-upload]
+    default_surface: directory
+    plugin_likely: unknown
+    public_reports: false
+    login: claude-enterprise-owner
+    llm_review: true
+    verdicts: {fail: caught, warn: weak, pass: missed}
+    notes: >
+      Claude Enterprise org setting "Skill and plugin security scanning". Scans
+      custom skills members upload or edit in claude.ai or Cowork after it is
+      turned on. Not the Skills API (/v1/skills), not skills already in the
+      org, not CMEK, ZDR or HIPAA-ready orgs. Fail and unfinished scans block
+      the skill; warn stays usable behind a caution notice. Use a dedicated
+      test org: owners can allow failed skills, so do not let fixtures reach a
+      production library.
+
+  air:
+    name: AIR Filter
+    url: https://www.air.security
+    inputs: [unknown]
+    default_surface: directory
+    plugin_likely: unknown
+    public_reports: unknown
+    login: customer-account
+    verdicts: {}
+    notes: >
+      AIR (Tel Aviv, out of stealth 1 Sep 2026). AIR Filter vets skills,
+      plugins, MCP servers and sub-agents before installation. No public
+      scanner or CLI found as of 3 Nov 2026; needs a customer or trial
+      account. Fill `verdicts` from the UI's own wording before scoring.
+
+  zenity:
+    name: Zenity AI Total
+    url: https://aitotal.io
+    inputs: [unknown]
+    default_surface: directory
+    plugin_likely: unknown
+    public_reports: unknown
+    login: unknown
+    verdicts: {}
+    notes: >
+      Dynamic: a live agent runs the skill in a sandbox seeded with bait
+      credentials and records domains, packages, files, commands and tool
+      calls; the verdict compares behaviour with the skill's claims
+      (zenity.io/research/ai-total). Launched at Unprompted, Oct 2026.
+      Submission form not mapped yet. Probe first; if reports are public,
+      do not submit the collection. Fixture payloads will actually run in
+      their sandbox; all endpoints are inert.
